@@ -28,12 +28,12 @@ class InvestationController extends Controller
     }
 
     public function create(){
-        $categories = InvestationCategory::all();
+        $categories = ['Umum', 'Komuditas', 'Peternakan', 'Sumber Daya Manusia', 'Ekonomi'];
         return view('admin.'.$this->folderName.'.form', compact('categories'));
     }
 
     public function show(Investation $investation){
-        $categories = InvestationCategory::all();
+        $categories = ['Umum', 'Komuditas', 'Peternakan', 'Sumber Daya Manusia', 'Ekonomi'];
         return view('admin.'.$this->folderName.'.form', compact('categories', 'investation'));
     }
 

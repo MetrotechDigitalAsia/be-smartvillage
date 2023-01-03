@@ -14,6 +14,7 @@ use App\Models\ImportantNumber;
 use App\Models\Investation;
 use App\Models\InvestationCategory;
 use App\Models\Admin;
+use App\Models\Position;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -54,9 +55,11 @@ class DatabaseSeeder extends Seeder
         InvestationCategory::create(['investation_category' => 'Sumber Daya Manusia']);
         InvestationCategory::create(['investation_category' => 'Ekonomi']);
 
+        Position::create(['position_name' => 'amdin']);
+
         // DestinationPoint::factory(10)->create();
         // ImportantNumber::factory(10)->create();
-        Complaint::factory(5)->create();
+        // Complaint::factory(5)->create();
         // Agenda::factory(5)->create();
         // Article::factory(5)->create();
         // Investation::factory(5)->create();

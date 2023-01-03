@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\{
+    ArticleController,
     ComplaintController,
     DestinationPointController,
     ImportantNumberController
@@ -30,4 +31,11 @@ Route::group(['middleware' => 'api_key'],function(){
     Route::post('/filter-info', [ImportantNumberController::class, 'filterInfo']);
     Route::post('/filter', [DestinationPointController::class, 'filter']);
     Route::post('/complaint', [ComplaintController::class, 'store']);
+
+
+    Route::group(['prefix' => 'blogs'], function(){
+        Route::get('/', [ArticleController::class, 'index']);
+        Route::get('/latest', [ArticleController::class, 'latest']);
+    });
+
 });

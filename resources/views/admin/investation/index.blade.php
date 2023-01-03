@@ -6,7 +6,7 @@
     <!--begin::Header-->
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
-            <h3 class="card-label">UMKM Desa
+            <h3 class="card-label">Investasi Desa
             <span class="d-block text-muted pt-2 font-size-sm">User management made easy</span></h3>
         </div>
         <div class="card-toolbar">
@@ -19,7 +19,7 @@
 			</div>
 
             <!--begin::Button-->
-            <a href="/informasi-desa/umkm/create" class="btn btn-primary font-weight-bolder">
+            <a href="/informasi-desa/investasi/create" class="btn btn-primary font-weight-bolder">
             <span class="svg-icon svg-icon-md">
                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">

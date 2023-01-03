@@ -11,7 +11,9 @@ use App\Http\Controllers\{
     InvestationCategoryController,
     AdminController,
     InvestationController,
-    LoginController
+    LoginController,
+    PositionController,
+    StaffController
 };
 
 use Illuminate\Support\Facades\Route;
@@ -27,9 +29,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/foo', function () {
-    Artisan::call('storage:link');
-});
+// Route::get('/foo', function () {
+//     Artisan::call('storage:link');
+// });
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'auth']);
@@ -102,9 +104,19 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('/', [ArticleController::class, 'store'])->name('storeArticle');
             Route::post('/update/{article}', [ArticleController::class, 'update']);
             Route::delete('/delete/{article}', [ArticleController::class, 'destroy']);
+            Route::post('/', []);
         });
     
         Route::group(['prefix' => 'umkm'], function(){
+            Route::get('/', [InvestationController::class, 'index'])->name('investation');
+            Route::get('/create', [InvestationController::class, 'create']);
+            Route::get('/show/{investation}', [InvestationController::class, 'show']);
+            Route::post('/', [InvestationController::class, 'store'])->name('storeInvestation');
+            Route::post('/update/{investation}', [InvestationController::class, 'update']);
+            Route::delete('/delete/{investation}', [InvestationController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'investasi'], function(){
             Route::get('/', [InvestationController::class, 'index'])->name('investation');
             Route::get('/create', [InvestationController::class, 'create']);
             Route::get('/show/{investation}', [InvestationController::class, 'show']);
@@ -154,6 +166,24 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('create', [AdminController::class, 'create']);
             Route::post('update/{admin}', [AdminController::class, 'update']);
             Route::delete('delete/{admin}', [AdminController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'position'], function(){
+            Route::get('/', [PositionController::class, 'index'])->name('position');
+            Route::post('/', [PositionController::class, 'store'])->name('storePosition');
+            Route::get('show/{position}', [PositionController::class, 'show']);
+            Route::get('create', [PositionController::class, 'create']);
+            Route::post('update/{position}', [PositionController::class, 'update']);
+            Route::delete('delete/{position}', [PositionController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'staff'], function(){
+            Route::get('/', [StaffController::class, 'index'])->name('staff');
+            Route::post('/', [StaffController::class, 'store'])->name('storeStaff');
+            Route::get('show/{staff}', [StaffController::class, 'show']);
+            Route::get('create', [StaffController::class, 'create']);
+            Route::post('update/{staff}', [StaffController::class, 'update']);
+            Route::delete('delete/{staff}', [StaffController::class, 'destroy']);
         });
     
     });

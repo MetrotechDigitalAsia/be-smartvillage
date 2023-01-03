@@ -16,7 +16,7 @@ class ComplaintController extends Controller
         $data['phone'] = $request['phone'];
         $data['email'] = $request['email'];
         $data['description'] = $request['description'];
-        $data['complaint_category'] = $request['complaint_category'];
+        $data['complaint_category_id'] = $request['complaint_category_id'];
         
         try {
             Complaint::create($data);

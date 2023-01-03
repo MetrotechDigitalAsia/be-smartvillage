@@ -72,11 +72,11 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-xl-3 col-lg-3">Kategori UMKM</label>
                                             <div class="col-xl-9 col-lg-9">
-                                                <select class="form-control form-control-lg form-control-solid" name="investation_category_id">
+                                                <select class="form-control form-control-lg form-control-solid" name="investation_category">
                                                     <option value="">Pilih Kategori...</option>
                                                     @foreach ($categories as $item)
-                                                    <option value="{{ $item->id }}" {{ !empty($investation) ? $investation['investation_category_id'] == $item->id ? 'selected' : '' : ''}}  >
-                                                        {{ $item->investation_category }}
+                                                    <option value="{{ $item }}" {{ !empty($investation) ? $investation['investation_category'] == $item ? 'selected' : '' : ''}}  >
+                                                        {{ $item }}
                                                     </option>
                                                     @endforeach
                                                 </select>
