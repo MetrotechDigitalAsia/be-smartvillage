@@ -41,7 +41,7 @@
         @endif
 
         <!--begin::Wizard-->
-        <form action="{{ empty($investation) ? route('storeInvestation') : '/informasi-desa/umkm/update/'.$investation->uuid }}" enctype="multipart/form-data" method="POST"  >
+        <form action="{{ empty($investation) ? route('storeInvestation') : '/informasi-desa/investasi/update/'.$investation->uuid }}" enctype="multipart/form-data" method="POST"  >
 
             @csrf
 
@@ -63,14 +63,14 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">Nama UMKM</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Nama Investasi</label>
                                             <div class="col-lg-9 col-xl-9">
                                                 <input class="form-control form-control-lg form-control-solid" type="text" name="institute_name" value="{{$investation['institute_name'] ?? '' }}" />
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-form-label col-xl-3 col-lg-3">Kategori UMKM</label>
+                                            <label class="col-form-label col-xl-3 col-lg-3">Kategori Investasi</label>
                                             <div class="col-xl-9 col-lg-9">
                                                 <select class="form-control form-control-lg form-control-solid" name="investation_category">
                                                     <option value="">Pilih Kategori...</option>
@@ -84,7 +84,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">Alamat UMKM</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Alamat Investasi</label>
                                             <div class="col-lg-9 col-xl-9">
                                                 <input class="form-control form-control-lg form-control-solid" type="text" name="institute_address" value="{{$investation['institute_address'] ?? '' }}" />
                                             </div>
@@ -126,7 +126,7 @@
                         </div>
                         <div class="col-lg-6  text-lg-right">
                             <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                            <a href="/informasi-desa/umkm" class="btn btn-secondary">Batal</a>
+                            <a href="/informasi-desa/investasi" class="btn btn-secondary">Batal</a>
                         </div>
                     </div>
                 </div>

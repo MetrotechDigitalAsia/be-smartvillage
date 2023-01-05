@@ -49,12 +49,6 @@ class DatabaseSeeder extends Seeder
         ComplaintCategory::create(['complaint_category' => 'Pariwisata']);
         ComplaintCategory::create(['complaint_category' => 'Sistem Informasi']);
 
-        InvestationCategory::create(['investation_category' => 'Umum']);
-        InvestationCategory::create(['investation_category' => 'Komuditas']);
-        InvestationCategory::create(['investation_category' => 'Peternakan']);
-        InvestationCategory::create(['investation_category' => 'Sumber Daya Manusia']);
-        InvestationCategory::create(['investation_category' => 'Ekonomi']);
-
         Position::create(['position_name' => 'amdin']);
 
         // DestinationPoint::factory(10)->create();

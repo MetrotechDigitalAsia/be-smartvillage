@@ -4,7 +4,8 @@ use App\Http\Controllers\API\{
     ArticleController,
     ComplaintController,
     DestinationPointController,
-    ImportantNumberController
+    ImportantNumberController,
+    InvestationController
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +36,14 @@ Route::group(['middleware' => 'api_key'],function(){
 
     Route::group(['prefix' => 'blogs'], function(){
         Route::get('/', [ArticleController::class, 'index']);
-        Route::get('/latest', [ArticleController::class, 'latest']);
     });
+
+    Route::group(['prefix' => 'blog'], function(){
+        Route::get('/latest', [ArticleController::class, 'latest']);
+        Route::post('/{param}', [ArticleController::class, 'getDataByParam']);
+    });
+
+    Route::post('/investment', [InvestationController::class, 'index']);
+
 
 });

@@ -13,7 +13,8 @@ use App\Http\Controllers\{
     InvestationController,
     LoginController,
     PositionController,
-    StaffController
+    StaffController,
+    UserBusinessItemController
 };
 
 use Illuminate\Support\Facades\Route;
@@ -104,20 +105,19 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('/', [ArticleController::class, 'store'])->name('storeArticle');
             Route::post('/update/{article}', [ArticleController::class, 'update']);
             Route::delete('/delete/{article}', [ArticleController::class, 'destroy']);
-            Route::post('/', []);
         });
     
         Route::group(['prefix' => 'umkm'], function(){
-            Route::get('/', [InvestationController::class, 'index'])->name('investation');
-            Route::get('/create', [InvestationController::class, 'create']);
-            Route::get('/show/{investation}', [InvestationController::class, 'show']);
-            Route::post('/', [InvestationController::class, 'store'])->name('storeInvestation');
-            Route::post('/update/{investation}', [InvestationController::class, 'update']);
-            Route::delete('/delete/{investation}', [InvestationController::class, 'destroy']);
+            Route::get('/', [UserBusinessItemController::class, 'index'])->name('umkm');
+            Route::get('/create', [UserBusinessItemController::class, 'create']);
+            Route::get('/show/{userBusinessItem}', [UserBusinessItemController::class, 'show']);
+            Route::post('/', [UserBusinessItemController::class, 'store'])->name('storeUmkm');
+            Route::post('/update/{userBusinessItem}', [UserBusinessItemController::class, 'update']);
+            Route::delete('/delete/{userBusinessItem}', [UserBusinessItemController::class, 'destroy']);
         });
 
         Route::group(['prefix' => 'investasi'], function(){
-            Route::get('/', [InvestationController::class, 'index'])->name('investation');
+            Route::get('/', [InvestationController::class, ''])->name('investation');
             Route::get('/create', [InvestationController::class, 'create']);
             Route::get('/show/{investation}', [InvestationController::class, 'show']);
             Route::post('/', [InvestationController::class, 'store'])->name('storeInvestation');

@@ -12,9 +12,8 @@ class ArticleController extends Controller
 
         $data = Article::all();
         
-        foreach ($data as $i => $item) {
-            $data[$i]->image =  json_decode($item->image) ?? '';
-            $data[$i]->image = 'storage/' . $data[$i]->image;
+        foreach ($data as $item) {
+            $item->image = 'storage/' . $item->image;
         }
 
         return ResponseController::create($data, 'success', 'get all blog successfully', 200);
@@ -24,14 +23,25 @@ class ArticleController extends Controller
 
     public function latest(){
 
-        $data = Article::latest(3)->get();
+        $data = Article::latest()->limit(3)->get();
         
-        foreach ($data as $i => $item) {
-            $data[$i]->image =  json_decode($item->image) ?? '';
-            $data[$i]->image = 'storage/' . $data[$i]->image;
+        foreach ($data as $item) {
+            $item->image = 'storage/' . $item->image;
         }
 
         return ResponseController::create($data, 'success', 'get all blog successfully', 200);
 
     }
+
+    public function getDataByParam($param){
+
+        $data = Article::where('slug', $param)->orWhere('title', $param)->get();
+
+        foreach ($data as $item) {
+            $item->image = 'storage/' . $item->image;
+        }
+
+        return ResponseController::create($data, 'success', 'get blog successfully', 200);
+    }
+
 }

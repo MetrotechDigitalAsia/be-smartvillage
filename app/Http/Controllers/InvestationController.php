@@ -43,7 +43,7 @@ class InvestationController extends Controller
             'fullname' => 'required',
             'institute_name' => 'required',
             'institute_address' => 'required',
-            'investation_category_id' => 'required',
+            'investation_category' => 'required',
             'institute_email' => 'required',
             'institute_phone_number' => 'required',
             'institute_description' => 'required',
@@ -55,11 +55,11 @@ class InvestationController extends Controller
         try {
             Investation::create($validated);
         } catch (\Exception $e){
-            return redirect('/informasi-desa/umkm/create')->with('error', $e->getMessage());
+            return redirect('/informasi-desa/investasi/create')->with('error', $e->getMessage());
             die;
         }
 
-        return redirect('informasi-desa/umkm')->with('success', 'create investation point successfully');
+        return redirect('informasi-desa/investasi')->with('success', 'create investation point successfully');
 
     }
 
@@ -69,7 +69,7 @@ class InvestationController extends Controller
             'fullname' => 'required',
             'institute_name' => 'required',
             'institute_address' => 'required',
-            'investation_category_id' => 'required',
+            'investation_category' => 'required',
             'institute_email' => 'required',
             'institute_phone_number' => 'required',
             'institute_description' => 'required',
@@ -80,11 +80,11 @@ class InvestationController extends Controller
         try {
             Investation::find($investation->id)->update($validated);
         } catch (\Exception $e){
-            return redirect('/informasi-desa/umkm/show/'. $investation->slug)->with('error', $e->getMessage());
+            return redirect('/informasi-desa/investasi/show/'. $investation->slug)->with('error', $e->getMessage());
             die;
         }
 
-        return redirect('informasi-desa/umkm/show/'. $validated['uuid'])->with('success', 'Update Agenda Successfully');
+        return redirect('informasi-desa/investasi/show/'. $validated['uuid'])->with('success', 'Update Agenda Successfully');
 
     }
 
