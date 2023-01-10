@@ -11,10 +11,12 @@ use App\Http\Controllers\{
     InvestationCategoryController,
     AdminController,
     InvestationController,
+    ItemBusinessCategoryController,
     LoginController,
     PositionController,
     StaffController,
-    UserBusinessItemController
+    UserBusinessItemController,
+    UserLoginController
 };
 
 use Illuminate\Support\Facades\Route;
@@ -117,7 +119,7 @@ Route::group(['middleware' => 'auth'], function(){
         });
 
         Route::group(['prefix' => 'investasi'], function(){
-            Route::get('/', [InvestationController::class, ''])->name('investation');
+            Route::get('/', [InvestationController::class, 'index'])->name('investation');
             Route::get('/create', [InvestationController::class, 'create']);
             Route::get('/show/{investation}', [InvestationController::class, 'show']);
             Route::post('/', [InvestationController::class, 'store'])->name('storeInvestation');
@@ -185,7 +187,25 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('update/{staff}', [StaffController::class, 'update']);
             Route::delete('delete/{staff}', [StaffController::class, 'destroy']);
         });
-    
+
+        Route::group(['prefix' => 'kategori-umkm'], function(){
+            Route::get('/', [ItemBusinessCategoryController::class, 'index'])->name('itemBusinessCategory');
+            Route::post('/', [ItemBusinessCategoryController::class, 'store'])->name('storeItemBusinessCategory');
+            Route::get('show/{itemBusinessCategory}', [ItemBusinessCategoryController::class, 'show']);
+            Route::get('create', [ItemBusinessCategoryController::class, 'create']);
+            Route::post('update/{itemBusinessCategory}', [ItemBusinessCategoryController::class, 'update']);
+            Route::delete('delete/{itemBusinessCategory}', [ItemBusinessCategoryController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'user-login'], function(){
+            Route::get('/', [UserLoginController::class, 'index'])->name('userLogin');
+            Route::post('/', [UserLoginController::class, 'store'])->name('storeUserLogin');
+            Route::get('show/{userLogin}', [UserLoginController::class, 'show']);
+            Route::get('create', [UserLoginController::class, 'create']);
+            Route::post('update/{userLogin}', [UserLoginController::class, 'update']);
+            Route::delete('delete/{userLogin}', [UserLoginController::class, 'destroy']);
+        });
+        
     });
 
 });

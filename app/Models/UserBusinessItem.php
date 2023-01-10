@@ -10,9 +10,14 @@ class UserBusinessItem extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    public $with = ['itemBusinessCategory'];
 
     public function getRouteKeyName()
     {
         return 'uuid';
+    }
+
+    public function itemBusinessCategory(){
+        return $this->belongsTo(ItemBusinessCategory::class, 'item_category_id', 'id');
     }
 }

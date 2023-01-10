@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Investation;
-use App\Models\InvestationCategory;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Str;

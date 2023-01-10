@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="navi-item my-2">
-                        <a href="/informasi-desa" class="navi-link @if(Str::contains(Route::current()->uri, 'umkm')) active @endif ">
+                        <a href="/informasi-desa/umkm" class="navi-link @if(Str::contains(Route::current()->uri, 'umkm')) active @endif ">
                             <span class="navi-icon mr-4">
                                 <span class="svg-icon svg-icon-lg">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->

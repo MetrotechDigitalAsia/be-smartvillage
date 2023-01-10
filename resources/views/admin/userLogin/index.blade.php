@@ -1,4 +1,4 @@
-@extends('admin.informationSystemMenu')
+@extends('admin.masterDataMenu')
 
 @section('table')
 
@@ -6,7 +6,7 @@
     <!--begin::Header-->
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
-            <h3 class="card-label">UMKM Desa
+            <h3 class="card-label">User Login
             <span class="d-block text-muted pt-2 font-size-sm">User management made easy</span></h3>
         </div>
         <div class="card-toolbar">
@@ -19,7 +19,7 @@
 			</div>
 
             <!--begin::Button-->
-            <a href="/informasi-desa/umkm/create" class="btn btn-primary font-weight-bolder">
+            <a href="/master-data/user-login/create" class="btn btn-primary font-weight-bolder">
             <span class="svg-icon svg-icon-md">
                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -74,10 +74,8 @@
 					type: 'remote',
 					source: {
 						read: {
-							url: "{{ route('umkm') }}",
+							url: "{{ route('userLogin') }}",
 							method: 'GET',
-							// sample custom headers
-							// headers: {'x-my-custom-header': 'some value', 'x-test-header': 'the value'},
 							map: function(raw) {
 								// sample data mapping
 								var dataSet = raw;
@@ -125,18 +123,19 @@
 					selector: false,
 					textAlign: 'center',
 				}, {
-					field: 'item_name',
-					title: 'Item',
-				}, {
-					field: 'item_business_category.item_category',
-					title: 'Kategori',
+					field: 'no_nik',
+					title: 'NIK',
 				},{
-					field: 'user_phone_number',
-					title: 'Telepon',
-				},{
-					field: 'item_price',
-					title: 'Harga',
-				},{   
+                    field: 'status',
+					title: 'Status',
+					template: (e) => {
+						return`
+							<span class="label label-md label-light-${e.status === 'Active' ? 'success' : 'danger'} label-pill label-inline mr-2">
+								${e.status === 'Active' ? 'active' : 'deactive'}
+							</span>
+						`
+					}
+                },{   
 					field: 'Actions',
 					title: 'Actions',
 					sortable: false,
@@ -145,7 +144,7 @@
 					autoHide: false,
 					template: function(e) {
 						return `\
-							<a href="/informasi-desa/umkm/show/${e.uuid}" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Edit details">\
+							<a href="/master-data/user-login/show/${e.uuid}" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Edit details">\
 								<span class="svg-icon svg-icon-success svg-icon-lg">\
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
@@ -156,7 +155,7 @@
 									</svg>\
 								</span>\
 							</a>\
-							<a href="javascript:;" data-href="/informasi-desa/umkm/${e.uuid}" onclick="deleteData(this)" class="btn btn-sm btn-clean btn-icon bg-light" title="Delete">\
+							<a href="javascript:;" data-href="/master-data/user-login/delete/${e.uuid}" onclick="deleteData(this)" class="btn btn-sm btn-clean btn-icon bg-light" title="Delete">\
 								<span class="svg-icon svg-icon-danger svg-icon-lg">\
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
