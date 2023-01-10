@@ -99,6 +99,7 @@ class ArticleController extends Controller
 
         try {
             $data->delete();
+            Storage::delete($data->image);
             $message = 'successfully';
         } catch (\Exception $exception){
             $message = $exception->getMessage();

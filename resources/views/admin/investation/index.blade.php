@@ -6,7 +6,7 @@
     <!--begin::Header-->
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
-            <h3 class="card-label">UMKM Desa
+            <h3 class="card-label">Investasi Desa
             <span class="d-block text-muted pt-2 font-size-sm">User management made easy</span></h3>
         </div>
         <div class="card-toolbar">
@@ -19,7 +19,7 @@
 			</div>
 
             <!--begin::Button-->
-            <a href="/informasi-desa/umkm/create" class="btn btn-primary font-weight-bolder">
+            <a href="/informasi-desa/investasi/create" class="btn btn-primary font-weight-bolder">
             <span class="svg-icon svg-icon-md">
                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -140,7 +140,7 @@
 					autoHide: false,
 					template: function(e) {
 						return `\
-							<a href="/informasi-desa/umkm/show/${e.uuid}" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Edit details">\
+							<a href="/informasi-desa/investasi/show/${e.uuid}" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Edit details">\
 								<span class="svg-icon svg-icon-success svg-icon-lg">\
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
@@ -151,7 +151,7 @@
 									</svg>\
 								</span>\
 							</a>\
-							<a href="javascript:;" data-href="/informasi-desa/umkm/delete/${e.uuid}" onclick="deleteData(this)" class="btn btn-sm btn-clean btn-icon bg-light" title="Delete">\
+							<a href="javascript:;" data-href="/informasi-desa/investasi/delete/${e.uuid}" onclick="deleteData(this)" class="btn btn-sm btn-clean btn-icon bg-light" title="Delete">\
 								<span class="svg-icon svg-icon-danger svg-icon-lg">\
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\

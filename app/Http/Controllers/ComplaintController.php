@@ -9,6 +9,8 @@ use Yajra\DataTables\DataTables;
 
 class ComplaintController extends Controller{
 
+    private $folderName;
+
     public function __construct(){
         $this->folderName = 'complaint';
     }

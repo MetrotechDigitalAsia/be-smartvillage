@@ -1,4 +1,4 @@
-@extends('admin.tourismMapMenu')
+@extends('admin.informationSystemMenu')
 
 @section('table')
 
@@ -19,7 +19,7 @@
 			</div>
 
             <!--begin::Button-->
-            <a href="/tourism-map/important-number/create" class="btn btn-primary font-weight-bolder">
+            <a href="/informasi-desa/umkm/create" class="btn btn-primary font-weight-bolder">
             <span class="svg-icon svg-icon-md">
                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -74,7 +74,7 @@
 					type: 'remote',
 					source: {
 						read: {
-							url: "{{ route('investation') }}",
+							url: "{{ route('umkm') }}",
 							method: 'GET',
 							// sample custom headers
 							// headers: {'x-my-custom-header': 'some value', 'x-test-header': 'the value'},
@@ -125,14 +125,17 @@
 					selector: false,
 					textAlign: 'center',
 				}, {
-					field: 'institute_name',
-					title: 'Nama UMKM',
+					field: 'item_name',
+					title: 'Item',
 				}, {
-					field: 'institute_category',
+					field: 'item_business_category.item_category',
 					title: 'Kategori',
 				},{
-					field: 'institute_phone_number',
+					field: 'user_phone_number',
 					title: 'Telepon',
+				},{
+					field: 'item_price',
+					title: 'Harga',
 				},{   
 					field: 'Actions',
 					title: 'Actions',
@@ -142,7 +145,7 @@
 					autoHide: false,
 					template: function(e) {
 						return `\
-							<a href="/informasi-desa/" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Edit details">\
+							<a href="/informasi-desa/umkm/show/${e.uuid}" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Edit details">\
 								<span class="svg-icon svg-icon-success svg-icon-lg">\
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
@@ -153,7 +156,7 @@
 									</svg>\
 								</span>\
 							</a>\
-							<a href="javascript:;" data-href="/informasi-desa/" onclick="deleteData(this)" class="btn btn-sm btn-clean btn-icon bg-light" title="Delete">\
+							<a href="javascript:;" data-href="/informasi-desa/umkm/${e.uuid}" onclick="deleteData(this)" class="btn btn-sm btn-clean btn-icon bg-light" title="Delete">\
 								<span class="svg-icon svg-icon-danger svg-icon-lg">\
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\

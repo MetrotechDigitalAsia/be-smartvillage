@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('fullname');
             $table->string('institute_name');
             $table->string('institute_address');
-            $table->unsignedBigInteger('investation_category_id');
-            $table->foreign('investation_category_id')->references('id')->on('investation_categories');
+            $table->string('investation_category');
             $table->string('institute_email');
             $table->string('institute_phone_number');
             $table->text('institute_description');
