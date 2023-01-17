@@ -14,7 +14,9 @@ use App\Models\ImportantNumber;
 use App\Models\Investation;
 use App\Models\InvestationCategory;
 use App\Models\Admin;
+use App\Models\ItemBusinessCategory;
 use App\Models\Position;
+use App\Models\UserBusinessItem;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -50,6 +52,11 @@ class DatabaseSeeder extends Seeder
         ComplaintCategory::create(['complaint_category' => 'Sistem Informasi']);
 
         Position::create(['position_name' => 'amdin']);
+
+        ItemBusinessCategory::create(['item_category' => 'Jasa']);
+        ItemBusinessCategory::create(['item_category' => 'Makanan & Minuman']);
+
+        UserBusinessItem::factory(50)->create();
 
         // DestinationPoint::factory(10)->create();
         // ImportantNumber::factory(10)->create();

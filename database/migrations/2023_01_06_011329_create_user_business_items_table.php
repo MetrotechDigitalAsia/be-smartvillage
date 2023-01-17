@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('item_image');
             $table->string('item_price');
             $table->text('item_description');
-            $table->string('item_marketplace_link');
+            $table->string('item_marketplace_link')->nullable();
             $table->string('status');
             $table->timestamps();
         });

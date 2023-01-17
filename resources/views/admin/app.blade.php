@@ -22,7 +22,7 @@
 		<link rel="shortcut icon" href="{{ asset('assets/be/media/logos/favicon.ico') }}" />
 	</head>
 
-	<body id="kt_body" style="background-image: url({{ asset('assets/be/media/bg/bg-10.jpg') }})" class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
+	<body id="kt_body" style="background-image: url({{ asset('assets/be/media/bg/CMS-header.jpg') }})" class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 		<!--Main-->
 
 		<!--Header Mobile-->

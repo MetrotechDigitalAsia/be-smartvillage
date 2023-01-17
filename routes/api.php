@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\API\{
+    AgendaController,
     ArticleController,
     ComplaintController,
     DestinationPointController,
     ImportantNumberController,
-    InvestationController
+    InvestationController,
+    UserBusinessItemController
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +46,16 @@ Route::group(['middleware' => 'api_key'],function(){
     });
 
     Route::post('/investment', [InvestationController::class, 'index']);
+
+    Route::group(['prefix' => 'umkm'], function(){
+        Route::get('/',[UserBusinessItemController::class, 'index']);
+        Route::post('/',[UserBusinessItemController::class, 'store']);
+        Route::post('/category',[UserBusinessItemController::class, 'filterByCategory']);
+        Route::get('/latest',[UserBusinessItemController::class, 'getLatest']);
+    });
+
+
+    Route::get('/agenda',[AgendaController::class, 'index']);
 
 
 });

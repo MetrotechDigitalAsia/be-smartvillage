@@ -40,7 +40,7 @@
 			<!--begin::Login-->
 			<div class="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-row-fluid bg-white" id="kt_login">
 				<!--begin::Aside-->
-				<div class="login-aside d-flex flex-row-auto bgi-size-cover bgi-no-repeat p-10 p-lg-10" style="background-image: url({{ asset('assets/be/media/bg/bg-5.jpg') }});">
+				<div class="login-aside d-flex flex-row-auto bgi-size-cover bgi-no-repeat p-10 p-lg-10" style="background-image: url({{ asset('assets/be/media/bg/login-BG.jpg') }});">
 					<!--begin: Aside Container-->
 					<div class="d-flex flex-row-fluid flex-column justify-content-between">
 						<!--begin: Aside header-->
@@ -56,7 +56,7 @@
 						<!--end: Aside content-->
 						<!--begin: Aside footer for desktop-->
 						<div class="d-none flex-column-auto d-lg-flex justify-content-between mt-10">
-							<div class="opacity-70 font-weight-bold text-white">©2022 All Right Reserved. Desa Getasan Bali</div>
+							<div class="opacity-70 font-weight-bold text-white">©2023 All Right Reserved. Desa Getasan Bali</div>
 						</div>
 						<!--end: Aside footer for desktop-->
 					</div>
