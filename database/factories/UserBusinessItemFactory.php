@@ -26,7 +26,7 @@ class UserBusinessItemFactory extends Factory
             'item_image' => 'userBusinessItem/mmCdHDOgdfmKrgzRVtRKcBRYGfBrL2mXuW8fsU0X.webp',
             'item_price' => '300000',
             'item_description' => $this->faker->paragraph(),
-            'status' => $this->faker->randomElement(['approve', 'pending', 'cancel']),
+            'status' => $this->faker->randomElement(['approve', 'pending', 'rejected']),
             
         ];
     }

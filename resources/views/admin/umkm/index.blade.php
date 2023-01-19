@@ -136,6 +136,13 @@
 				},{
 					field: 'item_price',
 					title: 'Harga',
+					template: (e) => {
+						return Intl.NumberFormat("id-ID", {
+							style: "currency",
+							currency: "IDR",
+							minimumFractionDigits: 0
+						}).format(e.item_price);
+					}
 				},{   
 					field: 'Actions',
 					title: 'Actions',

@@ -1,4 +1,4 @@
-@extends('admin.tourismMapMenu')
+@extends('admin.informationSystemMenu')
 
 @section('table')
 

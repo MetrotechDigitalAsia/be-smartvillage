@@ -21,12 +21,36 @@ class UserBusinessItemController extends Controller
 
         if($request->ajax()){
 
-            $data = UserBusinessItem::all();
+            $data = UserBusinessItem::where('status','approve')->get();
             return DataTables::of($data)->make(true); 
 
         }
 
         return view('admin.'.$this->folderName.'.index');
+    }
+
+    public function pending(Request $request){
+
+        if($request->ajax()){
+
+            $data = UserBusinessItem::where('status', 'pending')->get();
+            return DataTables::of($data)->make(true); 
+
+        }
+
+        return view('admin.'.$this->folderName.'.pending');
+    }
+
+    public function rejected(Request $request){
+
+        if($request->ajax()){
+
+            $data = UserBusinessItem::where('status', 'rejected')->get();
+            return DataTables::of($data)->make(true); 
+
+        }
+
+        return view('admin.'.$this->folderName.'.rejected');
     }
 
     public function show(UserBusinessItem $userBusinessItem){

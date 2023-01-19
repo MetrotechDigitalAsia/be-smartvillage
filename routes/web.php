@@ -68,12 +68,6 @@ Route::group(['middleware' => 'auth'], function(){
             Route::delete('/delete/{importantNumber}', [ImportantNumberController::class, 'destroy']);
         });
     
-        Route::group(['prefix' => 'complaint'], function(){
-            Route::get('/', [ComplaintController::class, 'index'])->name('complaint');
-            Route::get('/show/{complaint}', [ComplaintController::class, 'show']);
-            Route::delete('/delete/{complaint}', [ComplaintController::class, 'destroy']);
-        });
-    
     });
     
     Route::group(['prefix' => 'informasi-desa'], function(){
@@ -110,7 +104,9 @@ Route::group(['middleware' => 'auth'], function(){
         });
     
         Route::group(['prefix' => 'umkm'], function(){
-            Route::get('/', [UserBusinessItemController::class, 'index'])->name('umkm');
+            Route::get('/approve', [UserBusinessItemController::class, 'index'])->name('umkm');
+            Route::get('/pending', [UserBusinessItemController::class, 'pending'])->name('umkmPending');
+            Route::get('/rejected', [UserBusinessItemController::class, 'rejected'])->name('umkmRejected');
             Route::get('/create', [UserBusinessItemController::class, 'create']);
             Route::get('/show/{userBusinessItem}', [UserBusinessItemController::class, 'show']);
             Route::post('/', [UserBusinessItemController::class, 'store'])->name('storeUmkm');
@@ -125,6 +121,12 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('/', [InvestationController::class, 'store'])->name('storeInvestation');
             Route::post('/update/{investation}', [InvestationController::class, 'update']);
             Route::delete('/delete/{investation}', [InvestationController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'complaint'], function(){
+            Route::get('/', [ComplaintController::class, 'index'])->name('complaint');
+            Route::get('/show/{complaint}', [ComplaintController::class, 'show']);
+            Route::delete('/delete/{complaint}', [ComplaintController::class, 'destroy']);
         });
 
     

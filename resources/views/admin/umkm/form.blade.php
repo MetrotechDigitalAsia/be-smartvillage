@@ -142,14 +142,19 @@
                                             <div class="col-9 col-form-label">
                                                 <div class="radio-inline">
                                                     <label class="radio radio-outline radio-success">
-                                                        <input {{!empty($userBusinessItem) ? $userBusinessItem['status']=="Active" ? 'checked' : '' : ''}} type="radio" name="status" value="Active" />
+                                                        <input {{!empty($userBusinessItem) ? $userBusinessItem['status']=="rejected" ? 'checked' : '' : ''}} type="radio" name="status" value="rejected" />
                                                         <span></span>
-                                                        Active
+                                                        Tolak
                                                     </label>
                                                     <label class="radio radio-outline radio-success">
-                                                        <input {{!empty($userBusinessItem) ? $userBusinessItem['status']=="Deactive" ? 'checked' : '' : ''}}  type="radio" name="status" value="Deactive" />
+                                                        <input {{!empty($userBusinessItem) ? $userBusinessItem['status']=="pending" ? 'checked' : '' : ''}}  type="radio" name="status" value="pending" />
                                                         <span></span>
-                                                        Deactive
+                                                        Pending
+                                                    </label>
+                                                    <label class="radio radio-outline radio-success">
+                                                        <input {{!empty($userBusinessItem) ? $userBusinessItem['status']=="approve" ? 'checked' : '' : ''}}  type="radio" name="status" value="approve" />
+                                                        <span></span>
+                                                        Terima
                                                     </label>
                                                 </div>
                                             </div>
@@ -177,7 +182,7 @@
                         </div>
                         <div class="col-lg-6  text-lg-right">
                             <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                            <a href="/informasi-desa/umkm" class="btn btn-secondary">Batal</a>
+                            <a href="javascript:history.back()" class="btn btn-secondary">Batal</a>
                         </div>
                     </div>
                 </div>

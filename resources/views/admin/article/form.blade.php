@@ -134,7 +134,7 @@
                         </div>
                         <div class="col-lg-6  text-lg-right">
                             <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                            <a href="/tourism-map/point-destinasi" class="btn btn-secondary">Batal</a>
+                            <a href="javascript:history.back()" class="btn btn-secondary">Batal</a>
                         </div>
                     </div>
                 </div>

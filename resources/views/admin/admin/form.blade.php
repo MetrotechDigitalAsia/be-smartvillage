@@ -21,7 +21,7 @@
         </div>
         <div class="card-toolbar">
             <button type="submit" class="btn btn-success mr-2">Simpan</button>
-            <a href="/master-data/admin" class="btn btn-secondary">Batal</a>
+            <a href="javascript:history.back()" class="btn btn-secondary">Batal</a>
         </div>
     </div>
     <!--end::Header-->
