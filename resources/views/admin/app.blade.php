@@ -20,6 +20,8 @@
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
 		<link rel="shortcut icon" href="{{ asset('assets/be/media/logos/favicon.ico') }}" />
+
+		@livewireStyles
 	</head>
 
 	<body id="kt_body" style="background-image: url({{ asset('assets/be/media/bg/CMS-header.jpg') }})" class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
@@ -61,6 +63,8 @@
 		<!--Scrolltop-->
 		@include('partials.scrollTop')
 
+
+		@livewireScripts
 		<script>var HOST_URL = "https://keenthemes.com/metronic/tools/preview";</script>
 
 		<!--Global Config(global config for global JS scripts)-->
@@ -79,6 +83,25 @@
 		@endif
 
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCem_6fvhccSrm6U1cEUQLPEJfEeuxcNY&libraries=places"></script>
+
+		<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+		<script>
+
+			// Enable pusher logging - don't include this in production
+			Pusher.logToConsole = true;
+
+			var pusher = new Pusher('4bd4cfa546049d622247', {
+				cluster: 'ap1'
+			});
+
+			var channel = pusher.subscribe('public-channel');
+
+			channel.bind('notification-event', function(data) {
+				Livewire.emit('notifAdded')
+				// alert(JSON.stringify(data));
+			});
+
+		</script>
 
 		<script>
 			$.ajaxSetup({

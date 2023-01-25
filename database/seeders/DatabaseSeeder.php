@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         Admin::create([
             'uuid' => Str::uuid()->toString(),
             'fullname' => 'Administrator',
-            'email' => 'admin@desagetasan.com',
+            'email' => 'admin@desagetasan.id',
             'password' => bcrypt('qazwsx'),
             'status' => 'Active',
         ]);
@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
         ItemBusinessCategory::create(['item_category' => 'Jasa']);
         ItemBusinessCategory::create(['item_category' => 'Makanan & Minuman']);
 
-        UserBusinessItem::factory(50)->create();
+        UserBusinessItem::factory(10)->create();
 
         // DestinationPoint::factory(10)->create();
         // ImportantNumber::factory(10)->create();

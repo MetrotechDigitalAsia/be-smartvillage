@@ -7,7 +7,8 @@ use App\Http\Controllers\API\{
     DestinationPointController,
     ImportantNumberController,
     InvestationController,
-    UserBusinessItemController
+    UserBusinessItemController,
+    ItemBusinessCategoryController
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,7 @@ Route::group(['middleware' => 'api_key'],function(){
     Route::post('/filter', [DestinationPointController::class, 'filter']);
     Route::post('/complaint', [ComplaintController::class, 'store']);
 
+    Route::get('/umkmCategory',[ItemBusinessCategoryController::class, 'index']);
 
     Route::group(['prefix' => 'blogs'], function(){
         Route::get('/', [ArticleController::class, 'index']);

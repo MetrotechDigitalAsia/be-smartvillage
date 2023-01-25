@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\NotificationEvent;
+use App\Events\TestEvent;
 use App\Http\Controllers\{
     AgendaController,
     ArticleCategoryController,
