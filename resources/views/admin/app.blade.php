@@ -22,6 +22,7 @@
 		<link rel="shortcut icon" href="{{ asset('assets/be/media/logos/favicon.ico') }}" />
 
 		@livewireStyles
+		
 	</head>
 
 	<body id="kt_body" style="background-image: url({{ asset('assets/be/media/bg/CMS-header.jpg') }})" class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
@@ -96,14 +97,27 @@
 
 			var channel = pusher.subscribe('public-channel');
 
+			const spanPulse = document.querySelector('.span.ring')
+			const notifIcon = document.querySelector('.notif-icon')
+
 			channel.bind('notification-event', function(data) {
 				Livewire.emit('notifAdded')
-				// alert(JSON.stringify(data));
+				notifIcon.classList.add('svg-icon-warning')
+				spanPulse.classList.add('pulse-ring')
 			});
+
+			const notifBtn = document.querySelector('.notif-btn')
+
+			notifBtn.addEventListener('click', () => {
+				notifIcon.classList.remove('svg-icon-warning')
+				spanPulse.classList.remove('pulse-ring')
+			})
 
 		</script>
 
 		<script>
+
+
 			$.ajaxSetup({
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -137,11 +151,17 @@
 								.done(function(res){
 									if (res.message=="successfully") {
 										location.reload();
-										swalWithBootstrapButtons.fire(
-											'Deleted!',
-											'Your data has been deleted.',
-											'success'
-										)
+										// swalWithBootstrapButtons.fire(
+										// 	'Deleted!',
+										// 	'Your data has been deleted.',
+										// 	'success'
+										// )
+										swalWithBootstrapButtons.fire({
+											title: 'deleted',
+											text: 'Your data has been deleted.',
+											timer: 5000,
+
+										})
 									}
 								})
 								.fail(function(res) {

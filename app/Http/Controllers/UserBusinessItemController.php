@@ -69,6 +69,9 @@ class UserBusinessItemController extends Controller
 
     public function store(Request $request){
 
+        // dd($request->file('item_image'));
+
+
         $validated = $request->validate([
             'no_nik' => 'required',
             'user_phone_number' => 'required',
@@ -81,6 +84,7 @@ class UserBusinessItemController extends Controller
             'status' => 'required'
         ]);
 
+
         $validated['uuid'] = Str::uuid()->toString();
         $validated['item_image'] = $request->file('item_image')->store('userBusinessItem');
 
@@ -91,7 +95,7 @@ class UserBusinessItemController extends Controller
             die;
         }
 
-        return redirect('informasi-desa/umkm')->with('success', 'create umkm successfully');
+        return redirect('informasi-desa/umkm/approve')->with('success', 'create umkm successfully');
 
     }
 
@@ -131,6 +135,7 @@ class UserBusinessItemController extends Controller
         $data = UserBusinessItem::find($userBusinessItem->id);
 
         try {
+            Storage::delete($data->item_image);
             $data->delete();
             $message = 'successfully';
         } catch (\Exception $exception){

@@ -44,19 +44,27 @@ class DatabaseSeeder extends Seeder
             'status' => 'Active',
         ]);
 
-        ArticleCategory::create(['article_category' => 'F&B']);
-        ArticleCategory::create(['article_category' => 'Hangat']);
-        ArticleCategory::create(['article_category' => 'Lainnya']);
+        // ArticleCategory::create(['article_category' => 'F&B']);
+        // ArticleCategory::create(['article_category' => 'Hangat']);
+        // ArticleCategory::create(['article_category' => 'Lainnya']);
 
         ComplaintCategory::create(['complaint_category' => 'Pariwisata']);
-        ComplaintCategory::create(['complaint_category' => 'Sistem Informasi']);
+        ComplaintCategory::create(['complaint_category' => 'Umum']);
+        ComplaintCategory::create(['complaint_category' => 'layanan Terpadu']);
 
-        Position::create(['position_name' => 'amdin']);
+        // Position::create(['position_name' => 'amdin']);
 
         ItemBusinessCategory::create(['item_category' => 'Jasa']);
         ItemBusinessCategory::create(['item_category' => 'Makanan & Minuman']);
+        ItemBusinessCategory::create(['item_category' => 'Ternak']);
+        ItemBusinessCategory::create(['item_category' => 'Elektronik']);
+        ItemBusinessCategory::create(['item_category' => 'Properti']);
+        ItemBusinessCategory::create(['item_category' => 'Pakaian']);
+        ItemBusinessCategory::create(['item_category' => 'Perabotan']);
+        ItemBusinessCategory::create(['item_category' => 'Kesehatan']);
+        ItemBusinessCategory::create(['item_category' => 'Lainnya']);
 
-        UserBusinessItem::factory(10)->create();
+        // UserBusinessItem::factory(10)->create();
 
         // DestinationPoint::factory(10)->create();
         // ImportantNumber::factory(10)->create();

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite984b7cbfb48fbec1c784fd57afd59bf
+class ComposerStaticInit8a14aabfc325bcf976333656f824f43d
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -155,6 +155,7 @@ class ComposerStaticInite984b7cbfb48fbec1c784fd57afd59bf
             'Dotenv\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Inflector\\' => 19,
+            'Doctrine\\Deprecations\\' => 22,
             'Doctrine\\Common\\Lexer\\' => 22,
             'Dflydev\\DotAccessData\\' => 22,
             'DeepCopy\\' => 9,
@@ -468,6 +469,10 @@ class ComposerStaticInite984b7cbfb48fbec1c784fd57afd59bf
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector',
         ),
+        'Doctrine\\Deprecations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/deprecations/lib/Doctrine/Deprecations',
+        ),
         'Doctrine\\Common\\Lexer\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/lexer/src',
@@ -551,6 +556,7 @@ class ComposerStaticInite984b7cbfb48fbec1c784fd57afd59bf
         'App\\Http\\Controllers\\UserBusinessItemController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserBusinessItemController.php',
         'App\\Http\\Controllers\\UserLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserLoginController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Livewire\\NotificationItems' => __DIR__ . '/../..' . '/app/Http/Livewire/NotificationItems.php',
         'App\\Http\\Middleware\\ApiKeyMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/ApiKeyMiddleware.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -743,6 +749,8 @@ class ComposerStaticInite984b7cbfb48fbec1c784fd57afd59bf
         'Dflydev\\DotAccessData\\Util' => __DIR__ . '/..' . '/dflydev/dot-access-data/src/Util.php',
         'Doctrine\\Common\\Lexer\\AbstractLexer' => __DIR__ . '/..' . '/doctrine/lexer/src/AbstractLexer.php',
         'Doctrine\\Common\\Lexer\\Token' => __DIR__ . '/..' . '/doctrine/lexer/src/Token.php',
+        'Doctrine\\Deprecations\\Deprecation' => __DIR__ . '/..' . '/doctrine/deprecations/lib/Doctrine/Deprecations/Deprecation.php',
+        'Doctrine\\Deprecations\\PHPUnit\\VerifyDeprecations' => __DIR__ . '/..' . '/doctrine/deprecations/lib/Doctrine/Deprecations/PHPUnit/VerifyDeprecations.php',
         'Doctrine\\Inflector\\CachedWordInflector' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/CachedWordInflector.php',
         'Doctrine\\Inflector\\GenericLanguageInflectorFactory' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/GenericLanguageInflectorFactory.php',
         'Doctrine\\Inflector\\Inflector' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Inflector.php',
@@ -5929,10 +5937,10 @@ class ComposerStaticInite984b7cbfb48fbec1c784fd57afd59bf
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite984b7cbfb48fbec1c784fd57afd59bf::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite984b7cbfb48fbec1c784fd57afd59bf::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInite984b7cbfb48fbec1c784fd57afd59bf::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInite984b7cbfb48fbec1c784fd57afd59bf::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit8a14aabfc325bcf976333656f824f43d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit8a14aabfc325bcf976333656f824f43d::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit8a14aabfc325bcf976333656f824f43d::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit8a14aabfc325bcf976333656f824f43d::$classMap;
 
         }, null, ClassLoader::class);
     }

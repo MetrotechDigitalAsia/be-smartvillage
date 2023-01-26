@@ -7,7 +7,7 @@
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
             <h3 class="card-label">Kategori Artikel
-            <span class="d-block text-muted pt-2 font-size-sm">User management made easy</span></h3>
+            </h3>
         </div>
         <div class="card-toolbar">
 
@@ -56,6 +56,9 @@
     </div>
     <!--end::Body-->
 </div>
+
+@endsection
+
 
 
 @push('script')
@@ -190,4 +193,3 @@
     
 @endpush
     
-@endsection
