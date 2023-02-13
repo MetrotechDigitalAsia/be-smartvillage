@@ -117,7 +117,7 @@
 				// columns definition
 				columns: [
 				{
-					field: 'id',
+					field: 'DT_RowIndex',
 					title: '#',
 					sortable: 'asc',
 					width: 30,

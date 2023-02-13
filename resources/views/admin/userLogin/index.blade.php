@@ -115,29 +115,22 @@
 				// columns definition
 				columns: [
 				{
-					field: 'id',
+					field: 'DT_RowIndex',
 					title: '#',
 					sortable: 'asc',
 					width: 30,
 					type: 'number',
 					selector: false,
 					textAlign: 'center',
-				}, {
-					field: 'no_nik',
-					title: 'NIK',
 				},{
-                    field: 'status',
-					title: 'Status',
-					template: (e) => {
-						return`
-							<span class="label label-md label-light-${e.status === 'Active' ? 'success' : 'danger'} label-pill label-inline mr-2">
-								${e.status === 'Active' ? 'active' : 'deactive'}
-							</span>
-						`
-					}
-                },{   
+					field: 'NAMA_LENGKAP',
+					title: 'Nama',
+				}, {
+					field: 'NO_NIK',
+					title: 'NIK',
+				},{   
 					field: 'Actions',
-					title: 'Actions',
+					title: 'Aksi',
 					sortable: false,
 					width: 125,
 					overflow: 'visible',

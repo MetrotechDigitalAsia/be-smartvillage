@@ -128,8 +128,6 @@
 				let action = $(e).data('href')
 				let data = {_method: 'delete'}
 
-				console.log('adfa')
-			
 				const swalWithBootstrapButtons = Swal.mixin({
 					customClass: {
 						confirmButton: 'btn btn-success',

@@ -8,7 +8,7 @@
                 </span>
             </div>
             <div class="d-flex flex-column flex-grow-1 mr-2">
-                <a href="#" class="font-weight-bolder text-dark-75 text-hover-primary font-size-lg mb-1">{{ $notify->data['data']['item_name'] }}</a>
+                <a href="/informasi-desa/umkm/show/{{ $notify->data['data']['uuid']  }}" class="font-weight-bolder text-dark-75 text-hover-primary font-size-lg mb-1">{{ $notify->data['data']['item_name'] }}</a>
                 <span class="text-muted font-weight-bold">{{ $notify->created_at->diffForHumans() }}</span>
             </div>
             @livewire('delete-notif', ['notifId' => $notify->id], key($notify->id))

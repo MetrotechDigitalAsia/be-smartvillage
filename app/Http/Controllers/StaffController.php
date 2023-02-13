@@ -24,7 +24,9 @@ class StaffController extends Controller
         if($request->ajax()){
 
             $data = Staff::all();
-            return DataTables::of($data)->make(true); 
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 

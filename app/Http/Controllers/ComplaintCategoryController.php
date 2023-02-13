@@ -20,7 +20,9 @@ class ComplaintCategoryController extends Controller
         if($request->ajax()){
 
             $data = ComplaintCategory::all();
-            return DataTables::of($data)->make(true); 
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 

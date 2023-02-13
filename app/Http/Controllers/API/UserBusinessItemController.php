@@ -17,7 +17,7 @@ class UserBusinessItemController extends Controller
 
     public function index(Request $request){
 
-        $param = $request->input('category_id');
+        $param = request()->query('category_id');
 
         if(empty($param)){
             $data = UserBusinessItem::where('status', 'approve')->paginate(10);
@@ -84,7 +84,7 @@ class UserBusinessItemController extends Controller
 
 
         try {
-            // UserBusinessItem::create($data);
+            UserBusinessItem::create($data);
             event(new NotificationEvent($data));
             Notification::send($admin, new UmkmNotification($data));
             return ResponseController::create(request()->all(), 'success', 'create data successfully', 200);

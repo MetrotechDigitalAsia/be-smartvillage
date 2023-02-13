@@ -22,7 +22,9 @@ class ArticleController extends Controller
         if($request->ajax()){
 
             $data = Article::all();
-            return DataTables::of($data)->make(true); 
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 

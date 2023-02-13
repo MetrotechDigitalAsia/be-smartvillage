@@ -8,7 +8,8 @@ use App\Http\Controllers\API\{
     ImportantNumberController,
     InvestationController,
     UserBusinessItemController,
-    ItemBusinessCategoryController
+    ItemBusinessCategoryController,
+    UserLoginController
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,9 @@ Route::group(['middleware' => 'api_key'],function(){
 
 
     Route::get('/agenda',[AgendaController::class, 'index']);
+
+    Route::post('/login', [UserLoginController::class, 'login']);
+    Route::post('/changePassword/{id}', [UserLoginController::class, 'changePassword']);
 
 
 });

@@ -22,7 +22,9 @@ class UserBusinessItemController extends Controller
         if($request->ajax()){
 
             $data = UserBusinessItem::where('status','approve')->get();
-            return DataTables::of($data)->make(true); 
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 
@@ -34,7 +36,9 @@ class UserBusinessItemController extends Controller
         if($request->ajax()){
 
             $data = UserBusinessItem::where('status', 'pending')->get();
-            return DataTables::of($data)->make(true); 
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 
@@ -46,7 +50,9 @@ class UserBusinessItemController extends Controller
         if($request->ajax()){
 
             $data = UserBusinessItem::where('status', 'rejected')->get();
-            return DataTables::of($data)->make(true); 
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 

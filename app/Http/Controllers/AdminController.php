@@ -22,7 +22,9 @@ class AdminController extends Controller
         if($request->ajax()){
 
             $data = Admin::all();
-            return DataTables::of($data)->make(true);
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true);
 
         }
 

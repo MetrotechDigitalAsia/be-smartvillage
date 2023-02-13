@@ -21,7 +21,9 @@ class AgendaController extends Controller
         if($request->ajax()){
 
             $data = Agenda::all();
-            return DataTables::of($data)->make(true); 
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 

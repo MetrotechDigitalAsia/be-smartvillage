@@ -22,7 +22,9 @@ class DestinationPointController extends Controller
         if($request->ajax()){
 
             $data = DestinationPoint::all();
-            return DataTables::of($data)->make(true); 
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 

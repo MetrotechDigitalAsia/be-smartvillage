@@ -20,7 +20,9 @@ class ImportantNumberController extends Controller
         if($request->ajax()){
 
             $data = ImportantNumber::all();
-            return DataTables::of($data)->make(true); 
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 

@@ -20,7 +20,9 @@ class InvestationController extends Controller
 
         if($request->ajax()){
             $data = Investation::all();
-            return DataTables::of($data)->make(true); 
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
         }
 
         return view('admin.'.$this->folderName.'.index');

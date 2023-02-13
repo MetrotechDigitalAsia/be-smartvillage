@@ -17,7 +17,10 @@ use App\Models\Admin;
 use App\Models\ItemBusinessCategory;
 use App\Models\Position;
 use App\Models\UserBusinessItem;
+use App\Models\UserData;
+use App\Models\UserLogin;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
@@ -63,6 +66,19 @@ class DatabaseSeeder extends Seeder
         ItemBusinessCategory::create(['item_category' => 'Perabotan']);
         ItemBusinessCategory::create(['item_category' => 'Kesehatan']);
         ItemBusinessCategory::create(['item_category' => 'Lainnya']);
+
+        $users = UserData::all();
+
+        foreach($users as $user){
+
+            UserLogin::create([
+                'uuid' => Str::uuid()->toString(),
+                'no_nik' => $user->NO_NIK,
+                'password' => bcrypt($user->NO_NIK),
+                'status' => 'active',
+            ]);
+
+        }
 
         // UserBusinessItem::factory(10)->create();
 
