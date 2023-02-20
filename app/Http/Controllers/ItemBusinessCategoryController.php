@@ -19,7 +19,9 @@ class ItemBusinessCategoryController extends Controller
 
         if($request->ajax()){
 
-            $data = ItemBusinessCategory::all();
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = ItemBusinessCategory::where('item_category', 'like', '%'. $param .'%')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true); 
@@ -50,7 +52,7 @@ class ItemBusinessCategoryController extends Controller
             die;
         }
 
-        return redirect('/master-data/kategori-umkm')->with('success', 'create complaint category successfully');
+        return redirect('/master-data/kategori-umkm')->with('success', 'create Umkm category successfully');
 
     }
 
@@ -67,7 +69,7 @@ class ItemBusinessCategoryController extends Controller
             die;
         }
 
-        return redirect('/master-data/kategori-umkm')->with('success', 'update complaint category successfully');
+        return redirect('/master-data/kategori-umkm')->with('success', 'update Umkm category successfully');
 
     }
 

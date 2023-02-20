@@ -17,7 +17,10 @@ class PositionController extends Controller
     public function index(Request $request){
 
         if($request->ajax()){
-            $data = Position::all();
+
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = Position::where('position_name', 'like', '%'. $param .'%')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true); 

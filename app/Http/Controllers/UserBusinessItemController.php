@@ -75,8 +75,6 @@ class UserBusinessItemController extends Controller
 
     public function store(Request $request){
 
-        // dd($request->file('item_image'));
-
 
         $validated = $request->validate([
             'no_nik' => 'required',

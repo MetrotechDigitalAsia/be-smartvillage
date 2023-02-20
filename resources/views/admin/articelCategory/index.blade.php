@@ -111,9 +111,6 @@
                 	key: 'generalSearch'
 				},
 
-				// rows: {
-				// 	beforeTemplate: (row,data,index) => console.log(row,data,index)
-				// },
 		
 				// columns definition
 				columns: [

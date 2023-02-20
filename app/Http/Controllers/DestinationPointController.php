@@ -21,7 +21,12 @@ class DestinationPointController extends Controller
 
         if($request->ajax()){
 
-            $data = DestinationPoint::all();
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = DestinationPoint::where('name', 'like', '%'.$param.'%')
+                    ->orWhere('category', 'like', '%'.$param.'%')
+                    ->orWhere('address', 'like', '%'.$param.'%')
+                    ->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true); 

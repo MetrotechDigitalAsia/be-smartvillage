@@ -19,7 +19,6 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-
         if(Auth::attempt([...$validated, 'status' => 'Active'])){
             $request->session()->regenerate();
             return redirect()->intended('/tourism-map');

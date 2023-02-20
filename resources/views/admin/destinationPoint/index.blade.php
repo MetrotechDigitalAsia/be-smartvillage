@@ -102,7 +102,7 @@
 				},
 		
 				// column sorting
-				sortable: true,
+				sortable: false,
 				pagination: true,
 		
 				search: {

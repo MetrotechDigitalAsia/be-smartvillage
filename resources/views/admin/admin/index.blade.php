@@ -100,7 +100,6 @@
 				},
 		
 				// column sorting
-				sortable: true,
 				pagination: true,
 		
 				search: {

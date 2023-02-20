@@ -62,6 +62,8 @@
 
 <script>
 
+	'use strict'
+
 	var Table = function() {
 		// Private functions
 
@@ -100,46 +102,37 @@
 					height: 500,
 					footer: false,
 				},
+
+				sortable: false,
 		
 				// column sorting
-				sortable: true,
 				pagination: true,
 		
 				search: {
 					input: $('#kt_datatable_search_query'),
-                	key: 'generalSearch'
+                	key: 'generalSearch',
 				},
 
-				// rows: {
-				// 	beforeTemplate: (row,data,index) => console.log(row,data,index)
-				// },
-		
 				// columns definition
 				columns: [
 				{
 					field: 'DT_RowIndex',
 					title: '#',
-					sortable: 'asc',
 					width: 30,
 					type: 'number',
-					selector: false,
 					textAlign: 'center',
 				}, {
 					field: 'title',
 					title: 'Judul',
-				}, {
+				},{
 					field: 'author',
 					title: 'Author',
 				},{
-					field: 'time',
-					title: 'Waktu',
-				},{
 					field: 'date',
-					title: 'Tangaal',
+					title: 'Tangal',
 				},{   
 					field: 'Actions',
 					title: 'Actions',
-					sortable: false,
 					width: 125,
 					overflow: 'visible',
 					autoHide: false,
@@ -173,13 +166,12 @@
 		
 			});
 		
-			$('#kt_datatable_search_status').on('change', function() {
-				datatable.search($(this).val().toLowerCase(), 'Status');
-			});
 		
-			$('#kt_datatable_search_type').on('change', function() {
-				datatable.search($(this).val().toLowerCase(), 'Type');
+			$('#kt_datatable_search_query').on('keyup', function() {
+				// datatable.search($(this).val().toLowerCase(), 'title');
+				console.log(datatable)
 			});
+
 		
 			$('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
 

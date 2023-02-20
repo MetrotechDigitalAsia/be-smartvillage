@@ -21,7 +21,12 @@ class ArticleController extends Controller
 
         if($request->ajax()){
 
-            $data = Article::all();
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = Article::where('title', 'like', '%'.$param.'%')
+                    ->orWhere('updated_by', 'like', '%'.$param.'%')
+                    ->get();
+
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true); 

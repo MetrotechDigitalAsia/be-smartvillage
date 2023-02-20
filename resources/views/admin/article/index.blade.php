@@ -102,7 +102,7 @@
 				},
 		
 				// column sorting
-				sortable: true,
+				sortable: false,
 				pagination: true,
 		
 				search: {
@@ -110,10 +110,6 @@
                 	key: 'generalSearch'
 				},
 
-				// rows: {
-				// 	beforeTemplate: (row,data,index) => console.log(row,data,index)
-				// },
-		
 				// columns definition
 				columns: [
 				{

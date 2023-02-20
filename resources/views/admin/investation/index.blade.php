@@ -102,15 +102,13 @@
 				},
 		
 				// column sorting
-				sortable: true,
+				sortable: false,
 				pagination: true,
 		
 				search: {
 					input: $('#kt_datatable_search_query'),
                 	key: 'generalSearch'
 				},
-
-
 
 				// columns definition
 				columns: [
@@ -124,9 +122,9 @@
 					textAlign: 'center',
 				}, {
 					field: 'institute_name',
-					title: 'Nama UMKM',
+					title: 'Nama Investasi',
 				}, {
-					field: 'investation_category.investation_category',
+					field: 'investation_category',
 					title: 'Kategori',
 				},{
 					field: 'institute_phone_number',
@@ -166,14 +164,6 @@
 					},
 				}],
 		
-			});
-		
-			$('#kt_datatable_search_status').on('change', function() {
-				datatable.search($(this).val().toLowerCase(), 'Status');
-			});
-		
-			$('#kt_datatable_search_type').on('change', function() {
-				datatable.search($(this).val().toLowerCase(), 'Type');
 			});
 		
 			$('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();

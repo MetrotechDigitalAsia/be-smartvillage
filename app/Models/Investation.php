@@ -16,4 +16,5 @@ class Investation extends Model
         return 'uuid';
     }
 
+
 }

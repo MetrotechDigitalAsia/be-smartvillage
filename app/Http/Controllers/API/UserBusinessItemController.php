@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApiValidationRequest;
 use App\Models\Admin;
 use App\Models\UserBusinessItem;
+use App\Models\UserLogin;
 use App\Notifications\UmkmNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -92,6 +93,16 @@ class UserBusinessItemController extends Controller
             $message = $exception->getMessage();
             return ResponseController::create(null,'error', $message, 400);
         }
+
+    }
+
+    public function getByUser($id){
+
+        $data = UserLogin::where('uuid', $id)->first();
+
+        $umkm = UserBusinessItem::where('user_id', $data->id)->get();
+
+        return ResponseController::create($umkm, 'success', 'get umkm success', 200);        
 
     }
 

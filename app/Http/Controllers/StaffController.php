@@ -23,7 +23,11 @@ class StaffController extends Controller
 
         if($request->ajax()){
 
-            $data = Staff::all();
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = Staff::where('fullname', 'like', '%'.$param.'%')
+                    ->orWhere('email', 'like', '%'.$param.'%')
+                    ->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true); 
@@ -67,7 +71,7 @@ class StaffController extends Controller
             die;
         }
 
-        return redirect('master-data/staff')->with('success', 'create artikel successfully');
+        return redirect('master-data/staff')->with('success', 'create staff successfully');
 
     }
 

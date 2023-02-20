@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Agenda;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 
 class AgendaController extends Controller
 {
@@ -17,13 +17,16 @@ class AgendaController extends Controller
     }
     
     public function index(Request $request){
-
+        
         if($request->ajax()){
+            
+            $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = Agenda::all();
+            $data = Agenda::where('title', 'like', '%'.$param.'%')
+                            ->orWhere('author', 'like', '%'.$param.'%')->get();
             return DataTables::of($data)
-                ->addIndexColumn()
-                ->make(true); 
+            ->addIndexColumn()
+            ->make(true); 
 
         }
 

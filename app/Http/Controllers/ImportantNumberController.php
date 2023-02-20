@@ -19,7 +19,12 @@ class ImportantNumberController extends Controller
 
         if($request->ajax()){
 
-            $data = ImportantNumber::all();
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = ImportantNumber::where('name' ,'like', '%'.$param.'%')
+                    ->orWhere('regency', 'like', '%'.$param.'%')
+                    ->orWhere('phone', 'like', '%'.$param.'%')
+                    ->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true); 

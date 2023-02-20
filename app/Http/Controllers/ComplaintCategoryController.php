@@ -19,7 +19,9 @@ class ComplaintCategoryController extends Controller
 
         if($request->ajax()){
 
-            $data = ComplaintCategory::all();
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = ComplaintCategory::where('complaint_category', 'like', '%'.$param.'%')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true); 

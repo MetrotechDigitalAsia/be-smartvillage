@@ -21,7 +21,13 @@ class AdminController extends Controller
 
         if($request->ajax()){
 
-            $data = Admin::all();
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = Admin::where('fullname', 'like', '%'.$param.'%')
+                    ->orWhere('email', 'like', '%'.$param.'%')
+                    ->get();
+            
+
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true);

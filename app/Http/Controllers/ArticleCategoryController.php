@@ -19,7 +19,9 @@ class ArticleCategoryController extends Controller
 
         if($request->ajax()){
 
-            $data = ArticleCategory::all();
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = ArticleCategory::where('article_category', 'like', '%'.$param.'%')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true); 

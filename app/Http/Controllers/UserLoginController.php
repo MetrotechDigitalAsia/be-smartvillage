@@ -7,8 +7,6 @@ use App\Models\UserLogin;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Exception;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class UserLoginController extends Controller
@@ -25,7 +23,11 @@ class UserLoginController extends Controller
 
         if($request->ajax()){
 
-            $data = UserLogin::join('getasan_residents_db.userData as userDb', 'userDb.NO_NIK', '=', 'user_logins.no_nik')->get();
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = UserLogin::join('getasan_residents_db.userData as userDb', 'userDb.NO_NIK', '=', 'user_logins.no_nik')
+                    ->get();
+                    
             return DataTables::of($data)
             ->addIndexColumn()
             ->make(true);

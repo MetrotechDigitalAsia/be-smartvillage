@@ -19,7 +19,11 @@ class InvestationController extends Controller
     public function index(Request $request){
 
         if($request->ajax()){
-            $data = Investation::all();
+
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = Investation::where('institute_name', 'like', '%'.$param.'%')
+                    ->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true); 
