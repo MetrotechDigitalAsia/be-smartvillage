@@ -40,7 +40,7 @@ class PositionController extends Controller
     public function store(Request $request){
 
         $validated = $request->validate([
-            'position_name' => 'required',
+            'position_name' => 'required|unique:positions',
         ]);
 
         try {
@@ -57,7 +57,7 @@ class PositionController extends Controller
     public function update(Request $request, Position $position){
         
         $validated = $request->validate([
-            'position_name' => 'required'
+            'position_name' => 'required|unique:positions',
         ]);
 
         try {

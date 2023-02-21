@@ -42,7 +42,7 @@ class ComplaintCategoryController extends Controller
     public function store(Request $request){
 
         $validated = $request->validate([
-            'complaint_category' => 'required',
+            'complaint_category' => 'required|unique:complaint_categories',
         ]);
 
         try {
@@ -59,7 +59,7 @@ class ComplaintCategoryController extends Controller
     public function update(Request $request, ComplaintCategory $complaintCategory){
         
         $validated = $request->validate([
-            'complaint_category' => 'required'
+            'complaint_category' => 'required|unique:complaint_categories',
         ]);
 
         try {

@@ -42,7 +42,7 @@ class ArticleCategoryController extends Controller
     public function store(Request $request){
 
         $validated = $request->validate([
-            'article_category' => 'required',
+            'article_category' => 'required|unique:article_categories',
         ]);
 
         try {

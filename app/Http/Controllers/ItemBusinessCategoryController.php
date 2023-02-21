@@ -42,7 +42,7 @@ class ItemBusinessCategoryController extends Controller
     public function store(Request $request){
 
         $validated = $request->validate([
-            'item_category' => 'required',
+            'item_category' => 'required|unique:item_business_categories',
         ]);
 
         try {
@@ -59,7 +59,7 @@ class ItemBusinessCategoryController extends Controller
     public function update(Request $request, ItemBusinessCategory $itemBusinessCategory){
         
         $validated = $request->validate([
-            'item_category' => 'required'
+            'item_category' => 'required|unique:item_business_categories',
         ]);
 
         try {

@@ -8,37 +8,9 @@
     <!--begin::Body-->
     <div class="card-body p-0">
 
-        @if (session()->has('error'))
-            <div class="row pt-8 px-8">
-                <div class="col-lg-12">
-                    <div class="alert alert-custom alert-notice alert-light-primary fade show" role="alert">
-                        <div class="alert-icon"><i class="flaticon-warning"></i></div>
-                        <div class="alert-text">{{ session('error') }}</div>
-                        <div class="alert-close">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true"><i class="ki ki-close"></i></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
+        @include('partials.success-alert')
 
-        @if (session()->has('success'))
-            <div class="row pt-8 px-8">
-                <div class="col-lg-12">
-                    <div class="alert alert-custom alert-notice alert-light-success fade show" role="alert">
-                        <div class="alert-icon"><i class="flaticon-warning"></i></div>
-                        <div class="alert-text">{{ session('success') }}</div>
-                        <div class="alert-close">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true"><i class="ki ki-close"></i></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
+        @include('partials.validation-alert')
 
         <!--begin::Wizard-->
         <form action="{{ empty($complaint) ? route('storeImportantNumber') : '/tourism-map/important-number/update/'.$complaint->uuid }}" enctype="multipart/form-data" method="POST"  >

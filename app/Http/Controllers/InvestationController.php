@@ -64,7 +64,7 @@ class InvestationController extends Controller
             die;
         }
 
-        return redirect('informasi-desa/investasi')->with('success', 'create investation point successfully');
+        return redirect('informasi-desa/investasi')->with('success', 'create investation successfully');
 
     }
 
@@ -89,7 +89,7 @@ class InvestationController extends Controller
             die;
         }
 
-        return redirect('informasi-desa/investasi/show/'. $validated['uuid'])->with('success', 'Update Agenda Successfully');
+        return redirect('informasi-desa/investasi')->with('success', 'Update Investation Successfully');
 
     }
 

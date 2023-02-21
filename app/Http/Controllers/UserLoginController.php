@@ -75,7 +75,7 @@ class UserLoginController extends Controller
                 'password' => bcrypt($data['NO_NIK']),
                 'status' => $data['status']
             ]);
-            $message = 'create data successfully';
+            $message = 'create user successfully';
         } catch (Exception $e) {
             $message = $e->getMessage();
         }
