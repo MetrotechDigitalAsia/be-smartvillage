@@ -12,7 +12,7 @@ class ItemBusinessCategoryController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'itemBusinessCategory';
+        $this->folderName = 'masterData.itemBusinessCategory';
     }
 
     public function index(Request $request){

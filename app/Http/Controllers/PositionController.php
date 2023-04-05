@@ -11,7 +11,7 @@ class PositionController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'position';
+        $this->folderName = 'masterData.position';
     }
 
     public function index(Request $request){

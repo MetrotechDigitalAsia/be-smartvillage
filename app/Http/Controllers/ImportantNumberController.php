@@ -12,7 +12,7 @@ class ImportantNumberController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'importantNumber';
+        $this->folderName = 'tourismMap.importantNumber';
     }
 
     public function index(Request $request){

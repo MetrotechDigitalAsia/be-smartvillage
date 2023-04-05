@@ -14,7 +14,7 @@ class DestinationPointController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'destinationPoint';
+        $this->folderName = 'tourismMap.destinationPoint';
     }
     
     public function index(Request $request){
@@ -123,7 +123,7 @@ class DestinationPointController extends Controller
             die;
         }
 
-        return redirect('tourism-map/point-destinasi/show/'. $validated['slug'] )->with('success', 'update destination point successfully');
+        return redirect('tourism-map/point-destinasi')->with('success', 'update destination point successfully');
 
     }
 

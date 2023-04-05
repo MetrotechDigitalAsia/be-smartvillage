@@ -14,7 +14,7 @@ class ArticleController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'article';
+        $this->folderName = 'informasiDesa.article';
     }
     
     public function index(Request $request){

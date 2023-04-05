@@ -13,7 +13,7 @@ class InvestationController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'investation';
+        $this->folderName = 'informasiDesa.investation';
     }
     
     public function index(Request $request){

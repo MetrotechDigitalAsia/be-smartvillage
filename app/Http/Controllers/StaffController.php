@@ -16,7 +16,7 @@ class StaffController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'staff';
+        $this->folderName = 'masterData.staff';
     }
     
     public function index(Request $request){

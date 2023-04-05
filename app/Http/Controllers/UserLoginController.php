@@ -12,20 +12,22 @@ use Illuminate\Support\Str;
 class UserLoginController extends Controller
 {
     private $folderName;
+    private $userDb;
 
     public function __construct(){
-        $this->folderName = 'userLogin';
+        $this->folderName = 'masterData.userLogin';
+        $this->userDb = env('DB_RESIDENT_DATABASE');
     }
 
     public function index(Request $request){
 
-        $data = UserLogin::join('getasan_residents_db.userData as userDb', 'userDb.NO_NIK', '=', 'user_logins.no_nik')->get();
+        $data = UserLogin::join($this->userDb.'.userData as userDb', 'userDb.NO_NIK', '=', 'user_logins.no_nik')->get();
 
         if($request->ajax()){
 
             $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = UserLogin::join('getasan_residents_db.userData as userDb', 'userDb.NO_NIK', '=', 'user_logins.no_nik')
+            $data = UserLogin::join($this->userDb.'.userData as userDb', 'userDb.NO_NIK', '=', 'user_logins.no_nik')
                     ->get();
                     
             return DataTables::of($data)
@@ -38,10 +40,8 @@ class UserLoginController extends Controller
 
     public function show(UserLogin $userLogin){
 
-        $data = UserLogin::join('getasan_residents_db.userData as userDb', 'userDb.NO_NIK', '=', 'user_logins.no_nik')
+        $data = UserLogin::join($this->userDb.'.userData as userDb', 'userDb.NO_NIK', '=', 'user_logins.no_nik')
                             ->where('uuid', $userLogin->uuid)->first();
-
-        // dd($data);
 
         return view('admin.'.$this->folderName.'.form', compact('data'));
     }

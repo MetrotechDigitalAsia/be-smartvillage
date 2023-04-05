@@ -13,7 +13,7 @@ class AgendaController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'agenda';
+        $this->folderName = 'informasiDesa.agenda';
     }
     
     public function index(Request $request){
@@ -81,7 +81,7 @@ class AgendaController extends Controller
             die;
         }
 
-        return redirect('informasi-desa/agenda/show/'. $validated['slug'])->with('success', 'Update Agenda Successfully');
+        return redirect('informasi-desa/agenda')->with('success', 'Update Agenda Successfully');
 
     }
 

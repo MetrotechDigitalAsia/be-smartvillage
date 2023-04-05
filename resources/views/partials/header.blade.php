@@ -41,6 +41,12 @@
                                 <span class="menu-desc"></span>
                             </a>
                         </li>
+                        <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'persuratan')) menu-item-here @endif " >
+                            <a href="/persuratan" class="menu-link ">
+                                <span class="menu-text">Persuratan</span>
+                                <span class="menu-desc"></span>
+                            </a>
+                        </li>
                     </ul>
                     <!--end::Header Nav-->
                 </div>
@@ -168,11 +174,10 @@
                         <!--begin::Footer-->
                         <div class="navi-separator mt-3"></div>
                         <div class="navi-footer px-8 py-5">
-                            <form action="/logout" method="post" class="d-inline">
+                            <form action="/logout" method="POST" class="d-inline">
                                 @csrf
                                 <button type="submit" class="btn btn-light-primary font-weight-bold">Sign Out</button>
                             </form>
-                            {{-- <a href="custom/user/login-v2.html" target="_blank" class="btn btn-clean font-weight-bold">Upgrade Plan</a> --}}
                         </div>
                         <!--end::Footer-->
                     </div>

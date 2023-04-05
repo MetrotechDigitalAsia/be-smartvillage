@@ -12,7 +12,7 @@ class ArticleCategoryController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'articelCategory';
+        $this->folderName = 'masterData.articelCategory';
     }
 
     public function index(Request $request){

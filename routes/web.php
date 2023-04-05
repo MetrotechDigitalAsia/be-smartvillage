@@ -40,9 +40,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'auth']);
-Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::group(['middleware' => 'auth'], function(){
+    
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('/', [ArticleController::class, 'index']);
 
@@ -78,12 +79,12 @@ Route::group(['middleware' => 'auth'], function(){
         
         Route::group(['prefix' => 'prospek-desa'], function(){
             Route::get('/', function(){
-                return view('admin.prospekDesa.index');
+                return view('admin.informasiDesa.prospekDesa.index');
             });
         });
         Route::group(['prefix' => 'profil-desa'], function(){
             Route::get('/', function(){
-                return view('admin.profil.index');
+                return view('admin.informasiDesa.profil.index');
             });
         });
     
@@ -209,6 +210,10 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('update/{userLogin}', [UserLoginController::class, 'update']);
             Route::delete('delete/{userLogin}', [UserLoginController::class, 'destroy']);
         });
+        
+    });
+
+    Route::group(['prefix' => 'persuratan'], function(){
         
     });
 

@@ -157,8 +157,7 @@
 										swalWithBootstrapButtons.fire({
 											title: 'deleted',
 											text: 'Your data has been deleted.',
-											timer: 5000,
-
+											
 										})
 									}
 								})

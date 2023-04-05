@@ -97,13 +97,9 @@ class UserBusinessItemController extends Controller
     }
 
     public function getByUser($id){
-
         $data = UserLogin::where('uuid', $id)->first();
-
         $umkm = UserBusinessItem::where('user_id', $data->id)->get();
-
         return ResponseController::create($umkm, 'success', 'get umkm success', 200);        
-
     }
 
 }

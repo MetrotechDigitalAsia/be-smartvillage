@@ -30,12 +30,15 @@ class LoginController extends Controller
 
     public function logout(Request $request){
 
+        dd($request->all());
+
         Auth::logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect('/login');
+        die;
     }
 
 }

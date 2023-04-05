@@ -12,7 +12,7 @@ class ComplaintCategoryController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'complaintCategory';
+        $this->folderName = 'masterData.complaintCategory';
     }
 
     public function index(Request $request){
