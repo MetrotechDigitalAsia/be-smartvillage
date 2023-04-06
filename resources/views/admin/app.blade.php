@@ -148,7 +148,6 @@
 							$.post(action,data)
 								.done(function(res){
 									if (res.message=="successfully") {
-										location.reload();
 										// swalWithBootstrapButtons.fire(
 										// 	'Deleted!',
 										// 	'Your data has been deleted.',
@@ -157,7 +156,10 @@
 										swalWithBootstrapButtons.fire({
 											title: 'deleted',
 											text: 'Your data has been deleted.',
-											
+											icon: 'success'
+										})
+										.then( res => {
+											location.reload()
 										})
 									}
 								})
@@ -182,7 +184,9 @@
 				if(imgOld != null){
 					imgOld.classList.add('d-none')
 				}
+
 				imgPrev.style.display = 'block !important'
+				imgPrev.classList.remove('d-none')
 					
 				const oFReader = new FileReader()
 				oFReader.readAsDataURL(image.files[0])

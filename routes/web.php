@@ -16,6 +16,7 @@ use App\Http\Controllers\{
     ItemBusinessCategoryController,
     LoginController,
     PositionController,
+    SignatureController,
     StaffController,
     UserBusinessItemController,
     UserLoginController
@@ -214,7 +215,19 @@ Route::group(['middleware' => 'auth'], function(){
     });
 
     Route::group(['prefix' => 'persuratan'], function(){
-        
+
+
+        Route::group(['prefix' => 'signature'], function(){
+            Route::controller(SignatureController::class)->group(function(){
+                Route::get('/', 'index')->name('signature');
+                Route::get('/create', 'create');
+                Route::get('/show/{signature}', 'show');
+                Route::post('/', 'store')->name('storeSignature');
+                Route::delete('/delete/{signature}', 'destroy');
+            });
+        });
+
+
     });
 
 });

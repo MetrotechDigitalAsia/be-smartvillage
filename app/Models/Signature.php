@@ -4,21 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class UserLogin extends Authenticatable
+class Signature extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
+    // public $with = ['userLogin'];
 
     public function getRouteKeyName()
     {
         return 'uuid';
     }
 
-    public function signature(){
-        return $this->hasOne(Signature::class);
+    public function userLogin(){
+        return $this->belongsTo(UserLogin::class);
     }
+
 
 }

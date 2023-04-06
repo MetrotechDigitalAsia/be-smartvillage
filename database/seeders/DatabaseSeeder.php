@@ -80,6 +80,22 @@ class DatabaseSeeder extends Seeder
 
         }
 
+        $data = UserLogin::all();
+
+        foreach( $data as $i ){
+            UserBusinessItem::create([
+                'user_id' => $i->id,
+                'uuid' => Str::uuid()->toString(),
+                'item_name' => 'barang umkm' ,
+                'user_phone_number' => '087819582058',
+                'item_category_id' => random_int(1,2),
+                'item_image' => 'userBusinessItem/mmCdHDOgdfmKrgzRVtRKcBRYGfBrL2mXuW8fsU0X.webp',
+                'item_price' => rand(1, 10000000),
+                'item_description' => 'asdfasd',
+                'status' => 'approve',
+            ]);
+        }
+
         // UserBusinessItem::factory(10)->create();
 
         // DestinationPoint::factory(10)->create();

@@ -28,6 +28,7 @@ class UserBusinessItemController extends Controller
 
 
         foreach ($data as $item) {
+            $item->item_price = number_format($item->item_price);
             $item->item_image = 'storage/' . $item->item_image;
         }
 
@@ -47,6 +48,7 @@ class UserBusinessItemController extends Controller
         $data = UserBusinessItem::where('status', 'approve')->latest()->limit(4)->get();
 
         foreach ($data as $item) {
+            $item->item_price = number_format($item->item_price);
             $item->item_image = 'storage/' . $item->item_image;
         }
 
@@ -59,6 +61,7 @@ class UserBusinessItemController extends Controller
         $data = UserBusinessItem::where('status', 'approve')->where('item_category_id', $request->category_id)->paginate(10);
 
         foreach ($data as $item) {
+            $item->item_price = number_format($item->item_price);
             $item->item_image = 'storage/' . $item->item_image;
         }
 

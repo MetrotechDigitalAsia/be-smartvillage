@@ -5,7 +5,7 @@
         <div class="d-flex align-items-stretch mr-3">
             <!--begin::Header Logo-->
             <div class="header-logo">
-                <a href="index.html">
+                <a href="/">
                     <img alt="Logo" src="{{ asset('assets/be/media/desa.png') }}" class="logo-default max-h-40px" />
                     <img alt="Logo" src="{{ asset('assets/be/media/desa.png') }}" class="logo-sticky max-h-40px" />
                 </a>
@@ -42,7 +42,7 @@
                             </a>
                         </li>
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'persuratan')) menu-item-here @endif " >
-                            <a href="/persuratan" class="menu-link ">
+                            <a href="/persuratan/signature" class="menu-link ">
                                 <span class="menu-text">Persuratan</span>
                                 <span class="menu-desc"></span>
                             </a>
