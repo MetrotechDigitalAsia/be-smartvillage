@@ -13,14 +13,20 @@ class InvestationController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'investation';
+        $this->folderName = 'informasiDesa.investation';
     }
     
     public function index(Request $request){
 
         if($request->ajax()){
-            $data = Investation::all();
-            return DataTables::of($data)->make(true); 
+
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = Investation::where('institute_name', 'like', '%'.$param.'%')
+                    ->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
         }
 
         return view('admin.'.$this->folderName.'.index');
@@ -58,7 +64,7 @@ class InvestationController extends Controller
             die;
         }
 
-        return redirect('informasi-desa/investasi')->with('success', 'create investation point successfully');
+        return redirect('informasi-desa/investasi')->with('success', 'create investation successfully');
 
     }
 
@@ -83,7 +89,7 @@ class InvestationController extends Controller
             die;
         }
 
-        return redirect('informasi-desa/investasi/show/'. $validated['uuid'])->with('success', 'Update Agenda Successfully');
+        return redirect('informasi-desa/investasi')->with('success', 'Update Investation Successfully');
 
     }
 

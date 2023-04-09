@@ -12,15 +12,19 @@ class ComplaintCategoryController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'complaintCategory';
+        $this->folderName = 'masterData.complaintCategory';
     }
 
     public function index(Request $request){
 
         if($request->ajax()){
 
-            $data = ComplaintCategory::all();
-            return DataTables::of($data)->make(true); 
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = ComplaintCategory::where('complaint_category', 'like', '%'.$param.'%')->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 
@@ -38,7 +42,7 @@ class ComplaintCategoryController extends Controller
     public function store(Request $request){
 
         $validated = $request->validate([
-            'complaint_category' => 'required',
+            'complaint_category' => 'required|unique:complaint_categories',
         ]);
 
         try {
@@ -55,7 +59,7 @@ class ComplaintCategoryController extends Controller
     public function update(Request $request, ComplaintCategory $complaintCategory){
         
         $validated = $request->validate([
-            'complaint_category' => 'required'
+            'complaint_category' => 'required|unique:complaint_categories',
         ]);
 
         try {

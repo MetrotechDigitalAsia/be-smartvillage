@@ -19,7 +19,6 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-
         if(Auth::attempt([...$validated, 'status' => 'Active'])){
             $request->session()->regenerate();
             return redirect()->intended('/tourism-map');
@@ -31,12 +30,15 @@ class LoginController extends Controller
 
     public function logout(Request $request){
 
+        dd($request->all());
+
         Auth::logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect('/login');
+        die;
     }
 
 }

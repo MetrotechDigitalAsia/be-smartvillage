@@ -14,15 +14,22 @@ class ArticleController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'article';
+        $this->folderName = 'informasiDesa.article';
     }
     
     public function index(Request $request){
 
         if($request->ajax()){
 
-            $data = Article::all();
-            return DataTables::of($data)->make(true); 
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = Article::where('title', 'like', '%'.$param.'%')
+                    ->orWhere('updated_by', 'like', '%'.$param.'%')
+                    ->get();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 

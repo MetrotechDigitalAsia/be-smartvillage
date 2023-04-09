@@ -12,7 +12,7 @@ class ComplaintController extends Controller{
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'complaint';
+        $this->folderName = 'informasiDesa.complaint';
     }
     
     public function index(Request $request){

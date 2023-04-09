@@ -14,15 +14,23 @@ class AdminController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'admin';
+        $this->folderName = 'masterData.admin';
     }
 
     public function index(Request $request){
 
         if($request->ajax()){
 
-            $data = Admin::all();
-            return DataTables::of($data)->make(true);
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = Admin::where('fullname', 'like', '%'.$param.'%')
+                    ->orWhere('email', 'like', '%'.$param.'%')
+                    ->get();
+            
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true);
 
         }
 
@@ -69,8 +77,7 @@ class AdminController extends Controller
             'email' => 'required|email',
             'status' => 'required'
         ]);
-
-        // dd($request);
+         // dd($request);
 
         try {
             Admin::where('uuid', $admin->uuid)->update($data);
@@ -79,7 +86,7 @@ class AdminController extends Controller
             $msg = $e->getMessage();
         }
 
-        return redirect('/master-data/admin/show/'.$admin->uuid)->with('success', $msg);
+        return redirect('/master-data/admin')->with('success', $msg);
 
     }
 

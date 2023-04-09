@@ -12,15 +12,19 @@ class ItemBusinessCategoryController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'itemBusinessCategory';
+        $this->folderName = 'masterData.itemBusinessCategory';
     }
 
     public function index(Request $request){
 
         if($request->ajax()){
 
-            $data = ItemBusinessCategory::all();
-            return DataTables::of($data)->make(true); 
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = ItemBusinessCategory::where('item_category', 'like', '%'. $param .'%')->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 
@@ -38,7 +42,7 @@ class ItemBusinessCategoryController extends Controller
     public function store(Request $request){
 
         $validated = $request->validate([
-            'item_category' => 'required',
+            'item_category' => 'required|unique:item_business_categories',
         ]);
 
         try {
@@ -48,14 +52,14 @@ class ItemBusinessCategoryController extends Controller
             die;
         }
 
-        return redirect('/master-data/kategori-umkm')->with('success', 'create complaint category successfully');
+        return redirect('/master-data/kategori-umkm')->with('success', 'create Umkm category successfully');
 
     }
 
     public function update(Request $request, ItemBusinessCategory $itemBusinessCategory){
         
         $validated = $request->validate([
-            'item_category' => 'required'
+            'item_category' => 'required|unique:item_business_categories',
         ]);
 
         try {
@@ -65,7 +69,7 @@ class ItemBusinessCategoryController extends Controller
             die;
         }
 
-        return redirect('/master-data/kategori-umkm')->with('success', 'update complaint category successfully');
+        return redirect('/master-data/kategori-umkm')->with('success', 'update Umkm category successfully');
 
     }
 

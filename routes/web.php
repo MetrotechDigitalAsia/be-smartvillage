@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\NotificationEvent;
+use App\Events\TestEvent;
 use App\Http\Controllers\{
     AgendaController,
     ArticleCategoryController,
@@ -14,8 +16,10 @@ use App\Http\Controllers\{
     ItemBusinessCategoryController,
     LoginController,
     PositionController,
+    SignatureController,
     StaffController,
     UserBusinessItemController,
+    UserDataController,
     UserLoginController
 };
 
@@ -38,9 +42,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'auth']);
-Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::group(['middleware' => 'auth'], function(){
+    
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('/', [ArticleController::class, 'index']);
 
@@ -68,12 +73,6 @@ Route::group(['middleware' => 'auth'], function(){
             Route::delete('/delete/{importantNumber}', [ImportantNumberController::class, 'destroy']);
         });
     
-        Route::group(['prefix' => 'complaint'], function(){
-            Route::get('/', [ComplaintController::class, 'index'])->name('complaint');
-            Route::get('/show/{complaint}', [ComplaintController::class, 'show']);
-            Route::delete('/delete/{complaint}', [ComplaintController::class, 'destroy']);
-        });
-    
     });
     
     Route::group(['prefix' => 'informasi-desa'], function(){
@@ -82,12 +81,12 @@ Route::group(['middleware' => 'auth'], function(){
         
         Route::group(['prefix' => 'prospek-desa'], function(){
             Route::get('/', function(){
-                return view('admin.prospekDesa.index');
+                return view('admin.informasiDesa.prospekDesa.index');
             });
         });
         Route::group(['prefix' => 'profil-desa'], function(){
             Route::get('/', function(){
-                return view('admin.profil.index');
+                return view('admin.informasiDesa.profil.index');
             });
         });
     
@@ -110,7 +109,9 @@ Route::group(['middleware' => 'auth'], function(){
         });
     
         Route::group(['prefix' => 'umkm'], function(){
-            Route::get('/', [UserBusinessItemController::class, 'index'])->name('umkm');
+            Route::get('/approve', [UserBusinessItemController::class, 'index'])->name('umkm');
+            Route::get('/pending', [UserBusinessItemController::class, 'pending'])->name('umkmPending');
+            Route::get('/rejected', [UserBusinessItemController::class, 'rejected'])->name('umkmRejected');
             Route::get('/create', [UserBusinessItemController::class, 'create']);
             Route::get('/show/{userBusinessItem}', [UserBusinessItemController::class, 'show']);
             Route::post('/', [UserBusinessItemController::class, 'store'])->name('storeUmkm');
@@ -125,6 +126,12 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('/', [InvestationController::class, 'store'])->name('storeInvestation');
             Route::post('/update/{investation}', [InvestationController::class, 'update']);
             Route::delete('/delete/{investation}', [InvestationController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'complaint'], function(){
+            Route::get('/', [ComplaintController::class, 'index'])->name('complaint');
+            Route::get('/show/{complaint}', [ComplaintController::class, 'show']);
+            Route::delete('/delete/{complaint}', [ComplaintController::class, 'destroy']);
         });
 
     
@@ -205,7 +212,35 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('update/{userLogin}', [UserLoginController::class, 'update']);
             Route::delete('delete/{userLogin}', [UserLoginController::class, 'destroy']);
         });
+
+        Route::group(['prefix' => 'data-penduduk'], function(){
+            Route::controller(UserDataController::class)->group(function(){
+                Route::get('/', 'index')->name('userData');
+                Route::get('/create', 'create');
+                Route::get('/show/{userData}', 'show');
+                Route::get('/create-mobile-account/{userData}', 'createMobileAccount');
+                Route::post('/', 'store')->name('storeUserData');
+                Route::post('/update/{userData}', 'update');
+                Route::delete('/delete/{userData}', 'destroy');
+            }); 
+        }); 
         
+    });
+
+    Route::group(['prefix' => 'persuratan'], function(){
+
+
+        Route::group(['prefix' => 'signature'], function(){
+            Route::controller(SignatureController::class)->group(function(){
+                Route::get('/', 'index')->name('signature');
+                Route::get('/create', 'create');
+                Route::get('/show/{signature}', 'show');
+                Route::post('/', 'store')->name('storeSignature');
+                Route::delete('/delete/{signature}', 'destroy');
+            });
+        });
+
+
     });
 
 });

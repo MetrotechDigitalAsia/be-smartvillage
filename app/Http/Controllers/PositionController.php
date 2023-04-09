@@ -11,14 +11,19 @@ class PositionController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'position';
+        $this->folderName = 'masterData.position';
     }
 
     public function index(Request $request){
 
         if($request->ajax()){
-            $data = Position::all();
-            return DataTables::of($data)->make(true); 
+
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = Position::where('position_name', 'like', '%'. $param .'%')->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
         }
 
         return view('admin.'.$this->folderName.'.index');
@@ -35,7 +40,7 @@ class PositionController extends Controller
     public function store(Request $request){
 
         $validated = $request->validate([
-            'position_name' => 'required',
+            'position_name' => 'required|unique:positions',
         ]);
 
         try {
@@ -52,7 +57,7 @@ class PositionController extends Controller
     public function update(Request $request, Position $position){
         
         $validated = $request->validate([
-            'position_name' => 'required'
+            'position_name' => 'required|unique:positions',
         ]);
 
         try {

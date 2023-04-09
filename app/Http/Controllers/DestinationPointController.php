@@ -14,15 +14,22 @@ class DestinationPointController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'destinationPoint';
+        $this->folderName = 'tourismMap.destinationPoint';
     }
     
     public function index(Request $request){
 
         if($request->ajax()){
 
-            $data = DestinationPoint::all();
-            return DataTables::of($data)->make(true); 
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = DestinationPoint::where('name', 'like', '%'.$param.'%')
+                    ->orWhere('category', 'like', '%'.$param.'%')
+                    ->orWhere('address', 'like', '%'.$param.'%')
+                    ->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 
@@ -116,7 +123,7 @@ class DestinationPointController extends Controller
             die;
         }
 
-        return redirect('tourism-map/point-destinasi/show/'. $validated['slug'] )->with('success', 'update destination point successfully');
+        return redirect('tourism-map/point-destinasi')->with('success', 'update destination point successfully');
 
     }
 

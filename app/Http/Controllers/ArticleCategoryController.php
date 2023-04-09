@@ -12,15 +12,19 @@ class ArticleCategoryController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'articelCategory';
+        $this->folderName = 'masterData.articelCategory';
     }
 
     public function index(Request $request){
 
         if($request->ajax()){
 
-            $data = ArticleCategory::all();
-            return DataTables::of($data)->make(true); 
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = ArticleCategory::where('article_category', 'like', '%'.$param.'%')->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 
@@ -38,7 +42,7 @@ class ArticleCategoryController extends Controller
     public function store(Request $request){
 
         $validated = $request->validate([
-            'article_category' => 'required',
+            'article_category' => 'required|unique:article_categories',
         ]);
 
         try {

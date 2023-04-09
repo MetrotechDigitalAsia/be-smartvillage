@@ -20,9 +20,12 @@
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
 		<link rel="shortcut icon" href="{{ asset('assets/be/media/logos/favicon.ico') }}" />
+
+		@livewireStyles
+		
 	</head>
 
-	<body id="kt_body" style="background-image: url({{ asset('assets/be/media/bg/bg-10.jpg') }})" class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
+	<body id="kt_body" style="background-image: url({{ asset('assets/be/media/bg/CMS-header.jpg') }})" class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 		<!--Main-->
 
 		<!--Header Mobile-->
@@ -61,6 +64,8 @@
 		<!--Scrolltop-->
 		@include('partials.scrollTop')
 
+
+		@livewireScripts
 		<script>var HOST_URL = "https://keenthemes.com/metronic/tools/preview";</script>
 
 		<!--Global Config(global config for global JS scripts)-->
@@ -80,7 +85,39 @@
 
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCem_6fvhccSrm6U1cEUQLPEJfEeuxcNY&libraries=places"></script>
 
+		<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 		<script>
+
+			// Enable pusher logging - don't include this in production
+			Pusher.logToConsole = true;
+
+			var pusher = new Pusher('4bd4cfa546049d622247', {
+				cluster: 'ap1'
+			});
+
+			var channel = pusher.subscribe('public-channel');
+
+			const spanPulse = document.querySelector('.span.ring')
+			const notifIcon = document.querySelector('.notif-icon')
+
+			channel.bind('notification-event', function(data) {
+				Livewire.emit('notifAdded')
+				notifIcon.classList.add('svg-icon-warning')
+				spanPulse.classList.add('pulse-ring')
+			});
+
+			const notifBtn = document.querySelector('.notif-btn')
+
+			notifBtn.addEventListener('click', () => {
+				notifIcon.classList.remove('svg-icon-warning')
+				spanPulse.classList.remove('pulse-ring')
+			})
+
+		</script>
+
+		<script>
+
+
 			$.ajaxSetup({
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -91,8 +128,6 @@
 				let action = $(e).data('href')
 				let data = {_method: 'delete'}
 
-				console.log('adfa')
-			
 				const swalWithBootstrapButtons = Swal.mixin({
 					customClass: {
 						confirmButton: 'btn btn-success',
@@ -113,12 +148,19 @@
 							$.post(action,data)
 								.done(function(res){
 									if (res.message=="successfully") {
-										location.reload();
-										swalWithBootstrapButtons.fire(
-											'Deleted!',
-											'Your data has been deleted.',
-											'success'
-										)
+										// swalWithBootstrapButtons.fire(
+										// 	'Deleted!',
+										// 	'Your data has been deleted.',
+										// 	'success'
+										// )
+										swalWithBootstrapButtons.fire({
+											title: 'deleted',
+											text: 'Your data has been deleted.',
+											icon: 'success'
+										})
+										.then( res => {
+											location.reload()
+										})
 									}
 								})
 								.fail(function(res) {
@@ -142,7 +184,9 @@
 				if(imgOld != null){
 					imgOld.classList.add('d-none')
 				}
+
 				imgPrev.style.display = 'block !important'
+				imgPrev.classList.remove('d-none')
 					
 				const oFReader = new FileReader()
 				oFReader.readAsDataURL(image.files[0])

@@ -8,25 +8,80 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use PDO;
 
 class UserBusinessItemController extends Controller
 {
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'umkm';
+        $this->folderName = 'informasiDesa.umkm';
     }
     
     public function index(Request $request){
 
         if($request->ajax()){
 
-            $data = UserBusinessItem::all();
-            return DataTables::of($data)->make(true); 
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = UserBusinessItem::where('status', 'approve')
+                ->where(function ($query) use ($param) {
+                    $query->where('item_name', 'like', '%'.$param.'%')
+                    ->orWhere('user_phone_number', 'like', '%'.$param.'%');
+                })
+            ->get();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 
         return view('admin.'.$this->folderName.'.index');
+    }
+
+    public function pending(Request $request){
+
+        if($request->ajax()){
+
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = UserBusinessItem::where('status', 'pending')
+                ->where(function ($query) use ($param) {
+                    $query->where('item_name', 'like', '%'.$param.'%')
+                    ->orWhere('user_phone_number', 'like', '%'.$param.'%');
+                })
+            ->get();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
+
+        }
+
+        return view('admin.'.$this->folderName.'.pending');
+    }
+
+    public function rejected(Request $request){
+
+        if($request->ajax()){
+
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = UserBusinessItem::where('status', 'rejected')
+                ->where(function ($query) use ($param) {
+                    $query->where('item_name', 'like', '%'.$param.'%')
+                    ->orWhere('user_phone_number', 'like', '%'.$param.'%');
+                })
+            ->get();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
+
+        }
+
+        return view('admin.'.$this->folderName.'.rejected');
     }
 
     public function show(UserBusinessItem $userBusinessItem){
@@ -45,6 +100,7 @@ class UserBusinessItemController extends Controller
 
     public function store(Request $request){
 
+
         $validated = $request->validate([
             'no_nik' => 'required',
             'user_phone_number' => 'required',
@@ -54,11 +110,13 @@ class UserBusinessItemController extends Controller
             'item_price' => 'required',
             'item_description' => 'required',
             'item_marketplace_link' => 'required',
-            'status' => 'required'
+            'status' => 'required',
         ]);
+
 
         $validated['uuid'] = Str::uuid()->toString();
         $validated['item_image'] = $request->file('item_image')->store('userBusinessItem');
+        $validated['user_id'] = 1;
 
         try {
             UserBusinessItem::create($validated);
@@ -66,8 +124,8 @@ class UserBusinessItemController extends Controller
             return redirect('/informasi-desa/umkm/create')->with('error', $e->getMessage());
             die;
         }
-
-        return redirect('informasi-desa/umkm')->with('success', 'create umkm successfully');
+        
+        return redirect('/informasi-desa/umkm/approve')->with('success', 'create umkm successfully');
 
     }
 
@@ -94,11 +152,11 @@ class UserBusinessItemController extends Controller
         try {
             UserBusinessItem::find($userBusinessItem->id)->update($validated);
         } catch (\Exception $e){
-            return redirect('/informasi-desa/umkm/show/'. $validated['uuid'] )->with('error', $e->getMessage());
+            return redirect('/informasi-desa/umkm'. $validated['uuid'] )->with('error', $e->getMessage());
             die;
         }
 
-        return redirect('informasi-desa/umkm/show/'. $validated['uuid'] )->with('success', 'update umkm successfully');
+        return redirect('informasi-desa/umkm/approve' )->with('success', 'update umkm successfully');
 
     }
 
@@ -107,6 +165,7 @@ class UserBusinessItemController extends Controller
         $data = UserBusinessItem::find($userBusinessItem->id);
 
         try {
+            Storage::delete($data->item_image);
             $data->delete();
             $message = 'successfully';
         } catch (\Exception $exception){

@@ -4,24 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\Agenda;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 
 class AgendaController extends Controller
 {
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'agenda';
+        $this->folderName = 'informasiDesa.agenda';
     }
     
     public function index(Request $request){
-
+        
         if($request->ajax()){
+            
+            $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = Agenda::all();
-            return DataTables::of($data)->make(true); 
+            $data = Agenda::where('title', 'like', '%'.$param.'%')
+                            ->orWhere('author', 'like', '%'.$param.'%')->get();
+            return DataTables::of($data)
+            ->addIndexColumn()
+            ->make(true); 
 
         }
 
@@ -76,7 +81,7 @@ class AgendaController extends Controller
             die;
         }
 
-        return redirect('informasi-desa/agenda/show/'. $validated['slug'])->with('success', 'Update Agenda Successfully');
+        return redirect('informasi-desa/agenda')->with('success', 'Update Agenda Successfully');
 
     }
 

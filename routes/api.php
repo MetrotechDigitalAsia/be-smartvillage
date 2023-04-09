@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\API\{
+    AgendaController,
     ArticleController,
     ComplaintController,
     DestinationPointController,
     ImportantNumberController,
-    InvestationController
+    InvestationController,
+    UserBusinessItemController,
+    ItemBusinessCategoryController,
+    UserLoginController
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +37,7 @@ Route::group(['middleware' => 'api_key'],function(){
     Route::post('/filter', [DestinationPointController::class, 'filter']);
     Route::post('/complaint', [ComplaintController::class, 'store']);
 
+    Route::get('/umkmCategory',[ItemBusinessCategoryController::class, 'index']);
 
     Route::group(['prefix' => 'blogs'], function(){
         Route::get('/', [ArticleController::class, 'index']);
@@ -44,6 +49,20 @@ Route::group(['middleware' => 'api_key'],function(){
     });
 
     Route::post('/investment', [InvestationController::class, 'index']);
+
+    Route::group(['prefix' => 'umkm'], function(){
+        Route::get('/',[UserBusinessItemController::class, 'index']);
+        Route::get('/{id}',[UserBusinessItemController::class, 'getByUser']);
+        Route::post('/',[UserBusinessItemController::class, 'store']);
+        Route::post('/category',[UserBusinessItemController::class, 'filterByCategory']);
+        Route::get('/latest',[UserBusinessItemController::class, 'getLatest']);
+    });
+
+
+    Route::get('/agenda',[AgendaController::class, 'index']);
+
+    Route::post('/login', [UserLoginController::class, 'login']);
+    Route::post('/changePassword/{id}', [UserLoginController::class, 'changePassword']);
 
 
 });

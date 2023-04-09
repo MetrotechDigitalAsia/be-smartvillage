@@ -12,15 +12,22 @@ class ImportantNumberController extends Controller
     private $folderName;
 
     public function __construct(){
-        $this->folderName = 'importantNumber';
+        $this->folderName = 'tourismMap.importantNumber';
     }
 
     public function index(Request $request){
 
         if($request->ajax()){
 
-            $data = ImportantNumber::all();
-            return DataTables::of($data)->make(true); 
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = ImportantNumber::where('name' ,'like', '%'.$param.'%')
+                    ->orWhere('regency', 'like', '%'.$param.'%')
+                    ->orWhere('phone', 'like', '%'.$param.'%')
+                    ->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true); 
 
         }
 

@@ -2,33 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserData;
 use App\Models\UserLogin;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Exception;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 
 class UserLoginController extends Controller
 {
     private $folderName;
+    private $userDb;
 
     public function __construct(){
-        $this->folderName = 'userLogin';
+        $this->folderName = 'masterData.userLogin';
+        $this->userDb = env('DB_RESIDENT_DATABASE'). 'resident_data as userDB';
     }
 
     public function index(Request $request){
 
+        $data = UserLogin::join($this->userDb.'.resident_data as userDb', 'userDb.NIK', '=', 'user_logins.no_nik')->get();
+
         if($request->ajax()){
-            $data = UserLogin::all();
-            return DataTables::of($data)->make(true);
+
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = UserLogin::join($this->userDb.'.resident_data as userDb', 'userDb.NIK', '=', 'user_logins.no_nik')
+                    ->get();
+                    
+            return DataTables::of($data)
+            ->addIndexColumn()
+            ->make(true);
         }
 
         return view('admin.'.$this->folderName.'.index');
     }
 
     public function show(UserLogin $userLogin){
-        return view('admin.'.$this->folderName.'.form', compact('userLogin'));
+
+        $data = UserLogin::join($this->userDb.'.resident_data as userDb', 'userDb.NIK', '=', 'user_logins.no_nik')
+                            ->where('uuid', $userLogin->uuid)->first();
+
+        return view('admin.'.$this->folderName.'.form', compact('data'));
     }
 
     public function create(){
@@ -38,22 +53,28 @@ class UserLoginController extends Controller
     public function store(Request $request){
 
         $data = $request->validate([
-            'no_nik' => 'required',
-            'password' => 'required',
-            'repassword' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'NAMA' => 'required',
+            'TEMPAT_LAHIR' => 'required',
+            'TANGGAL_LAHIR' => 'required',
+            'SHDK' => 'required',
+            'ALAMAT' => 'required',
+            'NO_KK' => 'required',
+            'NO_NIK' => 'required',
         ]);
 
-        if($request->password != $request->repassword){
-            return redirect('/master-data/user-login/create')->with('error', 'password and re-password must be same');
-        }
-
         $data['uuid'] = Str::uuid()->toString();
-        $data['password'] = bcrypt($data['password']);
+        // $data['password'] = bcrypt($data['password']);
 
         try {
-            UserLogin::create($data);
-            $message = 'create data successfully';
+            UserData::create($data);
+            UserLogin::create([
+                'uuid' => $data['uuid'],
+                'no_nik' => $data['NO_NIK'],
+                'password' => bcrypt($data['NO_NIK']),
+                'status' => $data['status']
+            ]);
+            $message = 'create user successfully';
         } catch (Exception $e) {
             $message = $e->getMessage();
         }
@@ -65,27 +86,44 @@ class UserLoginController extends Controller
     public function update(Request $request, UserLogin $userLogin){
 
         $data = $request->validate([
-            'no_nik' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'NAMA_LENGKAP' => 'required',
+            'TEMPAT_LAHIR' => 'required',
+            'TANGGAL_LAHIR' => 'required',
+            'SHDK' => 'required',
+            'ALAMAT' => 'required',
+            'DESA' => 'required',
+            'NO_KK' => 'required',
+            'NO_NIK' => 'required',
+            'uuid' => 'required',
+            'id'  => 'required'
         ]);
 
         try {
-            UserLogin::find($userLogin->id)->update($data);
+            // UserLogin::find($userLogin->id)->update($data);
+
+            UserData::find($data['id'])->update($data);
+            UserLogin::where('uuid', $data['uuid'])->first()->update([
+                'no_nik' => $data['NO_NIK'],
+                'status' => $data['status']
+            ]);
+
             $msg = 'update successfully';
         } catch (\Exception $e){
             $msg = $e->getMessage();
         }
 
-        return redirect('/master-data/user-login/show/'.$userLogin->uuid)->with('success', $msg);
+        return redirect('/master-data/user-login')->with('success', $msg);
 
     }
 
     function destroy(UserLogin $userLogin){
 
-        $event = UserLogin::where('uuid', $userLogin->uuid);
+        $data = UserLogin::where('uuid', $userLogin->uuid);
 
         try {
-            $event->delete();
+            UserData::where('NO_NIK', $userLogin->no_nik)->delete();
+            $data->delete();
             $message = 'successfully';
         } catch (\Exception $exception){
             $message = $exception->getMessage();
