@@ -11,12 +11,26 @@ use Illuminate\Support\Facades\Auth;
 class UserLoginController extends Controller
 {
 
+
+    protected $userDb;
+
+    public function __construct(){
+        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
+    }
+
     public function login(UserLoginRequest $request){
 
-        if(Auth::guard('resident')->attempt(['no_nik' => request()->get('nik'), 'password' => request()->get('password')])){
+        if(Auth::guard('resident')->attempt(['no_nik' => request()->get('nik'), 'password' => request()->get('password'), 'status' => 'Active'])){
 
-            $data = UserLogin::join('getasan_residents_db.userData as userDb', 'userDb.NO_NIK', '=', 'user_logins.no_nik')
-                                ->where('user_logins.no_nik', request()->get('nik'))->first();
+            $data = UserLogin::join($this->userDb, 'userDb.NIK', '=', 'user_logins.no_nik')
+                                ->where('user_logins.no_nik', request()->get('nik'))
+                                ->first([
+                                    'userDb.id',
+                                    'userDb.NAMA as name',
+                                    'userDb.NIK as nik',
+                                    'userDb.ALAMAT as address',
+
+                                ]);
 
             return ResponseController::create($data, 'success', 'login berhasil', 200);
         }

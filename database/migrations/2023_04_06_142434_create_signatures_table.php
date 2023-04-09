@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('signatures', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('uuid');
-            $table->unsignedBigInteger('user_login_id');
+            $table->uuid('id')->primary();
+            $table->uuid('user_login_id');
             $table->foreign('user_login_id')->on('user_logins')->references('id');
             $table->string('image');
             $table->timestamps();

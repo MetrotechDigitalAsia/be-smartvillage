@@ -62,8 +62,6 @@ class UserDataController extends Controller
             'AKUN_MOBILE_APP' => 'nullable'
         ]);
 
-        $data['uuid'] = Str::uuid()->toString();
-
         try {
 
             UserData::create($data);
@@ -115,7 +113,7 @@ class UserDataController extends Controller
 
     function destroy(UserData $userData){
 
-        $data = UserData::where('uuid', $userData->uuid);
+        $data = UserData::find($userData->id);
 
         try {
             $data->delete();
@@ -134,8 +132,8 @@ class UserDataController extends Controller
 
             UserLogin::create([
                 'no_nik' => $userData['NIK'],
-                'password' => bcrypt($userData['password']),
-                'status' => 'Active'
+                'password' => bcrypt($userData['NIK']),
+                'status' => 'Active',
             ]);
 
             UserData::find($userData->id)->update(['AKUN_MOBILE_APP' => true]);
@@ -143,6 +141,8 @@ class UserDataController extends Controller
         } catch (\Exception $e) {
             $message = $e->getMessage();
         }
+
+        return redirect('/master-data/data-penduduk')->with('success', $message);
 
     }
 

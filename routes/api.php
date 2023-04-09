@@ -61,8 +61,10 @@ Route::group(['middleware' => 'api_key'],function(){
 
     Route::get('/agenda',[AgendaController::class, 'index']);
 
-    Route::post('/login', [UserLoginController::class, 'login']);
-    Route::post('/changePassword/{id}', [UserLoginController::class, 'changePassword']);
+    Route::controller(UserLoginController::class)->group(function(){
+        Route::post('/login', 'login');
+        Route::post('/changePassword/{id}', 'changePassword');
+    });
 
 
 });

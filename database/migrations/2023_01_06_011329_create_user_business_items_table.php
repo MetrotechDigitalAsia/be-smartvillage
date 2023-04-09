@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_business_items', function (Blueprint $table) {
-            $table->id();
-            $table->uuid();
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('user_logins');
             $table->string('user_phone_number');
             $table->string('item_name');

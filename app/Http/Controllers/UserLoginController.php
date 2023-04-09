@@ -6,8 +6,6 @@ use App\Models\UserData;
 use App\Models\UserLogin;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use Exception;
-use Illuminate\Support\Str;
 
 class UserLoginController extends Controller
 {
@@ -16,19 +14,16 @@ class UserLoginController extends Controller
 
     public function __construct(){
         $this->folderName = 'masterData.userLogin';
-        $this->userDb = env('DB_RESIDENT_DATABASE'). 'resident_data as userDB';
+        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
     }
 
     public function index(Request $request){
-
-        $data = UserLogin::join($this->userDb.'.resident_data as userDb', 'userDb.NIK', '=', 'user_logins.no_nik')->get();
 
         if($request->ajax()){
 
             $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = UserLogin::join($this->userDb.'.resident_data as userDb', 'userDb.NIK', '=', 'user_logins.no_nik')
-                    ->get();
+            $data = UserLogin::join($this->userDb, 'userDb.NIK', '=', 'user_logins.no_nik')->get(['userDb.nik', 'userDb.NAMA as name', 'user_logins.id']);
                     
             return DataTables::of($data)
             ->addIndexColumn()
@@ -40,8 +35,9 @@ class UserLoginController extends Controller
 
     public function show(UserLogin $userLogin){
 
-        $data = UserLogin::join($this->userDb.'.resident_data as userDb', 'userDb.NIK', '=', 'user_logins.no_nik')
-                            ->where('uuid', $userLogin->uuid)->first();
+        $data = UserLogin::join($this->userDb, 'userDb.NIK', '=', 'user_logins.no_nik')
+                            ->where('user_logins.id', $userLogin->id)
+                            ->first(['userDb.NAMA as name', 'userDb.NIK as nik', 'user_logins.status', 'user_logins.id']);
 
         return view('admin.'.$this->folderName.'.form', compact('data'));
     }
@@ -50,62 +46,14 @@ class UserLoginController extends Controller
         return view('admin.'.$this->folderName.'.form');
     }
 
-    public function store(Request $request){
-
-        $data = $request->validate([
-            'status' => 'required',
-            'NAMA' => 'required',
-            'TEMPAT_LAHIR' => 'required',
-            'TANGGAL_LAHIR' => 'required',
-            'SHDK' => 'required',
-            'ALAMAT' => 'required',
-            'NO_KK' => 'required',
-            'NO_NIK' => 'required',
-        ]);
-
-        $data['uuid'] = Str::uuid()->toString();
-        // $data['password'] = bcrypt($data['password']);
-
-        try {
-            UserData::create($data);
-            UserLogin::create([
-                'uuid' => $data['uuid'],
-                'no_nik' => $data['NO_NIK'],
-                'password' => bcrypt($data['NO_NIK']),
-                'status' => $data['status']
-            ]);
-            $message = 'create user successfully';
-        } catch (Exception $e) {
-            $message = $e->getMessage();
-        }
-
-        return redirect('/master-data/user-login')->with('success', $message);
-
-    }
 
     public function update(Request $request, UserLogin $userLogin){
 
-        $data = $request->validate([
-            'status' => 'required',
-            'NAMA_LENGKAP' => 'required',
-            'TEMPAT_LAHIR' => 'required',
-            'TANGGAL_LAHIR' => 'required',
-            'SHDK' => 'required',
-            'ALAMAT' => 'required',
-            'DESA' => 'required',
-            'NO_KK' => 'required',
-            'NO_NIK' => 'required',
-            'uuid' => 'required',
-            'id'  => 'required'
-        ]);
 
         try {
-            // UserLogin::find($userLogin->id)->update($data);
 
-            UserData::find($data['id'])->update($data);
-            UserLogin::where('uuid', $data['uuid'])->first()->update([
-                'no_nik' => $data['NO_NIK'],
-                'status' => $data['status']
+            UserLogin::find($userLogin->id)->update([
+                'status' => $request['status']
             ]);
 
             $msg = 'update successfully';
@@ -119,10 +67,10 @@ class UserLoginController extends Controller
 
     function destroy(UserLogin $userLogin){
 
-        $data = UserLogin::where('uuid', $userLogin->uuid);
+        $data = UserLogin::find($userLogin->id);
 
         try {
-            UserData::where('NO_NIK', $userLogin->no_nik)->delete();
+            UserData::where('NIK', $userLogin->no_nik)->first()->update([ 'AKUN_MOBILE_APP' => 0 ]);
             $data->delete();
             $message = 'successfully';
         } catch (\Exception $exception){
