@@ -5,14 +5,16 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Signature;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SignatureController extends Controller
 {
     public function store(Request $request){
         
         $data = [
-            ...$request->all(),
-            'id' => 2
+            'image' => $request->image,
+            'user_login_id' => $request->user_id,
+            'uuid' => Str::uuid()->toString()
         ];
 
         $data['image'] = $request->file('image')->store('signature');

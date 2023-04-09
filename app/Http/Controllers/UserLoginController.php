@@ -16,18 +16,18 @@ class UserLoginController extends Controller
 
     public function __construct(){
         $this->folderName = 'masterData.userLogin';
-        $this->userDb = env('DB_RESIDENT_DATABASE');
+        $this->userDb = env('DB_RESIDENT_DATABASE'). 'resident_data as userDB';
     }
 
     public function index(Request $request){
 
-        $data = UserLogin::join($this->userDb.'.userData as userDb', 'userDb.NO_NIK', '=', 'user_logins.no_nik')->get();
+        $data = UserLogin::join($this->userDb.'.resident_data as userDb', 'userDb.NIK', '=', 'user_logins.no_nik')->get();
 
         if($request->ajax()){
 
             $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = UserLogin::join($this->userDb.'.userData as userDb', 'userDb.NO_NIK', '=', 'user_logins.no_nik')
+            $data = UserLogin::join($this->userDb.'.resident_data as userDb', 'userDb.NIK', '=', 'user_logins.no_nik')
                     ->get();
                     
             return DataTables::of($data)
@@ -40,7 +40,7 @@ class UserLoginController extends Controller
 
     public function show(UserLogin $userLogin){
 
-        $data = UserLogin::join($this->userDb.'.userData as userDb', 'userDb.NO_NIK', '=', 'user_logins.no_nik')
+        $data = UserLogin::join($this->userDb.'.resident_data as userDb', 'userDb.NIK', '=', 'user_logins.no_nik')
                             ->where('uuid', $userLogin->uuid)->first();
 
         return view('admin.'.$this->folderName.'.form', compact('data'));
@@ -54,12 +54,11 @@ class UserLoginController extends Controller
 
         $data = $request->validate([
             'status' => 'required',
-            'NAMA_LENGKAP' => 'required',
+            'NAMA' => 'required',
             'TEMPAT_LAHIR' => 'required',
             'TANGGAL_LAHIR' => 'required',
             'SHDK' => 'required',
             'ALAMAT' => 'required',
-            'DESA' => 'required',
             'NO_KK' => 'required',
             'NO_NIK' => 'required',
         ]);

@@ -12,5 +12,10 @@ class UserData extends Model
     protected $guarded = ['id'];
 
     protected $connection = 'resident_mysql';
-    protected $table = 'userData';
+    protected $table = 'resident_data';
+
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 }

@@ -28,10 +28,6 @@
         <div class="card-title align-items-center flex-row ">
             <h3 class="card-label font-weight-bolder text-dark">{{ empty($data) ? 'Tambah Admin' : 'Ubah Admin' }}</h3>
         </div>
-        <div class="card-toolbar">
-            <button type="submit" class="btn btn-success mr-2">Simpan</button>
-            <a href="/master-data/user-login" class="btn btn-secondary">Batal</a>
-        </div>
     </div>
     <!--end::Header-->
     <!--begin::Form-->
@@ -43,7 +39,7 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">Nama</label>
             <div class="col-lg-9 col-xl-6">
-                <input class="form-control form-control-lg form-control-solid" type="text" name="NAMA_LENGKAP" value="{{$data['NAMA_LENGKAP'] ?? '' }}" />
+                <input class="form-control form-control-lg form-control-solid" type="text" name="NAMA" value="{{$data['NAMA'] ?? '' }}" />
             </div>
         </div>
 
@@ -76,13 +72,6 @@
         </div>
 
         <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Desa</label>
-            <div class="col-lg-9 col-xl-6">
-                <input class="form-control form-control-lg form-control-solid" type="text" name="DESA" value="{{$data['DESA'] ?? '' }}" />
-            </div>
-        </div>
-
-        <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">No KK</label>
             <div class="col-lg-9 col-xl-6">
                 <input class="form-control form-control-lg form-control-solid" type="text" name="NO_KK" value="{{$data['NO_KK'] ?? '' }}" />
@@ -95,15 +84,6 @@
                 <input class="form-control form-control-lg form-control-solid" type="text" name="NO_NIK" value="{{$data['NO_NIK'] ?? '' }}" />
             </div>
         </div>
-
-        {{-- @if (empty($data) ?? null)
-            <div class="form-group row">
-                <label class="col-xl-3 col-lg-3 col-form-label">Kata Sandi</label>
-                <div class="col-lg-9 col-xl-6">
-                    <input class="form-control form-control-lg form-control-solid" type="text" name="password" value="{{$data['password'] ?? '' }}" />
-                </div>
-            </div>
-        @endif --}}
 
         <div class="form-group row">
             <label class="col-3 col-form-label">Status</label>
@@ -123,10 +103,17 @@
             </div>
         </div>
 
-
         <!--begin::Form Group-->
     </div>
     <!--end::Form-->
+    <div class="card-footer">
+        <div class="row">
+            <div class="col offset-3">
+                <button type="submit" class="btn btn-success mr-2">Simpan</button>
+                <a href="/master-data/user-login" class="btn btn-secondary">Batal</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 </form>

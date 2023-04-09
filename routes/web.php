@@ -19,6 +19,7 @@ use App\Http\Controllers\{
     SignatureController,
     StaffController,
     UserBusinessItemController,
+    UserDataController,
     UserLoginController
 };
 
@@ -211,6 +212,18 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('update/{userLogin}', [UserLoginController::class, 'update']);
             Route::delete('delete/{userLogin}', [UserLoginController::class, 'destroy']);
         });
+
+        Route::group(['prefix' => 'data-penduduk'], function(){
+            Route::controller(UserDataController::class)->group(function(){
+                Route::get('/', 'index')->name('userData');
+                Route::get('/create', 'create');
+                Route::get('/show/{userData}', 'show');
+                Route::get('/create-mobile-account/{userData}', 'createMobileAccount');
+                Route::post('/', 'store')->name('storeUserData');
+                Route::post('/update/{userData}', 'update');
+                Route::delete('/delete/{userData}', 'destroy');
+            }); 
+        }); 
         
     });
 
