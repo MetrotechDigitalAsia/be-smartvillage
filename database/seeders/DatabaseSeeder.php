@@ -20,6 +20,7 @@ use App\Models\Position;
 use App\Models\UserBusinessItem;
 use App\Models\UserData;
 use App\Models\UserLogin;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -68,18 +69,17 @@ class DatabaseSeeder extends Seeder
         // ItemBusinessCategory::create(['item_category' => 'Kesehatan']);
         // ItemBusinessCategory::create(['item_category' => 'Lainnya']);
 
-        // $users = UserData::all();
+        $users = UserData::limit(5)->get();
 
-        // foreach($users as $user){
+        foreach($users as $user){
 
-        //     UserLogin::create([
-        //         'uuid' => Str::uuid()->toString(),
-        //         'no_nik' => $user->NO_NIK,
-        //         'password' => bcrypt($user->NO_NIK),
-        //         'status' => 'active',
-        //     ]);
+            UserLogin::create([
+                'no_nik' => $user->NIK,
+                'password' => bcrypt($user->NO_NIK),
+                'status' => 'active',
+            ]);
 
-        // }
+        }
 
         // $data = UserLogin::all();
 
@@ -107,6 +107,17 @@ class DatabaseSeeder extends Seeder
         // Investation::factory(5)->create();
 
         Mail::factory(5)->create();
+
+        $users = UserLogin::all();
+
+        foreach ($users as $user) {
+            
+            $user->mail()->attach(Mail::first()->id,[
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+
+        }
 
 
     }

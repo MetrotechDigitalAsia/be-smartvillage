@@ -12,5 +12,9 @@ class Mail extends Model
 
     protected $guarded = ['id'];
 
-    
+    public function userLogins(){
+        return $this->belongsToMany(UserLogin::class, 'users_mail', 'mail_id', 'user_id')
+        ->withPivot('status')
+        ->withTimestamps();
+    }
 }

@@ -21,7 +21,8 @@ use App\Http\Controllers\{
     StaffController,
     UserBusinessItemController,
     UserDataController,
-    UserLoginController
+    UserLoginController,
+    UsersMailController
 };
 
 use Illuminate\Support\Facades\Route;
@@ -244,6 +245,17 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['prefix' => 'master-data'], function(){
             Route::controller(MailController::class)->group(function(){
                 Route::get('/', 'index')->name('mailMasterData');
+                Route::get('/create', 'create');
+                Route::get('/show/{mail}', 'show');
+                Route::post('/', 'store')->name('storeMail');
+                Route::post('/update/{mail}', 'update');
+                Route::delete('/delete/{mail}', 'destroy');
+            });
+        }); 
+
+        Route::group(['prefix' => 'surat'], function(){
+            Route::controller(UsersMailController::class)->group(function(){
+                Route::get('/', 'index')->name('usersMail');
                 Route::get('/create', 'create');
                 Route::get('/show/{mail}', 'show');
                 Route::post('/', 'store')->name('storeMail');

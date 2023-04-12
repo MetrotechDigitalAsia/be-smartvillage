@@ -33,6 +33,7 @@ return array(
     'App\\Http\\Controllers\\InvestationController' => $baseDir . '/app/Http/Controllers/InvestationController.php',
     'App\\Http\\Controllers\\ItemBusinessCategoryController' => $baseDir . '/app/Http/Controllers/ItemBusinessCategoryController.php',
     'App\\Http\\Controllers\\LoginController' => $baseDir . '/app/Http/Controllers/LoginController.php',
+    'App\\Http\\Controllers\\MailController' => $baseDir . '/app/Http/Controllers/MailController.php',
     'App\\Http\\Controllers\\NewsController' => $baseDir . '/app/Http/Controllers/NewsController.php',
     'App\\Http\\Controllers\\PositionController' => $baseDir . '/app/Http/Controllers/PositionController.php',
     'App\\Http\\Controllers\\SignatureController' => $baseDir . '/app/Http/Controllers/SignatureController.php',

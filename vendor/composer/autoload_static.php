@@ -552,6 +552,7 @@ class ComposerStaticInit8a14aabfc325bcf976333656f824f43d
         'App\\Http\\Controllers\\InvestationController' => __DIR__ . '/../..' . '/app/Http/Controllers/InvestationController.php',
         'App\\Http\\Controllers\\ItemBusinessCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/ItemBusinessCategoryController.php',
         'App\\Http\\Controllers\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/LoginController.php',
+        'App\\Http\\Controllers\\MailController' => __DIR__ . '/../..' . '/app/Http/Controllers/MailController.php',
         'App\\Http\\Controllers\\NewsController' => __DIR__ . '/../..' . '/app/Http/Controllers/NewsController.php',
         'App\\Http\\Controllers\\PositionController' => __DIR__ . '/../..' . '/app/Http/Controllers/PositionController.php',
         'App\\Http\\Controllers\\SignatureController' => __DIR__ . '/../..' . '/app/Http/Controllers/SignatureController.php',
