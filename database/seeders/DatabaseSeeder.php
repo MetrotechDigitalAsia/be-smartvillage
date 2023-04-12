@@ -15,6 +15,7 @@ use App\Models\Investation;
 use App\Models\InvestationCategory;
 use App\Models\Admin;
 use App\Models\ItemBusinessCategory;
+use App\Models\Mail;
 use App\Models\Position;
 use App\Models\UserBusinessItem;
 use App\Models\UserData;
@@ -104,6 +105,8 @@ class DatabaseSeeder extends Seeder
         // Agenda::factory(5)->create();
         // Article::factory(5)->create();
         // Investation::factory(5)->create();
+
+        Mail::factory(5)->create();
 
 
     }

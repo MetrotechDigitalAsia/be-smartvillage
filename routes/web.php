@@ -15,6 +15,7 @@ use App\Http\Controllers\{
     InvestationController,
     ItemBusinessCategoryController,
     LoginController,
+    MailController,
     PositionController,
     SignatureController,
     StaffController,
@@ -239,6 +240,17 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::delete('/delete/{signature}', 'destroy');
             });
         });
+
+        Route::group(['prefix' => 'master-data'], function(){
+            Route::controller(MailController::class)->group(function(){
+                Route::get('/', 'index')->name('mailMasterData');
+                Route::get('/create', 'create');
+                Route::get('/show/{mail}', 'show');
+                Route::post('/', 'store')->name('storeMail');
+                Route::post('/update/{mail}', 'update');
+                Route::delete('/delete/{mail}', 'destroy');
+            });
+        }); 
 
 
     });

@@ -148,11 +148,6 @@
 							$.post(action,data)
 								.done(function(res){
 									if (res.message=="successfully") {
-										// swalWithBootstrapButtons.fire(
-										// 	'Deleted!',
-										// 	'Your data has been deleted.',
-										// 	'success'
-										// )
 										swalWithBootstrapButtons.fire({
 											title: 'deleted',
 											text: 'Your data has been deleted.',
@@ -169,7 +164,7 @@
 
 									swalWithBootstrapButtons.fire(
 										'',
-										'Data tidak dapat di hapus (Data sedang di pakai).',
+										res.responseJSON.message,
 										'warning'
 									)
 								})

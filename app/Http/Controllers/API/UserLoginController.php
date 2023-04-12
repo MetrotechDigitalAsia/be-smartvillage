@@ -29,7 +29,6 @@ class UserLoginController extends Controller
                                     'userDb.NAMA as name',
                                     'userDb.NIK as nik',
                                     'userDb.ALAMAT as address',
-
                                 ]);
 
             return ResponseController::create($data, 'success', 'login berhasil', 200);
