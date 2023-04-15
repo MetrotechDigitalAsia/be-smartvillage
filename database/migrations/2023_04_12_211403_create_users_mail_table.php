@@ -19,7 +19,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('user_logins');
             $table->string('mail_id');
             $table->foreign('mail_id')->references('id')->on('mails');
-            $table->enum('status',['Pending', 'Process', 'Done'])->default('Pending');
+            $table->string('mail_number');
+            $table->enum('status',['Pending', 'Process', 'Done', 'Rejected'])->default('Pending');
             $table->timestamps();
         });
     }

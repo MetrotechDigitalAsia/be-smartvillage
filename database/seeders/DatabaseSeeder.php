@@ -75,8 +75,8 @@ class DatabaseSeeder extends Seeder
 
             UserLogin::create([
                 'no_nik' => $user->NIK,
-                'password' => bcrypt($user->NO_NIK),
-                'status' => 'active',
+                'password' => bcrypt($user->NIK),
+                'status' => 'Active',
             ]);
 
         }
@@ -108,13 +108,17 @@ class DatabaseSeeder extends Seeder
 
         Mail::factory(5)->create();
 
+        $mails = Mail::all();
+
         $users = UserLogin::all();
 
-        foreach ($users as $user) {
+        foreach ($users as $i => $user) {
             
-            $user->mail()->attach(Mail::first()->id,[
+            $user->mail()->attach($mails[$i % 5],[
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
+                'status' => $i % 2 == 0 ? 'Pending' : 'Process',
+                'mail_number' => 'SRT/'. rand(1,40). '/'. Carbon::now()->format('Y')
             ]);
 
         }

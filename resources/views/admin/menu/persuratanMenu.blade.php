@@ -81,11 +81,9 @@
     <!--end::Aside-->
     <!--begin::List-->
     <div class="flex-row-fluid d-flex flex-column ml-lg-8">
-        <div class="d-flex flex-column flex-grow-1">
-            <!--begin::Card-->
-            @yield('table')
-            <!--end::Card-->
-        </div>
+        <!--begin::Card-->
+        @yield('table')
+        <!--end::Card-->
     </div>
     <!--end::List-->
 </div>

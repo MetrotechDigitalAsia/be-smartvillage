@@ -40,5 +40,14 @@
             <!--end::Heading-->
         </div>
         <!--end::Info-->
+        @if (Str::contains(Route::current()->uri, 'persuratan/surat'))
+        <!--begin::Toolbar-->
+        <div class="d-flex align-items-center">
+            <!--begin::Button-->
+            <a href="/persuratan/master-data" class="btn btn-transparent-white font-weight-bold py-3 px-6 mr-2">Kembali</a>
+            <!--end::Button-->
+        </div>
+        <!--end::Toolbar-->
+        @endif
     </div>
 </div>

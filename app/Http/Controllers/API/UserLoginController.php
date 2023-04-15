@@ -20,12 +20,13 @@ class UserLoginController extends Controller
 
     public function login(UserLoginRequest $request){
 
+
         if(Auth::guard('resident')->attempt(['no_nik' => request()->get('nik'), 'password' => request()->get('password'), 'status' => 'Active'])){
 
             $data = UserLogin::join($this->userDb, 'userDb.NIK', '=', 'user_logins.no_nik')
                                 ->where('user_logins.no_nik', request()->get('nik'))
                                 ->first([
-                                    'userDb.id',
+                                    'user_logins.id',
                                     'userDb.NAMA as name',
                                     'userDb.NIK as nik',
                                     'userDb.ALAMAT as address',

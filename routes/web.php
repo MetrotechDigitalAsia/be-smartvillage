@@ -1,7 +1,5 @@
 <?php
 
-use App\Events\NotificationEvent;
-use App\Events\TestEvent;
 use App\Http\Controllers\{
     AgendaController,
     ArticleCategoryController,
@@ -255,11 +253,16 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::group(['prefix' => 'surat'], function(){
             Route::controller(UsersMailController::class)->group(function(){
-                Route::get('/', 'index')->name('usersMail');
+                Route::get('/', 'index')->name('inbox');
+                Route::get('/all', 'getAllMail');
+                Route::get('/finish', 'getAllMailFinish')->name('userMailFinish');
+                Route::get('/process', 'getAllMailProcess')->name('userMailProcess');
+                Route::get('/rejected', 'getAllMailRejected')->name('userMailRejected');
                 Route::get('/create', 'create');
                 Route::get('/show/{mail}', 'show');
                 Route::post('/', 'store')->name('storeMail');
                 Route::post('/update/{mail}', 'update');
+                Route::post('/change/{id}/{status}', 'changeStatus');
                 Route::delete('/delete/{mail}', 'destroy');
             });
         }); 

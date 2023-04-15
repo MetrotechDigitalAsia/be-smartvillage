@@ -2,7 +2,7 @@
 
 @section('table')
 
-	@livewire('mail-table')
+	@livewire('all-mail-table')
     
 @endsection
 
