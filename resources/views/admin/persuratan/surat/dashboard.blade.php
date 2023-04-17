@@ -39,7 +39,7 @@
                     <!--end::Item-->
                     <!--begin::Item-->
                     <div class="navi-item my-2">
-                        <a href="/persuratan/surat/finish" class="navi-link @if(Str::contains(Route::current()->uri, '/surat/finish')) active @endif">
+                        <a href="/persuratan/surat/finish" class="navi-link @if(Str::contains(Request::url(), '/surat/finish')) active @endif">
                             <span class="navi-icon mr-4">
                                 <span class="svg-icon svg-icon-lg">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/General/Half-star.svg-->
@@ -59,7 +59,7 @@
                     <!--end::Item-->
                     <!--begin::Item-->
                     <div class="navi-item my-2">
-                        <a href="/persuratan/surat/process" class="navi-link @if(Str::contains(Route::current()->uri, '/surat/process')) active @endif">
+                        <a href="/persuratan/surat/process" class="navi-link @if(Str::contains(Request::url(), '/surat/process')) active @endif">
                             <span class="navi-icon mr-4">
                                 <span class="svg-icon svg-icon-lg">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Sending.svg-->
@@ -79,7 +79,7 @@
                     <!--end::Item-->
                     <!--begin::Item-->
                     <div class="navi-item my-2">
-                        <a href="/persuratan/surat/rejected" class="navi-link @if(Str::contains(Route::current()->uri, '/surat/rejected')) active @endif">
+                        <a href="/persuratan/surat/rejected" class="navi-link @if(Str::contains(Request::url(), '/surat/rejected')) active @endif">
                             <span class="navi-icon mr-4">
                                 <span class="svg-icon svg-icon-lg">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->

@@ -42,7 +42,7 @@
                             </a>
                         </li>
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'persuratan')) menu-item-here @endif " >
-                            <a href="/persuratan/signature" class="menu-link ">
+                            <a href="/persuratan/master-data" class="menu-link ">
                                 <span class="menu-text">Persuratan</span>
                                 <span class="menu-desc"></span>
                             </a>

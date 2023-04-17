@@ -10,6 +10,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<!--Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<link href="https://fonts.cdnfonts.com/css/bookman-old-style" rel="stylesheet">
+                
 
 		
 		<!--Global Theme Styles(used by all pages)-->
@@ -25,6 +27,7 @@
 		<link rel="shortcut icon" href="{{ asset('assets/be/media/logos/favicon.ico') }}" />
 
 		@livewireStyles
+		@vite(['resources/css/app.css', 'resources/js/app.js'])
 		
 	</head>
 
@@ -150,6 +153,7 @@
 						if (result.isConfirmed) {
 							$.post(action,data)
 								.done(function(res){
+									console.log(res)
 									if (res.message=="successfully") {
 										swalWithBootstrapButtons.fire({
 											title: 'deleted',
@@ -159,17 +163,17 @@
 										.then( res => {
 											location.reload()
 										})
+									} else {
+										swalWithBootstrapButtons.fire(
+											'',
+											res.message,
+											'warning'
+										)
 									}
 								})
 								.fail(function(res) {
 
-									console.log(res)
-
-									swalWithBootstrapButtons.fire(
-										'',
-										res.responseJSON.message,
-										'warning'
-									)
+									
 								})
 						}
 					})

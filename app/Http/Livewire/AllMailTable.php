@@ -32,6 +32,7 @@ class AllMailTable extends Component
             DB::raw('ROW_NUMBER() OVER(ORDER BY userMail.id) as row_index'),
             'userMail.id as id',
             'user.id as user_id',
+            'userMail.mail_number',
             'mails.id as mail_id',
             'mails.title as mail_type',
             'userDB.NAMA as name',

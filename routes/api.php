@@ -52,8 +52,8 @@ Route::group(['middleware' => 'api_key'],function(){
 
     Route::group(['prefix' => 'umkm'], function(){
         Route::get('/',[UserBusinessItemController::class, 'index']);
-        Route::get('/{id}',[UserBusinessItemController::class, 'getByUser']);
-        Route::post('/',[UserBusinessItemController::class, 'store']);
+        Route::get('/{userId}',[UserBusinessItemController::class, 'getByUser']);
+        Route::post('/{userId}',[UserBusinessItemController::class, 'store']);
         Route::post('/category',[UserBusinessItemController::class, 'filterByCategory']);
         Route::get('/latest',[UserBusinessItemController::class, 'getLatest']);
     });
@@ -63,7 +63,7 @@ Route::group(['middleware' => 'api_key'],function(){
 
     Route::controller(UserLoginController::class)->group(function(){
         Route::post('/login', 'login');
-        Route::post('/changePassword/{id}', 'changePassword');
+        Route::post('/changePassword/{userLogin}', 'changePassword');
     });
 
 

@@ -40,6 +40,8 @@ use Illuminate\Support\Facades\Route;
 //     Artisan::call('storage:link');
 // });
 
+Route::get('/mail', fn() => view('admin.mail'));
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'auth']);
 
@@ -229,7 +231,6 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::group(['prefix' => 'persuratan'], function(){
 
-
         Route::group(['prefix' => 'signature'], function(){
             Route::controller(SignatureController::class)->group(function(){
                 Route::get('/', 'index')->name('signature');
@@ -255,15 +256,13 @@ Route::group(['middleware' => 'auth'], function(){
             Route::controller(UsersMailController::class)->group(function(){
                 Route::get('/', 'index')->name('inbox');
                 Route::get('/all', 'getAllMail');
-                Route::get('/finish', 'getAllMailFinish')->name('userMailFinish');
-                Route::get('/process', 'getAllMailProcess')->name('userMailProcess');
-                Route::get('/rejected', 'getAllMailRejected')->name('userMailRejected');
+                Route::get('/{status}', 'getMailByStatus')->name('userMailByStatus');
                 Route::get('/create', 'create');
                 Route::get('/show/{id}', 'show');
                 Route::post('/', 'store')->name('storeMail');
                 Route::post('/update/{mail}', 'update');
                 Route::post('/change/{id}/{status}', 'changeStatus');
-                Route::delete('/delete/{mail}', 'destroy');
+                Route::delete('/delete/{id}', 'destroy');
             });
         }); 
 

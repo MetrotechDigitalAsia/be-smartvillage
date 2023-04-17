@@ -40,12 +40,10 @@ class UserLoginController extends Controller
 
     }
 
-    public function changePassword(ChangePasswordRequest $request, $id){
-
-        $user = UserLogin::where('uuid', $id)->first();
+    public function changePassword(ChangePasswordRequest $request, UserLogin $userLogin){
 
         $valid = [
-            'no_nik' => $user['no_nik'],
+            'no_nik' => $userLogin['no_nik'],
             'password' => request()->get('password')
         ];
 
@@ -57,11 +55,9 @@ class UserLoginController extends Controller
             return ResponseController::create(null, 'error', 'Konfirmasi kata Sandi Salah', 401);
         }
 
-        UserLogin::where('uuid', $id)->update(['password' => bcrypt(request()->get('new_password'))]);
+        $userLogin->update(['password' => bcrypt(request()->get('new_password'))]);
 
-        $data = UserLogin::join('getasan_residents_db.userData as userDb', 'userDb.NO_NIK', '=', 'user_logins.no_nik')->find($user->id);
-        
-        return ResponseController::create($data, 'success', 'Kata Sandi Berhasil diganti', 200);
+        return ResponseController::create('', 'success', 'Kata Sandi Berhasil diganti', 200);
 
 
     }

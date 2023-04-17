@@ -52,8 +52,6 @@ class MailTable extends Component
             ->first()
             ->update(['status' => $status]);
 
-        $
-
         $this->emitSelf('$refresh');
 
     }

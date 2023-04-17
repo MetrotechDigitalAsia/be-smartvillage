@@ -11,7 +11,6 @@ use App\Models\UserLogin;
 use App\Notifications\UmkmNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Str;
 
 class UserBusinessItemController extends Controller
 {
@@ -76,11 +75,12 @@ class UserBusinessItemController extends Controller
 
     }
 
-    public function store(StoreApiValidationRequest $request){
+    public function store(StoreApiValidationRequest $request, $userId){
 
         $data = request()->all();
         $data['item_image'] = request()->file('item_image')->store('userBusinessItem');
         $data['status'] = 'pending';
+        $data['user_id'] = $userId;
 
         $admin = Admin::all();
 
@@ -89,7 +89,7 @@ class UserBusinessItemController extends Controller
             UserBusinessItem::create($data);
             event(new NotificationEvent($data));
             Notification::send($admin, new UmkmNotification($data));
-            return ResponseController::create(request()->all(), 'success', 'create data successfully', 200);
+            return ResponseController::create(request()->get('item_name'), 'success', 'create data successfully', 200);
         } catch (\Exception $exception){
             $message = $exception->getMessage();
             return ResponseController::create(null,'error', $message, 400);
@@ -97,9 +97,12 @@ class UserBusinessItemController extends Controller
 
     }
 
-    public function getByUser($id){
-        $data = UserLogin::where('uuid', $id)->first();
-        $umkm = UserBusinessItem::where('user_id', $data->id)->get();
+    public function getByUser($userId){
+        $umkm = UserBusinessItem::where('user_id', $userId)->get();
+        foreach ($umkm as $item) {
+            $item->item_price = number_format($item->item_price);
+            $item->item_image = 'storage/' . $item->item_image;
+        }
         return ResponseController::create($umkm, 'success', 'get umkm success', 200);        
     }
 
