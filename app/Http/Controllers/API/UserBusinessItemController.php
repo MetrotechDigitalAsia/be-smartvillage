@@ -79,8 +79,6 @@ class UserBusinessItemController extends Controller
     public function store(StoreApiValidationRequest $request){
 
         $data = request()->all();
-
-        $data['uuid'] = Str::uuid()->toString();
         $data['item_image'] = request()->file('item_image')->store('userBusinessItem');
         $data['status'] = 'pending';
 

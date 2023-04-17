@@ -41,7 +41,7 @@
             var datatable = $('#kt_datatable').KTDatatable({
                 // datasource definition
                 data: {
-                    type: 'local',
+                    type: 'remote',
                     pageSize: 10,
                     source: {
 						read: {
@@ -80,7 +80,7 @@
                 // columns definition
                 columns: [
                 {
-                    field: 'DT_RowIndex',
+                    field: 'row_index',
                     title: '#',
                     sortable: 'asc',
                     width: 30,

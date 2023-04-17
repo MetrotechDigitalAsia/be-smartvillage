@@ -30,14 +30,14 @@
         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title">Terima Surat</h5>
+                    <h5 class="modal-title">Pemberitahuan</h5>
                 </div>
                 <div class="modal-body">
-                    <span>yakin ingin setujui surat dengan nomor <span class="mail-num" ></span> ?</span>
+                    <span>yakin ingin <span class="mail-type"></span> surat dengan nomor <span class="mail-num" ></span> ?</span>
                 </div>
                 <div class="modal-footer py-2 border-0">
                     <button type="button" class="btn btn-text font-weight-bold" data-dismiss="modal">Batal</button>
-                    <button type="button" data-dismiss="modal" onclick="approveMail(this)" class="btn btn-primary font-weight-bold approve-btn">Ya, Setujui</button>
+                    <button type="button" onclick="submitForm()" data-dismiss="modal" class="btn btn-primary font-weight-bold approve-btn">Ya, Setujui</button>
                 </div>
             </div>
         </div>
@@ -109,26 +109,26 @@
                                 <div class="dropdown-menu dropdown-menu-sm">\
                                     <ul class="navi navi-hover">
                                         <li class="navi-item">
-                                            <a class="navi-link" href="#">
+                                            <a class="navi-link" href="/persuratan/surat/show/${e.id}">
                                                 <span class="navi-icon"><i class="flaticon2-paper"></i></span>
                                                 <span class="navi-text">Lihat Detail</span>
                                             </a>
                                         </li>
                                         <li class="navi-item">
-                                            <a class="navi-link" href="javascript:;" onclick="onApproveClick(this)" data-toggle="modal" data-target="#confirmModal" data-mail-id="${e.id}" data-mail-num="${e.mail_number}">
+                                            <a class="navi-link" href="javascript:;" onclick="onActionClick(this, 'Done')" data-toggle="modal" data-target="#confirmModal" data-mail-id="${e.id}" data-mail-num="${e.mail_number}">
                                                 <span class="navi-icon"><i class="flaticon2-check-mark"></i></span>
                                                 <span class="navi-text">Setujui</span>
                                             </a>
                                         </li>
                                         <li class="navi-item">
-                                            <a class="navi-link" href="#">
+                                            <a class="navi-link" href="javascript:;" onclick="onActionClick(this, 'Process')" data-toggle="modal" data-target="#confirmModal" data-mail-id="${e.id}" data-mail-num="${e.mail_number}" >
                                                 <span class="navi-icon"><i class="flaticon2-hourglass-1"></i></span>
                                                 <span class="navi-text">Proses</span>
                                             </a>
                                         </li>
                                         <div class="dropdown-divider"></div>\
                                         <li class="navi-item">
-                                            <a class="navi-link" href="#">
+                                            <a class="navi-link" href="javascript:;" onclick="onActionClick(this, 'Rejected')" data-toggle="modal" data-target="#confirmModal" data-mail-id="${e.id}" data-mail-num="${e.mail_number}">
                                                 <span class="navi-icon"><i class="flaticon2-trash"></i></span>
                                                 <span class="navi-text">Tolak</span>
                                             </a>
@@ -211,18 +211,33 @@
         Widget.init();
     });
 
-    function onApproveClick(btn){
+    function onActionClick(btn, type){
+        const mailId = btn.getAttribute('data-mail-id')        
         const mailNum = btn.getAttribute('data-mail-num')
-        const mailId = btn.getAttribute('data-mail-id')
-        document.querySelector('span.mail-num').innerHTML = mailNum
-        document.querySelector('.approve-btn').setAttribute('data-mail-id', mailId)
+        const form = document.querySelector('.mail-form')
+
+        let mailType
+
+        switch (type) {
+            case 'Done':
+                mailType = 'setujui'
+                break;
+            case 'Process':
+                mailType = 'proses'
+                break;
+            case 'Rejected':
+                mailType = 'tolak'
+                break;
+        }
+        
+        document.querySelector('.mail-type').innerHTML = mailType
+        document.querySelector('.mail-num').innerHTML = mailNum
+        form.action = `/persuratan/surat/change/${mailId}/${type}`
+
     }
 
-    function approveMail(btn){
-        const mailId = btn.getAttribute('data-mail-id')        
-        const mailForm = document.querySelector('.mail-form')
-        mailForm.action = `/persuratan/surat/change/${mailId}/Done`
-        mailForm.submit()
+    function submitForm(){
+        document.querySelector('.mail-form').submit()
     }
 
 </script>

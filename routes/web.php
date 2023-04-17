@@ -259,7 +259,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/process', 'getAllMailProcess')->name('userMailProcess');
                 Route::get('/rejected', 'getAllMailRejected')->name('userMailRejected');
                 Route::get('/create', 'create');
-                Route::get('/show/{mail}', 'show');
+                Route::get('/show/{id}', 'show');
                 Route::post('/', 'store')->name('storeMail');
                 Route::post('/update/{mail}', 'update');
                 Route::post('/change/{id}/{status}', 'changeStatus');

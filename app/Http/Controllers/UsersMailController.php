@@ -28,9 +28,15 @@ class UsersMailController extends Controller
         return view('admin.'.$this->folderName.'.index');
     }
 
+    public function show($id){
+        $data = $this->DBQuery->where('userMail.id', $id)->first();
+        return view('admin.'.$this->folderName.'.detail', compact('data'));
+    }
+
     public function getAllMail(){
         return view('admin.'.$this->folderName.'.all');
     }
+
 
     public function getAllMailFinish(Request $request){
 
