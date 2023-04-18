@@ -84,9 +84,9 @@
             <span class="btn btn-default btn-sm btn-icon mr-2">
                 <i class="flaticon2-sort"></i>
             </span>
-            <span onclick="printMail()" class="btn btn-default btn-sm btn-icon mr-2" data-dismiss="modal">
+            <a href='/persuratan/surat/print/1' class="btn btn-default btn-sm btn-icon mr-2" data-dismiss="modal">
                 <i class="flaticon2-fax"></i>
-            </span>
+            </a>
             <div class="dropdown" data-toggle="tooltip" title="Settings">
                 <span class="btn btn-default btn-icon btn-sm" data-toggle="dropdown">
                     <i class="ki ki-bold-more-hor icon-1x"></i>
@@ -189,174 +189,176 @@
         </div> --}}
         <!--end::Header-->
         <!--begin::Messages-->
-        <div class="mb-3 pt-8">
-            <div class="cursor-pointer shadow-xs toggle-on container pt-10 message-container">
-                <div class="mail-header ">
-                    <img src="{{ asset('assets/be/media/desa.png') }}" alt="">
-                    <h3 class="text-center m-0 goverment" >PEMERINTAH KABUPATEN BADUNG <br>KECAMATAN PETANG</h3>
-                    <h2 class="m-0 my-1 village" >DESA GETASAN</h2>
-                    <p class="m-0 mb-3 text-center" >Jalan Tukad Penet No. 14 Getasan, Kec. Petang, Kab. Badung (80353)<br>Telp. 081 353 622 066 Website : menyssusul</p>
-                </div>
-                <div class="mail-body pt-8 px-10 text-center d-flex flex-column align-items-center pb-10">
-                    <h3 class="text-center" >SURAT KETERANGAN KELAHIRAN</h3>
-                    <h6 class="text-center mail-num mb-10" >Nomor : 045.2/33/Br.Dis/IV/2021</h6>
-                    <p class="text-justify" >Yang bertanda tangan di bawah ini Kelian Banjar Dinas Ubud, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali, menerangkan dengan sebenarnya bahwa :</p>
-                    <table class="align-self-start ml-10" >
-                        <tr>
-                            <td class="w-20px" >1.</td>
-                            <td class="w-140px" >Nama</td>
-                            <td>: Rahmat Riyadi Syam</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>jenis kelamin</td>
-                            <td>: Laki Laki</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Tempat/Tgl.lahir</td>
-                            <td>: Denpasar</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>NIK</td>
-                            <td>: -</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Nomor KK</td>
-                            <td>: 60200120116</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Alamat</td>
-                            <td>: Jalan Amirullah No 13</td>
-                        </tr>
-                        <tr>
-                            <td class="py-2"> </td>
-                        </tr>
-                        <tr>
-                            <td class="w-20px" >2.</td>
-                            <td class="w-140px" >Nama Ayah</td>
-                            <td>: Rahmat Riyadi Syam</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Umur</td>
-                            <td>: 20 tahun</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Pekerjaan</td>
-                            <td>: Software Engineer</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Alamat</td>
-                            <td>: Jaln Amirullah No 13</td>
-                        </tr>
-                        <tr>
-                            <td class="py-2"> </td>
-                        </tr>
-                        <tr>
-                            <td class="w-20px" >3.</td>
-                            <td class="w-140px" >Nama ibu</td>
-                            <td>: Siapapun yang jadi istriku nnti</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Umur</td>
-                            <td>: 20 tahun</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Pekerjaan</td>
-                            <td>: Ibu Rumah Tangga</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Alamat</td>
-                            <td>: Jaln Amirullah No 13</td>
-                        </tr>
-                    </table>
-                    <p class="text-justify mt-10" >Demikian Surat Keterangan Kelahiran ini dibuat dengan sebenarnya sebagai persyaratan untuk melengkapi permohonan Pembuatan Kutipan Akta Kelahiran.</p>
-                    <p  >Saksi Saksi</p>
-                    <div class="row" style="width: 100%;" >
-                        <div class="col">
-                            <table >
-                                <tr>
-                                    <td class="w-20px" >1.</td>
-                                    <td class="w-115px" >Nama Saksi</td>
-                                    <td>: Rahmat</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Umur</td>
-                                    <td>: 27 tahun</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Pekerjaan</td>
-                                    <td>: Karyawan Swasta</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Alamat</td>
-                                    <td>: Ubud Getasan</td>
-                                </tr>
-                            </table>
-                            <div class="d-flex justify-content-center">
-                                <u class="saksi" style="margin-top: 50px;" >I Wayan Sunarta</u>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <table >
-                                <tr>
-                                    <td class="w-20px" >2.</td>
-                                    <td class="w-115px" >Nama Saksi</td>
-                                    <td>: Rahmat</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Umur</td>
-                                    <td>: 27 tahun</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Pekerjaan</td>
-                                    <td>: Karyawan Swasta</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Alamat</td>
-                                    <td>: Ubud Getasan</td>
-                                </tr>
-                            </table>
-                            <div class="d-flex justify-content-center">
-                                <u class="saksi" style="margin-top: 50px;" >I Wayan Sunarta</u>
-                            </div>
-                        </div>
+        <div class="mb-3 pt-8 ">
+            <div class="cursor-pointer shadow-xs toggle-on pt-10 message-container mx-auto">
+                <div class="container bg-white message-content">
+                    <div class="mail-header">
+                        <img src="{{ asset('assets/be/media/desa.png') }}" alt="">
+                        <h3 class="text-center m-0 goverment" >PEMERINTAH KABUPATEN BADUNG <br>KECAMATAN PETANG</h3>
+                        <h2 class="m-0 my-1 village" >DESA GETASAN</h2>
+                        <p class="m-0 mb-3 text-center" >Jalan Tukad Penet No. 14 Getasan, Kec. Petang, Kab. Badung (80353)<br>Telp. 081 353 622 066 Website : menyssusul</p>
                     </div>
-                    <div class="row mt-10" style="width: 100%; margin-bottom: 100px;" >
-                        <div class="col text-left">
-                            <p class="m-0" style="text-indent: 0;" >Mengetahui :</p>
-                            <table>
-                                <tr>
-                                    <td>Reg No.</td>
-                                    <td>:...................</td>
-                                </tr>
-                                <tr>
-                                    <td>Tanggal</td>
-                                    <td>:...................</td>
-                                </tr>
-                            </table>
-                            <p style="text-indent: 0; margin-bottom: 50px;" >Perbekel Getasan,</p>
-                            <u >I Wayan Suandi, S.Pt</u>
+                    <div class="mail-body pt-8 px-10 text-center d-flex flex-column align-items-center pb-10">
+                        <h3 class="text-center" >SURAT KETERANGAN KELAHIRAN</h3>
+                        <h6 class="text-center mail-num mb-10" >Nomor : 045.2/33/Br.Dis/IV/2021</h6>
+                        <p class="text-justify" >Yang bertanda tangan di bawah ini Kelian Banjar Dinas Ubud, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali, menerangkan dengan sebenarnya bahwa :</p>
+                        <table class="align-self-start ml-10" >
+                            <tr>
+                                <td class="w-20px" >1.</td>
+                                <td class="w-140px" >Nama</td>
+                                <td>: Rahmat Riyadi Syam</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>jenis kelamin</td>
+                                <td>: Laki Laki</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Tempat/Tgl.lahir</td>
+                                <td>: Denpasar</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>NIK</td>
+                                <td>: -</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Nomor KK</td>
+                                <td>: 60200120116</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Alamat</td>
+                                <td>: Jalan Amirullah No 13</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2"> </td>
+                            </tr>
+                            <tr>
+                                <td class="w-20px" >2.</td>
+                                <td class="w-140px" >Nama Ayah</td>
+                                <td>: Rahmat Riyadi Syam</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Umur</td>
+                                <td>: 20 tahun</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Pekerjaan</td>
+                                <td>: Software Engineer</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Alamat</td>
+                                <td>: Jaln Amirullah No 13</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2"> </td>
+                            </tr>
+                            <tr>
+                                <td class="w-20px" >3.</td>
+                                <td class="w-140px" >Nama ibu</td>
+                                <td>: Siapapun yang jadi istriku nnti</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Umur</td>
+                                <td>: 20 tahun</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Pekerjaan</td>
+                                <td>: Ibu Rumah Tangga</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Alamat</td>
+                                <td>: Jaln Amirullah No 13</td>
+                            </tr>
+                        </table>
+                        <p class="text-justify mt-10" >Demikian Surat Keterangan Kelahiran ini dibuat dengan sebenarnya sebagai persyaratan untuk melengkapi permohonan Pembuatan Kutipan Akta Kelahiran.</p>
+                        <p  >Saksi Saksi</p>
+                        <div class="row" style="width: 100%;" >
+                            <div class="col">
+                                <table >
+                                    <tr>
+                                        <td class="w-20px" >1.</td>
+                                        <td class="w-115px" >Nama Saksi</td>
+                                        <td>: Rahmat</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Umur</td>
+                                        <td>: 27 tahun</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Pekerjaan</td>
+                                        <td>: Karyawan Swasta</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Alamat</td>
+                                        <td>: Ubud Getasan</td>
+                                    </tr>
+                                </table>
+                                <div class="d-flex justify-content-center">
+                                    <u class="saksi" style="margin-top: 50px;" >I Wayan Sunarta</u>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <table >
+                                    <tr>
+                                        <td class="w-20px" >2.</td>
+                                        <td class="w-115px" >Nama Saksi</td>
+                                        <td>: Rahmat</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Umur</td>
+                                        <td>: 27 tahun</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Pekerjaan</td>
+                                        <td>: Karyawan Swasta</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Alamat</td>
+                                        <td>: Ubud Getasan</td>
+                                    </tr>
+                                </table>
+                                <div class="d-flex justify-content-center">
+                                    <u class="saksi" style="margin-top: 50px;" >I Wayan Sunarta</u>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col text-left">
-                            <p style="text-indent: 0; margin-top: 40px; margin-bottom: 0;" >Getasan, 7 april 2023,</p>
-                            <p  style="text-indent: 0; margin-bottom: 50px;" >Kelian Banjar Dinas Ubud</p>
-                            <u >I Putu Antara, S.Pt</u>
+                        <div class="row mt-10" style="width: 100%; margin-bottom: 100px;" >
+                            <div class="col text-left">
+                                <p class="m-0" style="text-indent: 0;" >Mengetahui :</p>
+                                <table>
+                                    <tr>
+                                        <td>Reg No.</td>
+                                        <td>:...................</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal</td>
+                                        <td>:...................</td>
+                                    </tr>
+                                </table>
+                                <p style="text-indent: 0; margin-bottom: 50px;" >Perbekel Getasan,</p>
+                                <u >I Wayan Suandi, S.Pt</u>
+                            </div>
+                            <div class="col text-left">
+                                <p style="text-indent: 0; margin-top: 40px; margin-bottom: 0;" >Getasan, 7 april 2023,</p>
+                                <p  style="text-indent: 0; margin-bottom: 50px;" >Kelian Banjar Dinas Ubud</p>
+                                <u >I Putu Antara, S.Pt</u>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -376,10 +378,32 @@
 
         function printMail(){
             const mailContent = document.querySelector('.message-container')
-            winPrint = window.open('/', '')
+            winPrint = window.open('/mail', '')
             winPrint.document.write(mailContent.innerHTML)
-            winPrint.document.close()
+            // console.log(winPrint.head)
+            // console.log(winPrint.document)
+            // winPrint.document.close()
             winPrint.focus()
+            var link = winPrint.document.createElement('link')
+            link.rel = 'stylesheet'
+            link.href = "{{ asset('assets/be/plugins/global/plugins.bundle.css?v=7.0.5') }}"
+            winPrint.document.head.appendChild(link);
+
+            link = winPrint.document.createElement('link')
+            link.rel = 'stylesheet'
+            link.href = "asset('assets/be/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.5') }}"
+            winPrint.document.head.appendChild(link);
+
+            link = winPrint.document.createElement('link')
+            link.rel = 'stylesheet'
+            link.href = "{{ asset('assets/be/css/style.bundle.css?v=7.0.5') }}"
+            winPrint.document.head.appendChild(link);
+
+            link = winPrint.document.createElement('link')
+            link.rel = 'stylesheet'
+            link.href = "{{ asset('assets/be/css/mail.css') }}"
+            winPrint.document.head.appendChild(link);
+            // window.print()
         }
 
     </script>

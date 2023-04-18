@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
+use PDF;
 
 class UsersMailController extends Controller
 {
@@ -178,6 +179,14 @@ class UsersMailController extends Controller
         }
         
         return redirect('/persuratan/surat')->with('success', 'status surat diubah menjadi '. $status);
+
+    }
+
+    public function printMail($id){
+
+        $mail = PDF::loadview('admin.mail');
+        $mail->setPaper('A4', 'portrait');
+        return $mail->stream('mail.');
 
     }
 

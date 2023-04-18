@@ -4,6 +4,11 @@
     width: 730px;
 }
 
+.message-content {
+    max-width: 2480px !important;
+    max-height: 3508px !important;
+}
+
 .mail-header {
     display: flex;
     flex-direction: column;
@@ -66,8 +71,6 @@
     text-align: left;
 }
 
-
-
 .mail-body u.saksi {
     -webkit-text-stroke: 0.5px black;
     width: fit-content;
@@ -75,5 +78,9 @@
 }
 
 @media print {
+
+    .message-content {
+        background-color: red !important;
+    }
 
 }

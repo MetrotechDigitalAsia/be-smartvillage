@@ -259,6 +259,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/{status}', 'getMailByStatus')->name('userMailByStatus');
                 Route::get('/create', 'create');
                 Route::get('/show/{id}', 'show');
+                Route::get('/print/{id}', 'printMail');
                 Route::post('/', 'store')->name('storeMail');
                 Route::post('/update/{mail}', 'update');
                 Route::post('/change/{id}/{status}', 'changeStatus');
