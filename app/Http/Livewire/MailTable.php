@@ -41,7 +41,7 @@ class MailTable extends Component
             'userDB.NAMA as name',
             'userDB.NIK as nik',
             'userMail.status as status',
-            'userMail.created_at'
+            'userMail.created_at',
         ]);
     }
 

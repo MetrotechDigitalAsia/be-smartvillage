@@ -79,9 +79,6 @@
 						},
 					},
 					pageSize: 10,
-					serverPaging: true,
-					serverFiltering: true,
-					serverSorting: true,
 				},
 		
 				// layout definition
@@ -159,14 +156,6 @@
 					},
 				}],
 		
-			});
-		
-			$('#kt_datatable_search_status').on('change', function() {
-				datatable.search($(this).val().toLowerCase(), 'Status');
-			});
-		
-			$('#kt_datatable_search_type').on('change', function() {
-				datatable.search($(this).val().toLowerCase(), 'Type');
 			});
 		
 			$('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();

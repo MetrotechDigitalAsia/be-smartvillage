@@ -246,7 +246,7 @@ trait InteractsWithInput
     }
 
     /**
-     * Determine if the given input key is an empty string for "has".
+     * Determine if the given input key is an empty string for "filled".
      *
      * @param  string  $key
      * @return bool
@@ -402,7 +402,6 @@ trait InteractsWithInput
     public function enum($key, $enumClass)
     {
         if ($this->isNotFilled($key) ||
-            ! function_exists('enum_exists') ||
             ! enum_exists($enumClass) ||
             ! method_exists($enumClass, 'tryFrom')) {
             return null;
@@ -590,7 +589,7 @@ trait InteractsWithInput
      * Retrieve a parameter item from a given source.
      *
      * @param  string  $source
-     * @param  string  $key
+     * @param  string|null  $key
      * @param  string|array|null  $default
      * @return string|array|null
      */
@@ -610,7 +609,7 @@ trait InteractsWithInput
     /**
      * Dump the request items and end the script.
      *
-     * @param  mixed  $keys
+     * @param  mixed  ...$keys
      * @return never
      */
     public function dd(...$keys)

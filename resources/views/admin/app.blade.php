@@ -20,14 +20,14 @@
 		<link href="{{ asset('assets/be/css/style.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
 
 		<!--Mail Style-->
-		<link href="{{ asset('assets/be/css/mail.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('assets/be/css/mail/akta-kematian.css') }}" rel="stylesheet" type="text/css" />
 
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
 		<link rel="shortcut icon" href="{{ asset('assets/be/media/logos/favicon.ico') }}" />
 
 		@livewireStyles
-		@vite(['resources/css/app.css', 'resources/js/app.js'])
+		{{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 		
 	</head>
 

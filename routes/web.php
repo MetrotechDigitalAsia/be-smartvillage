@@ -260,6 +260,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/create', 'create');
                 Route::get('/show/{id}', 'show');
                 Route::get('/print/{id}', 'printMail');
+                Route::get('/changeStatus/{id}/{status}', 'changeStatusFromDetail');
                 Route::post('/', 'store')->name('storeMail');
                 Route::post('/update/{mail}', 'update');
                 Route::post('/change/{id}/{status}', 'changeStatus');

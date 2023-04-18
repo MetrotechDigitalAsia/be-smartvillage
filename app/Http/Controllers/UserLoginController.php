@@ -38,7 +38,6 @@ class UserLoginController extends Controller
         $data = UserLogin::join($this->userDb, 'userDb.NIK', '=', 'user_logins.no_nik')
                             ->where('user_logins.id', $userLogin->id)
                             ->first(['userDb.NAMA as name', 'userDb.NIK as nik', 'user_logins.status', 'user_logins.id']);
-
         return view('admin.'.$this->folderName.'.form', compact('data'));
     }
 

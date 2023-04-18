@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;                                                                                                    
+
 
 class UsersMailController extends Controller
 {
@@ -30,7 +31,7 @@ class UsersMailController extends Controller
     }
 
     public function show($id){
-        $data = $this->DBQuery->where('userMail.id', $id)->first();
+        $data = DB::table('users_mail')->where('id', $id)->first(['id', 'mail_number']);
         return view('admin.'.$this->folderName.'.detail', compact('data'));
     }
 
@@ -72,87 +73,6 @@ class UsersMailController extends Controller
     }
 
 
-    public function getAllMailFinish(Request $request){
-
-        if($request->ajax()){
-
-            $data = $this->DBQuery
-            ->where('userMail.status', 'Done')
-            ->orderBy('userMail.created_at', 'ASC')
-            ->get([
-                DB::raw('ROW_NUMBER() OVER(ORDER BY userMail.id) as row_index'),
-                'userMail.id as id',
-                'user.id as user_id',
-                'mails.id as mail_id',
-                'userMail.mail_number',
-                'mails.title as mail_type',
-                'userDB.NAMA as name',
-                'userDB.NIK as nik',
-                'userMail.status as status',
-                'userMail.created_at'
-            ]);
-
-            return DataTables::of($data)->addIndexColumn()->make(true);
-
-        }
-
-        return view('admin.'.$this->folderName.'.finish');
-    }
-
-    public function getAllMailProcess(Request $request){
-
-        if($request->ajax()){
-
-            $data = $this->DBQuery
-            ->where('userMail.status', 'Process')
-            ->orderBy('userMail.created_at', 'ASC')
-            ->get([
-                DB::raw('ROW_NUMBER() OVER(ORDER BY userMail.id) as row_index'),
-                'userMail.id as id',
-                'user.id as user_id',
-                'mails.id as mail_id',
-                'mails.title as mail_type',
-                'userDB.NAMA as name',
-                'userDB.NIK as nik',
-                'userMail.status as status',
-                'userMail.created_at'
-            ]);
-
-            return DataTables::of($data)->addIndexColumn()->make(true);
-
-        }
-
-        return view('admin.'.$this->folderName.'.process');
-
-    }
-
-    public function getAllMailRejected(Request $request){
-
-        if($request->ajax()){
-
-            $data = $this->DBQuery
-            ->where('userMail.status', 'Rejected')
-            ->orderBy('userMail.created_at', 'ASC')
-            ->get([
-                DB::raw('ROW_NUMBER() OVER(ORDER BY userMail.id) as row_index'),
-                'userMail.id as id',
-                'user.id as user_id',
-                'mails.id as mail_id',
-                'mails.title as mail_type',
-                'userDB.NAMA as name',
-                'userDB.NIK as nik',
-                'userMail.status as status',
-                'userMail.created_at'
-            ]);
-
-            return DataTables::of($data)->addIndexColumn()->make(true);
-
-        }
-
-        return view('admin.'.$this->folderName.'.rejected');
-
-    }
-    
     public function destroy($id){
 
         try {
@@ -177,16 +97,58 @@ class UsersMailController extends Controller
         } catch (\Exception $e) {
             return redirect('/persuratan/surat')->with('error', $e->getMessage());
         }
-        
-        return redirect('/persuratan/surat')->with('success', 'status surat diubah menjadi '. $status);
 
+        switch ($status) {
+            case 'Done':
+                $msg = 'Surat disetujui';
+                break;
+            case 'Process':
+                $msg = 'Surat diprosess';
+                break;
+            case 'Rejected':
+                $msg = 'Surat ditolak';
+                break;
+        }
+        
+        return redirect()->back()->with('success', $msg);
+
+    }
+
+    public function changeStatusFromDetail($id, $status){
+
+        try {
+            DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
+
+            switch ($status) {
+                case 'Done':
+                    $msg = 'Surat disetujui';
+                    break;
+                case 'Process':
+                    $msg = 'Surat diprosess';
+                    break;
+                case 'Rejected':
+                    $msg = 'Surat ditolak';
+                    break;
+            }
+
+            $status = true;
+
+        } catch (\Exception $e) {
+            $status = false;
+            $msg = $e->getMessage();
+        }
+
+        return response()->json([
+            'success' => $status,
+            'message' => $msg
+        ]);
+        
     }
 
     public function printMail($id){
 
-        $mail = PDF::loadview('admin.mail');
-        $mail->setPaper('A4', 'portrait');
-        return $mail->stream('mail.');
+        $pdf = Pdf::loadView('admin/mail/keterangan-kelahiran');
+        return $pdf->download('invoice.pdf');
 
     }
 
