@@ -11,6 +11,19 @@
             <a href="/persuratan/surat" class="btn btn-clean btn-icon btn-sm mr-6" >
                 <i class="flaticon2-left-arrow-1"></i>
             </a>
+            <a href="javascript:;" class="btn btn-default btn-icon btn-sm mr-2" data-toggle="modal" data-toggle="tooltip" title="Tolak" onclick="onActionClick(this, 'Rejected')"  data-target="#confirmModal" data-mail-id="{{ $data->id }}" data-mail-num="{{ $data->mail_number }}" >
+                <span class="svg-icon svg-icon-md">
+                    <!--begin::Svg Icon | path:assets/media/svg/icons/General/Trash.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <polygon points="0 0 24 0 24 24 0 24"/>
+                            <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                            <path d="M10.5857864,13 L9.17157288,11.5857864 C8.78104858,11.1952621 8.78104858,10.5620972 9.17157288,10.1715729 C9.56209717,9.78104858 10.1952621,9.78104858 10.5857864,10.1715729 L12,11.5857864 L13.4142136,10.1715729 C13.8047379,9.78104858 14.4379028,9.78104858 14.8284271,10.1715729 C15.2189514,10.5620972 15.2189514,11.1952621 14.8284271,11.5857864 L13.4142136,13 L14.8284271,14.4142136 C15.2189514,14.8047379 15.2189514,15.4379028 14.8284271,15.8284271 C14.4379028,16.2189514 13.8047379,16.2189514 13.4142136,15.8284271 L12,14.4142136 L10.5857864,15.8284271 C10.1952621,16.2189514 9.56209717,16.2189514 9.17157288,15.8284271 C8.78104858,15.4379028 8.78104858,14.8047379 9.17157288,14.4142136 L10.5857864,13 Z" fill="#000000"/>
+                        </g>
+                    </svg>
+                    <!--end::Svg Icon-->
+                </span>
+            </a>
             <a href="javascript:;" class="btn btn-default btn-icon btn-sm mr-2" data-toggle="modal" data-toggle="tooltip" title="Proses" onclick="onActionClick(this, 'Process')"  data-target="#confirmModal" data-mail-id="{{ $data->id }}" data-mail-num="{{ $data->mail_number }}"  >
                 <span class="svg-icon svg-icon-md">
                     <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Warning-1-circle.svg-->
@@ -22,19 +35,6 @@
                             <rect fill="#000000" opacity="0.3" transform="translate(15.269955, 12.127098) rotate(-45.000000) translate(-15.269955, -12.127098) " x="13.6985261" y="10.5556689" width="3.14285714" height="3.14285714" rx="0.75"/>
                             <rect fill="#000000" transform="translate(12.127098, 15.269955) rotate(-45.000000) translate(-12.127098, -15.269955) " x="10.5556689" y="13.6985261" width="3.14285714" height="3.14285714" rx="0.75"/>
                             <rect fill="#000000" transform="translate(12.127098, 8.984240) rotate(-45.000000) translate(-12.127098, -8.984240) " x="10.5556689" y="7.41281179" width="3.14285714" height="3.14285714" rx="0.75"/>
-                        </g>
-                    </svg>
-                    <!--end::Svg Icon-->
-                </span>
-            </a>
-            <a href="javascript:;" class="btn btn-default btn-icon btn-sm mr-2" data-toggle="modal" data-toggle="tooltip" title="Tolak" onclick="onActionClick(this, 'Rejected')"  data-target="#confirmModal" data-mail-id="{{ $data->id }}" data-mail-num="{{ $data->mail_number }}" >
-                <span class="svg-icon svg-icon-md">
-                    <!--begin::Svg Icon | path:assets/media/svg/icons/General/Trash.svg-->
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <polygon points="0 0 24 0 24 24 0 24"/>
-                            <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
-                            <path d="M10.5857864,13 L9.17157288,11.5857864 C8.78104858,11.1952621 8.78104858,10.5620972 9.17157288,10.1715729 C9.56209717,9.78104858 10.1952621,9.78104858 10.5857864,10.1715729 L12,11.5857864 L13.4142136,10.1715729 C13.8047379,9.78104858 14.4379028,9.78104858 14.8284271,10.1715729 C15.2189514,10.5620972 15.2189514,11.1952621 14.8284271,11.5857864 L13.4142136,13 L14.8284271,14.4142136 C15.2189514,14.8047379 15.2189514,15.4379028 14.8284271,15.8284271 C14.4379028,16.2189514 13.8047379,16.2189514 13.4142136,15.8284271 L12,14.4142136 L10.5857864,15.8284271 C10.1952621,16.2189514 9.56209717,16.2189514 9.17157288,15.8284271 C8.78104858,15.4379028 8.78104858,14.8047379 9.17157288,14.4142136 L10.5857864,13 Z" fill="#000000"/>
                         </g>
                     </svg>
                     <!--end::Svg Icon-->
@@ -60,7 +60,7 @@
             <span class="btn btn-default btn-sm btn-icon mr-2">
                 <i class="flaticon2-sort"></i>
             </span>
-            <a href='/persuratan/surat/print/1' class="btn btn-default btn-sm btn-icon mr-2" data-dismiss="modal">
+            <a href='/persuratan/surat/print/{{ $data->id }}' class="btn btn-default btn-sm btn-icon mr-2" data-dismiss="modal">
                 <i class="flaticon2-fax"></i>
             </a>
             <div class="dropdown" data-toggle="tooltip" title="Settings">
@@ -143,10 +143,8 @@
     <!--end::Header-->
     <!--begin::Body-->
     <div class="card-body p-0">
-        <div class="mb-3 pt-8 ">
-            <div class="cursor-pointer shadow-xs toggle-on pt-10 message-container mx-auto">
-                @livewire('mail-detail', ['mailId' => $data->id])
-            </div>
+        <div class="mb-3 py-8 pb-20">
+            @livewire('mail-detail', ['mailId' => $data->id])
         </div>
         <!--end::Messages-->
 

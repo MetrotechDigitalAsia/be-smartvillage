@@ -62,11 +62,13 @@ class UserDataController extends Controller
             'AKUN_MOBILE_APP' => 'nullable'
         ]);
 
+        $data['uuid'] = Str::uuid()->toString();
+
         try {
 
             UserData::create($data);
 
-            if(!isNull($data['AKUN_MOBILE_APP'])){
+            if(!empty($data['AKUN_MOBILE_APP'])){
                 UserLogin::create([
                     'no_nik' => $data['NIK'],
                     'password' => bcrypt($data['password']),

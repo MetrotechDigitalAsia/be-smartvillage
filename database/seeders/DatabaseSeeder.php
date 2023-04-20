@@ -106,22 +106,36 @@ class DatabaseSeeder extends Seeder
         // Article::factory(5)->create();
         // Investation::factory(5)->create();
 
-        Mail::factory(5)->create();
+        // Mail::factory(5)->create();
 
-        $mails = Mail::all();
+        Mail::create([
+            'title' => 'Surat Keterangan Kelahiran',
+            'slug' => str_replace(' ','-', strtolower('Surat Keterangan Kelahiran')),
+            'image' => '-',
+            'description' => '-',
+        ]);
 
-        $users = UserLogin::all();
+        Mail::create([
+            'title' => 'Surat Keterangan Tempat Usaha',
+            'slug' => str_replace(' ','-', strtolower('Surat Keterangan Tempat Usaha')),
+            'image' => '-',
+            'description' => '-',
+        ]);
 
-        foreach ($users as $i => $user) {
+        // $mails = Mail::first();
+
+        // $users = UserLogin::all();
+
+        // foreach ($users as $i => $user) {
             
-            $user->mail()->attach($mails[$i % 5],[
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-                'status' => $i % 2 == 0 ? 'Pending' : 'Process',
-                'mail_number' => 'SRT/'. rand(1,40). '/'. Carbon::now()->format('Y')
-            ]);
+        //     $user->mail()->attach($mails,[
+        //         'created_at' => Carbon::now(),
+        //         'updated_at' => Carbon::now(),
+        //         'status' => $i % 2 == 0 ? 'Pending' : 'Process',
+        //         'mail_number' => 'SRT/'. rand(1,40). '/'. Carbon::now()->format('Y'),
+        //     ]);
 
-        }
+        // }
 
 
     }

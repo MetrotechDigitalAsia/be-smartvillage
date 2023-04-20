@@ -17,4 +17,14 @@ class ResponseController extends Controller
         ];
         return response()->json($data, $code);   
     }
+
+    static function success($status, $message, $code){
+        $data = [
+            'code' => $code,
+            'status' => $status,
+            'message' => $message,
+        ];
+        return response()->json($data, $code);   
+    }
+
 }

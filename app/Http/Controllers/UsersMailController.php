@@ -32,6 +32,7 @@ class UsersMailController extends Controller
 
     public function show($id){
         $data = DB::table('users_mail')->where('id', $id)->first(['id', 'mail_number']);
+        // dd($data);
         return view('admin.'.$this->folderName.'.detail', compact('data'));
     }
 
@@ -147,8 +148,25 @@ class UsersMailController extends Controller
 
     public function printMail($id){
 
-        $pdf = Pdf::loadView('admin/mail/keterangan-kelahiran');
-        return $pdf->download('invoice.pdf');
+        $data = DB::table('users_mail as userMail')
+            ->join('mails', 'mails.id', '=', 'userMail.mail_id')
+            ->join('user_logins as user', function($join){
+                $join->join($this->userDb, 'userDB.NIK', '=', 'user.no_nik');
+            })
+            ->join('signatures', 'signatures.user_login_id', '=', 'user.id')
+            ->where('userMail.id', '=', $id)
+            ->first([
+                'userMail.id',
+                'mails.title',
+                'mails.slug',
+                'userMail.mail_number',
+                'userMail.status',
+                'userMail.field',
+                'signatures.image'
+            ]);
+
+        $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data'));
+        return $pdf->stream('invoice.pdf');
 
     }
 

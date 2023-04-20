@@ -27,7 +27,7 @@
 		<link rel="shortcut icon" href="{{ asset('assets/be/media/logos/favicon.ico') }}" />
 
 		@livewireStyles
-		{{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+		@vite(['resources/css/app.css', 'resources/js/app.js'])
 		
 	</head>
 

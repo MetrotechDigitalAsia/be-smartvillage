@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('mail_id');
             $table->foreign('mail_id')->references('id')->on('mails');
             $table->string('mail_number');
+            $table->json('field')->nullable();
             $table->enum('status',['Pending', 'Process', 'Done', 'Rejected'])->default('Pending');
             $table->timestamps();
         });

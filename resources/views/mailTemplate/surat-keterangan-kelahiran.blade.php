@@ -155,7 +155,7 @@
         }
 
         .mail-body .sign-table  tr td:last-child{
-            text-align: center
+            text-align: center;
         }
 
     </style>
@@ -7807,6 +7807,10 @@
 </head>
 <body>
     
+    @php
+        $field = json_decode($data->field)    
+    @endphp
+
     <div style="width: 80%; margin: 0 auto;" >
         <div class="container bg-white message-content">
             <div class="mail-header">
@@ -7817,25 +7821,25 @@
             </div>
             <div class="mail-body">
                 <p class="mail-type" >
-                    <b><u>SURAT KETERANGAN KELAHIRAN</u></b>
+                    <b style="text-transform: uppercase;" ><u>{{ $data->title }}</u></b>
                 </p>
-                <p class="mail-num" >Nomor : 045.2/33/Br.Dis/IV/2021</p>
+                <p class="mail-num" >Nomor : {{ $data->mail_number }}</p>
                 <p class="long" >Yang bertanda tangan di bawah ini Kelian Banjar Dinas Ubud, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali, menerangkan dengan sebenarnya bahwa :</p>
                 <table class="family-table" >
                     <tr>
                         <td >1.</td>
                         <td>Nama</td>
-                        <td>: Rahmat Riyadi Syam</td>
+                        <td>: {{ $field->child_name }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>jenis kelamin</td>
-                        <td>: Laki Laki</td>
+                        <td>: {{ $field->sex }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Tempat/Tgl.lahir</td>
-                        <td>: Denpasar</td>
+                        <td>: {{ $field->birthplace }}</td>
                     </tr>
                     <tr>
                         <td></td>
@@ -7845,12 +7849,12 @@
                     <tr>
                         <td></td>
                         <td>Nomor KK</td>
-                        <td>: 60200120116</td>
+                        <td>: </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Alamat</td>
-                        <td>: Jalan Amirullah No 13</td>
+                        <td>: {{ $field->address }}</td>
                     </tr>
                     <tr><td></td></tr>
                     <tr><td></td></tr>
@@ -7859,22 +7863,22 @@
                     <tr>
                         <td >2.</td>
                         <td >Nama Ayah</td>
-                        <td>: Rahmat Riyadi Syam</td>
+                        <td>: {{ $field->husband->name }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Umur</td>
-                        <td>: 20 tahun</td>
+                        <td>: {{ $field->husband->age }} tahun</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Pekerjaan</td>
-                        <td>: Software Engineer</td>
+                        <td>: {{ $field->husband->job }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Alamat</td>
-                        <td>: Jaln Amirullah No 13</td>
+                        <td>: {{ $field->address }}</td>
                     </tr>
                     <tr><td></td></tr>
                     <tr><td></td></tr>
@@ -7883,22 +7887,22 @@
                     <tr>
                         <td  >3.</td>
                         <td >Nama ibu</td>
-                        <td>: Siapapun yang jadi istriku nnti</td>
+                        <td>: {{ $field->wife->name }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Umur</td>
-                        <td>: 20 tahun</td>
+                        <td>: {{ $field->wife->age }} tahun</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Pekerjaan</td>
-                        <td>: Ibu Rumah Tangga</td>
+                        <td>: {{ $field->wife->job }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Alamat</td>
-                        <td>: Jaln Amirullah No 13</td>
+                        <td>: {{ $field->address }}</td>
                     </tr>
                 </table>
                 <p class="long" >Demikian Surat Keterangan Kelahiran ini dibuat dengan sebenarnya sebagai persyaratan untuk melengkapi permohonan Pembuatan Kutipan Akta Kelahiran.</p>
@@ -7911,7 +7915,7 @@
                                     <tr>
                                         <td class="w-20px" >1.</td>
                                         <td class="w-115px" >Nama Saksi</td>
-                                        <td>: Rahmat</td>
+                                        <td>: I Putu Antara</td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -7936,7 +7940,7 @@
                                     <tr>
                                         <td class="w-20px" >2.</td>
                                         <td class="w-115px" >Nama Saksi</td>
-                                        <td>: Rahmat</td>
+                                        <td>: I Wayan Sunarta</td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -7954,7 +7958,7 @@
                                         <td>: Ubud Getasan</td>
                                     </tr>
                                 </table>
-                                <p><u >I Wayan Sunarta</u></p>
+                                <p><u >I Putu Subawa</u></p>
                             </td>
                         </tr>
                     </table>
@@ -7974,12 +7978,16 @@
                                 </tr>
                             </table>
                             <p style="text-indent: 0; margin-bottom: 50px;" >Perbekel Getasan,</p>
-                            <p><u >I Wayan Suandi, S.Pt</u></p>
+                            @if ($data->status == 'Done')
+                            <img style="position: absolute; bottom: 110px; left: 0;" width="290" src="{{ public_path().'/assets/be/media/perbekel.png' }}" alt="">
+                            @endif
+                            <p style="text-indent: 0; text-align: left;" ><u >I Wayan Suandi, S.Pt</u></p>
                         </td>
-                        <td>
-                            <p style="margin-top: 40px; margin-left: 30px;" >Getasan, 7 april 2023,</p>
-                            <p  style="margin-left: 60px; margin-bottom: 65px;" >Kelian Banjar Dinas Ubud</p>
-                            <p><u >I Putu Antara, S.Pt</u></p>
+                        <td  >
+                            <p style="margin-top: 40px; margin-left: 37px;" >Getasan, {{ Carbon\Carbon::now()->format('d F Y') }},</p>
+                            <p style="margin-left: 60px; margin-bottom: 65px;" >Kelian Banjar Dinas Ubud</p>
+                            <img style="position: absolute; bottom: 110px; right: 10%;" width="290" src="{{ public_path().'/storage/'. $data->image }}" alt="">
+                            <p ><u >I Putu Antara</u></p>
                         </td>
                     </tr>
                 </table>

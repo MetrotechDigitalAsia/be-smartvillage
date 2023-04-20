@@ -47,8 +47,7 @@ class SignatureController extends Controller
     public function store(Request $request){
 
         $data = [
-            'user_login_id' => '98f414f0-7e63-4572-8588-a451486ea220',
-            'uuid' => Str::uuid()->toString()
+            'user_login_id' => '98f76e46-0744-49cf-9884-5ef5471fc4e1',
         ];
 
         $data['image'] = $request->file('image')->store('signature');

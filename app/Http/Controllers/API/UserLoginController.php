@@ -15,7 +15,7 @@ class UserLoginController extends Controller
     protected $userDb;
 
     public function __construct(){
-        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
+        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDb';
     }
 
     public function login(UserLoginRequest $request){
