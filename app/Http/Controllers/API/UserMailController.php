@@ -67,6 +67,25 @@ class UserMailController extends Controller
                 ];
                 break;
             
+            case 'Surat Keterangan Tempat Usaha':
+
+                $sender = UserData::where('NIK', $user->no_nik)->first([
+                    'NAMA as name',
+                    'JENIS_KELAMIN as sex',
+                    'TEMPAT_LAHIR as birth_place',
+                    'TANGGAL_LAHIR as birth_date',
+                    'KEWARGANEGARAAN as citizenship',
+                    'NIK as nik',
+                    'PEKERJAAN as job',
+                    'ALAMAT as address',
+                    'AGAMA as religion'
+                ]);
+
+                $field = [
+                    ...$field,
+                    'applicant' => $sender
+                ];
+
             default:
             # code...
             break;
