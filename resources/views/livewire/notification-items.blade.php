@@ -1,5 +1,11 @@
-<div class="scroll pr-7 mr-n7" data-scroll="true" data-height="300" data-mobile-height="200">
-    <!--begin::Item-->
+@if (count($notifications) == 0)
+    <div class="d-flex flex-center text-center text-muted min-h-200px">
+        <i class="flaticon2-bell-2 mr-3" ></i>
+        Tidak ada pemberitahuan.
+    </div>
+@else
+<div class="navi navi-hover my-4 px-6 scroll max-h-300px" style="overflow-y: auto;" data-height="300" data-mobile-height="200">
+    {{-- <div class="scroll pr-7 mr-4 p-4" data-scroll="true" data-height="300" data-mobile-height="200"> --}}
     @foreach ($notifications as $notify)
         <div class="d-flex align-items-center flex-wrap mb-5">
             <div class="symbol symbol-50 symbol-light mr-5">
@@ -11,8 +17,10 @@
                 <a href="/informasi-desa/umkm/show/{{ $notify->data['data']['item_name']  }}" class="font-weight-bolder text-dark-75 text-hover-primary font-size-lg mb-1">{{ $notify->data['data']['item_name'] }}</a>
                 <span class="text-muted font-weight-bold">{{ $notify->created_at->diffForHumans() }}</span>
             </div>
-            @livewire('delete-notif', ['notifId' => $notify->id], key($notify->id))
+            <div class="navi-label">
+                <i wire:click="deleteNotif('{{ $notify->id }}')" class="flaticon-close text-hover-primary" ></i>
+            </div>
         </div>
     @endforeach
-    <!--end::Item-->
 </div>
+@endif

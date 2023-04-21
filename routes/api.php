@@ -9,6 +9,7 @@ use App\Http\Controllers\API\{
     InvestationController,
     UserBusinessItemController,
     ItemBusinessCategoryController,
+    SignatureController,
     UserLoginController,
     UserMailController
 };
@@ -73,6 +74,8 @@ Route::group(['middleware' => 'api_key'],function(){
             Route::post('/', 'store');
         });
     });
+
+    Route::post('/signature', [SignatureController::class, 'store']);
 
 
 });

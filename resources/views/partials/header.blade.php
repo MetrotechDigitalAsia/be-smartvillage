@@ -90,13 +90,10 @@
                             <!--begin::Tabs-->
                             <ul class="nav nav-bold nav-tabs nav-tabs-line nav-tabs-line-3x nav-tabs-line-transparent-white nav-tabs-line-active-border-success mt-3 px-8" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active show" data-toggle="tab" href="#topbar_notifications_notifications">UMKM</a>
+                                    <a class="nav-link active show" data-toggle="tab" href="#mail_notification">Surat</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#topbar_notifications_events">Events</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#topbar_notifications_logs">Logs</a>
+                                    <a class="nav-link" data-toggle="tab" href="#umkm_notification">Umkm</a>
                                 </li>
                             </ul>
                             <!--end::Tabs-->
@@ -105,39 +102,15 @@
                         <!--begin::Content-->
                         <div class="tab-content">
                             <!--begin::Tabpane-->
-                            <div class="tab-pane active show p-8" id="topbar_notifications_notifications" role="tabpanel">
+                            <div class="tab-pane active show" id="mail_notification" role="tabpanel">
+                                @livewire('mail-notification-items')
+                            </div>
+                            <!--end::Tabpane-->
+                            <!--begin::Tabpane-->
+                            <div class="tab-pane" id="umkm_notification" role="tabpanel">
                                 <!--begin::Scroll-->
                                 @livewire('notification-items')
                                 <!--end::Scroll-->
-                            </div>
-                            <!--end::Tabpane-->
-                            <!--begin::Tabpane-->
-                            <div class="tab-pane" id="topbar_notifications_events" role="tabpanel">
-                                <!--begin::Nav-->
-                                <div class="navi navi-hover scroll my-4" data-scroll="true" data-height="300" data-mobile-height="200">
-                                    <!--begin::Item-->
-                                    <a href="#" class="navi-item">
-                                        <div class="navi-link">
-                                            <div class="navi-icon mr-2">
-                                                <i class="flaticon2-line-chart text-success"></i>
-                                            </div>
-                                            <div class="navi-text">
-                                                <div class="font-weight-bold">New report has been received</div>
-                                                <div class="text-muted">23 hrs ago</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <!--end::Item-->
-                                </div>
-                                <!--end::Nav-->
-                            </div>
-                            <!--end::Tabpane-->
-                            <!--begin::Tabpane-->
-                            <div class="tab-pane" id="topbar_notifications_logs" role="tabpanel">
-                                <!--begin::Nav-->
-                                <div class="d-flex flex-center text-center text-muted min-h-200px">All caught up!
-                                <br />No new notifications.</div>
-                                <!--end::Nav-->
                             </div>
                             <!--end::Tabpane-->
                         </div>
@@ -145,7 +118,6 @@
                 </div>
                 <!--end::Dropdown-->
             </div>
-
             <!--begin::User-->
             <div class="dropdown">
                 <!--begin::Toggle-->

@@ -103,11 +103,18 @@
 
 			var channel = pusher.subscribe('public-channel');
 
+			var audio = new Audio("{{ asset('assets/be/notif_sound/ip_wa.mp3') }}")
+
 			const spanPulse = document.querySelector('.span.ring')
 			const notifIcon = document.querySelector('.notif-icon')
 
 			channel.bind('notification-event', function(data) {
 				Livewire.emit('notifAdded')
+				audio.pause()
+				audio.currentTime = 0
+				if(data.data === 'mail')
+					audio.play()
+				console.log(data)
 				notifIcon.classList.add('svg-icon-warning')
 				spanPulse.classList.add('pulse-ring')
 			});

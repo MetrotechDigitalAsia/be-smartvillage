@@ -86,8 +86,8 @@ class UserBusinessItemController extends Controller
 
 
         try {
-            UserBusinessItem::create($data);
-            event(new NotificationEvent($data));
+            // UserBusinessItem::create($data);
+            event(new NotificationEvent('umkm'));
             $data = UserBusinessItem::latest()->first();
             Notification::send($admin, new UmkmNotification($data));
             return ResponseController::create(request()->get('item_name'), 'success', 'create data successfully', 200);

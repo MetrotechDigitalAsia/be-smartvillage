@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\NotificationEvent;
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Mail;
 use App\Models\UserData;
 use App\Models\UserLogin;
+use App\Notifications\MailNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 
 class UserMailController extends Controller
 {
@@ -93,13 +97,21 @@ class UserMailController extends Controller
 
         try {
 
-            $user->mail()->attach($mail,[
-                'mail_number' => 'SRT/'. rand(1,10). '/' . Carbon::now()->format('Y'), 
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-                'status' => 'Pending',
-                'field' => json_encode($field),
-            ]);
+            // $user->mail()->attach($mail,[
+            //     'mail_number' => 'SRT/'. rand(1,10). '/' . Carbon::now()->format('Y'), 
+            //     'created_at' => Carbon::now(),
+            //     'updated_at' => Carbon::now(),
+            //     'status' => 'Pending',
+            //     'field' => json_encode($field),
+            // ]);
+
+            $notif = [
+                'title' => $mail->title,
+                'sender' => $sender->NAMA ?? $sender->name
+            ];
+
+            Notification::send(Admin::first(), new MailNotification($notif));
+            event(new NotificationEvent('mail'));
 
         } catch (\Exception $e){
             return ResponseController::create(null, 'error', $e->getMessage(), 500);

@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class UserLogin extends Authenticatable
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, Notifiable;
 
     protected $guarded = ['id'];
 

@@ -28,7 +28,6 @@ class StoreApiValidationRequest extends FormRequest
     {
         return [
             'item_name' => 'required' ,
-            'no_nik' => 'required',
             'user_phone_number' =>'required',
             'item_category_id' => 'required',
             'item_price' => 'required',
