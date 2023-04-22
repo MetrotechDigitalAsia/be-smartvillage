@@ -97,13 +97,13 @@ class UserMailController extends Controller
 
         try {
 
-            // $user->mail()->attach($mail,[
-            //     'mail_number' => 'SRT/'. rand(1,10). '/' . Carbon::now()->format('Y'), 
-            //     'created_at' => Carbon::now(),
-            //     'updated_at' => Carbon::now(),
-            //     'status' => 'Pending',
-            //     'field' => json_encode($field),
-            // ]);
+            $user->mail()->attach($mail,[
+                'mail_number' => 'SRT/'. rand(1,10). '/' . Carbon::now()->format('Y'), 
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'status' => 'Pending',
+                'field' => json_encode($field),
+            ]);
 
             $notif = [
                 'title' => $mail->title,

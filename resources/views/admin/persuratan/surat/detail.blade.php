@@ -57,9 +57,6 @@
         <!--end::Left-->
         <!--begin::Right-->
         <div class="d-flex align-items-center justify-content-end text-right my-2">
-            <span class="btn btn-default btn-sm btn-icon mr-2">
-                <i class="flaticon2-sort"></i>
-            </span>
             <a href='/persuratan/surat/print/{{ $data->id }}' class="btn btn-default btn-sm btn-icon mr-2" data-dismiss="modal">
                 <i class="flaticon2-fax"></i>
             </a>
@@ -143,7 +140,7 @@
     <!--end::Header-->
     <!--begin::Body-->
     <div class="card-body p-0">
-        <div class="mb-3 py-8 pb-20">
+        <div class="mb-3 py-8 pb-10">
             @livewire('mail-detail', ['mailId' => $data->id])
         </div>
         <!--end::Messages-->
@@ -167,6 +164,21 @@
     
     </div>
     <!--end::Body-->
+    <div class="card-footer d-flex">
+        <a href="/persuratan/surat" class="btn btn-outline-secondary font-weight-bold mr-auto">Kembali</a>
+        <a href="#" class="btn btn-outline-danger font-weight-bold" data-mail-id="{{ $data->id }}" data-mail-num="{{ $data->mail_number }}" onclick="onActionClick(this, 'Rejected')" data-toggle="modal" data-target="#confirmModal" >
+            <i class="flaticon-circle"></i>
+            Tolak
+        </a>
+        <a href="#" class="btn btn-outline-warning font-weight-bold mx-3" data-mail-id="{{ $data->id }}" data-mail-num="{{ $data->mail_number }}" onclick="onActionClick(this, 'Process')" data-toggle="modal" data-target="#confirmModal" >
+            <i class="flaticon2-hourglass-1" ></i>
+            Proses
+        </a>
+        <a href="#" class="btn btn-outline-success font-weight-bold" data-mail-id="{{ $data->id }}" data-mail-num="{{ $data->mail_number }}" onclick="onActionClick(this, 'Done')" data-toggle="modal" data-target="#confirmModal" >
+            <i class="flaticon2-check-mark" ></i>
+            Setujui
+        </a>
+    </div>
 </div>
     
 @endsection

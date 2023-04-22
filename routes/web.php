@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function(){
     
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::get('/', [ArticleController::class, 'index']);
+    Route::get('/', [LoginController::class, 'dashboard']);
 
     Route::group(['prefix' => 'tourism-map'], function(){
     
