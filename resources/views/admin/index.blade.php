@@ -214,7 +214,38 @@
 
 </div>
 
-<div class="row">
+<div class="row mb-5">
+    <div class="col-xl-5 ">
+        <div class="card card-custom gutter-b">
+            <div class="card-header border-0">
+                <div class="card-title border-0">
+                    <h3 class="card-label">Statistik Surat</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <!--begin::Chart-->
+                <div id="mail_chart" class="d-flex justify-content-center"></div>
+                <!--end::Chart-->
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-7">
+        <div class="card card-custom gutter-b">
+            <div class="card-header border-0">
+                <div class="card-title">
+                    <h3 class="card-label">Statistik Penduduk</h3>
+                </div>
+            </div>
+            <div class="card-body py-3">
+                <!--begin::Chart-->
+                <div id="resident_chart"></div>
+                <!--end::Chart-->
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- <div class="row">
     <div class="col-xl-4 bg-warning">
         <!--begin::Tiles Widget 1-->
         <div class="card card-custom gutter-b card-stretch">
@@ -1564,6 +1595,137 @@
         <!--end::List Widget 11-->
     </div>
 </div>
-<!--end::Row-->
+<!--end::Row--> --}}
     
 @endsection
+
+@push('script')
+
+    <script>
+        const primary = '#C91022'
+        const success = '#F9A11B'
+        const info = '#9CCC65'
+        const warning = '#9CCC65'
+        const danger = '#F64E60'
+
+        const ChartWidget = function(){
+
+            const residentChart = function(){
+
+                const el = document.querySelector('#resident_chart')
+                const opt = {
+                    chart: {
+                        type: 'bar',
+                        height: 350,
+                        toolbar: {
+                            show: false
+                        }
+                    },
+                    series: [
+                        {
+                            name: 'Anak Anak',
+                            data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 150))
+                        },
+                        {
+                            name: 'Dewasa',
+                            data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 110))
+                        },
+                        {
+                            name: 'Lansia',
+                            data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 90))
+                        }
+                    ],
+                    xaxis: {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Des', 'Nov']
+                    },
+                    yaxis:{
+                        title: {
+                            text: 'Tahun'
+                        }
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: false,
+                            columnWidth: '55%',
+                            endingShape: 'rounded'
+                        },
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        show: true,
+                        width: 2,
+                        colors: ['transparent']
+                    },
+                    fill: {
+                        opacity: 1
+                    },
+                    tooltip: {
+                        y: {
+                            formatter: function (val) {
+                                return val + " orang"
+                            }
+                        }
+                    },
+                    colors: [primary, success, warning]
+                }
+
+                const chart = new ApexCharts(el, opt)
+                chart.render()
+
+            }
+
+            const mailChart = function(){
+                const el = document.querySelector('#mail_chart')
+                const opt = {
+                    chart: {
+                        type: 'donut',
+                        height: 365
+                    },
+                    series: Array.from({ length: 3 }, () => Math.floor(Math.random() * 150)),
+                    labels: ['Surat Akta Kematian', 'SKTU', 'Surat Kelahiran'],
+                    colors: [success, primary, warning],
+                    legend: {
+                        position: 'bottom'
+                    },
+                    plotOptions: {
+                        pie: {
+                            donut: {
+                                labels: {
+                                    show: true,
+                                    total: {
+                                        label: 'Total Surat',
+                                        show: true,
+                                        showAlways: true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                const chart = new ApexCharts(el, opt)
+                chart.render()
+            }
+
+
+            return {
+                init: function(){
+                    residentChart()
+                    mailChart()
+                    umkmChart()
+                }
+            }
+
+        }()
+
+        jQuery(document).ready(function () {
+            ChartWidget.init();
+        });
+
+
+
+    </script>
+    
+@endpush

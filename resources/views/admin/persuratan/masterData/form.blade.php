@@ -4,26 +4,26 @@
 
 <div class="card card-custom gutter-b">
 
+    <form action="{{ empty($mail) ? route('storeMail') : '/persuratan/master-data/update/'.$mail->id }}" enctype="multipart/form-data" method="POST"  >
 
-    <!--begin::Body-->
-    <div class="card-body p-0">
+        <div class="card-header py-3">
+            <div class="card-title align-items-center flex-row ">
+                <h3 class="card-label font-weight-bolder text-dark">User Login</h3>
+            </div>
+        </div>
+        <!--begin::Body-->
+        <div class="card-body p-0">
 
-        @include('partials.success-alert')
-
-        @include('partials.validation-alert')
-
-        <!--begin::Wizard-->
-        <form action="{{ empty($mail) ? route('storeMail') : '/persuratan/master-data/update/'.$mail->id }}" enctype="multipart/form-data" method="POST"  >
-
+            @include('partials.success-alert')
+            @include('partials.validation-alert')
+            
             @csrf
-
             <div class="wizard wizard-1" id="kt_contact_add" data-wizard-state="step-first" data-wizard-clickable="true">
                 <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
                     <div class="col-xl-12 col-xxl-7">
                         <!--begin::Form Wizard Form-->
                             <!--begin::Form Wizard Step 1-->
                             <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
-                                <h3 class="mb-10 font-weight-bold text-dark">{{ empty($mail) ? 'Tambah Data' : 'Ubah Data' }}</h3>
                                 <div class="row">
                                     <div class="col-xl-12">
 
@@ -43,35 +43,12 @@
                                         <div class="form-group row">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Nama Surat</label>
                                             <div class="col-lg-9 col-xl-9">
-                                                <input class="form-control required form-control-lg form-control-solid" type="text" name="title" value="{{$mail['title'] ?? '' }}" />
+                                                <input readonly class="form-control required form-control-lg form-control-solid" type="text" name="title" value="{{$mail['title'] ?? '' }}" />
                                                 @error('title')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                         </div>
-
-                                        {{-- <div class="form-group row">
-                                            <label class="col-3 col-form-label">Status</label>
-                                            <div class="col-9 col-form-label">
-                                                <div class="radio-inline">
-                                                    <label class="radio radio-outline radio-success">
-                                                        <input {{!empty($mail) ? $mail['status']=="rejected" ? 'checked' : '' : ''}} type="radio" name="status" value="rejected" />
-                                                        <span></span>
-                                                        Tolak
-                                                    </label>
-                                                    <label class="radio radio-outline radio-success">
-                                                        <input {{!empty($mail) ? $mail['status']=="pending" ? 'checked' : '' : ''}}  type="radio" name="status" value="pending" />
-                                                        <span></span>
-                                                        Pending
-                                                    </label>
-                                                    <label class="radio radio-outline radio-success">
-                                                        <input {{!empty($mail) ? $mail['status']=="approve" ? 'checked' : '' : ''}}  type="radio" name="status" value="approve" />
-                                                        <span></span>
-                                                        Terima
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div> --}}
 
                                         <div class="form-group row">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Deskripsi</label>
@@ -89,21 +66,19 @@
                         <!--end::Form Wizard Form-->
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-lg-6">
-                        </div>
-                        <div class="col-lg-6  text-lg-right">
-                            <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                            <a href="/persuratan/master-data" class="btn btn-secondary">Batal</a>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <!--end::Body-->
+        <div class="card-footer">
+            <div class="row">
+                <div class="col offset-3">
+                    <button type="submit" class="btn btn-success mr-2">Simpan</button>
+                    <a href="/persuratan/master-data" class="btn btn-secondary">Batal</a>
                 </div>
             </div>
-        </form>
-        <!--end::Wizard-->
-    </div>
-    <!--end::Body-->
+        </div>
+
+    </form>
 </div>
     
 @endsection

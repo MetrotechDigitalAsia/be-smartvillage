@@ -21,6 +21,17 @@
                     </a>
                     <!--end::Item-->
 
+                    @if (Route::current()->uri == '/')
+                        <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                        <a 
+                            href="" 
+                            style="text-transform: capitalize;" 
+                            class="text-white text-hover-white opacity-75 hover-opacity-100"
+                        >
+                            Dashboard
+                        </a>
+                    @endif
+
                     @foreach (Request::segments() as $segment)
                     <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                     <a 

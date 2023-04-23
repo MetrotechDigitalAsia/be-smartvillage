@@ -24,19 +24,19 @@
                             </a>
                         </li>
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'informasi-desa')) menu-item-here @endif" >
-                            <a href="/informasi-desa" class="menu-link ">
+                            <a href="/informasi-desa/prospek-desa" class="menu-link ">
                                 <span class="menu-text">Informasi Desa</span>
                                 <span class="menu-desc"></span>
                             </a>
                         </li>
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'tourism-map')) menu-item-here @endif" >
-                            <a href="/tourism-map" class="menu-link ">
+                            <a href="/tourism-map/point-destinasi" class="menu-link ">
                                 <span class="menu-text">Tourism Map</span>
                                 <span class="menu-desc"></span>
                             </a>
                         </li>
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'master-data')) menu-item-here @endif " >
-                            <a href="/master-data" class="menu-link ">
+                            <a href="/master-data/kategori-artikel" class="menu-link ">
                                 <span class="menu-text">Master Data</span>
                                 <span class="menu-desc"></span>
                             </a>

@@ -90,7 +90,7 @@
             <div class="card-body">
                 <div class="d-flex flex-column align-items-center">
                     <!--begin: Icon-->
-                    <img alt="" class="max-h-65px" src="{{ asset('assets/be/media/svg/files/pdf.svg') }}" />
+                    <img alt="" class="max-h-65px" src="{{ asset('storage/'.$mail->image) }}" />
                     <!--end: Icon-->
                     <!--begin: Tite-->
                     <a href="#" class="text-dark-75 font-weight-bold mt-15 font-size-lg">{{ $mail->title }}</a>
