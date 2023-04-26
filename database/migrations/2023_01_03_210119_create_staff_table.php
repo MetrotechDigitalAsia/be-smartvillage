@@ -14,18 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('staff', function (Blueprint $table) {
-            $table->id();
-            $table->uuid();
+            $table->uuid('id')->primary();
             $table->string('fullname');
-            $table->string('image');
-            $table->date('date_of_birth');
+            $table->string('image')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->unsignedBigInteger('id_position');
             $table->foreign('id_position')->references('id')->on('positions');
-            $table->string('address');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('status');
-            $table->string('gender');
+            $table->string('address')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('status')->nullable();
+            $table->string('gender')->nullable();
             $table->timestamps();
         });
     }
