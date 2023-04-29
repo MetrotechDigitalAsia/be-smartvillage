@@ -27,7 +27,6 @@ class MailDetail extends Component
                 ->join('user_logins as user', function($join){
                     $join->join($this->userDb, 'userDB.NIK', '=', 'user.no_nik');
                 })
-                ->join('signatures', 'signatures.user_login_id', '=', 'user.id')
                 ->where('userMail.id', '=', $this->mailId)
                 ->first([
                     'userMail.id',
@@ -36,7 +35,7 @@ class MailDetail extends Component
                     'userMail.mail_number',
                     'userMail.status',
                     'userMail.field',
-                    'signatures.image'
+                    'userMail.signature'
                 ])
         ]);
     }

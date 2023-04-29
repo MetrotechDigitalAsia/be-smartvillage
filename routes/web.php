@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function(){
     
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::get('/', [LoginController::class, 'dashboard']);
+    Route::get('/', [LoginController::class, 'dashboard'])->name('dashboard');
 
     Route::group(['prefix' => 'tourism-map'], function(){
     
@@ -262,6 +262,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/print/{id}', 'printMail');
                 Route::get('/changeStatus/{id}/{status}', 'changeStatusFromDetail');
                 Route::post('/', 'store')->name('storeMail');
+                Route::post('/setMailNumber/{id}', 'setMailNumber');
                 Route::post('/update/{mail}', 'update');
                 Route::post('/change/{id}/{status}', 'changeStatus');
                 Route::delete('/delete/{id}', 'destroy');

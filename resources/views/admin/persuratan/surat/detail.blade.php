@@ -53,6 +53,20 @@
                     <!--end::Svg Icon-->
                 </span>
             </a>
+
+            <a href="javascript:;" data-toggle="modal" data-target="#mailNumberModal" class="btn btn-default btn-icon btn-sm mr-2" data-toggle="tooltip" title="Setujui"  data-mail-id="{{ $data->id }}" data-mail-num="{{ $data->mail_number }}" >
+                <span class="svg-icon svg-icon-md">
+                    <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-opened.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <polygon points="0 0 24 0 24 24 0 24"/>
+                            <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z M10.875,15.75 C11.1145833,15.75 11.3541667,15.6541667 11.5458333,15.4625 L15.3791667,11.6291667 C15.7625,11.2458333 15.7625,10.6708333 15.3791667,10.2875 C14.9958333,9.90416667 14.4208333,9.90416667 14.0375,10.2875 L10.875,13.45 L9.62916667,12.2041667 C9.29375,11.8208333 8.67083333,11.8208333 8.2875,12.2041667 C7.90416667,12.5875 7.90416667,13.1625 8.2875,13.5458333 L10.2041667,15.4625 C10.3958333,15.6541667 10.6354167,15.75 10.875,15.75 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                            <path d="M10.875,15.75 C10.6354167,15.75 10.3958333,15.6541667 10.2041667,15.4625 L8.2875,13.5458333 C7.90416667,13.1625 7.90416667,12.5875 8.2875,12.2041667 C8.67083333,11.8208333 9.29375,11.8208333 9.62916667,12.2041667 L10.875,13.45 L14.0375,10.2875 C14.4208333,9.90416667 14.9958333,9.90416667 15.3791667,10.2875 C15.7625,10.6708333 15.7625,11.2458333 15.3791667,11.6291667 L11.5458333,15.4625 C11.3541667,15.6541667 11.1145833,15.75 10.875,15.75 Z" fill="#000000"/>
+                        </g>
+                    </svg>
+                    <!--end::Svg Icon-->
+                </span>
+            </a>
         </div>
         <!--end::Left-->
         <!--begin::Right-->
@@ -161,6 +175,28 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="mailNumberModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Beri Nomor Surat</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group m-0">
+                            <input type="text" id="mail-number-form" class="form-control"  placeholder="Masukan Nomor"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Tutup</button>
+                        <button type="button" onclick="handleSetMailNumber(this)" data-mail-id="{{ $data->id }}" data-dismiss="modal" class="btn btn-primary font-weight-bold">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     
     </div>
     <!--end::Body-->
@@ -241,6 +277,41 @@
             })
 
     }
+
+    function handleSetMailNumber(btn){
+
+        const input = document.querySelector('#mail-number-form')
+        const mailId = btn.getAttribute('data-mail-id')
+
+        const opt = {
+            type: 'success',
+            placement: {
+                from:'top',
+                align: 'center'
+            },
+            animate: {
+                enter: 'animate__animated animate__fadeInDown',
+                exit: 'animate__animated animate__fadeOutUp'
+            }
+        }
+
+        $.post(`/persuratan/surat/setMailNumber/${mailId}`, { mailNumber: input.value })
+            .done(function(res){
+
+                console.log(res)
+
+                $.notify({
+                    message: res.message,
+                }, opt)
+
+                if(res.success){
+                    Livewire.emit('refreshMailDetail')
+                }
+            })
+
+
+    }
+
 </script>
     
 @endpush

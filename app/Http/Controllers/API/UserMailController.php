@@ -47,12 +47,13 @@ class UserMailController extends Controller
             return ResponseController::create(null, 'error', (empty($user) ? 'user tidak ditemukan' : 'jenis surat tidak tersedia'), 404);
         }
 
+        $sender = UserData::where('NIK',$user->no_nik)->first();
+        // $applicant = UserData::find($request->resident_id);
+
         $field = json_decode($request->field, true);
 
         switch ($mail->title) {
             case 'Surat Keterangan Kelahiran':
-
-                $sender = UserData::where('NIK', $user->no_nik)->first();
 
                 $husband = UserData::where('SHDK', 'Kepala Keluarga')
                         ->where('NO_KK', $sender->NO_KK)
@@ -69,11 +70,12 @@ class UserMailController extends Controller
                     'husband' => $husband,
                     'wife' => $wife 
                 ];
+
                 break;
             
             case 'Surat Keterangan Tempat Usaha':
 
-                $sender = UserData::where('NIK', $user->no_nik)->first([
+                $sender = UserData::where('id',$request->resident_id)->first([
                     'NAMA as name',
                     'JENIS_KELAMIN as sex',
                     'TEMPAT_LAHIR as birth_place',
@@ -97,11 +99,14 @@ class UserMailController extends Controller
 
         try {
 
+            $signature = $request->file('signature')->store('mail-signatures');
+
             $user->mail()->attach($mail,[
-                'mail_number' => 'SRT/'. rand(1,10). '/' . Carbon::now()->format('Y'), 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'status' => 'Pending',
+                'signature' => $signature,
+                'resident_id' => $request->resident_id,
                 'field' => json_encode($field),
             ]);
 

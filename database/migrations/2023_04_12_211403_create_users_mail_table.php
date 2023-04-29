@@ -19,8 +19,10 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('user_logins');
             $table->string('mail_id');
             $table->foreign('mail_id')->references('id')->on('mails');
-            $table->string('mail_number');
+            $table->string('mail_number')->nullable();
+            $table->unsignedBigInteger('resident_id');
             $table->json('field')->nullable();
+            $table->string('signature');
             $table->enum('status',['Pending', 'Process', 'Done', 'Rejected'])->default('Pending');
             $table->timestamps();
         });

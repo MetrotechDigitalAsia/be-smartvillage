@@ -146,6 +146,24 @@ class UsersMailController extends Controller
         
     }
 
+    public function setMailNumber(Request $request,$id){
+
+        try {
+            DB::table('users_mail as userMail')->where('id',$id)->update(['mail_number' => $request->mailNumber]);
+            $status = true;
+            $msg = 'Penomoran Surat Berhasil';
+        } catch (\Exception $e) {
+            $status = false;
+            $msg = $e->getMessage();
+        }
+
+        return response()->json([
+            'success' => $status,
+            'message' => $msg
+        ]);
+
+    }
+
     public function printMail($id){
 
         $data = DB::table('users_mail as userMail')

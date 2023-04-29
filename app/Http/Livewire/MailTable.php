@@ -12,7 +12,7 @@ class MailTable extends Component
     protected $userDb;
 
     public function mount(){
-        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
+        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data';
     }
 
     public function render()
@@ -23,10 +23,12 @@ class MailTable extends Component
 
     public function getData(){
 
+        // return $this->data = 
+
         return DB::table('users_mail as userMail')
         ->join('mails', 'mails.id', '=', 'userMail.mail_id')
         ->join('user_logins as user', function($join){
-            $join->join($this->userDb, 'userDB.NIK', '=', 'user.no_nik')
+            $join->join($this->userDb.' as userDB', 'userDB.NIK', '=', 'user.no_nik')
             ->on('user.id', '=', 'userMail.user_id');
         })
         ->where('userMail.status', 'Pending')

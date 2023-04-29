@@ -74,7 +74,7 @@
                     textAlign: 'center',
                 },{
                     field: 'mail_number',
-                    title: 'Jenis Surat',
+                    title: 'Nomor Surat',
                 },{
                     field: 'mail_type',
                     title: 'Jenis Surat',

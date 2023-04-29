@@ -17,7 +17,7 @@
                 <div id="kt_header_menu" class="header-menu header-menu-left header-menu-mobile header-menu-layout-default">
                     <!--begin::Header Nav-->
                     <ul class="menu-nav">
-                        <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, '/')) menu-item-here @endif">
+                        <li class="menu-item menu-item-submenu menu-item-rel @if(Route::currentRouteName() == 'dashboard') menu-item-here @endif">
                             <a href="/" class="menu-link ">
                                 <span class="menu-text">Dashboard</span>
                                 <i class="menu-arrow"></i>

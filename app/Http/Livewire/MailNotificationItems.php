@@ -7,6 +7,9 @@ use Livewire\Component;
 
 class MailNotificationItems extends Component
 {
+
+    protected $listeners = ['notifAdded' => '$refresh'];
+
     public function render()
     {
         return view('livewire.mail-notification-items',[

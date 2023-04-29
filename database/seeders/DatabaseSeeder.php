@@ -53,9 +53,9 @@ class DatabaseSeeder extends Seeder
         // ArticleCategory::create(['article_category' => 'Hangat']);
         // ArticleCategory::create(['article_category' => 'Lainnya']);
 
-        // ComplaintCategory::create(['complaint_category' => 'Pariwisata']);
-        // ComplaintCategory::create(['complaint_category' => 'Umum']);
-        // ComplaintCategory::create(['complaint_category' => 'layanan Terpadu']);
+        ComplaintCategory::create(['complaint_category' => 'Pariwisata']);
+        ComplaintCategory::create(['complaint_category' => 'Umum']);
+        ComplaintCategory::create(['complaint_category' => 'layanan Terpadu']);
 
         // Position::create(['position_name' => 'amdin']);
 
@@ -109,6 +109,7 @@ class DatabaseSeeder extends Seeder
         // Mail::factory(5)->create();
 
         Mail::create([
+            'id' => '990636ad-0896-4953-8fad-19c152424a4f',
             'title' => 'Surat Keterangan Kelahiran',
             'slug' => str_replace(' ','-', strtolower('Surat Keterangan Kelahiran')),
             'image' => '-',
@@ -116,6 +117,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Mail::create([
+            'id' => '990636ad-0906-4cb3-b64e-242dba590297',
             'title' => 'Surat Keterangan Tempat Usaha',
             'slug' => str_replace(' ','-', strtolower('Surat Keterangan Tempat Usaha')),
             'image' => '-',

@@ -26,7 +26,11 @@ class UserDataController extends Controller
 
         if($request->ajax()){
 
-            $data = UserData::latest()->get();
+            $param = $request->get('query')['generalSearch'] ?? '';
+            $data = UserData::latest()
+                    ->where('resident_data.NAMA', 'like', '%'.$param.'%')
+                    ->orWhere('resident_data.NIK', 'like', '%'.$param.'%')
+                    ->get();
                     
             return DataTables::of($data)
             ->addIndexColumn()

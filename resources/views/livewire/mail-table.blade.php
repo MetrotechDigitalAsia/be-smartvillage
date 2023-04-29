@@ -151,13 +151,15 @@
                     field: 'mail_number',
                     title: 'Nomor Surat',
                     width: 120,
+                    template: (e) => e.mail_number === null ? 'Menunggu Verifikasi' : e.mail_number
                 },{
                     field: 'mail_type',
                     title: 'Jenis Surat',
+                    width: 190,
                 },{
                     field: 'name',
-                    title: 'Nama Pengaju',
-                    width: 200
+                    title: 'Nama Pengirim',
+                    width: 120
                 },{
                     field: 'created_at',
                     title: 'Tanggal Masuk',

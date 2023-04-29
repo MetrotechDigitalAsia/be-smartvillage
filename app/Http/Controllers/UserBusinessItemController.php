@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ItemBusinessCategory;
 use App\Models\UserBusinessItem;
+use App\Models\UserLogin;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Str;
@@ -94,15 +95,16 @@ class UserBusinessItemController extends Controller
 
         $categories = ItemBusinessCategory::all();
         $fields = ['no_nik', 'user_number_phone', 'item_name', 'item_category_id', 'item_image', 'item_price', 'item_description', 'item_marketplace_link', 'status'];
+        $users = UserLogin::all();
 
-        return view('admin.'.$this->folderName.'.form', compact('categories', 'fields'));
+        return view('admin.'.$this->folderName.'.form', compact('categories', 'fields', 'users'));
     }
 
     public function store(Request $request){
 
 
         $validated = $request->validate([
-            'no_nik' => 'required',
+            'user_id' => 'required',
             'user_phone_number' => 'required',
             'item_name' => 'required',
             'item_category_id' => 'required',
@@ -114,9 +116,7 @@ class UserBusinessItemController extends Controller
         ]);
 
 
-        $validated['uuid'] = Str::uuid()->toString();
         $validated['item_image'] = $request->file('item_image')->store('userBusinessItem');
-        $validated['user_id'] = 1;
 
         try {
             UserBusinessItem::create($validated);
@@ -132,7 +132,7 @@ class UserBusinessItemController extends Controller
     public function update(Request $request, UserBusinessItem $userBusinessItem){
 
         $validated = $request->validate([
-            'no_nik' => 'required',
+            'user_id' => 'required',
             'user_phone_number' => 'required',
             'item_name' => 'required',
             'item_category_id' => 'required',

@@ -23,7 +23,7 @@ class UserLoginController extends Controller
 
             $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = UserLogin::join($this->userDb, 'userDb.NIK', '=', 'user_logins.no_nik')->get(['userDb.nik', 'userDb.NAMA as name', 'user_logins.id']);
+            $data = UserLogin::join($this->userDb, 'userDB.NIK', '=', 'user_logins.no_nik')->get(['userDB.nik', 'userDB.NAMA as name', 'user_logins.id']);
                     
             return DataTables::of($data)
             ->addIndexColumn()
@@ -35,9 +35,9 @@ class UserLoginController extends Controller
 
     public function show(UserLogin $userLogin){
 
-        $data = UserLogin::join($this->userDb, 'userDb.NIK', '=', 'user_logins.no_nik')
+        $data = UserLogin::join($this->userDb, 'userDB.NIK', '=', 'user_logins.no_nik')
                             ->where('user_logins.id', $userLogin->id)
-                            ->first(['userDb.NAMA as name', 'userDb.NIK as nik', 'user_logins.status', 'user_logins.id']);
+                            ->first(['userDB.NAMA as name', 'userDB.NIK as nik', 'user_logins.status', 'user_logins.id']);
         return view('admin.'.$this->folderName.'.form', compact('data'));
     }
 
