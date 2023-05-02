@@ -13,14 +13,13 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-            php-version: 8.1
+            php-version: 8.0
             tools: composer:v2
             coverage: none
-      - name: Setup Deployer
-        uses: atymic/deployer-php-action@master
+      - name: Install Composer dependencies
+        run: composer update
+      - name: Deploy
+        uses: deployphp/action@v1
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ssh-known-hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
-      - name: Deploy to Production
-        env:
-          DOT_ENV: ${{ secrets.DOT_ENV_PRODUCTION }}
+          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          dep: deploy production -v
