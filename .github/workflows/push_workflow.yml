@@ -20,5 +20,5 @@ jobs:
         uses: deployphp/action@v1
         with:
           private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known-host: ${{ secrets.SSH_KNOWN_HOST }}
+          known-hosts: ${{ secrets.SSH_KNOWN_HOST }}
           dep: deploy production -v
