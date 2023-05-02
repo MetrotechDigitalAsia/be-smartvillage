@@ -5,11 +5,13 @@
 	<head><base href="">
 		<meta charset="utf-8" />
 		<meta name="csrf-token" content="{{ csrf_token() }}" />
-		<title>Metronic | Dashboard</title>
+		<title>Desa Getasan | CMS</title>
 		<meta name="description" content="Updates and statistics" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<!--Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<link href="https://fonts.cdnfonts.com/css/bookman-old-style" rel="stylesheet">
+                
 
 		
 		<!--Global Theme Styles(used by all pages)-->
@@ -17,11 +19,15 @@
 		<link href="{{ asset('assets/be/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/be/css/style.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
 
+		<!--Mail Style-->
+		<link href="{{ asset('assets/be/css/mail/akta-kematian.css') }}" rel="stylesheet" type="text/css" />
+
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
 		<link rel="shortcut icon" href="{{ asset('assets/be/media/logos/favicon.ico') }}" />
 
 		@livewireStyles
+		@vite(['resources/css/app.css', 'resources/js/app.js'])
 		
 	</head>
 
@@ -97,11 +103,18 @@
 
 			var channel = pusher.subscribe('public-channel');
 
+			var audio = new Audio("{{ asset('assets/be/notif_sound/ip_wa.mp3') }}")
+
 			const spanPulse = document.querySelector('.span.ring')
 			const notifIcon = document.querySelector('.notif-icon')
 
 			channel.bind('notification-event', function(data) {
 				Livewire.emit('notifAdded')
+				audio.pause()
+				audio.currentTime = 0
+				if(data.data === 'mail')
+					audio.play()
+				console.log(data)
 				notifIcon.classList.add('svg-icon-warning')
 				spanPulse.classList.add('pulse-ring')
 			});
@@ -147,12 +160,8 @@
 						if (result.isConfirmed) {
 							$.post(action,data)
 								.done(function(res){
+									console.log(res)
 									if (res.message=="successfully") {
-										// swalWithBootstrapButtons.fire(
-										// 	'Deleted!',
-										// 	'Your data has been deleted.',
-										// 	'success'
-										// )
 										swalWithBootstrapButtons.fire({
 											title: 'deleted',
 											text: 'Your data has been deleted.',
@@ -161,17 +170,17 @@
 										.then( res => {
 											location.reload()
 										})
+									} else {
+										swalWithBootstrapButtons.fire(
+											'',
+											res.message,
+											'warning'
+										)
 									}
 								})
 								.fail(function(res) {
 
-									console.log(res)
-
-									swalWithBootstrapButtons.fire(
-										'',
-										'Data tidak dapat di hapus (Data sedang di pakai).',
-										'warning'
-									)
+									
 								})
 						}
 					})

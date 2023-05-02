@@ -15,7 +15,7 @@ class SignatureController extends Controller
 
     public function __construct(){
         $this->folderName = 'persuratan.signature';
-        $this->userDb = env('DB_RESIDENT_DATABASE');
+        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
     }
 
     public function index(){
@@ -24,8 +24,8 @@ class SignatureController extends Controller
 
             $data = Signature::join('user_logins as user', function($join){
                 $join->on('user.id', '=', 'signatures.user_login_id')
-                ->join($this->userDb.'.userData', 'userData.NO_NIK', '=', 'user.no_nik');
-            })->get(['userData.NAMA_LENGKAP as name', 'userData.NO_NIK as nik', 'signatures.*']);
+                ->join($this->userDb, 'userDB.NIK', '=', 'user.no_nik');
+            })->get(['userDB.NAMA as name', 'userDB.NIK as nik', 'signatures.*']);
 
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -47,8 +47,7 @@ class SignatureController extends Controller
     public function store(Request $request){
 
         $data = [
-            'user_login_id' => 2,
-            'uuid' => Str::uuid()->toString()
+            'user_login_id' => '98f83cd3-c8be-4e87-aa36-9177dcb55888',
         ];
 
         $data['image'] = $request->file('image')->store('signature');

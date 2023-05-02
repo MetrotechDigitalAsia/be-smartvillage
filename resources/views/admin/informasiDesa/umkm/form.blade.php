@@ -43,9 +43,16 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">No NIK</label>
-                                            <div class="col-lg-9 col-xl-9">
-                                                <input class="form-control form-control-lg form-control-solid" type="text" name="no_nik" value="{{$userBusinessItem['no_nik'] ?? '' }}" />
+                                            <label class="col-form-label col-xl-3 col-lg-3">NIK Pemilik Usaha</label>
+                                            <div class="col-xl-9 col-lg-9">
+                                                <select class="form-control form-control-lg form-control-solid" name="user_id">
+                                                    <option value="">Pilih NIK...</option>
+                                                    @foreach ($users as $item)
+                                                    <option value="{{ $item->id }}" {{ !empty($userBusinessItem) ? $userBusinessItem['user_id'] == $item->id ? 'selected' : '' : ''}}  >
+                                                        {{ $item->no_nik }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
 

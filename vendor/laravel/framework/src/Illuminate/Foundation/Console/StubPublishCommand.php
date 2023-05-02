@@ -20,17 +20,6 @@ class StubPublishCommand extends Command
                     {--force : Overwrite any existing files}';
 
     /**
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'stub:publish';
-
-    /**
      * The console command description.
      *
      * @var string
@@ -84,12 +73,12 @@ class StubPublishCommand extends Command
             realpath(__DIR__.'/../../Routing/Console/stubs/controller.model.api.stub') => 'controller.model.api.stub',
             realpath(__DIR__.'/../../Routing/Console/stubs/controller.model.stub') => 'controller.model.stub',
             realpath(__DIR__.'/../../Routing/Console/stubs/controller.nested.api.stub') => 'controller.nested.api.stub',
-            realpath(__DIR__.'/../../Routing/Console/stubs/controller.nested.singleton.api.stub') => 'controller.stub',
-            realpath(__DIR__.'/../../Routing/Console/stubs/controller.nested.singleton.stub') => 'controller.stub',
+            realpath(__DIR__.'/../../Routing/Console/stubs/controller.nested.singleton.api.stub') => 'controller.nested.singleton.api.stub',
+            realpath(__DIR__.'/../../Routing/Console/stubs/controller.nested.singleton.stub') => 'controller.nested.singleton.stub',
             realpath(__DIR__.'/../../Routing/Console/stubs/controller.nested.stub') => 'controller.nested.stub',
             realpath(__DIR__.'/../../Routing/Console/stubs/controller.plain.stub') => 'controller.plain.stub',
-            realpath(__DIR__.'/../../Routing/Console/stubs/controller.singleton.api.stub') => 'controller.stub',
-            realpath(__DIR__.'/../../Routing/Console/stubs/controller.singleton.stub') => 'controller.stub',
+            realpath(__DIR__.'/../../Routing/Console/stubs/controller.singleton.api.stub') => 'controller.singleton.api.stub',
+            realpath(__DIR__.'/../../Routing/Console/stubs/controller.singleton.stub') => 'controller.singleton.stub',
             realpath(__DIR__.'/../../Routing/Console/stubs/controller.stub') => 'controller.stub',
             realpath(__DIR__.'/../../Routing/Console/stubs/middleware.stub') => 'middleware.stub',
         ];

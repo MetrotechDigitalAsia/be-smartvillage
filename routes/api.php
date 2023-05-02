@@ -9,7 +9,9 @@ use App\Http\Controllers\API\{
     InvestationController,
     UserBusinessItemController,
     ItemBusinessCategoryController,
-    UserLoginController
+    SignatureController,
+    UserLoginController,
+    UserMailController
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -52,8 +54,8 @@ Route::group(['middleware' => 'api_key'],function(){
 
     Route::group(['prefix' => 'umkm'], function(){
         Route::get('/',[UserBusinessItemController::class, 'index']);
-        Route::get('/{id}',[UserBusinessItemController::class, 'getByUser']);
-        Route::post('/',[UserBusinessItemController::class, 'store']);
+        Route::get('/{userId}',[UserBusinessItemController::class, 'getByUser']);
+        Route::post('/{userId}',[UserBusinessItemController::class, 'store']);
         Route::post('/category',[UserBusinessItemController::class, 'filterByCategory']);
         Route::get('/latest',[UserBusinessItemController::class, 'getLatest']);
     });
@@ -61,8 +63,19 @@ Route::group(['middleware' => 'api_key'],function(){
 
     Route::get('/agenda',[AgendaController::class, 'index']);
 
-    Route::post('/login', [UserLoginController::class, 'login']);
-    Route::post('/changePassword/{id}', [UserLoginController::class, 'changePassword']);
+    Route::controller(UserLoginController::class)->group(function(){
+        Route::post('/login', 'login');
+        Route::post('/changePassword/{userLogin}', 'changePassword');
+    });
+
+    Route::group(['prefix' => 'surat'], function(){
+        Route::controller(UserMailController::class)->group(function(){
+            Route::get('/{userId}', 'getMailByUser');
+            Route::post('/', 'store');
+        });
+    });
+
+    Route::post('/signature', [SignatureController::class, 'store']);
 
 
 });

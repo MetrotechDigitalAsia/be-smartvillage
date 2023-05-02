@@ -15,10 +15,12 @@ use App\Models\Investation;
 use App\Models\InvestationCategory;
 use App\Models\Admin;
 use App\Models\ItemBusinessCategory;
+use App\Models\Mail;
 use App\Models\Position;
 use App\Models\UserBusinessItem;
 use App\Models\UserData;
 use App\Models\UserLogin;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -51,34 +53,33 @@ class DatabaseSeeder extends Seeder
         // ArticleCategory::create(['article_category' => 'Hangat']);
         // ArticleCategory::create(['article_category' => 'Lainnya']);
 
-        // ComplaintCategory::create(['complaint_category' => 'Pariwisata']);
-        // ComplaintCategory::create(['complaint_category' => 'Umum']);
-        // ComplaintCategory::create(['complaint_category' => 'layanan Terpadu']);
+        ComplaintCategory::create(['complaint_category' => 'Pariwisata']);
+        ComplaintCategory::create(['complaint_category' => 'Umum']);
+        ComplaintCategory::create(['complaint_category' => 'layanan Terpadu']);
 
         // Position::create(['position_name' => 'amdin']);
 
-        // ItemBusinessCategory::create(['item_category' => 'Jasa']);
-        // ItemBusinessCategory::create(['item_category' => 'Makanan & Minuman']);
-        // ItemBusinessCategory::create(['item_category' => 'Ternak']);
-        // ItemBusinessCategory::create(['item_category' => 'Elektronik']);
-        // ItemBusinessCategory::create(['item_category' => 'Properti']);
-        // ItemBusinessCategory::create(['item_category' => 'Pakaian']);
-        // ItemBusinessCategory::create(['item_category' => 'Perabotan']);
-        // ItemBusinessCategory::create(['item_category' => 'Kesehatan']);
-        // ItemBusinessCategory::create(['item_category' => 'Lainnya']);
+        ItemBusinessCategory::create(['item_category' => 'Jasa']);
+        ItemBusinessCategory::create(['item_category' => 'Makanan & Minuman']);
+        ItemBusinessCategory::create(['item_category' => 'Ternak']);
+        ItemBusinessCategory::create(['item_category' => 'Elektronik']);
+        ItemBusinessCategory::create(['item_category' => 'Properti']);
+        ItemBusinessCategory::create(['item_category' => 'Pakaian']);
+        ItemBusinessCategory::create(['item_category' => 'Perabotan']);
+        ItemBusinessCategory::create(['item_category' => 'Kesehatan']);
+        ItemBusinessCategory::create(['item_category' => 'Lainnya']);
 
-        // $users = UserData::all();
+        $users = UserData::limit(5)->get();
 
-        // foreach($users as $user){
+        foreach($users as $user){
 
-        //     UserLogin::create([
-        //         'uuid' => Str::uuid()->toString(),
-        //         'no_nik' => $user->NO_NIK,
-        //         'password' => bcrypt($user->NO_NIK),
-        //         'status' => 'active',
-        //     ]);
+            UserLogin::create([
+                'no_nik' => $user->NIK,
+                'password' => bcrypt($user->NIK),
+                'status' => 'Active',
+            ]);
 
-        // }
+        }
 
         // $data = UserLogin::all();
 
@@ -104,6 +105,39 @@ class DatabaseSeeder extends Seeder
         // Agenda::factory(5)->create();
         // Article::factory(5)->create();
         // Investation::factory(5)->create();
+
+        // Mail::factory(5)->create();
+
+        Mail::create([
+            'id' => '990636ad-0896-4953-8fad-19c152424a4f',
+            'title' => 'Surat Keterangan Kelahiran',
+            'slug' => str_replace(' ','-', strtolower('Surat Keterangan Kelahiran')),
+            'image' => '-',
+            'description' => '-',
+        ]);
+
+        Mail::create([
+            'id' => '990636ad-0906-4cb3-b64e-242dba590297',
+            'title' => 'Surat Keterangan Tempat Usaha',
+            'slug' => str_replace(' ','-', strtolower('Surat Keterangan Tempat Usaha')),
+            'image' => '-',
+            'description' => '-',
+        ]);
+
+        // $mails = Mail::first();
+
+        // $users = UserLogin::all();
+
+        // foreach ($users as $i => $user) {
+            
+        //     $user->mail()->attach($mails,[
+        //         'created_at' => Carbon::now(),
+        //         'updated_at' => Carbon::now(),
+        //         'status' => $i % 2 == 0 ? 'Pending' : 'Process',
+        //         'mail_number' => 'SRT/'. rand(1,40). '/'. Carbon::now()->format('Y'),
+        //     ]);
+
+        // }
 
 
     }

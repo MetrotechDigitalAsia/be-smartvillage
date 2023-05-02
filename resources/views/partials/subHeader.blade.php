@@ -21,6 +21,17 @@
                     </a>
                     <!--end::Item-->
 
+                    @if (Route::current()->uri == '/')
+                        <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                        <a 
+                            href="" 
+                            style="text-transform: capitalize;" 
+                            class="text-white text-hover-white opacity-75 hover-opacity-100"
+                        >
+                            Dashboard
+                        </a>
+                    @endif
+
                     @foreach (Request::segments() as $segment)
                     <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                     <a 
@@ -40,5 +51,14 @@
             <!--end::Heading-->
         </div>
         <!--end::Info-->
+        @if (Str::contains(Route::current()->uri, 'persuratan/surat'))
+        <!--begin::Toolbar-->
+        <div class="d-flex align-items-center">
+            <!--begin::Button-->
+            <a href="/persuratan/master-data" class="btn btn-transparent-white font-weight-bold py-3 px-6 mr-2">Kembali</a>
+            <!--end::Button-->
+        </div>
+        <!--end::Toolbar-->
+        @endif
     </div>
 </div>

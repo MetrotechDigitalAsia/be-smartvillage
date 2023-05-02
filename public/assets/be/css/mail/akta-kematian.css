@@ -1,0 +1,86 @@
+.message-container {
+    font-family: 'Bookman Old Style', sans-serif;
+    color: black;
+    width: 730px;
+}
+
+.message-content {
+    max-width: 2480px !important;
+    max-height: 3508px !important;
+}
+
+.mail-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-bottom: 2px;
+    border-bottom: 1.5px solid black;
+    
+}
+
+.mail-header::after {
+    display: block;
+    content:  '';
+    height: 4px;
+    width: 100%;
+    background-color: black;
+}
+
+.mail-header img {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+}
+
+.mail-header .goverment {
+    -webkit-text-stroke: 1px black;
+    font-size: 20px;
+}
+
+.mail-header .village {
+    -webkit-text-stroke: 1.2px black;
+    font-size: 22px;
+}
+
+.mail-header p {
+    font-size: 13px;
+    line-height: 15px;
+}
+
+
+.mail-body h3 {
+    -webkit-text-stroke: 1px black;
+    font-size: 17px;
+    border-bottom: 1px solid black;
+    width: fit-content;
+}
+
+.mail-body p {
+    font-size: 14px;
+    text-indent: 40px;
+}
+
+.mail-body table {
+    width: fit-content;
+    text-align: left;
+}
+
+.mail-body table:first-child {
+    width: fit-content;
+    text-align: left;
+}
+
+.mail-body u.saksi {
+    -webkit-text-stroke: 0.5px black;
+    width: fit-content;
+    text-indent: 0;
+}
+
+@media print {
+
+    .message-content {
+        background-color: red !important;
+    }
+
+}

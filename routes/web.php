@@ -1,7 +1,5 @@
 <?php
 
-use App\Events\NotificationEvent;
-use App\Events\TestEvent;
 use App\Http\Controllers\{
     AgendaController,
     ArticleCategoryController,
@@ -15,12 +13,14 @@ use App\Http\Controllers\{
     InvestationController,
     ItemBusinessCategoryController,
     LoginController,
+    MailController,
     PositionController,
     SignatureController,
     StaffController,
     UserBusinessItemController,
     UserDataController,
-    UserLoginController
+    UserLoginController,
+    UsersMailController
 };
 
 use Illuminate\Support\Facades\Route;
@@ -40,6 +40,8 @@ use Illuminate\Support\Facades\Route;
 //     Artisan::call('storage:link');
 // });
 
+Route::get('/mail', fn() => view('admin.mail'));
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'auth']);
 
@@ -47,7 +49,7 @@ Route::group(['middleware' => 'auth'], function(){
     
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::get('/', [ArticleController::class, 'index']);
+    Route::get('/', [LoginController::class, 'dashboard'])->name('dashboard');
 
     Route::group(['prefix' => 'tourism-map'], function(){
     
@@ -84,6 +86,7 @@ Route::group(['middleware' => 'auth'], function(){
                 return view('admin.informasiDesa.prospekDesa.index');
             });
         });
+        
         Route::group(['prefix' => 'profil-desa'], function(){
             Route::get('/', function(){
                 return view('admin.informasiDesa.profil.index');
@@ -133,7 +136,6 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/show/{complaint}', [ComplaintController::class, 'show']);
             Route::delete('/delete/{complaint}', [ComplaintController::class, 'destroy']);
         });
-
     
     });
     
@@ -215,7 +217,7 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::group(['prefix' => 'data-penduduk'], function(){
             Route::controller(UserDataController::class)->group(function(){
-                Route::get('/', 'index')->name('userData');
+                Route::get('/', 'index');
                 Route::get('/create', 'create');
                 Route::get('/show/{userData}', 'show');
                 Route::get('/create-mobile-account/{userData}', 'createMobileAccount');
@@ -229,7 +231,6 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::group(['prefix' => 'persuratan'], function(){
 
-
         Route::group(['prefix' => 'signature'], function(){
             Route::controller(SignatureController::class)->group(function(){
                 Route::get('/', 'index')->name('signature');
@@ -240,6 +241,61 @@ Route::group(['middleware' => 'auth'], function(){
             });
         });
 
+        Route::group(['prefix' => 'master-data'], function(){
+            Route::controller(MailController::class)->group(function(){
+                Route::get('/', 'index')->name('mailMasterData');
+                Route::get('/create', 'create');
+                Route::get('/show/{mail}', 'show');
+                Route::post('/', 'store')->name('storeMail');
+                Route::post('/update/{mail}', 'update');
+                Route::delete('/delete/{mail}', 'destroy');
+            });
+        }); 
+
+        Route::group(['prefix' => 'surat'], function(){
+            Route::controller(UsersMailController::class)->group(function(){
+                Route::get('/', 'index')->name('inbox');
+                Route::get('/all', 'getAllMail');
+                Route::get('/{status}', 'getMailByStatus')->name('userMailByStatus');
+                Route::get('/create', 'create');
+                Route::get('/show/{id}', 'show');
+                Route::get('/print/{id}', 'printMail');
+                Route::get('/changeStatus/{id}/{status}', 'changeStatusFromDetail');
+                Route::post('/', 'store')->name('storeMail');
+                Route::post('/setMailNumber/{id}', 'setMailNumber');
+                Route::post('/update/{mail}', 'update');
+                Route::post('/change/{id}/{status}', 'changeStatus');
+                Route::delete('/delete/{id}', 'destroy');
+            });
+        }); 
+
+    });
+
+    Route::group(['prefix' => 'data-penduduk'], function(){
+        Route::controller(UserDataController::class)->group(function(){
+            Route::get('/', 'dashboard')->name('residentDashboard');
+        });
+
+        Route::group(['prefix' => 'penduduk'], function(){
+            Route::controller(UserDataController::class)->group(function(){
+                Route::get('/', 'index')->name('userData');
+                Route::get('/create', 'create');
+                Route::get('/show/{userData}', 'show');
+                Route::get('/create-mobile-account/{userData}', 'createMobileAccount');
+                Route::post('/', 'store')->name('storeUserData');
+                Route::post('/update/{userData}', 'update');
+                Route::delete('/delete/{userData}', 'destroy');
+            });
+        });
+
+        Route::group(['prefix' => 'user-login'], function(){
+            Route::get('/', [UserLoginController::class, 'index'])->name('userLogin');
+            Route::post('/', [UserLoginController::class, 'store'])->name('storeUserLogin');
+            Route::get('show/{userLogin}', [UserLoginController::class, 'show']);
+            Route::get('create', [UserLoginController::class, 'create']);
+            Route::post('update/{userLogin}', [UserLoginController::class, 'update']);
+            Route::delete('delete/{userLogin}', [UserLoginController::class, 'destroy']);
+        });
 
     });
 
