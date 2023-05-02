@@ -16,28 +16,32 @@ class UserDataController extends Controller
     private $userDb;
 
     public function __construct(){
-        $this->folderName = 'masterData.residentData';
+        $this->folderName = 'penduduk.residentData';
         $this->userDb = env('DB_RESIDENT_DATABASE'). 'resident_data as userDB';
+    }
+
+    public function dashboard(Request $request){
+        return view('admin.penduduk.index');
     }
 
     public function index(Request $request){
 
-        $data = UserData::all();
-
         if($request->ajax()){
 
             $param = $request->get('query')['generalSearch'] ?? '';
+
             $data = UserData::latest()
                     ->where('resident_data.NAMA', 'like', '%'.$param.'%')
                     ->orWhere('resident_data.NIK', 'like', '%'.$param.'%')
                     ->get();
-                    
+
             return DataTables::of($data)
             ->addIndexColumn()
             ->make(true);
         }
 
         return view('admin.'.$this->folderName.'.index');
+
     }
 
     public function create(){
@@ -63,10 +67,16 @@ class UserDataController extends Controller
             'PEKERJAAN' => 'nullable',
             'KEWARGANEGARAAN' => 'nullable',
             'PENDIDIKAN' => 'nullable',
-            'AKUN_MOBILE_APP' => 'nullable'
+            'AKUN_MOBILE_APP' => 'nullable',
+            'KETUA_RT' => 'nullable',
+            'KETUA_RW' => 'nullable',
+            'KETUA_BANJAR' => 'nullable',
+            'RT' => 'required',
+            'RW' => 'required',
+            'BANJAR' => 'required',
+            'STATUS_PERKAWINAN' => 'required',
+            'GOLONGAN_DARAH' => 'nullable',
         ]);
-
-        $data['uuid'] = Str::uuid()->toString();
 
         try {
 
@@ -103,8 +113,20 @@ class UserDataController extends Controller
             'UMUR' => 'nullable',
             'PEKERJAAN' => 'nullable',
             'KEWARGANEGARAAN' => 'nullable',
-            'PENDIDIKAN' => 'nullable'
+            'PENDIDIKAN' => 'nullable',
+            'KETUA_RT' => 'nullable',
+            'KETUA_RW' => 'nullable',
+            'KETUA_BANJAR' => 'nullable',
+            'RT' => 'required',
+            'RW' => 'required',
+            'BANJAR' => 'required',
+            'STATUS_PERKAWINAN' => 'required',
+            'GOLONGAN_DARAH' => 'nullable',
         ]);
+
+        $data['KETUA_RT'] = isset($data['KETUA_RT']) ? 1 : 0;
+        $data['KETUA_RW'] = isset($data['KETUA_RW']) ? 1 : 0;
+        $data['KETUA_BANJAR'] = isset($data['KETUA_BANJAR']) ? 1 : 0;
 
         try {
             UserData::find($userData->id)->update($data);

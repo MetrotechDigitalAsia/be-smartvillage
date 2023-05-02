@@ -41,6 +41,12 @@
                                 <span class="menu-desc"></span>
                             </a>
                         </li>
+                        <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'penduduk')) menu-item-here @endif " >
+                            <a href="/data-penduduk" class="menu-link ">
+                                <span class="menu-text">Data Penduduk</span>
+                                <span class="menu-desc"></span>
+                            </a>
+                        </li>
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'persuratan')) menu-item-here @endif " >
                             <a href="/persuratan/master-data" class="menu-link ">
                                 <span class="menu-text">Persuratan</span>

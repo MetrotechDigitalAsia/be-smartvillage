@@ -86,6 +86,7 @@ Route::group(['middleware' => 'auth'], function(){
                 return view('admin.informasiDesa.prospekDesa.index');
             });
         });
+        
         Route::group(['prefix' => 'profil-desa'], function(){
             Route::get('/', function(){
                 return view('admin.informasiDesa.profil.index');
@@ -135,7 +136,6 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/show/{complaint}', [ComplaintController::class, 'show']);
             Route::delete('/delete/{complaint}', [ComplaintController::class, 'destroy']);
         });
-
     
     });
     
@@ -217,7 +217,7 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::group(['prefix' => 'data-penduduk'], function(){
             Route::controller(UserDataController::class)->group(function(){
-                Route::get('/', 'index')->name('userData');
+                Route::get('/', 'index');
                 Route::get('/create', 'create');
                 Route::get('/show/{userData}', 'show');
                 Route::get('/create-mobile-account/{userData}', 'createMobileAccount');
@@ -269,6 +269,33 @@ Route::group(['middleware' => 'auth'], function(){
             });
         }); 
 
+    });
+
+    Route::group(['prefix' => 'data-penduduk'], function(){
+        Route::controller(UserDataController::class)->group(function(){
+            Route::get('/', 'dashboard')->name('residentDashboard');
+        });
+
+        Route::group(['prefix' => 'penduduk'], function(){
+            Route::controller(UserDataController::class)->group(function(){
+                Route::get('/', 'index')->name('userData');
+                Route::get('/create', 'create');
+                Route::get('/show/{userData}', 'show');
+                Route::get('/create-mobile-account/{userData}', 'createMobileAccount');
+                Route::post('/', 'store')->name('storeUserData');
+                Route::post('/update/{userData}', 'update');
+                Route::delete('/delete/{userData}', 'destroy');
+            });
+        });
+
+        Route::group(['prefix' => 'user-login'], function(){
+            Route::get('/', [UserLoginController::class, 'index'])->name('userLogin');
+            Route::post('/', [UserLoginController::class, 'store'])->name('storeUserLogin');
+            Route::get('show/{userLogin}', [UserLoginController::class, 'show']);
+            Route::get('create', [UserLoginController::class, 'create']);
+            Route::post('update/{userLogin}', [UserLoginController::class, 'update']);
+            Route::delete('delete/{userLogin}', [UserLoginController::class, 'destroy']);
+        });
 
     });
 
