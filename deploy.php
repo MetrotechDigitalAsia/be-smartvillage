@@ -10,7 +10,7 @@ require 'contrib/rsync.php';
 // Config
 ///////////////////////////////////
 
-set('application', 'getasan_e');
+set('application', 'getasan_be');
 set('repository', 'git@github.com:MetrotechDigitalAsia/be-smartvillage.git'); // Git Repository
 set('ssh_multiplexing', true);  // Speed up deployment
 //set('default_timeout', 1000);
