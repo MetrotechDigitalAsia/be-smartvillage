@@ -136,7 +136,7 @@
 					autoHide: false,
 					template: function(e) {
 						return `\
-							<a href="/master-data/admin/show/${e.uuid}" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Edit details">\
+							<a href="/master-data/admin/show/${e.id}" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Edit details">\
 								<span class="svg-icon svg-icon-success svg-icon-lg">\
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
@@ -147,7 +147,7 @@
 									</svg>\
 								</span>\
 							</a>\
-							<a href="javascript:;" data-href="/master-data/admin/delete/${e.uuid}" onclick="deleteData(this)" class="btn btn-sm btn-clean btn-icon bg-light" title="Delete">\
+							<a href="javascript:;" data-href="/master-data/admin/delete/${e.id}" onclick="deleteData(this)" class="btn btn-sm btn-clean btn-icon bg-light" title="Delete">\
 								<span class="svg-icon svg-icon-danger svg-icon-lg">\
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\

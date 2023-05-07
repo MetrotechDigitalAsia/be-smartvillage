@@ -42,11 +42,35 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Admin::create([
-            'uuid' => Str::uuid()->toString(),
-            'fullname' => 'Administrator',
+            'fullname' => 'Super Admin',
+            'email' => 'superadmin@desagetasan.id',
+            'password' => bcrypt('qazwsx'),
+            'status' => 'Active',
+            'type' => 'Super'
+        ]);
+
+        Admin::create([
+            'fullname' => 'Admin',
             'email' => 'admin@desagetasan.id',
             'password' => bcrypt('qazwsx'),
             'status' => 'Active',
+            'type' => 'Umum'
+        ]);
+
+        Admin::create([
+            'fullname' => 'Admin Pariwisata',
+            'email' => 'adminPariwisata@desagetasan.id',
+            'password' => bcrypt('qazwsx'),
+            'status' => 'Active',
+            'type' => 'Parawisata'
+        ]);
+
+        Admin::create([
+            'fullname' => 'Admin Pariwisata',
+            'email' => 'adminLayanan@desagetasan.id',
+            'password' => bcrypt('qazwsx'),
+            'status' => 'Active',
+            'type' => 'Layanan'
         ]);
 
         // ArticleCategory::create(['article_category' => 'F&B']);

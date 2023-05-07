@@ -21,8 +21,14 @@ class UserDataController extends Controller
     }
 
     public function dashboard(Request $request){
+        // $dataTable = UserData::h;
+
+        // $banjarData = UserData::count('')
+
         return view('admin.penduduk.index');
     }
+
+
 
     public function index(Request $request){
 
