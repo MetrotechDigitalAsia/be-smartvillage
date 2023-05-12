@@ -58,9 +58,7 @@ class ArticleCategoryController extends Controller
 
     public function update(Request $request, ArticleCategory $articleCategory){
         
-        $validated = $request->validate([
-            'article_category' => 'required'
-        ]);
+        $validated = $request->validate(['article_category' => 'required']);
 
         try {
             ArticleCategory::find($articleCategory->id)->update($validated);
@@ -83,6 +81,7 @@ class ArticleCategoryController extends Controller
         } catch (\Exception $exception){
             $message = $exception->getMessage();
         }
+        
         return response()->json([
             'message' => $message,
             'route' => "admin"

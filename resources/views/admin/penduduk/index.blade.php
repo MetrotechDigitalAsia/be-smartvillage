@@ -59,8 +59,8 @@
 </div> --}}
 <div class="card card-custom card-stretch gutter-b">
     <!--begin::Header-->
-    <div class="card-header border-0 pt-5 pb-0">
-        <h3 class="card-title align-items-start flex-column">
+    <div class="card-header border-0 py-0">
+        <h3 class="card-title">
             <span class="card-label font-weight-bolder text-dark">Tabel Penduduk</span>
         </h3>
     </div>
@@ -71,7 +71,7 @@
         <div class="table-responsive">
             <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_1">
                 <thead>
-                    <tr class="text-left">
+                    <tr class="text-left ">
                         <th class="pr-0" style="width: 130px">Banjar</th>
                         <th>Pria</th>
                         <th>Wanita</th>
@@ -81,7 +81,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr class="table-active" >
                         <td>Ubud</td>
                         <td>10</td>
                         <td>99</td>
@@ -97,7 +97,7 @@
                         <td>10</td>
                         <td>99</td>
                     </tr>
-                    <tr>
+                    <tr class="table-active" >
                         <td>Buangga</td>
                         <td>120</td>
                         <td>99</td>
@@ -113,14 +113,8 @@
                         <td>99</td>
                         <td>99</td>
                     </tr>
-                    <tr>
-                        <td>Total</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr class="table-active" >
+                        <td colspan="6" class="border-0" >Total</td>
                     </tr>
                 </tbody>
             </table>
@@ -130,99 +124,6 @@
     <!--end::Body-->
 </div>
 
-<div class="card card-custom gutter-b">
-    <!--begin::Header-->
-    <div class="card-header border-0 pt-5 pb-0">
-        <h3 class="card-title align-items-start flex-column">
-            <span class="card-label font-weight-bolder text-dark">Data Pendudk</span>
-        </h3>
-    </div>
-    <!--end::Header-->
-    <!--begin::Body-->
-    <div class="card-body pt-0 pb-3">
-        <!--begin::Table-->
-        {{-- <div class="table-responsive">
-            <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
-                <thead>
-                    <tr class="text-uppercase">
-                        <th style="min-width: 230px" class="pl-7">
-                            <span class="text-dark-75">Banjar</span>
-                        </th>
-                        <th style="min-width: 100px">Pria</th>
-                        <th style="min-width: 100px">Wanita</th>
-                        <th style="min-width: 100px">Dewasa</th>
-                        <th style="min-width: 100px">Anak Anak </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="pl-7 py-8">
-                            <span class="font-weight-bolder font-size-lg" >Ubud</span>
-                        </td>
-                        <td>
-                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">120</span>
-                        </td>
-                        <td>
-                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">90</span>
-                        </td>
-                        <td>
-                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">10</span>
-                        </td>
-                        <td>
-                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">15</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> --}}
-        <!--end::Table-->
-
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Nick</td>
-            <td>Stone</td>
-            <td>
-                <span class="label label-inline label-light-primary font-weight-bold">
-                    Pending
-                </span>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Ana</td>
-            <td>Jacobs</td>
-            <td>
-                <span class="label label-inline label-light-success font-weight-bold">
-                    Approved
-                </span>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>Pettis</td>
-            <td>
-                <span class="label label-inline label-light-danger font-weight-bold">
-                    New
-                </span>
-            </td>
-        </tr>
-    </tbody>
-</table>
-    </div>
-    <!--end::Body-->
-</div>
-    
 @endsection
 
 @push('script')

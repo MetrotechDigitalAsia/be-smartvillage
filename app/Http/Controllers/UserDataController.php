@@ -6,9 +6,6 @@ use App\Models\UserData;
 use App\Models\UserLogin;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use Illuminate\Support\Str;
-
-use function PHPUnit\Framework\isNull;
 
 class UserDataController extends Controller
 {

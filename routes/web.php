@@ -268,7 +268,6 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::delete('/delete/{id}', 'destroy');
             });
         }); 
-
     });
 
     Route::group(['prefix' => 'data-penduduk'], function(){
