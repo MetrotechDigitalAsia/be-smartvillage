@@ -23,36 +23,51 @@
                                 <i class="menu-arrow"></i>
                             </a>
                         </li>
+
+                        @if (auth()->user()->type == 'Super' || auth()->user()->type == 'Umum')
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'informasi-desa')) menu-item-here @endif" >
                             <a href="/informasi-desa/prospek-desa" class="menu-link ">
-                                <span class="menu-text">Informasi Desa</span>
+                                <span class="menu-text">Informasi Desa </span>
                                 <span class="menu-desc"></span>
                             </a>
                         </li>
+                        @endif
+
+                        @if (auth()->user()->type == 'Super' || auth()->user()->type == 'Pariwisata')
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'tourism-map')) menu-item-here @endif" >
                             <a href="/tourism-map/point-destinasi" class="menu-link ">
                                 <span class="menu-text">Tourism Map</span>
                                 <span class="menu-desc"></span>
                             </a>
                         </li>
+                        @endif
+
+                        @if (auth()->user()->type == 'Super' || auth()->user()->type == 'Umum')
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'master-data')) menu-item-here @endif " >
                             <a href="/master-data/kategori-artikel" class="menu-link ">
                                 <span class="menu-text">Master Data</span>
                                 <span class="menu-desc"></span>
                             </a>
                         </li>
+                        @endif
+
+                        @if (auth()->user()->type == 'Super' || auth()->user()->type == 'Umum')
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'penduduk')) menu-item-here @endif " >
                             <a href="/data-penduduk" class="menu-link ">
                                 <span class="menu-text">Data Penduduk</span>
                                 <span class="menu-desc"></span>
                             </a>
                         </li>
+                        @endif
+
+                        @if (auth()->user()->type == 'Super' || auth()->user()->type == 'Layanan')
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'persuratan')) menu-item-here @endif " >
                             <a href="/persuratan/master-data" class="menu-link ">
                                 <span class="menu-text">Persuratan</span>
                                 <span class="menu-desc"></span>
                             </a>
                         </li>
+                        @endif
                     </ul>
                     <!--end::Header Nav-->
                 </div>
@@ -152,10 +167,10 @@
                         <!--begin::Footer-->
                         <div class="navi-separator mt-3"></div>
                         <div class="navi-footer px-8 py-5">
-                            <form action="/logout" method="POST" class="d-inline">
-                                @csrf
-                                <button type="submit" class="btn btn-light-primary font-weight-bold">Sign Out</button>
-                            </form>
+                            {{-- <form action="/logout" method="POST" class="d-inline"> --}}
+                                {{-- @csrf --}}
+                                <a href="/logout" class="btn btn-light-primary font-weight-bold">Sign Out</a>
+                            {{-- </form> --}}
                         </div>
                         <!--end::Footer-->
                     </div>

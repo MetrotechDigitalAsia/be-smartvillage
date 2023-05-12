@@ -38,11 +38,13 @@ class AdminController extends Controller
     }
 
     public function show(Admin $admin){
-        return view('admin.'.$this->folderName.'.form', compact('admin'));
+        $categories = ['Super', 'Umum', 'Layanan', 'Pariwisata'];
+        return view('admin.'.$this->folderName.'.form', compact('admin', 'categories'));
     }
 
     public function create(){
-        return view('admin.'.$this->folderName.'.form');
+        $categories = ['Super', 'Umum', 'Layanan', 'Pariwisata'];
+        return view('admin.'.$this->folderName.'.form', compact('categories'));
     }
     
     public function store(Request $request){
@@ -55,7 +57,6 @@ class AdminController extends Controller
             'status' => 'required'
         ]);
 
-        $data['uuid'] = Str::uuid()->toString();
         $data['password'] = bcrypt($data['password']);
 
         try {

@@ -10,6 +10,7 @@ use App\Http\Controllers\API\{
     UserBusinessItemController,
     ItemBusinessCategoryController,
     SignatureController,
+    UserDataController,
     UserLoginController,
     UserMailController
 };
@@ -76,6 +77,14 @@ Route::group(['middleware' => 'api_key'],function(){
     });
 
     Route::post('/signature', [SignatureController::class, 'store']);
+
+    Route::group(['prefix' => 'resident'], function(){
+        Route::controller(UserDataController::class)->group(function(){
+            Route::get('/getByAge', 'getByAge');
+            Route::get('/getByEducation', 'getByEducation');
+            Route::get('/groupBy/{type}', 'getAndGroupBy');
+        });
+    });
 
 
 });

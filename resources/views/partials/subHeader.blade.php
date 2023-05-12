@@ -28,7 +28,7 @@
                             style="text-transform: capitalize;" 
                             class="text-white text-hover-white opacity-75 hover-opacity-100"
                         >
-                            Dashboard
+                            Dashboard 
                         </a>
                     @endif
 

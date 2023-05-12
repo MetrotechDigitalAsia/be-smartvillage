@@ -6,9 +6,6 @@ use App\Models\UserData;
 use App\Models\UserLogin;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use Illuminate\Support\Str;
-
-use function PHPUnit\Framework\isNull;
 
 class UserDataController extends Controller
 {
@@ -21,8 +18,14 @@ class UserDataController extends Controller
     }
 
     public function dashboard(Request $request){
+        // $dataTable = UserData::h;
+
+        // $banjarData = UserData::count('')
+
         return view('admin.penduduk.index');
     }
+
+
 
     public function index(Request $request){
 

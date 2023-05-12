@@ -2,8 +2,6 @@
 
 @section('content')
 
-{{-- @include('partials.validation-alert') --}}
-
 <form action="{{ empty($userData) ? route('storeUserData') : url('/data-penduduk/penduduk/update/'.$userData->id) }}" method="post">
 
     @csrf
@@ -194,17 +192,17 @@
             <div class="col-lg-9 col-xl-6">
                 <div class="checkbox-inline">
                     <label class="checkbox checkbox-outline checkbox-success">
-                        <input type="checkbox" {{ $userData['KETUA_RT'] == '1' ? 'checked' : '' }} name="KETUA_RT"/>
+                        <input type="checkbox" {{ !empty($userData) ? $userData['KETUA_RT'] == '1' ? 'checked' : '' : '' }} name="KETUA_RT"/>
                         <span></span>
                         RT
                     </label>
                     <label class="checkbox checkbox-outline checkbox-success ">
-                        <input type="checkbox" {{ $userData['KETUA_RW'] == '1' ? 'checked' : '' }} name="KETUA_RW" />
+                        <input type="checkbox" {{ !empty($userData) ? $userData['KETUA_RW'] == '1' ? 'checked' : '' : '' }} name="KETUA_RW" />
                         <span></span>
                         RW
                     </label>
                     <label class="checkbox checkbox-outline checkbox-success">
-                        <input type="checkbox" {{ $userData['KETUA_BANJAR'] == '1' ? 'checked' : '' }} name="KETUA_BANJAR" />
+                        <input type="checkbox" {{ !empty($userData) ? $userData['KETUA_BANJAR'] == '1' ? 'checked' : '' : '' }} name="KETUA_BANJAR" />
                         <span></span>
                         Banjar
                     </label>

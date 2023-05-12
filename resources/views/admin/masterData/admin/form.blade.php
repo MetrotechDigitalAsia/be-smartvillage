@@ -79,6 +79,20 @@
             </div>
         </div>
 
+        <div class="form-group row">
+            <label class="col-form-label col-xl-3 col-lg-3">Kategori</label>
+            <div class="col-lg-9 col-xl-6">
+                <select class="form-control form-control-lg form-control-solid" name="category">
+                    <option value="">Pilih Kategori...</option>
+                    @foreach ($categories as $item)
+                    <option value="{{ $item }}" {{ !empty($admin) ? $admin['type'] == $item ? 'selected' : '' : ''}}  >
+                        {{ $item }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
 
         <!--begin::Form Group-->
     </div>
