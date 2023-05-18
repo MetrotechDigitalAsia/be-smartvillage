@@ -32,7 +32,7 @@ class InvestationController extends Controller
         try {
             Investation::create($validated);
         } catch (\Exception $e){
-            return ResponseController::create($e->getMessage(), 'error', 'create data error', 400);
+            return ResponseController::create($e->getMessage(), 'error', 'create data error', 200);
             die;
         }
 

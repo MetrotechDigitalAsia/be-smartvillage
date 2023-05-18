@@ -30,10 +30,10 @@ class UserMailController extends Controller
                     ->get();
 
         foreach($data as $item){
-            $item->field = json_decode($item->json_decode);
+            $item->field = json_decode($item->field);
         }
 
-        return ResponseController::create($data, 'success', 'Daftar surat', 404);
+        return ResponseController::create($data, 'success', 'Daftar surat', 200);
 
     }
     
@@ -44,7 +44,7 @@ class UserMailController extends Controller
         $mail = Mail::find($request->mail_id);
 
         if(empty($user) || empty($mail)){
-            return ResponseController::create(null, 'error', (empty($user) ? 'user tidak ditemukan' : 'jenis surat tidak tersedia'), 404);
+            return ResponseController::create(null, 'error', (empty($user) ? 'user tidak ditemukan' : 'jenis surat tidak tersedia'), 200);
         }
 
         $sender = UserData::where('NIK',$user->no_nik)->first();
@@ -119,7 +119,7 @@ class UserMailController extends Controller
             event(new NotificationEvent('mail'));
 
         } catch (\Exception $e){
-            return ResponseController::create(null, 'error', $e->getMessage(), 500);
+            return ResponseController::create(null, 'error', $e->getMessage(), 200);
         }
 
         return ResponseController::success('success', 'Surat Berhasil Dikirim', 200);

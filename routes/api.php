@@ -9,6 +9,7 @@ use App\Http\Controllers\API\{
     InvestationController,
     UserBusinessItemController,
     ItemBusinessCategoryController,
+    MailController,
     SignatureController,
     UserDataController,
     UserLoginController,
@@ -74,6 +75,8 @@ Route::group(['middleware' => 'api_key'],function(){
             Route::get('/{userId}', 'getMailByUser');
             Route::post('/', 'store');
         });
+
+        Route::get('/', [MailController::class, 'index']);
     });
 
     Route::post('/signature', [SignatureController::class, 'store']);
@@ -83,6 +86,7 @@ Route::group(['middleware' => 'api_key'],function(){
             Route::get('/getByAge', 'getByAge');
             Route::get('/getByEducation', 'getByEducation');
             Route::get('/groupBy/{type}', 'getAndGroupBy');
+            Route::get('/family/{noKK}', 'getFamily');
         });
     });
 

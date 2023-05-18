@@ -23,7 +23,7 @@ class ComplaintController extends Controller
             return ResponseController::create($data, 'success', 'create data successfully', 200);
         } catch (\Exception $exception){
             $message = $exception->getMessage();
-            return ResponseController::create(null,'error', $message, 400);
+            return ResponseController::create(null,'error', $message, 200);
         }
 
     }

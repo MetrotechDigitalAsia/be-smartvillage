@@ -78,9 +78,9 @@
 						},
 					},
 					pageSize: 10,
-					serverPaging: true,
-					serverFiltering: true,
-					serverSorting: true,
+					// serverPaging: true,
+					// serverFiltering: true,
+					// serverSorting: true,
 				},
 		
 				// layout definition
@@ -117,11 +117,16 @@
 					field: 'fullname',
 					title: 'Nama',
 				}, {
+                    field: 'image',
+					title: 'Foto',
+					template: (e) => {
+						return `\<div class="symbol symbol-90 mr-3">
+									\<img alt="Pic" src="{{ asset('storage/'. '${e.image}') }}" style="object-fit: cover;"/>
+								\</div>`
+					}
+                }, {
                     field: 'email',
 					title: 'Email',
-                }, {
-                    field: 'status',
-					title: 'Status',
                 }, {   
 					field: 'Actions',
 					title: 'Actions',
@@ -131,7 +136,7 @@
 					autoHide: false,
 					template: function(e) {
 						return `\
-							<a href="/master-data/staff/show/${e.uuid}" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Edit details">\
+							<a href="/master-data/staff/show/${e.id}" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Edit details">\
 								<span class="svg-icon svg-icon-success svg-icon-lg">\
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
@@ -142,7 +147,7 @@
 									</svg>\
 								</span>\
 							</a>\
-							<a href="javascript:;" data-href="/master-data/staff/delete/${e.uuid}" onclick="deleteData(this)" class="btn btn-sm btn-clean btn-icon bg-light" title="Delete">\
+							<a href="javascript:;" data-href="/master-data/staff/delete/${e.id}" onclick="deleteData(this)" class="btn btn-sm btn-clean btn-icon bg-light" title="Delete">\
 								<span class="svg-icon svg-icon-danger svg-icon-lg">\
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\

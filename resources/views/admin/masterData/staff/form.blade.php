@@ -116,14 +116,14 @@
                                             <div class="col-lg-9 col-xl-9">
                                                 <div class="radio-inline">
                                                     <label class="radio radio-outline radio-success">
-                                                        <input type="radio" name="gender" value="pria" {{!empty($staff) ? $staff['gender']== 'pria' ? 'checked' : '' : ''}} >
+                                                        <input type="radio" name="gender" value="Laki-laki" {{!empty($staff) ? $staff['gender']== 'Laki-laki' ? 'checked' : '' : ''}} >
                                                         <span></span>
                                                         Pria
                                                     </label>
                                                     <label class="radio radio-outline radio-danger">
-                                                        <input type="radio" name="gender" value="wanita" {{!empty($staff) ? $staff['gender']== 'wanita' ? 'checked' : '' : ''}} />
+                                                        <input type="radio" name="gender" value="Perempuan" {{!empty($staff) ? $staff['gender']== 'Perempuan' ? 'checked' : '' : ''}} />
                                                         <span></span>
-                                                        Wanita
+                                                        Perempuan
                                                     </label>
                                                 </div>
                                             </div>

@@ -30,7 +30,7 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">Nama</label>
             <div class="col-lg-9 col-xl-6">
-                <input required class="form-control @error('NAMA') is-invalid @enderror form-control-lg form-control-solid" type="text" name="NAMA" value="{{$userData['NAMA'] ?? '' }}" />
+                <input required class="form-control @error('NAMA') is-invalid @enderror form-control-lg form-control-solid" type="text" name="NAMA" value="{{$userData['NAMA'] ?? '' }}" required />
                 @error('NAMA')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -40,7 +40,7 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">Tempat Lahir</label>
             <div class="col-lg-9 col-xl-6">
-                <input required class="form-control @error('TEMPAT_LAHIR') is-invalid @enderror form-control-lg form-control-solid" type="text" name="TEMPAT_LAHIR" value="{{$userData['TEMPAT_LAHIR'] ?? '' }}" />
+                <input required class="form-control @error('TEMPAT_LAHIR') is-invalid @enderror form-control-lg form-control-solid" type="text" name="TEMPAT_LAHIR" value="{{$userData['TEMPAT_LAHIR'] ?? '' }}" required />
                 @error('TEMPAT_LAHIR')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -50,7 +50,7 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">Tanggal Lahir </label>
             <div class="col-lg-9 col-xl-6">
-                <input required class="form-control @error('TANGGAL_LAHIR') is-invalid @enderror form-control-lg form-control-solid" type="date" name="TANGGAL_LAHIR" value="{{ !empty($userData['TANGGAL_LAHIR']) ? Carbon\Carbon::createFromFormat('Y-m-d', $userData['TANGGAL_LAHIR'])->format('Y-m-d')  : '' }}" />
+                <input required class="form-control @error('TANGGAL_LAHIR') is-invalid @enderror form-control-lg form-control-solid" type="date" name="TANGGAL_LAHIR" value="{{ !empty($userData['TANGGAL_LAHIR']) ? Carbon\Carbon::createFromFormat('Y-m-d', $userData['TANGGAL_LAHIR'])->format('Y-m-d')  : '' }}" required />
                 @error('TANGGAL_LAHIR')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -67,14 +67,14 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">Golongan Darah</label>
             <div class="col-lg-9 col-xl-6">
-                <input class="form-control form-control-lg form-control-solid" type="number" name="GOLONGAN_DARAH" value="{{$userData['GOLONGAN_DARAH'] ?? '' }}" />
+                <input class="form-control form-control-lg form-control-solid" type="text" name="GOLONGAN_DARAH" value="{{$userData['GOLONGAN_DARAH'] ?? '' }}" />
             </div>
         </div>
 
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">Alamat</label>
             <div class="col-lg-9 col-xl-6">
-                <input required class="form-control @error('ALAMAT') is-invalid @enderror form-control-lg form-control-solid" type="text" name="ALAMAT" value="{{$userData['ALAMAT'] ?? '' }}" />
+                <input required class="form-control @error('ALAMAT') is-invalid @enderror form-control-lg form-control-solid" type="text" name="ALAMAT" value="{{$userData['ALAMAT'] ?? '' }}" required />
                 @error('ALAMAT')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -84,7 +84,7 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">RT</label>
             <div class="col-lg-9 col-xl-6">
-                <input required class="form-control @error('RT') is-invalid @enderror form-control-lg form-control-solid" type="text" name="RT" value="{{$userData['RT'] ?? '' }}" />
+                <input required class="form-control @error('RT') is-invalid @enderror form-control-lg form-control-solid" type="text" name="RT" value="{{$userData['RT'] ?? '' }}" required />
                 @error('RT')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror        
@@ -94,7 +94,7 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">RW</label>
             <div class="col-lg-9 col-xl-6">
-                <input required class="form-control @error('RW') is-invalid @enderror form-control-lg form-control-solid" type="text" name="RW" value="{{$userData['RW'] ?? '' }}" />
+                <input required class="form-control @error('RW') is-invalid @enderror form-control-lg form-control-solid" type="text" name="RW" value="{{$userData['RW'] ?? '' }}" required />
                 @error('RW')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -104,7 +104,7 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">Banjar</label>
             <div class="col-lg-9 col-xl-6">
-                <input required class="form-control @error('BANJAR') is-invalid @enderror form-control-lg form-control-solid" type="text" name="BANJAR" value="{{$userData['BANJAR'] ?? '' }}" />
+                <input required class="form-control @error('BANJAR') is-invalid @enderror form-control-lg form-control-solid" type="text" name="BANJAR" value="{{$userData['BANJAR'] ?? '' }}" required />
                 @error('BANJAR')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -114,7 +114,7 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">No KK</label>
             <div class="col-lg-9 col-xl-6">
-                <input required class="form-control @error('NO_KK') is-invalid @enderror form-control-lg form-control-solid" type="text" name="NO_KK" value="{{$userData['NO_KK'] ?? '' }}" />
+                <input required class="form-control @error('NO_KK') is-invalid @enderror form-control-lg form-control-solid" type="text" name="NO_KK" value="{{$userData['NO_KK'] ?? '' }}" required />
                 @error('NO_KK')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -124,7 +124,7 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">No NIK</label>
             <div class="col-lg-9 col-xl-6">
-                <input required class="form-control @error('NIK') is-invalid @enderror form-control-lg form-control-solid" type="text" name="NIK" value="{{$userData['NIK'] ?? '' }}" />
+                <input required class="form-control @error('NIK') is-invalid @enderror form-control-lg form-control-solid" type="text" name="NIK" value="{{$userData['NIK'] ?? '' }}" required />
                 @error('NIK')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

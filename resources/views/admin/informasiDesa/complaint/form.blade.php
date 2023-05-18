@@ -23,7 +23,7 @@
                         <!--begin::Form Wizard Form-->
                             <!--begin::Form Wizard Step 1-->
                             <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
-                                <h3 class="mb-10 font-weight-bold text-dark">{{ empty($complaint) ? 'Tambah Data' : 'Ubah Data' }}</h3>
+                                <h3 class="mb-10 font-weight-bold text-dark">Detail Aduan</h3>
                                 <div class="row">
                                     <div class="col-xl-12">
 

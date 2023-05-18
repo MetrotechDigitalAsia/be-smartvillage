@@ -177,4 +177,49 @@ class UserDataController extends Controller
 
     }
 
+    public function changeStatusMobileAccount(UserData $userData){
+
+        try {
+            if($userData->AKUN_MOBILE_APP == 1){
+                UserData::find($userData->id)->update(['AKUN_MOBILE_APP' => false]);
+                $user = UserLogin::where('no_nik', '=', $userData->NIK)->delete();
+            } else {
+                UserData::find($userData->id)->update(['AKUN_MOBILE_APP' => true]);
+                UserLogin::create([
+                    'no_nik' => $userData['NIK'],
+                    'password' => bcrypt($userData['NIK']),
+                    'status' => 'Active',
+                ]);
+            }
+            $message = 'successfully';
+        } catch (\Exception $exception){
+            $message = $exception->getMessage();
+        }
+        return response()->json([
+            'message' => $message,
+        ]);
+
+    }
+
+    public function getFamilyData(Request $request){
+
+        if($request->ajax()){
+
+            $param = $request->get('query')['generalSearch'] ?? '';
+
+            $data = UserData::select('NAMA')->distinct('NO_KK')
+                    ->where('resident_data.NAMA', 'like', '%'.$param.'%')
+                    ->orWhere('resident_data.NIK', 'like', '%'.$param.'%')
+                    ->get();
+
+            return DataTables::of($data)
+            ->addIndexColumn()
+            ->make(true);
+        }
+
+        return view('admin.penduduk.family.index');
+
+
+    }
+
 }

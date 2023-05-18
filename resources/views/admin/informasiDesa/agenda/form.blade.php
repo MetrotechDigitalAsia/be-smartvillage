@@ -27,7 +27,7 @@
         @include('partials.success-alert')
 
         <!--begin::Wizard-->
-        <form action="{{ empty($agenda) ? route('storeAgenda') : '/informasi-desa/agenda/update/'.$agenda->slug }}" enctype="multipart/form-data" method="POST"  >
+        <form class="f" action="{{ empty($agenda) ? route('storeAgenda') : '/informasi-desa/agenda/update/'.$agenda->slug }}" enctype="multipart/form-data" method="POST"  >
 
             @csrf
 
@@ -54,7 +54,7 @@
                                         <div class="form-group row">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Author</label>
                                             <div class="col-lg-9 col-xl-9">
-                                                <input class="form-control form-control-lg form-control-solid" type="text" name="author" value="{{$agenda['author'] ?? '' }}" />
+                                                <input class="form-control @error('author') is-invalid @enderror form-control-lg form-control-solid" type="text" name="author" value="{{$agenda['author'] ?? '' }}" />
                                                 @error('author')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
@@ -64,7 +64,10 @@
                                         <div class="form-group row">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Tanggal</label>
                                             <div class="col-lg-9 col-xl-9">
-                                                <input class="form-control form-control-lg form-control-solid" type="date" name="date" value="{{$agenda['date'] ?? '' }}" />
+                                                <input class="form-control @error('date') is-invalid @enderror form-control-lg form-control-solid" type="date" name="date" value="{{$agenda['date'] ?? '' }}" />
+                                                @error('date')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
     
@@ -88,7 +91,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                         </div>
-                        <div class="col-lg-6  text-lg-right">
+                        <div class="col-lg-6 text-lg-right">
                             <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                             <a href="/informasi-desa/agenda" class="btn btn-secondary">Batal</a>
                         </div>

@@ -93,7 +93,7 @@ class UserBusinessItemController extends Controller
             return ResponseController::create(request()->get('item_name'), 'success', 'create data successfully', 200);
         } catch (\Exception $exception){
             $message = $exception->getMessage();
-            return ResponseController::create(null,'error', $message, 400);
+            return ResponseController::create(null,'error', $message, 200);
         }
 
     }

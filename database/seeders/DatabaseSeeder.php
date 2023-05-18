@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
 
         Admin::create([
             'fullname' => 'Admin Pariwisata',
-            'email' => 'adminPariwisata@desagetasan.id',
+            'email' => 'adminpariwisata@desagetasan.id',
             'password' => bcrypt('qazwsx'),
             'status' => 'Active',
             'type' => 'Parawisata'
@@ -67,7 +67,7 @@ class DatabaseSeeder extends Seeder
 
         Admin::create([
             'fullname' => 'Admin Pariwisata',
-            'email' => 'adminLayanan@desagetasan.id',
+            'email' => 'adminlayanan@desagetasan.id',
             'password' => bcrypt('qazwsx'),
             'status' => 'Active',
             'type' => 'Layanan'

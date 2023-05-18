@@ -12,8 +12,6 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<link href="https://fonts.cdnfonts.com/css/bookman-old-style" rel="stylesheet">
                 
-
-		
 		<!--Global Theme Styles(used by all pages)-->
 		<link href="{{ asset('assets/be/plugins/global/plugins.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/be/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
@@ -136,6 +134,13 @@
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 				}
 			});
+
+			const a = document.querySelector('form')
+			console.log(a);
+
+			function logout(){
+				window.location.href = '/logout'
+			}
 
 			const deleteData = (e) => {
 				let action = $(e).data('href')
