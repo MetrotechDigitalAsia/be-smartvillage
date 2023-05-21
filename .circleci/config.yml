@@ -10,9 +10,6 @@ jobs:
       - checkout
 
       - run:
-          name: Run Database Migrations
-          command: php artisan migrate --force
-
-      - run:
-          name: Run Tests
-          command: vendor/bin/phpunit
+          name: Deploy to cPanel
+          command: |
+            sshpass -p $ftp_password ssh -o StrictHostKeyChecking=no $ftp_username@109.106.253.149 "cd /home/$ftp_username/public_html/cms; git pull"
