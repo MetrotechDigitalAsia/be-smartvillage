@@ -12,7 +12,7 @@
             <h3 class="font-weight-bold mb-0 mr-auto">Daftar Surat</h3>
             <!--end::Title-->
             <!--begin::Navigation-->
-            <div class="d-flex justify-content-end mr-3">
+            {{-- <div class="d-flex justify-content-end mr-3">
                 <!--begin::Button-->
                 <a href="/persuratan/master-data/create" class="btn btn-primary font-weight-bolder">
                 <span class="svg-icon svg-icon-md">
@@ -27,7 +27,7 @@
                     <!--end::Svg Icon-->
                 </span>Tambah Surat</a>
                 <!--end::Button-->
-            </div>
+            </div> --}}
             <!--end::Navigation-->
         </div>
 

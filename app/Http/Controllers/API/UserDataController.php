@@ -80,4 +80,15 @@ class UserDataController extends Controller
         return ResponseController::create($data, 'success', 'get resident data', 200);
     }
 
+    public function getFamily($noKK){
+        $data = UserData::where('NO_KK', $noKK)->get([
+            'id as resident_id', 
+            'NIK as nik', 
+            'NAMA as name',
+            'ALAMAT as address',
+            'SHDK as status'
+        ]);
+        return ResponseController::create($data, 'success', 'get family data', 200);
+    }
+
 }

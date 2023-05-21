@@ -21,7 +21,7 @@ class SignatureController extends Controller
         try {
             Signature::create($data);
         } catch (\Exception $e){
-            return ResponseController::create($e->getMessage(), 'error', 'create sign error', 500);
+            return ResponseController::create($e->getMessage(), 'error', 'create sign error', 200);
             die;
         }
 

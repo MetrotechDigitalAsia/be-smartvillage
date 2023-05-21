@@ -8,7 +8,7 @@
 
         <div class="card-header py-3">
             <div class="card-title align-items-center flex-row ">
-                <h3 class="card-label font-weight-bolder text-dark">User Login</h3>
+                <h3 class="card-label font-weight-bolder p-0 text-dark">Detail Surat</h3>
             </div>
         </div>
         <!--begin::Body-->

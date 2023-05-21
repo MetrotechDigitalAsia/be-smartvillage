@@ -7,7 +7,6 @@ use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Models\UserData;
 use App\Models\UserLogin;
-use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\Auth;
 
 class UserLoginController extends Controller
@@ -32,6 +31,7 @@ class UserLoginController extends Controller
                         'userDb.id as resident_id',
                         'userDb.NAMA as name',
                         'userDb.NIK as nik',
+                        'userDb.NO_KK as kk',
                         'userDb.ALAMAT as address',
                     ]);
 
@@ -41,7 +41,6 @@ class UserLoginController extends Controller
                 ->where('NIK', $data->nik)->first();
             })->get([
                 'id as resident_id', 
-                'NIK as nik', 
                 'NO_KK as kk', 
                 'NAMA as name',
                 'ALAMAT as address',
@@ -55,7 +54,7 @@ class UserLoginController extends Controller
         }
 
 
-        return ResponseController::create(null, 'error', 'Data Tidak Terdaftar', 401);
+        return ResponseController::create(null, 'error', 'Data Tidak Terdaftar', 200);
 
     }
 
@@ -67,11 +66,11 @@ class UserLoginController extends Controller
         ];
 
         if(!Auth::guard('resident')->attempt($valid)){
-            return ResponseController::create(null, 'error', 'kata Sandi Salah', 401);
+            return ResponseController::create(null, 'error', 'kata Sandi Salah', 200);
         }
         
         if(request()->get('new_password') != request()->get('confirm_password')){
-            return ResponseController::create(null, 'error', 'Konfirmasi kata Sandi Salah', 401);
+            return ResponseController::create(null, 'error', 'Konfirmasi kata Sandi Salah', 200);
         }
 
         $userLogin->update(['password' => bcrypt(request()->get('new_password'))]);

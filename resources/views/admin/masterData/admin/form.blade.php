@@ -9,7 +9,7 @@
     </div>
 @endif  
 
-<form action="{{ empty($admin) ? route('storeAdmin') : url('/master-data/admin/update/'.$admin->uuid) }}" method="post">
+<form action="{{ empty($admin) ? route('storeAdmin') : url('/master-data/admin/update/'.$admin->id) }}" method="post">
 
     @csrf
 

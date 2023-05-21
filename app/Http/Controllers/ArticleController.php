@@ -48,6 +48,7 @@ class ArticleController extends Controller
 
     public function store(Request $request){
 
+
         $validated = $request->validate([
             'title' => 'required',
             'article_category' => 'required',

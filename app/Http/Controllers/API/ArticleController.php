@@ -35,7 +35,7 @@ class ArticleController extends Controller
 
     public function getDataByParam($param){
 
-        $data = Article::where('slug', $param)->orWhere('title', $param)->get();
+        $data = Article::where('slug', 'LIKE', '%'.$param.'%')->orWhere('title', 'LIKE', '%'.$param.'%')->get();
 
         foreach ($data as $item) {
             $item->image = 'storage/' . $item->image;

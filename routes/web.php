@@ -8,8 +8,8 @@ use App\Http\Controllers\{
     ComplaintController,
     DestinationPointController,
     ImportantNumberController,
-    InvestationCategoryController,
     AdminController,
+    FamilyController,
     InvestationController,
     ItemBusinessCategoryController,
     LoginController,
@@ -156,18 +156,10 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/', [ComplaintCategoryController::class, 'index'])->name('complaintCategory');
             Route::get('/create', [ComplaintCategoryController::class, 'create']);
             Route::get('/show/{complaintCategory}', [ComplaintCategoryController::class, 'show']);
-            Route::post('/', [ComplaintCategoryController::class, 'store'])->name('storeComplaintCategory');
+            // Route::post('/', [ComplaintCategoryController::class, 'store'])->name('storeComplaintCategory');
+            Route::post('/', fn () => dd('asdf'))->name('storeComplaintCategory');
             Route::post('/update/{complaintCategory}', [ComplaintCategoryController::class, 'update']);
             Route::delete('/delete/{complaintCategory}', [ComplaintCategoryController::class, 'destroy']); 
-        });
-    
-        Route::group(['prefix' => 'kategori-investasi'], function(){
-            Route::get('/', [InvestationCategoryController::class, 'index'])->name('investationCategory');
-            Route::get('/create', [InvestationCategoryController::class, 'create']);
-            Route::get('/show/{investationCategory}', [InvestationCategoryController::class, 'show']);
-            Route::post('/', [InvestationCategoryController::class, 'store'])->name('storeInvestationCategory');
-            Route::post('/update/{investationCategory}', [InvestationCategoryController::class, 'update']);
-            Route::delete('/delete/{investationCategory}', [InvestationCategoryController::class, 'destroy']); 
         });
     
         Route::group(['prefix' => 'admin'], function(){
@@ -284,6 +276,13 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::post('/', 'store')->name('storeUserData');
                 Route::post('/update/{userData}', 'update');
                 Route::delete('/delete/{userData}', 'destroy');
+                Route::post('/status/{userData}', 'changeStatusMobileAccount');
+            });
+        });
+
+        Route::group(['prefix' => 'keluarga'], function(){
+            Route::controller(FamilyController::class)->group(function(){
+                Route::get('/', 'index')->name('family');
             });
         });
 

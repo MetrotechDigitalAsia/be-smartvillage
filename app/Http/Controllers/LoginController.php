@@ -31,8 +31,24 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt([...$validated, 'status' => 'Active'])){
+
             $request->session()->regenerate();
-            return redirect()->intended('/tourism-map');
+
+            switch (Auth::user()->type) {
+                case 'Super':
+                    return redirect()->intended('/');
+                    break;
+                case 'Umum':
+                    return redirect()->intended('/');
+                    break;
+                case 'Pariwisata':
+                    return redirect()->intended('tourism-map/point-destinasi');
+                    break;
+                case 'Layanan':
+                    return redirect()->intended('/persuratan/surat');
+                    break;
+            }
+
             die;
         }
 
