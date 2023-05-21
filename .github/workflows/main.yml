@@ -22,6 +22,12 @@ jobs:
     #     username: ${{ secrets.ftp_username }}
     #     password: ${{ secrets.ftp_password }}
 
+    - name: sapa
+      run : echo "hai rahmat"
+
+    - name: Install lftp
+      run: sudo apt-get install lftp -y
+
     - name: Upload files
       run: |
         lftp -c "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} www.desagetasan.id; mirror --reverse --delete --verbose . /public_html/${{ secrets.FTP_USERNAME }}/cms"
