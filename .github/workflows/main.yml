@@ -30,4 +30,4 @@ jobs:
 
     - name: Upload files
       run: |
-        lftp -c "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} www.desagetasan.id; mirror --reverse --delete --verbose . /public_html/${{ secrets.FTP_USERNAME }}/cms"
+        lftp -c "set ftp:ssl-allow no; open -u u1571641,M@kassar111$$ www.desagetasan.id; mirror --reverse --delete --verbose . /public_html/cms"
