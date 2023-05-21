@@ -81,7 +81,7 @@ class AdminController extends Controller
          // dd($request);
 
         try {
-            Admin::where('uuid', $admin->uuid)->update($data);
+            $admin->update($data);
             $msg = 'update successfully';
         } catch (\Exception $e){
             $msg = $e->getMessage();

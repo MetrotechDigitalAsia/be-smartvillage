@@ -5,6 +5,7 @@ use App\Http\Controllers\API\{
     ArticleController,
     ComplaintController,
     DestinationPointController,
+    FamilyController,
     ImportantNumberController,
     InvestationController,
     UserBusinessItemController,
@@ -87,6 +88,12 @@ Route::group(['middleware' => 'api_key'],function(){
             Route::get('/getByEducation', 'getByEducation');
             Route::get('/groupBy/{type}', 'getAndGroupBy');
             Route::get('/family/{noKK}', 'getFamily');
+        });
+    });
+
+    Route::group(['prefix' => 'family'], function(){
+        Route::controller(FamilyController::class)->group(function(){
+            Route::get('/{no_kk}', 'getData');
         });
     });
 

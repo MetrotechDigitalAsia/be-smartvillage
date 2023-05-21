@@ -26,12 +26,16 @@ class UserMailController extends Controller
     public function getMailByUser($userId){
 
         $data = DB::table('users_mail as mail')
+                    ->join('mails', 'mails.id', '=', 'mail.mail_id')
+                    ->join($this->userDb, 'userDB.id', '=', 'mail.resident_id')
                     ->where('user_id', $userId)
-                    ->get();
-
-        foreach($data as $item){
-            $item->field = json_decode($item->field);
-        }
+                    // ->get();
+                    ->get([
+                        'mails.title as title',
+                        'mail.status as status',
+                        'mail.created_at as send_time',
+                        'userDB.NAMA as applicant_name'
+                    ]);
 
         return ResponseController::create($data, 'success', 'Daftar surat', 200);
 

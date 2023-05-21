@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     DestinationPointController,
     ImportantNumberController,
     AdminController,
+    FamilyController,
     InvestationController,
     ItemBusinessCategoryController,
     LoginController,
@@ -280,15 +281,8 @@ Route::group(['middleware' => 'auth'], function(){
         });
 
         Route::group(['prefix' => 'keluarga'], function(){
-            Route::controller(UserDataController::class)->group(function(){
-                Route::get('/', 'getFamilyData')->name('family');
-                Route::get('/create', 'create');
-                Route::get('/show/{userData}', 'show');
-                Route::get('/create-mobile-account/{userData}', 'createMobileAccount');
-                Route::post('/', 'store')->name('storeUserData');
-                Route::post('/update/{userData}', 'update');
-                Route::delete('/delete/{userData}', 'destroy');
-                Route::post('/status/{userData}', 'changeStatusMobileAccount');
+            Route::controller(FamilyController::class)->group(function(){
+                Route::get('/', 'index')->name('family');
             });
         });
 

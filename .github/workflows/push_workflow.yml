@@ -1,26 +1,23 @@
-name: deploy
-
-on: 
+on:
   push:
     branches:
       - main
-
+name: 🚀 Deploy website on push
 jobs:
-  deploy:
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-            php-version: 8.1
-            tools: composer:v2
-            coverage: none
-      - name: Deploy
-        uses: deployphp/action@v1
-        with:
-          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known-hosts: ${{ secrets.SSH_KNOWN_HOST }}
-          dep: deploy production -v
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+    - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+      with:
+        php-version: '8.1'
+    - uses: actions/checkout@v2.3.2
+    - name: Copy .env
+      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      with:
+        server: www.desagetasan.id
+        username: ${{ secrets.ftp_username }}
+        password: ${{ secrets.ftp_password }}
+        server-dir: /

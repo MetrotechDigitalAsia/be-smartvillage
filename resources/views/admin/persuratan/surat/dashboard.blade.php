@@ -11,9 +11,9 @@
             <!--begin::Body-->
             <div class="card-body px-5">
                 <!--begin::Compose-->
-                <div class="px-4 mt-4 mb-10">
+                {{-- <div class="px-4 mt-4 mb-10">
                     <a href="#" class="btn btn-block btn-primary font-weight-bold text-uppercase py-4 px-6 text-center">Buat Surat</a>
-                </div>
+                </div> --}}
                 <!--end::Compose-->
                 <!--begin::Navigations-->
                 <div class="navi navi-hover navi-active navi-link-rounded navi-bold navi-icon-center navi-light-icon">

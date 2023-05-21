@@ -7,7 +7,7 @@
 
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title flex-grow-1">
-            <h3 class="card-label">Surat Selesai</h3>
+            <h3 class="card-label">Daftar Surat</h3>
             <div class="input-icon mr-5 ml-auto">
                 <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
                 <span>

@@ -6,7 +6,7 @@
     <!--begin::Header-->
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
-            <h3 class="card-label">Data Penduduk</h3>
+            <h3 class="card-label">Data Keluarga</h3>
         </div>
         <div class="card-toolbar">
 
@@ -119,18 +119,15 @@
 					selector: false,
 					textAlign: 'center',
 				},{
-					field: 'NAMA',
-					title: 'Nama',
+					field: 'no_kk',
+					title: 'NO KK',
 				},{
-					field: 'NIK',
-					title: 'NIK',
+					field: 'status',
+					title: 'Status',
 				},{
-					field: 'ALAMAT',
-					title: 'ALAMAT',
-				},{
-					field: 'AKUN_MOBILE_APP',
-					title: 'Akun Mobile',
-					template: (e) => `<span class="label label-light-${e.AKUN_MOBILE_APP == 1 ? 'success' : 'danger'} label-pill label-inline mr-2">${e.AKUN_MOBILE_APP == 1 ? 'Tersedia' : 'Tidak Tersedia'}</span>`
+					field: 'qr',
+					title: 'QR code',
+					template: e => `{!! QrCode::format('png')->size(100)->generate('${e.qr_code}') !!}`
 				},{   
 					field: 'Actions',
 					title: 'Aksi',
@@ -140,18 +137,6 @@
 					width: 200,
 					template: function(e) {
 						return `\
-							<a data-href="/data-penduduk/penduduk/status/${e.id}" onclick="updateMobileStatus(this)" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Akun Mobile">\
-								<span class="svg-icon svg-icon-${e.AKUN_MOBILE_APP == 1 ? 'success' : 'warning'} svg-icon-lg">\
-									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
-										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
-											<rect x="0" y="0" width="24" height="24"/>\
-											<path d="M7.13888889,4 L7.13888889,19 L16.8611111,19 L16.8611111,4 L7.13888889,4 Z M7.83333333,1 L16.1666667,1 C17.5729473,1 18.25,1.98121694 18.25,3.5 L18.25,20.5 C18.25,22.0187831 17.5729473,23 16.1666667,23 L7.83333333,23 C6.42705272,23 5.75,22.0187831 5.75,20.5 L5.75,3.5 C5.75,1.98121694 6.42705272,1 7.83333333,1 Z" fill="#000000" fill-rule="nonzero"/>\
-											<polygon fill="#000000" opacity="0.3" points="7 4 7 19 17 19 17 4"/>\
-											<circle fill="#000000" cx="12" cy="21" r="1"/>\
-										</g>\
-									</svg>\
-								</span>\
-							</a>\
 							<a href="/data-penduduk/penduduk/show/${e.id}" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Edit details">\
 								<span class="svg-icon svg-icon-success svg-icon-lg">\
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
@@ -180,16 +165,6 @@
 		
 			});
 		
-			$('#kt_datatable_search_status').on('change', function() {
-				datatable.search($(this).val().toLowerCase(), 'Status');
-			});
-		
-			$('#kt_datatable_search_type').on('change', function() {
-				datatable.search($(this).val().toLowerCase(), 'Type');
-			});
-		
-			$('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
-
 		};
 
 		return {
@@ -203,54 +178,6 @@
 	jQuery(document).ready(function() {
 		Table.init();
 	});
-
-	const updateMobileStatus = (e) => {
-		let action = $(e).data('href')
-		let data = {_method: 'post'}
-
-		const swalWithBootstrapButtons = Swal.mixin({
-			customClass: {
-				confirmButton: 'btn btn-success',
-				cancelButton: 'btn btn-danger'
-			},
-			buttonsStyling: false
-			})
-			swalWithBootstrapButtons.fire({
-				title: 'Are you sure?',
-				// text: "You won't be able to revert this!",
-				icon: 'question',
-				showCancelButton: true,
-				confirmButtonText: 'Yes, update it!',
-				cancelButtonText: 'No, cancel!',
-				reverseButtons: true
-			}).then((result) => {
-				if (result.isConfirmed) {
-					$.post(action,data)
-						.done(function(res){
-							console.log(res)
-							if (res.message=="successfully") {
-								swalWithBootstrapButtons.fire({
-									title: 'updated',
-									text: 'status has been updated.',
-									icon: 'success'
-								})
-								.then( res => {
-									location.reload()
-								})
-							} else {
-								swalWithBootstrapButtons.fire(
-									'',
-									res.message,
-									'warning'
-								)
-							}
-						})
-						.fail(function(res) {
-							console.log(res)
-						})
-				}
-			})
-	}
 
 </script>
     
