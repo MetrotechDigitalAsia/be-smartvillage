@@ -127,8 +127,8 @@
 				},{
 					field: 'qr',
 					title: 'QR code',
+					template: e => `{!! QrCode::format('png')->size(100)->generate('${e.qr_code}') !!}`
 				},{   
-					field: 'Actions',
 					title: 'Aksi',
 					sortable: false,
 					overflow: 'visible',

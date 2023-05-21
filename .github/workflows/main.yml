@@ -8,15 +8,20 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
+
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
         php-version: '8.0'
+
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: www.desagetasan.id
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        server-dir: /public_html/cms/
+
+    - name: Upload files
+      run: |
+        lftp -c "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} www.desagetasan.id; mirror --reverse --delete --verbose . /public_html/${{ secrets.FTP_USERNAME }}/cms"
