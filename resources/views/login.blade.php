@@ -50,7 +50,7 @@
 						<!--end: Aside header-->
 						<!--begin: Aside content-->
 						<div class="flex-column-fluid d-flex flex-column justify-content-center">
-							<h3 class="font-size-h1 mb-5 text-white"><b>Desa Getasan CMS</b></h3>
+							<h3 class="font-size-h1 mb-5 text-white"><b>Desa Getasanaaa </b></h3>
 							<p class="font-weight-lighter text-white opacity-80">Welcome to Desa Getasan - Content Management System</p>
 						</div>
 						<!--end: Aside content-->
