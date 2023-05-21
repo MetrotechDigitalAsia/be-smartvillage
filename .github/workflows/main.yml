@@ -15,12 +15,12 @@ jobs:
       with:
         php-version: '8.0'
 
-    - name: Set up FTP
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
-      with:
-        ftp-server: yourdomain.com
-        ftp-username: ${{ secrets.FTP_USERNAME }}
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
+    # - name: 📂 Sync files
+    #   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    #   with:
+    #     server: www.desagetasan.id
+    #     username: ${{ secrets.ftp_username }}
+    #     password: ${{ secrets.ftp_password }}
 
     - name: Upload files
       run: |
