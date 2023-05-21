@@ -24,7 +24,11 @@ jobs:
 
       - run:
           name: Install Dependencies
-          command: composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+          command: composer install 
+
+      - run:
+          name: Update Dependencies
+          command: composer update 
 
       - save_cache:
           paths:
