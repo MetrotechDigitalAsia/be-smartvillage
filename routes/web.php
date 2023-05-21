@@ -40,6 +40,8 @@ use Illuminate\Support\Facades\Route;
 //     Artisan::call('storage:link');
 // });
 
+// Route::get('/info', fn() => phpinfo());
+
 Route::get('/mail', fn() => view('admin.mail'));
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
