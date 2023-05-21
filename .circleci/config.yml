@@ -12,4 +12,6 @@ jobs:
       - run:
           name: Deploy to cPanel
           command: |
-            sshpass -p $ftp_password ssh -o StrictHostKeyChecking=no $ftp_username@109.106.253.149 "cd /home/$ftp_username/public_html/cms; git pull"
+            apt-get update
+            apt-get -y install lftp
+            lftp -c "set ftp:ssl-allow no; open -u $ftp_usename,$ftp_password www.desagetasa.id; mirror -Rnev . /home/$ftp_username/public_html/cms"
