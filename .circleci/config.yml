@@ -14,4 +14,4 @@ jobs:
           command: |
             apt-get update
             apt-get -y install lftp
-            lftp -c "set ftp:ssl-allow no; open -u $ftp_usename,$ftp_password www.desagetasan.id;; mirror -Rev --no-mkdir /path/to/deployment .; exit"
+            lftp -c "set ftp:ssl-allow no; open -u $ftp_usename,$ftp_password www.desagetasan.id; mirror --only-newer /path/to/deployment .; exit"
