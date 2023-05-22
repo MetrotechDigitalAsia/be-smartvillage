@@ -294,6 +294,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['prefix' => 'keluarga'], function(){
             Route::controller(FamilyController::class)->group(function(){
                 Route::get('/', 'index')->name('family');
+                Route::get('/download/{family}', 'download');
             });
         });
 
