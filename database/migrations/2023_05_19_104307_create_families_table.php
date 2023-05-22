@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('families', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->unsignedBigInteger('blt_id');
+            $table->foreign('blt_id')->references('id')->on('blt');
             $table->string('no_kk');
             $table->string('qr_code');
             $table->string('status');

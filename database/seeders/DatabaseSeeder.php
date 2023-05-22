@@ -14,6 +14,7 @@ use App\Models\ImportantNumber;
 use App\Models\Investation;
 use App\Models\InvestationCategory;
 use App\Models\Admin;
+use App\Models\BLT;
 use App\Models\ItemBusinessCategory;
 use App\Models\Mail;
 use App\Models\Position;
@@ -105,32 +106,9 @@ class DatabaseSeeder extends Seeder
 
         }
 
-        // $data = UserLogin::all();
-
-        // foreach( $data as $i ){
-        //     UserBusinessItem::create([
-        //         'user_id' => $i->id,
-        //         'uuid' => Str::uuid()->toString(),
-        //         'item_name' => 'barang umkm' ,
-        //         'user_phone_number' => '087819582058',
-        //         'item_category_id' => random_int(1,2),
-        //         'item_image' => 'userBusinessItem/mmCdHDOgdfmKrgzRVtRKcBRYGfBrL2mXuW8fsU0X.webp',
-        //         'item_price' => rand(1, 10000000),
-        //         'item_description' => 'asdfasd',
-        //         'status' => 'approve',
-        //     ]);
-        // }
-
-        // UserBusinessItem::factory(10)->create();
-
-        // DestinationPoint::factory(10)->create();
-        // ImportantNumber::factory(10)->create();
-        // Complaint::factory(5)->create();
-        // Agenda::factory(5)->create();
-        // Article::factory(5)->create();
-        // Investation::factory(5)->create();
-
-        // Mail::factory(5)->create();
+        BLT::create(['type' => 'bantuan 1']);
+        BLT::create(['type' => 'bantuan 2']);
+        BLT::create(['type' => 'bantuan 4']);
 
         Mail::create([
             'id' => '990636ad-0896-4953-8fad-19c152424a4f',

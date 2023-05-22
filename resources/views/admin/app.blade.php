@@ -48,6 +48,12 @@
 						<!--Subheader-->
 						@include('partials.subHeader')
 
+						@php
+							if (!extension_loaded('imagick')){
+								echo 'imagick not installed';
+							}
+						@endphp
+
 						<!--Entry-->
 						<div class="d-flex flex-column-fluid">
 							<!--Container-->
