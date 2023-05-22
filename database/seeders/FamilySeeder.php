@@ -20,7 +20,8 @@ class FamilySeeder extends Seeder
             Family::create([
                 'no_kk' => $i,
                 'status' => '-',
-                'qr_code' => 'c'
+                'qr_code' => 'c',
+                'blt_id' => rand(1,3)
             ]);
         }
 

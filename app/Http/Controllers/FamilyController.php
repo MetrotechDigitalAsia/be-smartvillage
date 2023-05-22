@@ -16,8 +16,6 @@ class FamilyController extends Controller
     
     public function index(Request $request){
 
-        // dd(($request->all()));
-
         if($request->ajax()){
 
             $data = Family::all();

@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     DestinationPointController,
     ImportantNumberController,
     AdminController,
+    BLTController,
     FamilyController,
     InvestationController,
     ItemBusinessCategoryController,
@@ -22,7 +23,6 @@ use App\Http\Controllers\{
     UserLoginController,
     UsersMailController
 };
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Route;
 //     Artisan::call('storage:link');
 // });
 
-// Route::get('/info', fn() => phpinfo());
+Route::get('/info', fn() => phpinfo());
 
 Route::get('/mail', fn() => view('admin.mail'));
 
@@ -144,6 +144,15 @@ Route::group(['middleware' => 'auth'], function(){
     Route::group(['prefix' => 'master-data'], function(){
     
         Route::get('/', [ArticleCategoryController::class, 'index'])->name('articleCategory');
+
+        Route::group(['prefix' => 'blt'], function(){
+            Route::get('/', [BLTController::class, 'index'])->name('blt');
+            Route::get('/create', [BLTController::class, 'create']);
+            Route::get('/show/{bLT}', [BLTController::class, 'show']);
+            Route::post('/update/{bLT}', [BLTController::class, 'update']);
+            Route::post('/', [BLTController::class, 'store'])->name('storeBlt');
+            Route::delete('/delete/{bLT}', [BLTController::class, 'destroy']);
+        });
     
         Route::group(['prefix' => 'kategori-artikel'], function(){
             Route::get('/', [ArticleCategoryController::class, 'index'])->name('articleCategory');
