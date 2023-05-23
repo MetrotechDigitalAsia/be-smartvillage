@@ -82,7 +82,7 @@ class UserBusinessItemController extends Controller
         $data['status'] = 'pending';
         $data['user_id'] = $userId;
 
-        $admin = Admin::all();
+        $admin = Admin::where('type', '=', 'Umum')->first();
 
 
         try {

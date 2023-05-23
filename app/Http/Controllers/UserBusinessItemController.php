@@ -132,31 +132,17 @@ class UserBusinessItemController extends Controller
     public function update(Request $request, UserBusinessItem $userBusinessItem){
 
         $validated = $request->validate([
-            'user_id' => 'required',
-            'user_phone_number' => 'required',
-            'item_name' => 'required',
-            'item_category_id' => 'required',
-            'item_price' => 'required',
-            'item_description' => 'required',
-            'item_marketplace_link' => 'required',
             'status' => 'required'
         ]);
-
-        $validated['uuid'] = Str::uuid()->toString();
-
-        if($request->item_image){
-            Storage::delete($userBusinessItem->item_image);
-            $validated['item_image'] = $request->file('item_image')->store('userBusinessItem');
-        }
 
         try {
             UserBusinessItem::find($userBusinessItem->id)->update($validated);
         } catch (\Exception $e){
-            return redirect('/informasi-desa/umkm'. $validated['uuid'] )->with('error', $e->getMessage());
+            return redirect('/informasi-desa/umkm/'. $userBusinessItem->id )->with('error', $e->getMessage());
             die;
         }
 
-        return redirect('informasi-desa/umkm/approve' )->with('success', 'update umkm successfully');
+        return redirect('informasi-desa/umkm/pending' )->with('success', 'update umkm successfully');
 
     }
 
