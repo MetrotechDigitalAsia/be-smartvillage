@@ -21,4 +21,5 @@ jobs:
           **/.git*
           **/.git*/**
           **/vendor/**
+          **/public/**
           .env

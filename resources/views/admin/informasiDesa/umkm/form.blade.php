@@ -13,7 +13,7 @@
         @include('partials.validation-alert')
 
         <!--begin::Wizard-->
-        <form action="{{ empty($userBusinessItem) ? route('storeUmkm') : '/informasi-desa/umkm/update/'.$userBusinessItem->uuid }}" enctype="multipart/form-data" method="POST"  >
+        <form action="{{ empty($userBusinessItem) ? route('storeUmkm') : '/informasi-desa/umkm/update/'.$userBusinessItem->id }}" enctype="multipart/form-data" method="POST"  >
 
             @csrf
 
@@ -27,74 +27,45 @@
                                 <div class="row">
                                     <div class="col-xl-12">
 
-                                        <div class="form-group row">
+                                        <div class="form-group row align-items-center">
                                             <label class="col-xl-3 col-lg-3 col-form-label">File Upload</label>
                                             <div class="col-lg-9 col-xl-6">
-                                                <div class="images-preview-div row my-2"></div>
-                                                @if (!empty($userBusinessItem))
-                                                    <input type="hidden" name="oldImg" value="{{ $userBusinessItem->item_image }}">
-                                                    <img id="img-old" class="img-fluid my-2 col-6" src="{{ asset('storage/'.$userBusinessItem->item_image) }}" >
-                                                @else
-                                                    <img class="img-preview img-fluid my-2">
-                                                @endif
-                                                <img class="img-preview img-fluid my-2">
-                                                <input type="file" name="item_image" id="image" onchange="previewImage()" class="form-control-file col-md-9"  @if(empty($userBusinessItem)) required @endif >
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-xl-3 col-lg-3">NIK Pemilik Usaha</label>
-                                            <div class="col-xl-9 col-lg-9">
-                                                <select class="form-control form-control-lg form-control-solid" name="user_id">
-                                                    <option value="">Pilih NIK...</option>
-                                                    @foreach ($users as $item)
-                                                    <option value="{{ $item->id }}" {{ !empty($userBusinessItem) ? $userBusinessItem['user_id'] == $item->id ? 'selected' : '' : ''}}  >
-                                                        {{ $item->no_nik }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
+                                                <img id="img-old" class="img-fluid my-2 col-6" src="{{ asset('storage/'.$userBusinessItem->item_image) }}" >
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Nama Item</label>
                                             <div class="col-lg-9 col-xl-9">
-                                                <input class="form-control form-control-lg form-control-solid" type="text" name="item_name" value="{{$userBusinessItem['item_name'] ?? '' }}" />
+                                                <input readonly class="form-control form-control-lg form-control-solid" type="text" name="item_name" value="{{$userBusinessItem['item_name'] ?? '' }}" />
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Harga Item</label>
                                             <div class="col-lg-9 col-xl-9">
-                                                <input class="form-control form-control-lg form-control-solid" type="text" name="item_price" value="{{$userBusinessItem['item_price'] ?? '' }}" />
+                                                <input readonly class="form-control form-control-lg form-control-solid" type="text" name="item_price" value="Rp {{ number_format($userBusinessItem['item_price']) ?? '' }}" />
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Link Marketpalce</label>
                                             <div class="col-lg-9 col-xl-9">
-                                                <input class="form-control form-control-lg form-control-solid" type="text" name="item_marketplace_link" value="{{$userBusinessItem['item_marketplace_link'] ?? '' }}" />
+                                                <input readonly class="form-control form-control-lg form-control-solid" type="text" name="item_marketplace_link" value="{{$userBusinessItem['item_marketplace_link'] ?? '' }}" />
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-form-label col-xl-3 col-lg-3">Kategori UMKM</label>
-                                            <div class="col-xl-9 col-lg-9">
-                                                <select class="form-control form-control-lg form-control-solid" name="item_category_id">
-                                                    <option value="">Pilih Kategori...</option>
-                                                    @foreach ($categories as $item)
-                                                    <option value="{{ $item->id }}" {{ !empty($userBusinessItem) ? $userBusinessItem['item_category_id'] == $item->id ? 'selected' : '' : ''}}  >
-                                                        {{ $item->item_category }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Kategori UMKM</label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <input readonly class="form-control form-control-lg form-control-solid" type="text" name="item_marketplace_link" value="{{$userBusinessItem->itemBusinessCategory->item_category ?? '' }}" />
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Telepon</label>
                                             <div class="col-lg-9 col-xl-9">
-                                                <input class="form-control form-control-lg form-control-solid" type="text" name="user_phone_number" value="{{$userBusinessItem['user_phone_number'] ?? '' }}" />
+                                                <input required class="form-control form-control-lg form-control-solid" type="text" name="user_phone_number" value="{{$userBusinessItem['user_phone_number'] ?? '' }}" />
                                             </div>
                                         </div>
 
@@ -163,6 +134,7 @@
         var QuillEditor = function() {
 				var textEditor = function() {
 					var quill = new Quill('#kt_quil_1', {
+                        readOnly: true,
 						modules: {
 							toolbar: [
 								[{
@@ -171,12 +143,8 @@
 								['bold', 'italic', 'underline'],
 							]
 						},
-						readOnly: '{{ $readonly ?? false }}',
 						placeholder: 'Type your text here...',
 						theme: 'snow' // or 'bubble'
-					});
-					quill.on('text-change', function(delta, oldDelta, source) {
-						document.querySelector("input[name='item_description']").value = quill.root.innerHTML;
 					});
 				}
 

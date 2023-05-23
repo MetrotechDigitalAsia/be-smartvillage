@@ -10,7 +10,7 @@ class DestinationPointController extends Controller
 {
     public function index(){
 
-        $data = DestinationPoint::all();
+        $data = DestinationPoint::where('status', 1)->get();
         
         foreach ($data as $i => $item) {
             $data[$i]->image =  json_decode($item->image)[0] ?? '';
@@ -22,7 +22,7 @@ class DestinationPointController extends Controller
     }
 
     public function getPriorityPoints(){
-        $data = DestinationPoint::where('priority', true)->get();
+        $data = DestinationPoint::where('status', 1)->where('priority', true)->get();
         
         foreach ($data as $i => $item) {
             $data[$i]->image =  json_decode($item->image)[0] ?? '';
@@ -34,7 +34,7 @@ class DestinationPointController extends Controller
 
     public function filter(Request $request){
 
-        $data = DestinationPoint::where('category','LIKE','%'.$request->category.'%')->get();
+        $data = DestinationPoint::where('status', 1)->where('category','LIKE','%'.$request->category.'%')->get();
 
         foreach ($data as $i => $item) {
             $data[$i]->image =  json_decode($item->image)[0] ?? '';
