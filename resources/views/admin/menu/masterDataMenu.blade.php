@@ -111,7 +111,7 @@
 
                     <!--begin:Item-->
                     <div class="navi-item my-2">
-                        <a href="/master-data/blt" class="navi-link @if(Str::contains(Route::current()->uri, 'kategori-artikel')) active @endif  ">
+                        <a href="/master-data/blt" class="navi-link @if(Str::contains(Route::current()->uri, 'blt')) active @endif  ">
                             <span class="navi-icon mr-4">
                                 <span class="svg-icon svg-icon-lg">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-heart.svg-->

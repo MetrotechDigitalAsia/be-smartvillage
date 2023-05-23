@@ -43,7 +43,7 @@
                         @endif
 
                         @if (auth()->user()->type == 'Super' || auth()->user()->type == 'Umum')
-                        <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'master-data')) menu-item-here @endif " >
+                        <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'master-data') && !Str::contains(Route::current()->uri, 'persuratan') ) menu-item-here @endif " >
                             <a href="/master-data/kategori-artikel" class="menu-link ">
                                 <span class="menu-text">Master Data</span>
                                 <span class="menu-desc"></span>

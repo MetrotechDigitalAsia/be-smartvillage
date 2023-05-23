@@ -54,7 +54,8 @@ class AdminController extends Controller
             'email' => 'email|required|unique:admin',
             'password' => 'required',
             'repassword' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'type' => 'required'
         ]);
 
         $data['password'] = bcrypt($data['password']);
@@ -76,9 +77,9 @@ class AdminController extends Controller
         $data = $request->validate([
             'fullname' => 'required',
             'email' => 'required|email',
-            'status' => 'required'
+            'status' => 'required',
+            'type' => 'required'
         ]);
-         // dd($request);
 
         try {
             $admin->update($data);

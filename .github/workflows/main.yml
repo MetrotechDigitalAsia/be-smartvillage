@@ -21,8 +21,4 @@ jobs:
           **/.git*
           **/.git*/**
           **/vendor/**
-          **/public/**
           .env
-    - name: Generate DB
-      run: |
-        php artisan migrate:fresh --seed

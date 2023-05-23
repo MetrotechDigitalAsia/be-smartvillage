@@ -59,9 +59,9 @@
                                 <li class="navi-item">
                                     <a href="/persuratan/master-data/show/{{ $mail->id }}" class="navi-link">
                                         <span class="navi-icon">
-                                            <i class="flaticon2-edit"></i>
+                                            <i class="flaticon-eye"></i>
                                         </span>
-                                        <span class="navi-text">Edit</span>
+                                        <span class="navi-text">Lihat</span>
                                     </a>
                                 </li>
                                 <li class="navi-item">

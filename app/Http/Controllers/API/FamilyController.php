@@ -25,4 +25,6 @@ class FamilyController extends Controller
         return ResponseController::create($familyData, 'success', 'get family data success', 200);
 
     }
+
+
 }
