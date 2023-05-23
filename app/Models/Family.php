@@ -10,5 +10,14 @@ class Family extends Model
 {
     use HasFactory, HasUuids;
 
+
+    protected $guarded = ['id'];
+
     public $timestamps = false;
+
+    public $with = ['blt'];
+
+    public function blt(){
+        return $this->belongsTo(BLT::class, 'blt_id');
+    }
 }

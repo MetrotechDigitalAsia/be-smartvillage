@@ -3,8 +3,6 @@
 @section('content')
 
 <div class="card card-custom gutter-b">
-
-
     <!--begin::Body-->
     <div class="card-body p-0">
 
@@ -137,9 +135,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="row">
-                        <div class="col-lg-6">
-                        </div>
-                        <div class="col-lg-6  text-lg-right">
+                        <div class="col text-lg-right">
                             <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                             <a href="/master-data/staff" class="btn btn-secondary">Batal</a>
                         </div>

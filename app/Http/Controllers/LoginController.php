@@ -42,10 +42,10 @@ class LoginController extends Controller
                     return redirect()->intended('/');
                     break;
                 case 'Pariwisata':
-                    return redirect()->intended('tourism-map/point-destinasi');
+                    return redirect()->intended('/');
                     break;
                 case 'Layanan':
-                    return redirect()->intended('/persuratan/surat');
+                    return redirect()->intended('/');
                     break;
             }
 
@@ -103,6 +103,8 @@ class LoginController extends Controller
                     ]);
         
         $latestComplaint = Complaint::latest()->limit(4)->get();
+
+        
 
         return view('admin.index', compact('residentTotal', 'umkmTotal', 'staffTotal', 'mailTotal', 'latestMail', 'latestUmkm', 'latestComplaint'));
     }

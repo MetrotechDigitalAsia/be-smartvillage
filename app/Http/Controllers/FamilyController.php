@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BLT;
 use App\Models\Family;
+use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Yajra\DataTables\DataTables;
 
@@ -32,20 +35,42 @@ class FamilyController extends Controller
 
     }
 
+    public function show(Family $family){
+        $blt = BLT::all();
+        return view('admin.'.$this->folderName.'.form', compact('family', 'blt'));
+    }
+
+    public function update(Request $request,Family $family){
+        
+        $data = $request->validate([
+            'no_kk' => 'required',
+            'status' => 'required',
+            'blt_id' => 'required',
+        ]);
+
+        try {
+            $family->update($data);
+        } catch (\Exception $e){
+            return redirect('/data-penduduk/keluarga')->with('error', $e->getMessage());
+            die;
+        }
+
+        return redirect('/data-penduduk/keluarga')->with('success', 'update family successfully');
+
+    }
+
     public function download(Family $family){
 
-        $qrCode = QrCode::size(300)->generate('Your QR Code Data');
+        if(!Storage::exists('/qr_code')){
+            Storage::makeDirectory('/qr_code');
+        }
 
-        $filename = 'qr_code.png';
-        $path = storage_path('app/public/' . $filename);
-        file_put_contents($path, $qrCode);
+        $file = $family->no_kk.'.svg';
 
-        $headers = [
-            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
-            'Content-Type' => 'image/png',
-        ];
+        QrCode::size(500)->generate('hai', public_path('storage/qr_code/'.$file));
 
-        return response()->download($path, $filename, $headers);
+        return response()->download(public_path('storage/qr_code/'.$file));
+
 
     }
 }
