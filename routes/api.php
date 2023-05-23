@@ -53,7 +53,7 @@ Route::group(['middleware' => 'api_key'],function(){
         Route::post('/{param}', [ArticleController::class, 'getDataByParam']);
     });
 
-    Route::post('/investment', [InvestationController::class, 'index']);
+    Route::post('/investment', [InvestationController::class, 'store']);
 
     Route::group(['prefix' => 'umkm'], function(){
         Route::get('/',[UserBusinessItemController::class, 'index']);
