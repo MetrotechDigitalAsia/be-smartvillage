@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main
+      - rahmat
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
@@ -20,6 +20,4 @@ jobs:
         exclude: |
           **/.git*
           **/.git*/**
-          **/vendor/**
-          **/public/**
           .env

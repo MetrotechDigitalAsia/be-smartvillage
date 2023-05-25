@@ -138,7 +138,6 @@
 				audio.currentTime = 0
 				if(data.data === 'mail')
 					audio.play()
-				console.log(data)
 				notifIcon.classList.add('svg-icon-warning')
 				spanPulse.classList.add('pulse-ring')
 			});
