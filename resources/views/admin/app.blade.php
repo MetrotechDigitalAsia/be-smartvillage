@@ -5,7 +5,7 @@
 	<head><base href="">
 		<meta charset="utf-8" />
 		<meta name="csrf-token" content="{{ csrf_token() }}" />
-		<title>Desa Getasan | CMS</title>
+		<title>Desa Getasan: CMS</title>
 		<meta name="description" content="Updates and statistics" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<!--Fonts-->
@@ -22,7 +22,7 @@
 
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-		<link rel="shortcut icon" href="{{ asset('assets/be/media/logos/favicon.ico') }}" />
+		<link rel="shortcut icon" href="{{ asset('assets/be/media/desa.png') }}" />
 
 		@livewireStyles
 		@vite(['resources/css/app.css', 'resources/js/app.js'])
