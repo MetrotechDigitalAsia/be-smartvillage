@@ -113,7 +113,7 @@
 					textAlign: 'center',
 				}, {
 					field: 'institute_name',
-					title: 'Nama Investasi',
+					title: 'Nama Instansi',
 				}, {
 					field: 'investation_category',
 					title: 'Kategori',
