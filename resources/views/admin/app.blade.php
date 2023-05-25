@@ -126,8 +126,11 @@
 
 			var audio = new Audio("{{ asset('assets/be/notif_sound/ip_wa.mp3') }}")
 
-			const spanPulse = document.querySelector('.span.ring')
+			const spanPulse = document.querySelector('span.ring')
 			const notifIcon = document.querySelector('.notif-icon')
+
+			console.log(spanPulse)
+			console.log(notifIcon)
 
 			channel.bind('notification-event', function(data) {
 				Livewire.emit('notifAdded')
