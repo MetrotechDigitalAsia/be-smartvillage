@@ -133,13 +133,12 @@
 			console.log(notifIcon)
 
 			channel.bind('notification-event', function(data) {
-				window.alert('sdfadf')
 				Livewire.emit('notifAdded')
 				audio.pause()
 				audio.currentTime = 0
+				console.log(data)
 				if(data.data === 'mail')
 					audio.play()
-				console.log(data)
 				notifIcon.classList.add('svg-icon-warning')
 				spanPulse.classList.add('pulse-ring')
 			});

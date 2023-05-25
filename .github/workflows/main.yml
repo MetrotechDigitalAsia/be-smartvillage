@@ -20,6 +20,4 @@ jobs:
         exclude: |
           **/.git*
           **/.git*/**
-          **/vendor/**
-          **/public/**
           .env
