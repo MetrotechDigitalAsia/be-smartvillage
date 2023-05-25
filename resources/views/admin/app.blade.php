@@ -136,7 +136,6 @@
 				Livewire.emit('notifAdded')
 				audio.pause()
 				audio.currentTime = 0
-				console.log(data)
 				if(data.data === 'mail')
 					audio.play()
 				notifIcon.classList.add('svg-icon-warning')
