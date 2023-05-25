@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('no_nik');
             $table->string('password');
             $table->string('status');
+            $table->text('fcm')->nullable();
             $table->timestamps();
         });
     }

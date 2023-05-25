@@ -35,7 +35,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">Nama Investasi</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Nama Instansi</label>
                                             <div class="col-lg-9 col-xl-9">
                                                 <input class="form-control form-control-lg form-control-solid" type="text" name="institute_name" value="{{$investation['institute_name'] ?? '' }}" />
                                             </div>
@@ -56,7 +56,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">Alamat Investasi</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Alamat Instansi</label>
                                             <div class="col-lg-9 col-xl-9">
                                                 <input class="form-control form-control-lg form-control-solid" type="text" name="institute_address" value="{{$investation['institute_address'] ?? '' }}" />
                                             </div>
