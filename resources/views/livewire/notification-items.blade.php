@@ -18,7 +18,8 @@
     <!--end::Toggle-->
     <!--begin::Dropdown-->
     <div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
-            <!--begin::Header-->
+        <!--begin::Header-->
+        <form>
             <div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url({{ asset('assets/be/media/bg/notif-bg.jpg') }})">
                 <!--begin::Title-->
                 <h4 class="d-flex flex-center rounded-top">
@@ -81,7 +82,6 @@
                         </div>
                     @else
                     <div class="navi navi-hover my-4 px-6 scroll max-h-300px" style="overflow-y: auto;" data-height="300" data-mobile-height="200">
-                        {{-- <div class="scroll pr-7 mr-4 p-4" data-scroll="true" data-height="300" data-mobile-height="200"> --}}
                         @foreach ($umkm as $notify)
                             <div class="d-flex align-items-center flex-wrap mb-5">
                                 <div class="symbol symbol-50 symbol-light mr-5">
@@ -104,6 +104,7 @@
                 </div>
                 <!--end::Tabpane-->
             </div>
+        </form>
             <!--end::Content-->
     </div>
     <!--end::Dropdown-->

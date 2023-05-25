@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserLogin;
+use App\Notifications\SendPushNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
-use Barryvdh\DomPDF\Facade\Pdf;                                                                                                    
-
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Notification;
 
 class UsersMailController extends Controller
 {
@@ -95,6 +97,9 @@ class UsersMailController extends Controller
 
         try {
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
+            $userId = DB::table('users_mail as userMail')->where('id',$id)->first('user_id');
+            $user = UserLogin::find($userId);
+            Notification::send(null, new SendPushNotification('title', 'body', $user->fcm));
         } catch (\Exception $e) {
             return redirect('/persuratan/surat')->with('error', $e->getMessage());
         }

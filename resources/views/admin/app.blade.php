@@ -5,7 +5,7 @@
 	<head><base href="">
 		<meta charset="utf-8" />
 		<meta name="csrf-token" content="{{ csrf_token() }}" />
-		<title>Desa Getasan | CMS</title>
+		<title>Desa Getasan: CMS</title>
 		<meta name="description" content="Updates and statistics" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<!--Fonts-->
@@ -22,7 +22,7 @@
 
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-		<link rel="shortcut icon" href="{{ asset('assets/be/media/logos/favicon.ico') }}" />
+		<link rel="shortcut icon" href="{{ asset('assets/be/media/desa.png') }}" />
 
 		@livewireStyles
 		@vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -90,6 +90,29 @@
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCem_6fvhccSrm6U1cEUQLPEJfEeuxcNY&libraries=places"></script>
 
 		<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+		<script type="module">
+			// Import the functions you need from the SDKs you need
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+			import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js";
+			// TODO: Add SDKs for Firebase products that you want to use
+			// https://firebase.google.com/docs/web/setup#available-libraries
+		  
+			// Your web app's Firebase configuration
+			// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+			const firebaseConfig = {
+			  apiKey: "AIzaSyDYfM7abQm275YPnshHnozoNOtv5lP2Y3g",
+			  authDomain: "getasan-push-notif.firebaseapp.com",
+			  projectId: "getasan-push-notif",
+			  storageBucket: "getasan-push-notif.appspot.com",
+			  messagingSenderId: "664051969114",
+			  appId: "1:664051969114:web:3ed2dc490a4926a25efc63",
+			  measurementId: "G-2PXV90ZMDX"
+			};
+		  
+			// Initialize Firebase
+			const app = initializeApp(firebaseConfig);
+			const analytics = getAnalytics(app);
+		  </script>
 		<script>
 
 			// Enable pusher logging - don't include this in production

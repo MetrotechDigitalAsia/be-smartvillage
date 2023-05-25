@@ -65,7 +65,7 @@
                                         <div class="form-group row">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Telepon</label>
                                             <div class="col-lg-9 col-xl-9">
-                                                <input required class="form-control form-control-lg form-control-solid" type="text" name="user_phone_number" value="{{$userBusinessItem['user_phone_number'] ?? '' }}" />
+                                                <input readonly class="form-control form-control-lg form-control-solid" type="text" name="user_phone_number" value="{{$userBusinessItem['user_phone_number'] ?? '' }}" />
                                             </div>
                                         </div>
 
