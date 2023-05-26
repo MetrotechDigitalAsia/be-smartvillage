@@ -43,6 +43,8 @@ class UserMailController extends Controller
     
     public function store(Request $request){
 
+        // event(new NotificationEvent('mail'));
+        // return ResponseController::create('sd', 'fas', 'asdf', 200);
         
         $user = UserLogin::find($request->user_id);
         $mail = Mail::find($request->mail_id);

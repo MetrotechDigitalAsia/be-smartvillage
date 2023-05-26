@@ -134,7 +134,7 @@
 
 			channel.bind('notification-event', function(data) {
 				Livewire.emit('notifAdded')
-				audio.pause()
+				console.log(data)
 				audio.currentTime = 0
 				if(data.data === 'mail')
 					audio.play()
@@ -161,7 +161,6 @@
 			});
 
 			const a = document.querySelector('form')
-			console.log(a);
 
 			function logout(){
 				window.location.href = '/logout'
