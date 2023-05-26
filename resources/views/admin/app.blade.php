@@ -112,6 +112,25 @@
 			// Initialize Firebase
 			const app = initializeApp(firebaseConfig);
 			const analytics = getAnalytics(app);
+
+			console.log(app)
+
+			firebase.initializeApp(firebaseConfig)
+			const message = firebase.messaging()
+
+			function initFirebaseMessagingRegistration(){
+
+				messaging.requestPermission()
+				.then(() => messaging.getToken())
+				.then(token => {
+					console.log(token)
+				})
+
+			}
+
+			initFirebaseMessagingRegistration()
+
+
 		  </script>
 		<script>
 
@@ -134,20 +153,20 @@
 
 			channel.bind('notification-event', function(data) {
 				Livewire.emit('notifAdded')
-				console.log(data)
 				audio.currentTime = 0
 				if(data.data === 'mail')
 					audio.play()
 				notifIcon.classList.add('svg-icon-warning')
 				spanPulse.classList.add('pulse-ring')
+				console.log(data)
 			});
 
 			const notifBtn = document.querySelector('.notif-btn')
 
-			notifBtn.addEventListener('click', () => {
-				notifIcon.classList.remove('svg-icon-warning')
-				spanPulse.classList.remove('pulse-ring')
-			})
+			// notifBtn.addEventListener('click', () => {
+			// 	notifIcon.classList.remove('svg-icon-warning')
+			// 	spanPulse.classList.remove('pulse-ring')
+			// })
 
 		</script>
 

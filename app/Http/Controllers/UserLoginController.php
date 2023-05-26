@@ -81,4 +81,8 @@ class UserLoginController extends Controller
         ]);
     }
 
+    public function getToken(Request $request){
+        return $request->token;
+    }
+
 }

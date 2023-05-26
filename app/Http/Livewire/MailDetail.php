@@ -8,15 +8,16 @@ use Livewire\Component;
 class MailDetail extends Component
 {
 
-    public $mailId;
     public $userDb;
+    public $mailId;
 
     protected $listeners = [
         'refreshMailDetail' => '$refresh'
     ];
 
-    public function mount(){
+    public function mount($mailId){
         $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
+        $this->mailId = $mailId;
     }
 
     public function render()
