@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 
 class UsersMailController extends Controller
 {
@@ -33,7 +34,7 @@ class UsersMailController extends Controller
     }
 
     public function show($id){
-        $data = DB::table('users_mail')->where('id', $id)->first(['id', 'mail_number']);
+        $data = DB::table('users_mail')->where('id', $id)->first(['id', 'mail_number', 'status']);
         // dd($data);
         return view('admin.'.$this->folderName.'.detail', compact('data'));
     }
@@ -79,6 +80,8 @@ class UsersMailController extends Controller
     public function destroy($id){
 
         try {
+            $mail =  DB::table('users_mail')->where('id',$id)->first();
+            Storage::delete($mail->signature);
             DB::table('users_mail')->where('id',$id)->delete();
             $message = 'successfully';
         } catch (\Exception $e) {
@@ -176,7 +179,6 @@ class UsersMailController extends Controller
             ->join('user_logins as user', function($join){
                 $join->join($this->userDb, 'userDB.NIK', '=', 'user.no_nik');
             })
-            ->join('signatures', 'signatures.user_login_id', '=', 'user.id')
             ->where('userMail.id', '=', $id)
             ->first([
                 'userMail.id',
@@ -184,8 +186,8 @@ class UsersMailController extends Controller
                 'mails.slug',
                 'userMail.mail_number',
                 'userMail.status',
+                'userMail.signature as image',
                 'userMail.field',
-                'signatures.image'
             ]);
 
         $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data'));

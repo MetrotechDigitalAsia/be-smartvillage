@@ -27,9 +27,10 @@ class AllMailTable extends Component
             $join->join($this->userDb, 'userDB.NIK', '=', 'user.no_nik')
             ->on('user.id', '=', 'userMail.user_id');
         })
-        ->orderBy('userMail.created_at', 'ASC')
+        // ->orderBy('userMail.created_at', 'DESC')
+        ->latest('userMail.created_at')
         ->get([
-            DB::raw('ROW_NUMBER() OVER(ORDER BY userMail.id) as row_index'),
+            // DB::raw('ROW_NUMBER() OVER(ORDER BY userMail.id) as row_index'),
             'userMail.id as id',
             'user.id as user_id',
             'userMail.mail_number',

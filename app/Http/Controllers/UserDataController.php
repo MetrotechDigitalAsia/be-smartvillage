@@ -185,6 +185,7 @@ class UserDataController extends Controller
                 $user = UserLogin::where('no_nik', '=', $userData->NIK)->delete();
             } else {
                 UserData::find($userData->id)->update(['AKUN_MOBILE_APP' => true]);
+                $token = 
                 UserLogin::create([
                     'no_nik' => $userData['NIK'],
                     'password' => bcrypt($userData['NIK']),
@@ -221,5 +222,9 @@ class UserDataController extends Controller
 
 
     }
+
+    // public function generateToken(User){
+    //     return $request->token;
+    // }
 
 }
