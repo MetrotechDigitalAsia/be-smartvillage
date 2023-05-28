@@ -272,7 +272,7 @@
                             <div class="col text-left" style="position: relative;">
                                 <p style="text-indent: 0; margin-top: 40px; margin-bottom: 0;" >Getasan, 7 april 2023,</p>
                                 <p  style="text-indent: 0; margin-bottom: 60px;" >Kelian Banjar Dinas Ubud</p>
-                                <img style="position: absolute; left: 20%; bottom: -5%; width: 15%;" src="{{ asset('storage/'. $data->signature) }}" alt="">
+                                <img style="position: absolute; left: 15%; bottom: -2%; width: 35%;" src="{{ asset('storage/'. $data->signature) }}" alt="">
                                 <u>I Putu Antara, S.Pt</u>
                             </div>
                         </div>

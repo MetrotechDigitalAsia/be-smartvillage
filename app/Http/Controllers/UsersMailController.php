@@ -97,8 +97,6 @@ class UsersMailController extends Controller
 
     public function changeStatus($id, $status){
 
-        dd($status);
-
         try {
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
             $userId = DB::table('users_mail as userMail')->where('id',$id)->first('user_id');
