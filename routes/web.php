@@ -264,6 +264,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/show/{id}', 'show');
                 Route::get('/print/{id}', 'printMail');
                 Route::get('/changeStatus/{id}/{status}', 'changeStatusFromDetail');
+                Route::get('/change/{id}/{status}', 'changeStatus');
                 Route::post('/', 'store')->name('storeMail');
                 Route::post('/setMailNumber/{id}', 'setMailNumber');
                 Route::post('/update/{mail}', 'update');

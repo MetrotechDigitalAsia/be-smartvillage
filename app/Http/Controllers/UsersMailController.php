@@ -35,7 +35,6 @@ class UsersMailController extends Controller
 
     public function show($id){
         $data = DB::table('users_mail')->where('id', $id)->first(['id', 'mail_number', 'status']);
-        // dd($data);
         return view('admin.'.$this->folderName.'.detail', compact('data'));
     }
 
@@ -98,11 +97,13 @@ class UsersMailController extends Controller
 
     public function changeStatus($id, $status){
 
+        dd($status);
+
         try {
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
             $userId = DB::table('users_mail as userMail')->where('id',$id)->first('user_id');
             $user = UserLogin::find($userId);
-            Notification::send(null, new SendPushNotification('title', 'body', $user->fcm));
+            // Notification::send(null, new SendPushNotification('title', 'body', $user->fcm));
         } catch (\Exception $e) {
             return redirect('/persuratan/surat')->with('error', $e->getMessage());
         }

@@ -19,7 +19,7 @@ class ComplaintController extends Controller{
 
         if($request->ajax()){
 
-            $data = Complaint::all();
+            $data = Complaint::latest()->get();
 
             return DataTables::of($data)
             ->addIndexColumn()

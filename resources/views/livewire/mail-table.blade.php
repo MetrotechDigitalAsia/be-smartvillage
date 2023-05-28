@@ -33,17 +33,17 @@
                     <h5 class="modal-title">Pemberitahuan</h5>
                 </div>
                 <div class="modal-body">
-                    <span>yakin ingin <span class="mail-type"></span> surat dengan nomor <span class="mail-num" ></span> ?</span>
+                    <span>yakin ingin <span class="mail-type"></span> surat ?</span>
                 </div>
                 <div class="modal-footer py-2 border-0">
                     <button type="button" class="btn btn-text font-weight-bold" data-dismiss="modal">Batal</button>
-                    <button type="button" onclick="submitForm()" data-dismiss="modal" class="btn btn-primary font-weight-bold approve-btn">Ya, Setujui</button>
+                    <button type="button" onclick="handleSubmit(this)" data-dismiss="modal" class="btn btn-primary font-weight-bold approve-btn">Ya</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <form action="" method="post" class="mail-form" >
+    <form method="POST" class="mail-form" >
         @csrf
     </form>
 </div>
@@ -115,20 +115,14 @@
                                             </a>
                                         </li>
                                         <li class="navi-item">
-                                            <a class="navi-link" href="javascript:;" onclick="onActionClick(this, 'Done')" data-toggle="modal" data-target="#confirmModal" data-mail-id="${e.id}" data-mail-num="${e.mail_number}">
-                                                <span class="navi-icon"><i class="flaticon2-check-mark"></i></span>
-                                                <span class="navi-text">Setujui</span>
-                                            </a>
-                                        </li>
-                                        <li class="navi-item">
-                                            <a class="navi-link" href="javascript:;" onclick="onActionClick(this, 'Process')" data-toggle="modal" data-target="#confirmModal" data-mail-id="${e.id}" data-mail-num="${e.mail_number}" >
+                                            <a class="navi-link" href="javascript:;" onclick="onActionClick(this, 'Process')" data-toggle="modal" data-target="#confirmModal" data-mail-id="${e.id}" >
                                                 <span class="navi-icon"><i class="flaticon2-hourglass-1"></i></span>
                                                 <span class="navi-text">Proses</span>
                                             </a>
                                         </li>
                                         <div class="dropdown-divider"></div>\
                                         <li class="navi-item">
-                                            <a class="navi-link" href="javascript:;" onclick="onActionClick(this, 'Rejected')" data-toggle="modal" data-target="#confirmModal" data-mail-id="${e.id}" data-mail-num="${e.mail_number}">
+                                            <a class="navi-link" href="javascript:;" onclick="onActionClick(this, 'Rejected')" data-toggle="modal" data-target="#confirmModal" data-mail-id="${e.id}">
                                                 <span class="navi-icon"><i class="flaticon2-trash"></i></span>
                                                 <span class="navi-text">Tolak</span>
                                             </a>
@@ -213,10 +207,13 @@
         Widget.init();
     });
 
+    function submitForm(){
+        document.querySelector('.mail-form').submit()
+    }
+
     function onActionClick(btn, type){
         const mailId = btn.getAttribute('data-mail-id')        
-        const mailNum = btn.getAttribute('data-mail-num')
-        const form = document.querySelector('.mail-form')
+        const approveBtn = document.querySelector('.approve-btn')
 
         let mailType
 
@@ -233,13 +230,41 @@
         }
         
         document.querySelector('.mail-type').innerHTML = mailType
-        document.querySelector('.mail-num').innerHTML = mailNum
-        form.action = `/persuratan/surat/change/${mailId}/${type}`
+
+        approveBtn.setAttribute('data-href', `/persuratan/surat/changeStatus/${mailId}/${type}`)
 
     }
 
-    function submitForm(){
-        document.querySelector('.mail-form').submit()
+    function handleSubmit(btn){
+
+        const href = btn.getAttribute('data-href')
+
+        const opt = {
+            type: 'success',
+            placement: {
+                from:'top',
+                align: 'center'
+            },
+            animate: {
+                enter: 'animate__animated animate__fadeInDown',
+                exit: 'animate__animated animate__fadeOutUp'
+            }
+        }
+
+        $.get(href)
+            .done(function(res){
+
+                console.log(res)
+
+                $.notify({
+                    message: res.href,
+                }, opt)
+
+                if(res.success){
+                    Livewire.emit('refreshMailTable')
+                }
+            })
+
     }
 
 </script>

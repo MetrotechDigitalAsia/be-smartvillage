@@ -182,20 +182,10 @@
                 @else
                     @foreach ($latestComplaint as $item)
                     <div class="d-flex align-items-center">
-                        <div class="symbol mr-3">
-                            <img alt="Pic" class="w-50px h-50px" style="object-fit: cover;" src="{{ asset('storage/'.$item->image) }}"/>
-                        </div>
                         <!--begin::Text-->
                         <div class="d-flex flex-column flex-grow-1">
-                            <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg mb-1 text-capitalize">
-                                {{ $item->item_name }}  
-                                <span class="ml-3 text-capitalize font-weight-bold text-{{ ($item->status != 'approve') ? ($item->status == 'pending') ? 'warning' : 'warning' : 'success'  }}" >
-                                    <span class="label label-dot label-{{ ($item->status != 'approve') ? ($item->status == 'pending') ? 'warning' : 'warning' : 'success'  }} mr-1"></span>
-                                    {{ $item->status }}
-                                </span>
-                            </a>
-                            <span class="text-muted font-weight-normal" >~ {{ $item->name }}</span>
-                            {{-- <span class="text-muted font-weight-normal">Pengaju : {{ $item->name }}</span> --}}
+                            <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg mb-1">{{ Str::limit($item->description, 40, '...') }}</a>
+                            <span class="text-muted font-weight-normal">Pengaju : {{ $item->name }}</span>
                         </div>
                         <!--end::Text-->
                         <div class="text-muted">{{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</div>
@@ -203,7 +193,7 @@
                     <div class="separator separator-dashed separator-border-2 my-4"></div>
                     @endforeach
                     <div class="d-flex">
-                        <a href="/informasi-desa/umkm/pending" class="text-muted text-hover-primary cursor-pointer mt-3 mx-auto" >Selengkapnya</a>
+                        <a href="/informasi-desa/complaint/" class="text-muted text-hover-primary cursor-pointer mt-3 mx-auto" >Selengkapnya</a>
                     </div>
                 @endif
                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class NotificationItems extends Component
@@ -13,6 +14,7 @@ class NotificationItems extends Component
 
     public $mails;
     public $umkm;
+    public $notifCount;
 
     public function render()
     {
@@ -27,6 +29,8 @@ class NotificationItems extends Component
                         ->whereNull('read_at')
                         ->latest()
                         ->get();
+
+        $this->notifCount = DatabaseNotification::whereNull('read_at')->count();
 
         return view('livewire.notification-items', [
             'mails' => $this->mails,
