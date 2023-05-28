@@ -23,7 +23,7 @@
         </td>
         <td style="width: 100%;" >
             <div style="position: relative; height: 80px; width: 100%;" >
-                <img style="position: absolute; bottom: -60%; left: 15%;" height="120" src="{{ public_path().'/storage/'. $data->image }}" alt="">
+                <img style="position: absolute; bottom: -55%; left: 5%;" height="100" src="{{ public_path().'/storage/'. $data->image }}" alt="">
             </div>
         </td>
     </tr>
