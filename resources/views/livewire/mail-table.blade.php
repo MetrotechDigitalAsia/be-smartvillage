@@ -237,31 +237,22 @@
 
     function handleSubmit(btn){
 
-        const href = btn.getAttribute('data-href')
+        const swalWithBootstrapButtons = Swal.mixin({ customClass: { confirmButton: 'btn btn-primary' } })
 
-        const opt = {
-            type: 'success',
-            placement: {
-                from:'top',
-                align: 'center'
-            },
-            animate: {
-                enter: 'animate__animated animate__fadeInDown',
-                exit: 'animate__animated animate__fadeOutUp'
-            }
-        }
+        const href = btn.getAttribute('data-href')
 
         $.get(href)
             .done(function(res){
 
-                console.log(res)
-
-                $.notify({
-                    message: res.href,
-                }, opt)
-
                 if(res.success){
-                    Livewire.emit('refreshMailTable')
+                    swalWithBootstrapButtons.fire({
+                        title: 'Success',
+                        text: 'Status surat berhasil diubah',
+                        icon: 'success'
+                    })
+                    .then( res => {
+                        location.reload()
+                    })      
                 }
             })
 
