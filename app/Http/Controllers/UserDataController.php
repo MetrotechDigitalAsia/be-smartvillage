@@ -98,7 +98,7 @@ class UserDataController extends Controller
             $message = $e->getMessage();
         }
 
-        return redirect('/master-data/data-penduduk')->with('success', $message);
+        return redirect('/data-penduduk/penduduk')->with('success', $message);
 
     }
 
@@ -138,7 +138,7 @@ class UserDataController extends Controller
             $message = $e->getMessage();
         }
 
-        return redirect('/master-data/data-penduduk')->with('success', $message);
+        return redirect('/data-penduduk/penduduk')->with('success', $message);
 
     }
 
@@ -173,7 +173,7 @@ class UserDataController extends Controller
             $message = $e->getMessage();
         }
 
-        return redirect('/master-data/data-penduduk')->with('success', $message);
+        return redirect('/data-penduduk/penduduk')->with('success', $message);
 
     }
 
