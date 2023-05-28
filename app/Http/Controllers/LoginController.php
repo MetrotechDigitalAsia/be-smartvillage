@@ -92,7 +92,7 @@ class LoginController extends Controller
                         ->on('user.id', 'user_business_items.user_id');
                     })
                     ->latest('user_business_items.created_at')
-                    ->limit(4)
+                    ->limit(3)
                     ->get([
                         'user_business_items.id',
                         'user_business_items.item_name',
@@ -102,7 +102,7 @@ class LoginController extends Controller
                         'user_business_items.item_image as image',
                     ]);
         
-        $latestComplaint = Complaint::latest()->limit(4)->get();
+        $latestComplaint = Complaint::latest()->limit(3)->get();
 
         
 
