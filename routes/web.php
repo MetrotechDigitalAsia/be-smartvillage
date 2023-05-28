@@ -168,7 +168,7 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/create', [ComplaintCategoryController::class, 'create']);
             Route::get('/show/{complaintCategory}', [ComplaintCategoryController::class, 'show']);
             // Route::post('/', [ComplaintCategoryController::class, 'store'])->name('storeComplaintCategory');
-            Route::post('/', fn () => dd('asdf'))->name('storeComplaintCategory');
+            Route::post('/', [ComplaintCategoryController::class, 'store'])->name('storeComplaintCategory');
             Route::post('/update/{complaintCategory}', [ComplaintCategoryController::class, 'update']);
             Route::delete('/delete/{complaintCategory}', [ComplaintCategoryController::class, 'destroy']); 
         });
