@@ -10,6 +10,7 @@ class MailTable extends Component
 
     public $data;
     protected $userDb;
+    protected $listeners = ['refreshMailTable' => '$refresh'];
 
     public function mount(){
         $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data';
@@ -49,7 +50,7 @@ class MailTable extends Component
 
     public function changeStatus($id, $status){
 
-        DB::table('user_mail as userMail')
+        DB::table('users_mail as userMail')
             ->where('id', $id)
             ->first()
             ->update(['status' => $status]);

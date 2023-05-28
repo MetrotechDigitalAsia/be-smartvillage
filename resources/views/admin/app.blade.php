@@ -163,10 +163,10 @@
 
 			const notifBtn = document.querySelector('.notif-btn')
 
-			// notifBtn.addEventListener('click', () => {
-			// 	notifIcon.classList.remove('svg-icon-warning')
-			// 	spanPulse.classList.remove('pulse-ring')
-			// })
+			notifBtn.addEventListener('click', () => {
+				notifIcon.classList.remove('svg-icon-warning')
+				spanPulse.classList.remove('pulse-ring')
+			})
 
 		</script>
 

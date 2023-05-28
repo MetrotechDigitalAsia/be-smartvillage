@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'adminpariwisata@desagetasan.id',
             'password' => bcrypt('qazwsx'),
             'status' => 'Active',
-            'type' => 'Parawisata'
+            'type' => 'Pariwisata'
         ]);
 
         Admin::create([
