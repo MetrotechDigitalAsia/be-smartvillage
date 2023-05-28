@@ -245,7 +245,7 @@
                 <button type="submit" class="btn btn-success">Simpan</button>
                 <a href="/data-penduduk/penduduk" class="btn btn-secondary mx-2">Batal</a>
                 @if (!empty($userData) && $userData['AKUN_MOBILE_APP'] == '0')
-                <a href="/master-data/data-penduduk/create-mobile-account/{{ $userData['uuid'] }}" class="btn btn-outline-success">Buat Akun Mobile</a>
+                <a href="/master-data/data-penduduk/create-mobile-account/{{ $userData['id'] }}" class="btn btn-outline-success">Buat Akun Mobile</a>
                 @endif
             </div>
         </div>
