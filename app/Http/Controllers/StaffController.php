@@ -34,7 +34,11 @@ class StaffController extends Controller
 
         }
 
-        return view('admin.'.$this->folderName.'.index');
+        $staffPria = Staff::where('gender','Laki Laki')->count();
+        $staffWanita = Staff::where('gender','Perempuan')->count();
+        $total = Staff::count();
+
+        return view('admin.'.$this->folderName.'.index', compact('staffPria', 'staffWanita', 'total'));
     }
 
     public function create(){
