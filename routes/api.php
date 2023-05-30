@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'api_key'],function(){
+
     Route::get('/points', [DestinationPointController::class, 'index']);
     Route::get('/priority', [DestinationPointController::class, 'getPriorityPoints']);
     Route::get('/important-numbers', [ImportantNumberController::class, 'index']);
@@ -70,6 +71,7 @@ Route::group(['middleware' => 'api_key'],function(){
     Route::controller(UserLoginController::class)->group(function(){
         Route::post('/login', 'login');
         Route::post('/changePassword/{userLogin}', 'changePassword');
+        Route::post('/token/{userLogin}', 'getUserToken');
     });
 
     Route::group(['prefix' => 'surat'], function(){

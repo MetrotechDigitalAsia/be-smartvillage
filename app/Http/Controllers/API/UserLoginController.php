@@ -7,6 +7,7 @@ use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Models\UserData;
 use App\Models\UserLogin;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserLoginController extends Controller
@@ -78,6 +79,11 @@ class UserLoginController extends Controller
         return ResponseController::create('', 'success', 'Kata Sandi Berhasil diganti', 200);
 
 
+    }
+
+    public function getUserToken(Request $request,UserLogin $userLogin){
+        $userLogin->update(['fcm' => $request->token]);
+        return ResponseController::create($request->token, 'success', 'Token Berhasil Disimpan', 200);
     }
 
 
