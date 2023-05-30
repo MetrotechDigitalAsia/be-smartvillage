@@ -20,5 +20,8 @@ jobs:
         exclude: |
           **/.git*
           **/.git*/**
-          **/public/**
+          **/vendor/**
           .env
+    - name: Install Composer Dependencies
+      run: composer install --no-dev --no-progress --no-suggest
+      working-directory: /public_html/cms
