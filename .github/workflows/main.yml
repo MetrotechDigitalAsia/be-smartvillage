@@ -10,25 +10,16 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
-    # - name: 📂 Sync files
-    #   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-    #   with:
-    #     server: www.desagetasan.id
-    #     username: ${{ secrets.ftp_username }}
-    #     password: ${{ secrets.ftp_password }}
-    #     server-dir: /public_html/cms/
-    #     exclude: |
-    #       **/.git*
-    #       **/.git*/**
-    #       **/vendor/**
-    #       .env
-    - name: Install Composer
-        run: |
-          ssh u1571641@desagetasan.id 'bash -s' << 'EOF'
-          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-          php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-          php -r "unlink('composer-setup.php');"
-          EOF
-    - name: Install Composer Dependencies
-      run: composer install --no-dev --no-progress --no-suggest
-      working-directory: /public_html/cms
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: www.desagetasan.id
+        username: ${{ secrets.ftp_username }}
+        password: ${{ secrets.ftp_password }}
+        server-dir: /public_html/cms/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/vendor/**
+          **/public/**
+          .env
