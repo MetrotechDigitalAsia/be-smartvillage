@@ -165,6 +165,7 @@ class UserDataController extends Controller
                 'no_nik' => $userData['NIK'],
                 'password' => bcrypt($userData['NIK']),
                 'status' => 'Active',
+                'fcm' => $userData['NIK'] . time() * rand(1,1000)
             ]);
 
             UserData::find($userData->id)->update(['AKUN_MOBILE_APP' => true]);

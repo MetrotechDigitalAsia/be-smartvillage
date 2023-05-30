@@ -1,0 +1,1 @@
+<span class="btn btn-text btn-success btn-sm font-weight-bold btn-font-md ml-2">{{ $notifCount }} baru</span>

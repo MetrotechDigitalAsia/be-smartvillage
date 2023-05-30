@@ -23,7 +23,10 @@ use App\Http\Controllers\{
     UserLoginController,
     UsersMailController
 };
+use Google\Auth\Credentials\ServiceAccountCredentials;
 use Illuminate\Support\Facades\Route;
+use Kreait\Firebase\Auth;
+use Kreait\Laravel\Firebase\Facades\Firebase;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +43,6 @@ use Illuminate\Support\Facades\Route;
 //     Artisan::call('storage:link');
 // });
 
-Route::get('/info', fn() => phpinfo());
 
 Route::get('/mail', fn() => view('admin.mail'));
 
