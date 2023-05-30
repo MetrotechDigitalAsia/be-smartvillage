@@ -104,7 +104,9 @@ class LoginController extends Controller
         
         $latestComplaint = Complaint::latest()->limit(3)->get();
 
-        
+        if(request()->ajax()){
+            return 'sfd';
+        }
 
         return view('admin.index', compact('residentTotal', 'umkmTotal', 'staffTotal', 'mailTotal', 'latestMail', 'latestUmkm', 'latestComplaint'));
     }
