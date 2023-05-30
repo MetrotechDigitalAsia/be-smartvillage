@@ -10,18 +10,27 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
+    # - name: 📂 Sync files
+    #   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    #   with:
+    #     server: www.desagetasan.id
+    #     username: ${{ secrets.ftp_username }}
+    #     password: ${{ secrets.ftp_password }}
+    #     server-dir: /public_html/cms/
+    #     exclude: |
+    #       **/.git*
+    #       **/.git*/**
+    #       **/vendor/**
+    #       .env
     - name: SSH into CPanel
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.CPANEL_HOST }}
-          username: ${{ secrets.CPANEL_USERNAME }}
-          password: ${{ secrets.CPANEL_PASSWORD }}
-          port: ${{ secrets.CPANEL_SSH_PORT }}
+          host: desagetasan.id
+          username: ${{ secrets.ftp_username }}
+          password: ${{ secrets.ftp_password }}
+          port: 2222
 
           script: |
             cd public_html
             php composer-setup.php --install-dir=/home/user/bin --filename=composer
             php -r "unlink('composer-setup.php');"
-    # - name: Install Composer Dependencies
-    #   run: composer install --no-dev --no-progress --no-suggest
-    #   working-directory: /public_html/cms
