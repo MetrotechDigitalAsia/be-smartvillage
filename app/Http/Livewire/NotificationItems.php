@@ -41,5 +41,6 @@ class NotificationItems extends Component
     public function deleteNotif($id){
         DatabaseNotification::find($id)->delete();
         $this->emitSelf('$refresh');
+        $this->emit('notifAdded');
     }
 }

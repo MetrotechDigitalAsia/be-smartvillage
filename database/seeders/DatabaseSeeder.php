@@ -102,6 +102,7 @@ class DatabaseSeeder extends Seeder
                 'no_nik' => $user->NIK,
                 'password' => bcrypt($user->NIK),
                 'status' => 'Active',
+                'fcm' => $user->NIK . time() * rand(1,60)
             ]);
 
         }

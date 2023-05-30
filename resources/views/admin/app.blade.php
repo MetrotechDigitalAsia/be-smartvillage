@@ -90,10 +90,12 @@
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCem_6fvhccSrm6U1cEUQLPEJfEeuxcNY&libraries=places"></script>
 
 		<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+		{{-- <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script> --}}
 		<script type="module">
 			// Import the functions you need from the SDKs you need
 			import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 			import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js";
+			import { getMessaging, onMesssage } from  "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.1/firebase-messaging.min.js"
 			// TODO: Add SDKs for Firebase products that you want to use
 			// https://firebase.google.com/docs/web/setup#available-libraries
 		  
@@ -111,24 +113,26 @@
 		  
 			// Initialize Firebase
 			const app = initializeApp(firebaseConfig);
-			const analytics = getAnalytics(app);
+    		const messaging = getMessaging(app);
 
-			console.log(app)
+			console.log(messaging)
 
-			firebase.initializeApp(firebaseConfig)
-			const message = firebase.messaging()
 
-			function initFirebaseMessagingRegistration(){
+			// function initFirebaseMessagingRegistration(){
 
-				messaging.requestPermission()
-				.then(() => messaging.getToken())
-				.then(token => {
-					console.log(token)
-				})
+			// 	messaging.requestPermission()
+			// 	.then(() => {
+			// 		messaging.getToken()
+			// 		console.log('hit token')
+			// 	})
+			// 	.then(token => {
+			// 		console.log(token)
+			// 	})
+			// 	.catch(e => console.log(e))
 
-			}
+			// }
 
-			initFirebaseMessagingRegistration()
+			// initFirebaseMessagingRegistration()
 
 
 		  </script>

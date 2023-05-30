@@ -99,7 +99,34 @@
             </div>
             <!--end::Toggle-->
             <!--begin::Dropdown-->
-            @livewire('notification-items')
+            <div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
+                <!--begin::Header-->
+                <form>
+                    <div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url({{ asset('assets/be/media/bg/notif-bg.jpg') }})">
+                        <!--begin::Title-->
+                        <h4 class="d-flex flex-center rounded-top">
+                            <span class="text-white">Pemberitahuan</span>
+                            @livewire('notification-count')
+                        </h4>
+                        <!--end::Title-->
+                        <!--begin::Tabs-->
+                        <ul class="nav nav-bold nav-tabs nav-tabs-line nav-tabs-line-3x nav-tabs-line-transparent-white nav-tabs-line-active-border-success mt-3 px-8" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active show" data-toggle="tab" href="#mail_notification">Surat</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#umkm_notification">Umkm</a>
+                            </li>
+                        </ul>
+                        <!--end::Tabs-->
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Content-->
+                    @livewire('notification-items')
+                    <!--end::Content-->
+                </form>
+            </div>
+            
             <!--end::Dropdown-->
         </div>
             <!--begin::User-->

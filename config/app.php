@@ -188,7 +188,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-
+        Kreait\Laravel\Firebase\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -214,7 +214,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Firebase' => Kreait\Laravel\Firebase\Facades\Firebase::class,
     ])->toArray(),
 
 ];
