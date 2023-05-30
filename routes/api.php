@@ -35,8 +35,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/token', [FCMController::class, 'generateToken']);
-
 Route::group(['middleware' => 'api_key'],function(){
     Route::get('/points', [DestinationPointController::class, 'index']);
     Route::get('/priority', [DestinationPointController::class, 'getPriorityPoints']);
