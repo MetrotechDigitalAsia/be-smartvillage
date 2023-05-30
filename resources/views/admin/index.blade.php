@@ -246,8 +246,6 @@
         const warning = '#9CCC65'
         const danger = '#F64E60'
 
-        $p
-
         const ChartWidget = function(){
 
             const residentChart = function(){
@@ -316,15 +314,15 @@
 
             }
 
-            const mailChart = function(){
+            const mailChart = function(mail){
                 const el = document.querySelector('#mail_chart')
                 const opt = {
                     chart: {
                         type: 'donut',
                         height: 365
                     },
-                    series: Array.from({ length: 3 }, () => Math.floor(Math.random() * 150)),
-                    labels: ['Surat Akta Kematian', 'SKTU', 'Surat Kelahiran'],
+                    series: mail.series,
+                    labels: mail.labels,
                     colors: [success, primary, warning],
                     legend: {
                         position: 'bottom'
@@ -352,8 +350,24 @@
 
             return {
                 init: function(){
+
+                    let mailObj
+
+                    $.get("{{ route('dashboard') }}")
+                    .done(res => {
+                        
+                        mailObj = {
+                            labels: res.mail.map(mail => mail['title']),
+                            series: res.mail.map(mail => mail['count']),
+                        }
+
+                        // console.log()
+                        mailChart(mailObj)
+
+                    })
+                    .fail(err => console.log('error'))
                     residentChart()
-                    mailChart()
+                    
                 }
             }
 

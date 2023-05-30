@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Complaint;
+use App\Models\Mail;
 use App\Models\Staff;
 use App\Models\UserBusinessItem;
 use App\Models\UserData;
@@ -105,7 +106,17 @@ class LoginController extends Controller
         $latestComplaint = Complaint::latest()->limit(3)->get();
 
         if(request()->ajax()){
-            return 'sfd';
+
+            $mail = DB::table('users_mail')
+                        ->select('title', DB::raw('COUNT(title) as count'))
+                        ->join('mails', 'mails.id', '=', 'users_mail.mail_id')
+                        ->groupBy('mails.title')
+                        ->get();
+
+            return [
+                'mail' => $mail,
+                'resident' => UserData::all()
+            ];
         }
 
         return view('admin.index', compact('residentTotal', 'umkmTotal', 'staffTotal', 'mailTotal', 'latestMail', 'latestUmkm', 'latestComplaint'));
