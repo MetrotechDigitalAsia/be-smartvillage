@@ -361,6 +361,8 @@
                             series: res.mail.map(mail => mail['count']),
                         }
 
+                        console.log(res.resident)
+
                         mailChart(mailObj)
 
                     })

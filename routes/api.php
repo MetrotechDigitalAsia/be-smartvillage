@@ -59,10 +59,10 @@ Route::group(['middleware' => 'api_key'],function(){
 
     Route::group(['prefix' => 'umkm'], function(){
         Route::get('/',[UserBusinessItemController::class, 'index']);
-        Route::get('/{userId}',[UserBusinessItemController::class, 'getByUser']);
-        Route::post('/{userId}',[UserBusinessItemController::class, 'store']);
         Route::post('/category',[UserBusinessItemController::class, 'filterByCategory']);
         Route::get('/latest',[UserBusinessItemController::class, 'getLatest']);
+        Route::get('/{userId}',[UserBusinessItemController::class, 'getByUser']);
+        Route::post('/{userId}',[UserBusinessItemController::class, 'store']);
     });
 
 
