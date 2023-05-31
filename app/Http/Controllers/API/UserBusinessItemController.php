@@ -44,12 +44,12 @@ class UserBusinessItemController extends Controller
     
     public function getLatest(){
 
-        $data = UserBusinessItem::all();
+        $data = UserBusinessItem::where('status', 'approve')->latest()->limit(4)->get();
 
-        // foreach ($data as $item) {
-        //     $item->item_price = number_format($item->item_price);
-        //     $item->item_image = 'storage/' . $item->item_image;
-        // }
+        foreach ($data as $item) {
+            $item->item_price = number_format($item->item_price);
+            $item->item_image = 'storage/' . $item->item_image;
+        }
 
         return ResponseController::create($data, 'success', 'get umkm success', 200);
 
