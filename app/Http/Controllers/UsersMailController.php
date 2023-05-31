@@ -8,8 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 use Barryvdh\DomPDF\Facade\Pdf;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
+use Kreait\Firebase\Messaging;
+use Kreait\Firebase\Messaging\CloudMessage;
+use Kreait\Firebase\Messaging\Message;
+use Kreait\Firebase\Messaging\Notification as MessagingNotification;
 
 class UsersMailController extends Controller
 {
@@ -125,7 +130,15 @@ class UsersMailController extends Controller
     public function changeStatusFromDetail($id, $status){
 
         try {
+
+
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
+
+            // DB::table('users_mail as userMail')
+            //     ->where('id',$id)
+            //     ->join('user_logins as user', '=', );
+
+            // $this->sendMailPushNotification('getasan', 'status surat berubah', );
 
             switch ($status) {
                 case 'Done':
@@ -191,6 +204,36 @@ class UsersMailController extends Controller
 
         $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data'));
         return $pdf->stream('invoice.pdf');
+
+    }
+
+    public function sendMailPushNotification($title, $body, $fcm){
+
+        $url = 'https://fcm.googleapis.com/fcm/send';
+
+        $data = [
+            "registration_ids" => $fcm,
+            "notification" => [
+                "title" => $title,
+                "body" => $body,  
+            ]
+        ];
+
+        $data = json_encode($data);
+
+        $headers = [
+            'Authorization:key=' . env('SERVER_KEY'),
+            'Content-Type: application/json',
+        ];
+
+        $client = new Client();
+
+        $res = $client->post($url, compact('headers', 'data'));
+
+        $statusCode = $res->getStatusCode();
+        $responseData = $res->getBody()->getContents();
+    
+        return $responseData;
 
     }
 
