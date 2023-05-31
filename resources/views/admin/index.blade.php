@@ -361,11 +361,11 @@
                             series: res.mail.map(mail => mail['count']),
                         }
 
-                        // console.log()
+                        console.log(res.resident)
                         mailChart(mailObj)
 
                     })
-                    .fail(err => console.log('error'))
+                    .fail(err => console.log(err.responseJSON.message))
                     residentChart()
                     
                 }
