@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bulan;
 use App\Models\Complaint;
 use App\Models\Mail;
 use App\Models\Staff;
@@ -108,15 +109,57 @@ class LoginController extends Controller
         if(request()->ajax()){
 
             $mail = DB::table('users_mail')
-                        ->select('title', DB::raw('COUNT(title) as count'))
-                        ->join('mails', 'mails.id', '=', 'users_mail.mail_id')
-                        ->groupBy('mails.title')
-                        ->get();
+                    ->select('title', DB::raw('COUNT(title) as count'))
+                    ->join('mails', 'mails.id', '=', 'users_mail.mail_id')
+                    ->groupBy('mails.title')
+                    ->get();
 
-            return [
-                'mail' => $mail,
-                'resident' => UserData::all()
+            // $resident = UserData::
+            //         select(DB::raw('
+            //             CASE
+            //                 WHEN umur <= 12 THEN "Anak-anak"
+            //                 WHEN umur > 12 AND umur <= 18 THEN "Remaja"
+            //                 ELSE "Dewasa"
+            //             END AS kategori_umur,
+            //             MONTH(tanggal_lahir) AS bulan,
+            //             COUNT(*) AS jumlah_kelahiran
+            //         '))
+            //         ->groupBy('kategori_umur', 'bulan')
+            //         ->get();
+
+
+            $bulan = collect(range(1, 12));
+
+            $data = DB::connection('resident_mysql')->table(function ($query) {
+                $query->selectRaw('1 AS bulan')
+                    ->unionAll(DB::raw('SELECT 2'))
+                    ->unionAll(DB::raw('SELECT 3'))
+                    ->unionAll(DB::raw('SELECT 4'))
+                    ->unionAll(DB::raw('SELECT 5'))
+                    ->unionAll(DB::raw('SELECT 6'))
+                    ->unionAll(DB::raw('SELECT 7'))
+                    ->unionAll(DB::raw('SELECT 8'))
+                    ->unionAll(DB::raw('SELECT 9'))
+                    ->unionAll(DB::raw('SELECT 10'))
+                    ->unionAll(DB::raw('SELECT 11'))
+                    ->unionAll(DB::raw('SELECT 12'));
+            }, 'bulan')
+            ->leftJoin('resident_data', function ($join) {
+                $join->on(DB::raw('MONTH(resident_data.TANGGAL_LAHIR)'), '=', 'bulan.bulan')
+                    ->where('kondisi_tambahan');
+            })
+            ->select(DB::raw('bulan.bulan, COUNT(resident_data.TANGGAL_LAHIR) as jumlah_data'))
+            ->whereBetween('bulan.bulan', [1, 12])
+            ->groupBy('bulan.bulan')
+            ->get()
+            ->toArray();
+        
+
+            $resident = [
+                'anak' => $data
             ];
+
+            return compact('mail', 'resident');
         }
 
         return view('admin.index', compact('residentTotal', 'umkmTotal', 'staffTotal', 'mailTotal', 'latestMail', 'latestUmkm', 'latestComplaint'));
