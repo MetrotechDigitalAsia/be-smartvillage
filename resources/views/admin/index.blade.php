@@ -248,7 +248,10 @@
 
         const ChartWidget = function(){
 
-            const residentChart = function(){
+            const residentChart = function({ child, adult, elderly }){
+
+                const x = Object.values(child).map( obj => obj.data_count )
+                console.log(x)
 
                 const el = document.querySelector('#resident_chart')
                 const opt = {
@@ -262,15 +265,15 @@
                     series: [
                         {
                             name: 'Anak Anak',
-                            data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 150))
+                            data: Object.values(child).map( obj => obj.data_count )
                         },
                         {
                             name: 'Dewasa',
-                            data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 110))
+                            data: Object.values(adult).map( obj => obj.data_count )
                         },
                         {
                             name: 'Lansia',
-                            data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 90))
+                            data: Object.values(elderly).map( obj => obj.data_count )
                         }
                     ],
                     xaxis: {
@@ -321,8 +324,8 @@
                         type: 'donut',
                         height: 365
                     },
-                    series: mail.series,
-                    labels: mail.labels,
+                    series: mail.series.length > 0 ? mail.series : [0],
+                    labels: mail.labels.length > 0 ? mail.labels : ['Tidak ada surat'],
                     colors: [success, primary, warning],
                     legend: {
                         position: 'bottom'
@@ -347,7 +350,6 @@
                 chart.render()
             }
 
-
             return {
                 init: function(){
 
@@ -361,13 +363,11 @@
                             series: res.mail.map(mail => mail['count']),
                         }
 
-                        console.log(res.resident)
-
+                        residentChart(res.resident)
                         mailChart(mailObj)
 
                     })
                     .fail(err => console.log(err.responseJSON.message))
-                    residentChart()
                     
                 }
             }
