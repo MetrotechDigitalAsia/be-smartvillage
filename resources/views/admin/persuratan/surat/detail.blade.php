@@ -284,6 +284,8 @@
         $.get(href)
             .done(function(res){
 
+                console.log(res)
+
                 $.notify({
                     message: res.message,
                 }, opt)

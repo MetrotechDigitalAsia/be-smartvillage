@@ -103,42 +103,10 @@ class UsersMailController extends Controller
     public function changeStatus($id, $status){
 
         try {
+            
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
-            $userId = DB::table('users_mail as userMail')->where('id',$id)->first('user_id');
-            $user = UserLogin::find($userId);
-            // Notification::send(null, new SendPushNotification('title', 'body', $user->fcm));
-        } catch (\Exception $e) {
-            return redirect('/persuratan/surat')->with('error', $e->getMessage());
-        }
-
-        switch ($status) {
-            case 'Done':
-                $msg = 'Surat disetujui';
-                break;
-            case 'Process':
-                $msg = 'Surat diprosess';
-                break;
-            case 'Rejected':
-                $msg = 'Surat ditolak';
-                break;
-        }
-        
-        return redirect()->back()->with('success', $msg);
-
-    }
-
-    public function changeStatusFromDetail($id, $status){
-
-        try {
-
-
-            DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
-
-            // DB::table('users_mail as userMail')
-            //     ->where('id',$id)
-            //     ->join('user_logins as user', '=', );
-
-            // $this->sendMailPushNotification('getasan', 'status surat berubah', );
+            $mail = DB::table('users_mail as userMail')->where('id',$id)->first('user_id');
+            $token = UserLogin::find($mail->user_id)->first('fcm');
 
             switch ($status) {
                 case 'Done':
@@ -152,6 +120,39 @@ class UsersMailController extends Controller
                     break;
             }
 
+            $this->sendMailPushNotification('Notifikasi: Perubahan Status Surat', 'Status surat berubah menjadi '. $msg, $token->fcm);
+            
+            return redirect()->back()->with('success', $msg);
+
+        } catch (\Exception $e) {
+            return redirect('/persuratan/surat')->with('error', $e->getMessage());
+        }
+
+
+    }
+
+    public function changeStatusFromDetail($id, $status){
+
+        try {
+
+            DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
+            $mail = DB::table('users_mail as userMail')->where('id',$id)->first('user_id');
+            $token = UserLogin::find($mail->user_id)->first('fcm');
+
+            switch ($status) {
+                case 'Done':
+                    $msg = 'Surat disetujui';
+                    break;
+                case 'Process':
+                    $msg = 'Surat diproses';
+                    break;
+                case 'Rejected':
+                    $msg = 'Surat ditolak';
+                    break;
+            }
+
+            $this->sendMailPushNotification('Notifikasi: Perubahan Status Surat', 'Status surat berubah menjadi '. $msg, $token->fcm);
+
             $status = true;
 
         } catch (\Exception $e) {
@@ -161,7 +162,8 @@ class UsersMailController extends Controller
 
         return response()->json([
             'success' => $status,
-            'message' => $msg
+            'message' => $msg,
+            'user' => $token
         ]);
         
     }
@@ -179,7 +181,7 @@ class UsersMailController extends Controller
 
         return response()->json([
             'success' => $status,
-            'message' => $msg
+            'message' => $msg,
         ]);
 
     }
@@ -212,23 +214,26 @@ class UsersMailController extends Controller
         $url = 'https://fcm.googleapis.com/fcm/send';
 
         $data = [
-            "registration_ids" => $fcm,
+            "to" => $fcm,
             "notification" => [
                 "title" => $title,
                 "body" => $body,  
-            ]
+            ],
         ];
 
         $data = json_encode($data);
 
         $headers = [
-            'Authorization:key=' . env('SERVER_KEY'),
-            'Content-Type: application/json',
+            'Authorization' => 'key=' . env('FIREBASE_SERVER_KEY'),
+            'Content-Type'  => 'application/json',
         ];
 
         $client = new Client();
 
-        $res = $client->post($url, compact('headers', 'data'));
+        $res = $client->post($url, [
+            'headers' => $headers,
+            'body' => $data
+        ]);
 
         $statusCode = $res->getStatusCode();
         $responseData = $res->getBody()->getContents();
