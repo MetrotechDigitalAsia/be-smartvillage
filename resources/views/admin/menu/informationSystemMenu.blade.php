@@ -13,37 +13,6 @@
                 <div class="navi navi-hover navi-active navi-link-rounded navi-bold navi-icon-center navi-light-icon">
                     <!--begin:Item-->
                     <div class="navi-item my-2">
-                        <a href="/informasi-desa/prospek-desa" class="navi-link @if(Str::contains(Route::current()->uri, 'prospek-desa')) active @endif  ">
-                            <span class="navi-icon mr-4">
-                                <span class="svg-icon svg-icon-lg"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo2\dist/../src/media/svg/icons\Design\Polygon.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                        <rect x="0" y="0" width="24" height="24"/>
-                                        <path d="M8.08113883,20 L15.9188612,20 C16.5645068,20 17.137715,19.5868549 17.3418861,18.9743416 L19.6721428,11.9835717 C19.8694432,11.3916705 19.6797482,10.7394436 19.1957765,10.3456849 L12.9561839,5.26916104 C12.4053757,4.82102426 11.6158052,4.82050247 11.0644052,5.26791085 L4.80622561,10.345825 C4.32117072,10.7394007 4.13079092,11.3923728 4.32832067,11.984962 L6.65811388,18.9743416 C6.86228495,19.5868549 7.43549322,20 8.08113883,20 Z" fill="#000000"/>
-                                    </g>
-                                </svg><!--end::Svg Icon--></span>
-                            </span>
-                            <span class="navi-text font-weight-bolder font-size-lg">Prospek Desa</span>
-                        </a>
-                    </div>
-                    <!--end:Item-->
-                    <!--begin:Item-->
-                    <div class="navi-item my-2">
-                        <a href="/informasi-desa/profil-desa" class="navi-link  @if(Str::contains(Route::current()->uri, 'profil-desa')) active @endif ">
-                            <span class="navi-icon mr-4">
-                                <span class="svg-icon svg-icon-lg"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo2\dist/../src/media/svg/icons\Design\Substract.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                        <rect x="0" y="0" width="24" height="24"/>
-                                        <path d="M6,9 L6,15 C6,16.6568542 7.34314575,18 9,18 L15,18 L15,18.8181818 C15,20.2324881 14.2324881,21 12.8181818,21 L5.18181818,21 C3.76751186,21 3,20.2324881 3,18.8181818 L3,11.1818182 C3,9.76751186 3.76751186,9 5.18181818,9 L6,9 Z" fill="#000000" fill-rule="nonzero"/>
-                                        <path d="M10.1818182,4 L17.8181818,4 C19.2324881,4 20,4.76751186 20,6.18181818 L20,13.8181818 C20,15.2324881 19.2324881,16 17.8181818,16 L10.1818182,16 C8.76751186,16 8,15.2324881 8,13.8181818 L8,6.18181818 C8,4.76751186 8.76751186,4 10.1818182,4 Z" fill="#000000" opacity="0.3"/>
-                                    </g>
-                                </svg><!--end::Svg Icon--></span>
-                            </span>
-                            <span class="navi-text font-weight-bolder font-size-lg">Profil</span>
-                        </a>
-                    </div>
-                    <!--end:Item-->
-                    <!--begin:Item-->
-                    <div class="navi-item my-2">
                         <a href="/informasi-desa/agenda" class="navi-link @if(Str::contains(Route::current()->uri, 'agenda')) active @endif ">
                             <span class="navi-icon mr-4">
                                 <span class="svg-icon svg-icon-lg"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo2\dist/../src/media/svg/icons\General\Clipboard.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">

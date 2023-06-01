@@ -28,7 +28,7 @@ class UserBusinessItemController extends Controller
 
         foreach ($data as $item) {
             $item->item_price = number_format($item->item_price);
-            $item->item_image = 'storage/' . $item->item_image;
+            $item->item_image = env('APP_URL').'/storage/' . $item->item_image;
         }
 
         $response = [
@@ -44,11 +44,22 @@ class UserBusinessItemController extends Controller
     
     public function getLatest(){
 
-        $data = UserBusinessItem::where('status', 'approve')->latest()->limit(4)->get();
+        $data = UserBusinessItem::where('status', 'approve')->latest()->limit(4)->get([
+            'id',
+            'item_category_id',
+            'user_id',
+            'user_phone_number',
+            'item_name',
+            'item_image',
+            'item_price',
+            'item_description',
+            'item_marketplace_link',
+            'created_at',
+        ]);
 
         foreach ($data as $item) {
             $item->item_price = number_format($item->item_price);
-            $item->item_image = 'storage/' . $item->item_image;
+            $item->item_image = env('APP_URL').'/storage/' . $item->item_image;
         }
 
         return ResponseController::create($data, 'success', 'get umkm success', 200);
@@ -61,7 +72,7 @@ class UserBusinessItemController extends Controller
 
         foreach ($data as $item) {
             $item->item_price = number_format($item->item_price);
-            $item->item_image = 'storage/' . $item->item_image;
+            $item->item_image = env('APP_URL').'/storage/' . $item->item_image;
         }
 
         $response = [
@@ -102,7 +113,7 @@ class UserBusinessItemController extends Controller
         $umkm = UserBusinessItem::where('user_id', $userId)->get();
         foreach ($umkm as $item) {
             $item->item_price = number_format($item->item_price);
-            $item->item_image = 'storage/' . $item->item_image;
+            $item->item_image = env('APP_URL').'/storage/' . $item->item_image;
         }
         return ResponseController::create($umkm, 'success', 'get umkm success', 200);        
     }
