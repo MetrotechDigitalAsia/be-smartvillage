@@ -108,6 +108,18 @@ class UserDataController extends Controller
             'GOLONGAN_DARAH' => 'nullable',
         ]);
 
+        if(!empty($data['KETUA_RT'])){
+            $data['KETUA_RT'] = 1;
+        }
+        
+        if(!empty($data['KETUA_RW'])){
+            $data['KETUA_RW'] = 1;
+        }
+
+        if(!empty($data['KETUA_BANJAR'])){
+            $data['KETUA_BANJAR'] = 1;
+        }
+
         try {
 
             UserData::create($data);
