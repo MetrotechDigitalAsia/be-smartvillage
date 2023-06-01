@@ -81,8 +81,8 @@ class UserLoginController extends Controller
 
     }
 
-    public function getUserToken(Request $request,UserLogin $userLogin){
-        $userLogin->update(['fcm' => $request->token]);
+    public function getUserToken(Request $request, $userLogin){
+        UserLogin::where('id',$userLogin)->first()->update(['fcm' => $request->token]);
         return ResponseController::create($request->token, 'success', 'Token Berhasil Disimpan', 200);
     }
 
