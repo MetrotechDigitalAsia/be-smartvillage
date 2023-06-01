@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main
+      - rahmat
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
@@ -16,7 +16,8 @@ jobs:
         server: www.desagetasan.id
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        server-dir: /public_html/cms/
+        server-dir: /public_html/cms/clear
+        
         exclude: |
           **/.git*
           **/.git*/**
