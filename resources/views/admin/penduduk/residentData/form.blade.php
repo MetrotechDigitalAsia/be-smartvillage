@@ -104,7 +104,7 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">Banjar</label>
             <div class="col-lg-9 col-xl-6">
-                <select class="form-control form-control-lg form-control-solid" name="article_category">
+                <select class="form-control form-control-lg form-control-solid" name="BANJAR">
                     @php
                         $banjar = ['Buangga', 'Kauh', 'Ubud', 'Tengah']
                     @endphp
