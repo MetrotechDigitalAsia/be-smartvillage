@@ -103,7 +103,7 @@ class UsersMailController extends Controller
     public function changeStatus($id, $status){
 
         try {
-            
+
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
             $mail = DB::table('users_mail as userMail')->where('id',$id)->first('user_id');
             $token = UserLogin::find($mail->user_id)->first('fcm');
@@ -122,7 +122,7 @@ class UsersMailController extends Controller
 
             $this->sendMailPushNotification('Notifikasi: Perubahan Status Surat', 'Status surat berubah menjadi '. $msg, $token->fcm);
             
-            return redirect()->back()->with('success', $msg);
+            return redirect()->back()->with('success', $token->fcm);
 
         } catch (\Exception $e) {
             return redirect('/persuratan/surat')->with('error', $e->getMessage());
@@ -138,6 +138,7 @@ class UsersMailController extends Controller
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
             $mail = DB::table('users_mail as userMail')->where('id',$id)->first('user_id');
             $token = UserLogin::find($mail->user_id)->first('fcm');
+            return response()->json(['token' => $token]);
 
             switch ($status) {
                 case 'Done':
