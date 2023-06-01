@@ -94,10 +94,10 @@ class AdminController extends Controller
 
     function destroy(Admin $admin){
 
-        $event = Admin::where('uuid', $admin->uuid);
+        $admin->delete();
 
         try {
-            $event->delete();
+            $admin->delete();
             $message = 'successfully';
         } catch (\Exception $exception){
             $message = $exception->getMessage();

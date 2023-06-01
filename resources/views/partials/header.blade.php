@@ -26,7 +26,7 @@
 
                         @if (auth()->user()->type == 'Super' || auth()->user()->type == 'Umum')
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'informasi-desa')) menu-item-here @endif" >
-                            <a href="/informasi-desa/prospek-desa" class="menu-link ">
+                            <a href="/informasi-desa/agenda" class="menu-link ">
                                 <span class="menu-text">Informasi Desa </span>
                                 <span class="menu-desc"></span>
                             </a>

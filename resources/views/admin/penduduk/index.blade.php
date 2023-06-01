@@ -2,15 +2,14 @@
 
 @section('table')
 
-<div class="row">
+ <div class="row">
     <div class="col">
         <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets/be/media/svg/shapes/abstract-3.svg') }})">
             <!--begin::Body-->
-            <div class="card-body">
-                <a href="#" class="card-title font-weight-bold text-hover-primary font-size-h5">Ubud</a>
-                <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-1 d-block">
-                    142 <span class="text-muted font-size-sm font-weight-bold" >Penduduk</span>
-                </span>
+            <div class="card-body pt-12">
+                <span class="font-size-h3 font-weight-bolder text-primary " >Ubud</span>
+                <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-7 d-block">{{ $banjar['ubud'] }}</span>
+                <span class="font-weight-bold text-muted font-size-sm">Total Data Penduduk</span>
             </div>
             <!--end::Body-->
         </div>
@@ -18,11 +17,10 @@
     <div class="col">
         <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets/be/media/svg/shapes/abstract-3.svg') }})">
             <!--begin::Body-->
-            <div class="card-body">
-                <a href="#" class="card-title font-weight-bold text-hover-primary font-size-h5">Kauh</a>
-                <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-1 d-block">
-                    190 <span class="text-muted font-size-sm font-weight-bold" >Penduduk</span>
-                </span>
+            <div class="card-body pt-12">
+                <span class="font-size-h3 font-weight-bolder text-primary " >Kauh</span>
+                <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-7 d-block">{{ $banjar['kauh'] }}</span>
+                <span class="font-weight-bold text-muted font-size-sm">Total Data Penduduk</span>
             </div>
             <!--end::Body-->
         </div>
@@ -30,11 +28,10 @@
     <div class="col">
         <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets/be/media/svg/shapes/abstract-3.svg') }})">
             <!--begin::Body-->
-            <div class="card-body">
-                <a href="#" class="card-title font-weight-bold text-hover-primary font-size-h5">Tengah</a>
-                <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-1 d-block">
-                    125 <span class="text-muted font-size-sm font-weight-bold" >Penduduk</span>
-                </span>
+            <div class="card-body pt-12">
+                <span class="font-size-h3 font-weight-bolder text-primary " >Buangga</span>
+                <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-7 d-block">{{ $banjar['buangga'] }}</span>
+                <span class="font-weight-bold text-muted font-size-sm">Total Data Penduduk</span>
             </div>
             <!--end::Body-->
         </div>
@@ -42,86 +39,45 @@
     <div class="col">
         <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets/be/media/svg/shapes/abstract-3.svg') }})">
             <!--begin::Body-->
-            <div class="card-body">
-                <a href="#" class="card-title font-weight-bold text-hover-primary font-size-h5">Buangga</a>
-                <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-1 d-block">
-                    30 <span class="text-muted font-size-sm font-weight-bold" >Penduduk</span>
-                </span>
-                {{-- <span class="font-weight-bold text-muted font-size-sm">Anak Anak</span> --}}
+            <div class="card-body pt-12">
+                <span class="font-size-h3 font-weight-bolder text-primary " >Tengah</span>
+                <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-7 d-block">{{ $banjar['tengah'] }}</span>
+                <span class="font-weight-bold text-muted font-size-sm">Total Data Penduduk</span>
             </div>
             <!--end::Body-->
         </div>
     </div>
 </div>
-{{-- <div class="card card-custom">
-    <div class="card-body">
-    </div>
-</div> --}}
-<div class="card card-custom card-stretch gutter-b">
-    <!--begin::Header-->
-    <div class="card-header border-0 py-0">
-        <h3 class="card-title">
-            <span class="card-label font-weight-bolder text-dark">Tabel Penduduk</span>
-        </h3>
-    </div>
-    <!--end::Header-->
-    <!--begin::Body-->
-    <div class="card-body py-0">
-        <!--begin::Table-->
-        <div class="table-responsive">
-            <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_1">
-                <thead>
-                    <tr class="text-left ">
-                        <th class="pr-0" style="width: 130px">Banjar</th>
-                        <th>Pria</th>
-                        <th>Wanita</th>
-                        <th>Lansia</th>
-                        <th>Dewasa</th>
-                        <th>Anak Anak</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="table-active" >
-                        <td>Ubud</td>
-                        <td>10</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                    </tr>
-                    <tr>
-                        <td>Kauh</td>
-                        <td>120</td>
-                        <td>99</td>
-                        <td>10</td>
-                        <td>10</td>
-                        <td>99</td>
-                    </tr>
-                    <tr class="table-active" >
-                        <td>Buangga</td>
-                        <td>120</td>
-                        <td>99</td>
-                        <td>10</td>
-                        <td>99</td>
-                        <td>99</td>
-                    </tr>
-                    <tr>
-                        <td>Tengah</td>
-                        <td>10</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                    </tr>
-                    <tr class="table-active" >
-                        <td colspan="6" class="border-0" >Total</td>
-                    </tr>
-                </tbody>
-            </table>
+
+<div class="row">
+    <div class="col-xl-5">
+        <div class="card card-custom gutter-b" >
+            <div class="card-header border-0">
+                <div class="card-title">
+                    <h3 class="card-label fs-md">Penduduk Menurut Gender</h3>
+                </div>
+            </div>
+            <div class="card-body py-10">
+                <!--begin::Chart-->
+                <div id="gender_chart"></div>
+                <!--end::Chart-->
+            </div>
         </div>
-        <!--end::Table-->
     </div>
-    <!--end::Body-->
+    <div class="col-xl-7">
+        <div class="card card-custom gutter-b">
+            <div class="card-header border-0">
+                <div class="card-title">
+                    <h3 class="card-label">Data Penduduk Berdasarkan Gender</h3>
+                </div>
+            </div>
+            <div class="card-body py-3">
+                <!--begin::Chart-->
+                <div id="age_chart"></div>
+                <!--end::Chart-->
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection
@@ -137,88 +93,19 @@
 
         const ChartWidget = function(){
 
-            const residentChart = function(){
+            const genderChart = function(gender){
 
-                const el = document.querySelector('#resident_chart')
-                const opt = {
-                    chart: {
-                        type: 'bar',
-                        height: 350,
-                        toolbar: {
-                            show: false
-                        }
-                    },
-                    series: [
-                        {
-                            data: [
-                                {
-                                    x: 'ciciw',
-                                    y: 20,
-                                    fillColor: primary,
-                                },
-                                {
-                                    x: 'ciciw',
-                                    y: 13,
-                                    fillColor: success,
-                                },
-                                {
-                                    x: 'ciciw',
-                                    y: 13,
-                                    fillColor: info,
-                                },
-                            ]
-                        }
-                    ],
-                    xaxis: {
-                        categories: ['Laki Laki', 'Perempuan', 'hehe']
-                    },
-                    yaxis:{
-                        title: {
-                            text: 'Tahun'
-                        }
-                    },
-                    plotOptions: {
-                        bar: {
-                            horizontal: false,
-                            columnWidth: '45%',
-                            // endingShape: 'rounded'
-                        },
-                    },
-                    dataLabels: {
-                        enabled: false
-                    },
-                    stroke: {
-                        show: true,
-                        width: 2,
-                        colors: ['transparent']
-                    },
-                    fill: {
-                        opacity: 1
-                    },
-                    tooltip: {
-                        y: {
-                            formatter: function (val) {
-                                return val + " orang"
-                            }
-                        }
-                    },
-                    colors: [primary, success, warning]
-                }
+                const series = Object.values(gender)
+                const labels = Object.keys(gender)
 
-                const chart = new ApexCharts(el, opt)
-                chart.render()
-
-            }
-
-            const mailChart = function(){
-                const el = document.querySelector('#pie_chart')
+                const el = document.querySelector('#gender_chart')
                 const opt = {
                     chart: {
                         type: 'donut',
-                        height: 290
+                        height: 365
                     },
-                    series: Array.from({ length: 2 }, () => Math.floor(Math.random() * 150)),
-                    labels: ['Pria', 'Perempuan'],
+                    series: series.length > 0 ? series : [0],
+                    labels: labels.length > 0 ? labels : ['Tidak ada data'],
                     colors: [success, primary, warning],
                     legend: {
                         position: 'bottom'
@@ -243,11 +130,81 @@
                 chart.render()
             }
 
+            const ageChart = function(age){
+
+                const categories = age.map( item => item['KATEGORI'] )
+                const data = age.map( item => ({y: item['jumlah'], x: 'weq'}) )
+
+                console.log({categories, data})
+
+                const el = document.querySelector('#age_chart')
+                const opt = {
+                    chart: {
+                        type: 'bar',
+                        height: 350,
+                        toolbar: {
+                            show: false
+                        }
+                    },
+                    series: [{
+                        data
+                    }],
+                    xaxis: {
+                        categories,
+                    },
+                    yaxis:{
+                        title: {
+                            text: 'Jumlah'
+                        },
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: false,
+                            columnWidth: '45%',
+                            distributed: true
+                            // endingShape: 'rounded'
+                        },
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        show: true,
+                        width: 2,
+                        colors: ['transparent']
+                    },
+                    fill: {
+                        opacity: 1
+                    },
+                    tooltip: {
+                        y: {
+                            formatter: function (val, e) {
+                                return val + " orang"
+                            }
+                        },
+                        x: {
+                            formatter: function (val) {
+                                return val
+                            },
+                        }
+                    },
+                    colors: [primary, success, warning]
+                }
+
+                const chart = new ApexCharts(el, opt)
+                chart.render()
+            }
+
             return {
                 init: function(){
-                    residentChart()
-                    mailChart()
-                    umkmChart()
+
+                    $.get("{{ route('residentDashboard') }}")
+                    .done( res => {
+                        genderChart(res.gender)
+                        ageChart(res.age)
+                    })
+                    .fail(err => console.log(err))
+
                 }
             }
 

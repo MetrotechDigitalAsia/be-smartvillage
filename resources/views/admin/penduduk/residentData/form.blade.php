@@ -104,7 +104,17 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">Banjar</label>
             <div class="col-lg-9 col-xl-6">
-                <input required class="form-control @error('BANJAR') is-invalid @enderror form-control-lg form-control-solid" type="text" name="BANJAR" value="{{$userData['BANJAR'] ?? '' }}" required />
+                <select class="form-control form-control-lg form-control-solid" name="article_category">
+                    @php
+                        $banjar = ['Buangga', 'Kauh', 'Ubud', 'Tengah']
+                    @endphp
+                    <option value="">Pilih Banjar...</option>
+                    @foreach ($banjar as $item)
+                    <option value="{{ $item }}" {{ !empty($userData) ? $userData['BANJAR'] == $item ? 'selected' : '' : ''}}  >
+                        {{ $item }}
+                    </option>
+                    @endforeach
+                </select>
                 @error('BANJAR')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
