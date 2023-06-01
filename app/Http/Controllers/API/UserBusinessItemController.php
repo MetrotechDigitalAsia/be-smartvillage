@@ -28,7 +28,7 @@ class UserBusinessItemController extends Controller
 
         foreach ($data as $item) {
             $item->item_price = number_format($item->item_price);
-            $item->item_image = 'storage/' . $item->item_image;
+            $item->item_image = env('APP_URL').'/storage/' . $item->item_image;
         }
 
         $response = [
@@ -59,7 +59,7 @@ class UserBusinessItemController extends Controller
 
         foreach ($data as $item) {
             $item->item_price = number_format($item->item_price);
-            $item->item_image = 'storage/' . $item->item_image;
+            $item->item_image = env('APP_URL').'/storage/' . $item->item_image;
         }
 
         return ResponseController::create($data, 'success', 'get umkm success', 200);
@@ -72,7 +72,7 @@ class UserBusinessItemController extends Controller
 
         foreach ($data as $item) {
             $item->item_price = number_format($item->item_price);
-            $item->item_image = 'storage/' . $item->item_image;
+            $item->item_image = env('APP_URL').'/storage/' . $item->item_image;
         }
 
         $response = [
@@ -113,7 +113,7 @@ class UserBusinessItemController extends Controller
         $umkm = UserBusinessItem::where('user_id', $userId)->get();
         foreach ($umkm as $item) {
             $item->item_price = number_format($item->item_price);
-            $item->item_image = 'storage/' . $item->item_image;
+            $item->item_image = env('APP_URL').'/storage/' . $item->item_image;
         }
         return ResponseController::create($umkm, 'success', 'get umkm success', 200);        
     }
