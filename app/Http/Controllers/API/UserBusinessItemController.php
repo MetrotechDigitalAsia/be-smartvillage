@@ -44,7 +44,18 @@ class UserBusinessItemController extends Controller
     
     public function getLatest(){
 
-        $data = UserBusinessItem::where('status', 'approve')->latest()->limit(4)->get();
+        $data = UserBusinessItem::where('status', 'approve')->latest()->limit(4)->get([
+            'id',
+            'item_category_id',
+            'user_id',
+            'user_phone_number',
+            'item_name',
+            'item_image',
+            'item_price',
+            'item_description',
+            'item_marketplace_link',
+            'created_at',
+        ]);
 
         foreach ($data as $item) {
             $item->item_price = number_format($item->item_price);
