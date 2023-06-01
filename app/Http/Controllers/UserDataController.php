@@ -127,7 +127,7 @@ class UserDataController extends Controller
             if(!empty($data['AKUN_MOBILE_APP'])){
                 UserLogin::create([
                     'no_nik' => $data['NIK'],
-                    'password' => bcrypt($data['password']),
+                    'password' => bcrypt($data['NIK']),
                     'status' => 'Active'
                 ]);
             }
