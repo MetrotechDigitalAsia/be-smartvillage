@@ -137,8 +137,7 @@ class UsersMailController extends Controller
 
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
             $mail = DB::table('users_mail as userMail')->where('id',$id)->first('user_id');
-            $token = UserLogin::find($mail->user_id)->first('fcm');
-            return response()->json(['token' => $token]);
+            $token = UserLogin::where('id',$mail->user_id)->first('fcm');
 
             switch ($status) {
                 case 'Done':
