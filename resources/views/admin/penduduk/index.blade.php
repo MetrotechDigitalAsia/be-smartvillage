@@ -68,7 +68,7 @@
         <div class="card card-custom gutter-b">
             <div class="card-header border-0">
                 <div class="card-title">
-                    <h3 class="card-label">Data Penduduk Berdasarkan Gender</h3>
+                    <h3 class="card-label">Penduduk Menurut Umur</h3>
                 </div>
             </div>
             <div class="card-body py-3">
