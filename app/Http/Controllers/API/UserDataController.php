@@ -91,4 +91,17 @@ class UserDataController extends Controller
         return ResponseController::create($data, 'success', 'get family data', 200);
     }
 
+    public function groupByBanjar(){
+
+        $kauh = UserData::where('BANJAR', 'kauh')->count();
+        $ubud = UserData::where('BANJAR', 'ubud')->count();
+        $tengah = UserData::where('BANJAR', 'tengah')->count();
+        $buangga = UserData::where('BANJAR', 'buangga')->count();
+        
+        $resident = compact('kauh', 'ubud', 'tengah', 'buangga');
+
+        return ResponseController::create($resident, 'success', 'get resident by banjar', 200);
+
+    }
+
 }
