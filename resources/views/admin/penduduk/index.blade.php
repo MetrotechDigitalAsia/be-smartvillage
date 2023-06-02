@@ -91,6 +91,10 @@
         const warning = '#9CCC65'
         const danger = '#F64E60'
 
+
+        const gender = {!! json_encode($gender) !!}
+        const age = {!! json_encode($age) !!}
+
         const ChartWidget = function(){
 
             const genderChart = function(gender){
@@ -198,12 +202,8 @@
             return {
                 init: function(){
 
-                    $.get("{{ route('residentDashboard') }}")
-                    .done( res => {
-                        genderChart(res.gender)
-                        ageChart(res.age)
-                    })
-                    .fail(err => console.log(err))
+                    genderChart(gender)
+                    ageChart(age)
 
                 }
             }

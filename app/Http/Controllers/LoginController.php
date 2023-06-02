@@ -106,15 +106,13 @@ class LoginController extends Controller
         
         $latestComplaint = Complaint::latest()->limit(3)->get();
 
-        if(request()->ajax()){
-
-            $mail = DB::table('users_mail')
+        $mail = DB::table('users_mail')
                 ->select('title', DB::raw('COUNT(title) as count'))
                 ->join('mails', 'mails.id', '=', 'users_mail.mail_id')
                 ->groupBy('mails.title')
                 ->get();
 
-            $anak = DB::connection('resident_mysql')->table(DB::raw('(SELECT 1 AS month UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12) AS months'))
+                $anak = DB::connection('resident_mysql')->table(DB::raw('(SELECT 1 AS month UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12) AS months'))
                 ->leftJoin('resident_data', function ($join) {
                     $join->on(DB::raw('MONTH(resident_data.created_at)'), '=', 'months.month')
                         ->whereYear('resident_data.created_at', '=', date('Y'))
@@ -153,11 +151,7 @@ class LoginController extends Controller
                 'elderly' => $lansia
             ];
 
-
-            return compact('mail', 'resident');
-        }
-
-        return view('admin.index', compact('residentTotal', 'umkmTotal', 'staffTotal', 'mailTotal', 'latestMail', 'latestUmkm', 'latestComplaint'));
+        return view('admin.index', compact('residentTotal', 'umkmTotal', 'staffTotal', 'mailTotal', 'latestMail', 'latestUmkm', 'latestComplaint', 'mail', 'resident'));
     }
 
 }

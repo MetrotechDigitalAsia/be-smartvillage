@@ -20,27 +20,20 @@ class UserDataController extends Controller
 
     public function dashboard(Request $request){
         
-        if($request->ajax()){
+        $gender = UserData::all()->groupBy('JENIS_KELAMIN')->map(fn($entries) => $entries->count());
 
-            $gender = UserData::all()->groupBy('JENIS_KELAMIN')->map(fn($entries) => $entries->count());
-
-            $age = DB::connection('resident_mysql')->table('resident_data')
-                    ->select(DB::raw('
-                        CASE
-                            WHEN UMUR <= 11 THEN "Anak Anak"
-                            WHEN UMUR >= 12 AND UMUR <= 18 THEN "Remaja"
-                            WHEN UMUR >= 19 AND UMUR <= 45 THEN "Dewasa"
-                            WHEN UMUR > 45 THEN "Lansia"
-                        END AS KATEGORI,
-                        COUNT(*) as jumlah'))
-                    ->groupBy('KATEGORI')
-                    ->orderBy('UMUR')
-                    ->get();
-
-            $data = compact('gender', 'age');
-
-            return $data;
-        }
+        $age = DB::connection('resident_mysql')->table('resident_data')
+                ->select(DB::raw('
+                    CASE
+                        WHEN UMUR <= 11 THEN "Anak Anak"
+                        WHEN UMUR >= 12 AND UMUR <= 18 THEN "Remaja"
+                        WHEN UMUR >= 19 AND UMUR <= 45 THEN "Dewasa"
+                        WHEN UMUR > 45 THEN "Lansia"
+                    END AS KATEGORI,
+                    COUNT(*) as jumlah'))
+                ->groupBy('KATEGORI')
+                ->orderBy('UMUR')
+                ->get();
 
         $kauh = UserData::where('BANJAR', 'Kauh')->count();
         $buangga = UserData::where('BANJAR', 'buangga')->count();
@@ -49,7 +42,7 @@ class UserDataController extends Controller
 
         $banjar = compact('kauh', 'buangga', 'tengah', 'ubud');
 
-        return view('admin.penduduk.index', compact('banjar'));
+        return view('admin.penduduk.index', compact('banjar', 'gender', 'age'));
     }
 
 

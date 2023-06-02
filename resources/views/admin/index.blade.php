@@ -246,6 +246,10 @@
         const warning = '#9CCC65'
         const danger = '#F64E60'
 
+        const mail = {!! json_encode($mail) !!}
+        const resident = {!! json_encode($resident) !!}
+        console.log(mail)
+
         const ChartWidget = function(){
 
             const residentChart = function({ child, adult, elderly }){
@@ -355,20 +359,14 @@
 
                     let mailObj
 
-                    $.get("{{ route('dashboard') }}")
-                    .done(res => {
-                        
-                        mailObj = {
-                            labels: res.mail.map(mail => mail['title']),
-                            series: res.mail.map(mail => mail['count']),
-                        }
+                    mailObj = {
+                        labels: mail.map(mail => mail['title']),
+                        series: mail.map(mail => mail['count']),
+                    }
 
-                        residentChart(res.resident)
-                        mailChart(mailObj)
+                    residentChart(resident)
+                    mailChart(mailObj)
 
-                    })
-                    .fail(err => console.log(err.responseJSON.message))
-                    
                 }
             }
 
