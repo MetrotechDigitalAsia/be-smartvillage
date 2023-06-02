@@ -89,6 +89,7 @@ Route::group(['middleware' => 'api_key'],function(){
         Route::controller(UserDataController::class)->group(function(){
             Route::get('/getByAge', 'getByAge');
             Route::get('/getByEducation', 'getByEducation');
+            Route::get('/banjar', 'groupByBanjar');
             Route::get('/groupBy/{type}', 'getAndGroupBy');
             Route::get('/family/{noKK}', 'getFamily');
         });
