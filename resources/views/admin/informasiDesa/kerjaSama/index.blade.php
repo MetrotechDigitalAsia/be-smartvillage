@@ -112,8 +112,8 @@
 					textAlign: 'center',
 				}, {
 					field: 'image',
-					title: 'Title',
-                    template: (e) => `<img src="{{ asset('storage') }}/${e.image}" width="150" style="object-fit: cover;" />`
+					title: 'Image',
+                    template: (e) => `<img src="{{ asset('storage/'. '${e.image}') }}" width="150" style="object-fit: cover;" />`
 				},{
 					field: 'created_at',
 					title: 'Date',
