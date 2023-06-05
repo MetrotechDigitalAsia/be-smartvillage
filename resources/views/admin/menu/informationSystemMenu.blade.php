@@ -146,6 +146,26 @@
                     </div>
 
                     <div class="navi-item my-2">
+                        <a href="/informasi-desa/kerja-sama-desa" class="navi-link @if(Str::contains(Route::current()->uri, 'kerja-sama-desa')) active @endif ">
+                            <span class="navi-icon mr-4">
+                                <span class="svg-icon svg-icon-lg">
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <rect x="0" y="0" width="24" height="24"/>
+                                            <rect fill="#000000" opacity="0.3" x="11" y="8" width="2" height="9" rx="1"/>
+                                            <path d="M12,21 C13.1045695,21 14,20.1045695 14,19 C14,17.8954305 13.1045695,17 12,17 C10.8954305,17 10,17.8954305 10,19 C10,20.1045695 10.8954305,21 12,21 Z M12,23 C9.790861,23 8,21.209139 8,19 C8,16.790861 9.790861,15 12,15 C14.209139,15 16,16.790861 16,19 C16,21.209139 14.209139,23 12,23 Z" fill="#000000" fill-rule="nonzero"/>
+                                            <path d="M12,7 C13.1045695,7 14,6.1045695 14,5 C14,3.8954305 13.1045695,3 12,3 C10.8954305,3 10,3.8954305 10,5 C10,6.1045695 10.8954305,7 12,7 Z M12,9 C9.790861,9 8,7.209139 8,5 C8,2.790861 9.790861,1 12,1 C14.209139,1 16,2.790861 16,5 C16,7.209139 14.209139,9 12,9 Z" fill="#000000" fill-rule="nonzero"/>
+                                        </g>
+                                    </svg>
+                                    <!--end::Svg Icon-->
+                                </span>
+                            </span>
+                            <span class="navi-text font-weight-bolder font-size-lg">Kerja Sama Desa</span>
+                        </a>
+                    </div>
+
+                    <div class="navi-item my-2">
                         <a href="/informasi-desa/complaint" class="navi-link @if(Str::contains(Route::current()->uri, 'complaint')) active @endif ">
                             <span class="navi-icon mr-4">
                                 <span class="svg-icon svg-icon-lg">

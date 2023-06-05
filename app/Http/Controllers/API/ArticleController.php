@@ -10,7 +10,7 @@ class ArticleController extends Controller
 {
     public function index(){
 
-        $data = Article::all();
+        $data = Article::paginate(6);
         
         foreach ($data as $item) {
             $item->image = 'storage/' . $item->image;
@@ -35,7 +35,7 @@ class ArticleController extends Controller
 
     public function getDataByParam($param){
 
-        $data = Article::where('slug', 'LIKE', '%'.$param.'%')->orWhere('title', 'LIKE', '%'.$param.'%')->get();
+        $data = Article::where('slug', 'LIKE', '%'.$param.'%')->orWhere('title', 'LIKE', '%'.$param.'%')->paginate(6);
 
         foreach ($data as $item) {
             $item->image = 'storage/' . $item->image;
