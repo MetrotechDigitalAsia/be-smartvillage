@@ -10,12 +10,12 @@
         </div>
         <div class="card-toolbar">
 
-			<div class="input-icon mr-5">
+			{{-- <div class="input-icon mr-5">
 				<input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
 				<span>
 					<i class="flaticon2-search-1 text-muted"></i>
 				</span>
-			</div>
+			</div> --}}
 
             <!--begin::Button-->
             <a href="/informasi-desa/kerja-sama-desa/create" class="btn btn-primary font-weight-bolder">
