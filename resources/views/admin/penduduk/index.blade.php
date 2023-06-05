@@ -207,7 +207,6 @@
 
                 }
             }
-
         }()
 
         jQuery(document).ready(function () {

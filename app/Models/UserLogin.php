@@ -21,4 +21,6 @@ class UserLogin extends Authenticatable
         return $this->belongsToMany(Mail::class, 'users_mail', 'user_id', 'mail_id');
     }
 
+
+
 }

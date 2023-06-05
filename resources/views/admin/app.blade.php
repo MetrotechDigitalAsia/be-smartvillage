@@ -115,8 +115,6 @@
 			const app = initializeApp(firebaseConfig);
     		const messaging = getMessaging(app);
 
-			console.log(messaging)
-
 
 			// function initFirebaseMessagingRegistration(){
 

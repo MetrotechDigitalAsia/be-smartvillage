@@ -13,6 +13,7 @@ use App\Http\Controllers\{
     FamilyController,
     InvestationController,
     ItemBusinessCategoryController,
+    KerjaSamaController,
     LoginController,
     MailController,
     PositionController,
@@ -139,6 +140,15 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/', [ComplaintController::class, 'index'])->name('complaint');
             Route::get('/show/{complaint}', [ComplaintController::class, 'show']);
             Route::delete('/delete/{complaint}', [ComplaintController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'kerja-sama-desa'], function(){
+            Route::get('/',[KerjaSamaController::class, 'index'])->name('kerjaSama');
+            Route::get('/create',[KerjaSamaController::class, 'create']);
+            Route::get('/show/{kerjaSama}',[KerjaSamaController::class, 'show']);
+            Route::post('/',[KerjaSamaController::class, 'store'])->name('storeKerjaSama');
+            Route::post('/update/{kerjaSama}',[KerjaSamaController::class, 'update']);
+            Route::delete('/delete/{kerjaSama}',[KerjaSamaController::class, 'destroy']);
         });
     
     });
