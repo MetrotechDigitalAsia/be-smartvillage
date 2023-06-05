@@ -91,6 +91,11 @@ class KerjaSamaController extends Controller
         $data = KerjaSama::find($kerjaSama->id);
 
         try {
+
+            if($data->image){
+                Storage::delete($kerjaSama->image);
+            }
+
             $data->delete();
             $message = 'successfully';
         } catch (\Exception $exception){
