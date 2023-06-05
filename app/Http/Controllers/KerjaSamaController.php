@@ -76,7 +76,7 @@ class KerjaSamaController extends Controller
         }
 
         try {
-            $kerjaSama->update($request->all());
+            $kerjaSama->update($validated);
             $message = 'update kerja sama successfully';
         } catch (\Exception $e) {
             $message = $e->getMessage();
