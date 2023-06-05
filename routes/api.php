@@ -10,6 +10,7 @@ use App\Http\Controllers\API\{
     InvestationController,
     UserBusinessItemController,
     ItemBusinessCategoryController,
+    KerjaSamaController,
     MailController,
     SignatureController,
     UserDataController,
@@ -100,6 +101,8 @@ Route::group(['middleware' => 'api_key'],function(){
             Route::get('/{no_kk}', 'getData');
         });
     });
+
+    Route::get('/kerjaSama', KerjaSamaController::class);
 
 
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\KerjaSama;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class KerjaSamaController extends Controller
@@ -45,7 +46,7 @@ class KerjaSamaController extends Controller
             'description' => 'required'
         ]);
 
-        $data['image'] = $request->file('image')->store('kerjSama');
+        $data['image'] = $request->file('image')->store('kerjaSama');
 
         try {
 
@@ -64,6 +65,15 @@ class KerjaSamaController extends Controller
     }
 
     public function update(Request $request, KerjaSama $kerjaSama){
+
+        $validated = $request->validate([
+            'description' => 'required'
+        ]);
+
+        if($request->image){
+            Storage::delete($kerjaSama->image);
+            $validated['image'] = $request->file('image')->store('kerjaSama');
+        }
 
         try {
             $kerjaSama->update($request->all());
