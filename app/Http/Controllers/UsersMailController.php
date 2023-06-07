@@ -184,7 +184,7 @@ class UsersMailController extends Controller
         return response()->json([
             'success' => $status,
             'message' => $msg,
-            'user' => $token
+            'user' => $token,
         ]);
         
     }

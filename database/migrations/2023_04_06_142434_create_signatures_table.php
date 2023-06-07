@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('signatures', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_login_id');
-            $table->foreign('user_login_id')->on('user_logins')->references('id');
+            $table->string('name');
             $table->string('image');
+            $table->boolean('is_used')->default(false);
+            $table->string('position');
+            $table->string('banjar')->nullable();
             $table->timestamps();
         });
     }

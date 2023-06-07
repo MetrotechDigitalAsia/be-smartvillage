@@ -11,21 +11,16 @@ class SignatureController extends Controller
 {
 
     protected $folderName;
-    private $userDb;
 
     public function __construct(){
         $this->folderName = 'persuratan.signature';
-        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
     }
 
     public function index(){
 
         if(request()->ajax()){
 
-            $data = Signature::join('user_logins as user', function($join){
-                $join->on('user.id', '=', 'signatures.user_login_id')
-                ->join($this->userDb, 'userDB.NIK', '=', 'user.no_nik');
-            })->get(['userDB.NAMA as name', 'userDB.NIK as nik', 'signatures.*']);
+            $data = Signature::all();
 
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -46,14 +41,17 @@ class SignatureController extends Controller
 
     public function store(Request $request){
 
-        $data = [
-            'user_login_id' => '98f83cd3-c8be-4e87-aa36-9177dcb55888',
-        ];
+        $validated = $request->validate([
+            'image' => 'required',
+            'name' => 'required',
+            'position' => 'required',
+            'banjar' => 'nullable',
+        ]);
 
-        $data['image'] = $request->file('image')->store('signature');
-
+        
         try {
-            Signature::create($data);
+            $validated['image'] = $request->file('image')->store('signature');
+            Signature::create($validated);
         } catch (\Exception $e){
             return redirect('/persuratan/signature/create')->with('error', $e->getMessage());
             die;
