@@ -1,5 +1,5 @@
 @if($errors->any() || session()->has('error'))
-<div class="row pt-8 px-8">
+<div class="row pt-8">
     <div class="col-lg-12">
         <div class="alert alert-custom alert-notice alert-light-primary fade show" role="alert">
             <div class="alert-text">

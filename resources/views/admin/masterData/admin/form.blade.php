@@ -10,7 +10,7 @@
         <!--begin::Header-->
         <div class="card-header py-3">
             <div class="card-title align-items-center flex-row ">
-                <h3 class="card-label font-weight-bolder text-dark">{{ empty($admin) ? 'Tambah Admin' : 'Ubah Admin' }}</h3>
+                <h3 class="card-label font-weight-bolder text-dark">{{ empty($admin) ? 'Tambah Data' : 'Ubah Data' }}</h3>
             </div>
         </div>
         <!--end::Header-->

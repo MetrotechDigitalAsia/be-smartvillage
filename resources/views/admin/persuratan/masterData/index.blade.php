@@ -64,14 +64,14 @@
                                         <span class="navi-text">Lihat</span>
                                     </a>
                                 </li>
-                                <li class="navi-item">
+                                {{-- <li class="navi-item">
                                     <a href="#" class="navi-link">
                                         <span class="navi-icon">
                                             <i class="flaticon2-list-3"></i>
                                         </span>
                                         <span class="navi-text">Preview</span>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="navi-separator my-3"></li>
                                 <li class="navi-item">
                                     <a href="javascript:;" data-href="/persuratan/master-data/delete/{{ $mail->id }}" onclick="deleteData(this)" class="navi-link">

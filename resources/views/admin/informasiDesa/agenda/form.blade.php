@@ -2,108 +2,78 @@
 
 @section('content')
 
-<div class="card card-custom gutter-b">
+<form class="f" action="{{ empty($agenda) ? route('storeAgenda') : '/informasi-desa/agenda/update/'.$agenda->slug }}" enctype="multipart/form-data" method="POST"  >
 
+    @csrf
 
-    <!--begin::Body-->
-    <div class="card-body p-0">
+    <div class="card card-custom gutter-b">
 
-        @if (session()->has('error'))
-            <div class="row pt-8 px-8">
-                <div class="col-lg-12">
-                    <div class="alert alert-custom alert-notice alert-light-primary fade show" role="alert">
-                        <div class="alert-icon"><i class="flaticon-warning"></i></div>
-                        <div class="alert-text">{{ session('error') }}</div>
-                        <div class="alert-close">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true"><i class="ki ki-close"></i></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+        <div class="card-header py-3">
+            <div class="card-title align-items-center flex-row ">
+                <h3 class="card-label font-weight-bolder text-dark">{{ empty($agenda) ? 'Tambah Data' : 'Ubah Data' }}</h3>
             </div>
-        @endif
+        </div>
 
-        @include('partials.success-alert')
+        <!--begin::Body-->
+        <div class="card-body">
+            <div class="row">
+                    <div class="col-xl-12">
 
-        <!--begin::Wizard-->
-        <form class="f" action="{{ empty($agenda) ? route('storeAgenda') : '/informasi-desa/agenda/update/'.$agenda->slug }}" enctype="multipart/form-data" method="POST"  >
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-lg-3 col-form-label">Judul</label>
+                            <div class="col-lg-9 col-xl-9">
+                                <input class="form-control form-control-lg @error('title') is-invalid @enderror form-control-solid" type="text" name="title" value="{{$agenda['title'] ?? '' }}" />
+                                @error('title')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
 
-            @csrf
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-lg-3 col-form-label">Author</label>
+                            <div class="col-lg-9 col-xl-9">
+                                <input class="form-control @error('author') is-invalid @enderror form-control-lg form-control-solid" type="text" name="author" value="{{$agenda['author'] ?? '' }}" />
+                                @error('author')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
 
-            <div class="wizard wizard-1" id="kt_contact_add" data-wizard-state="step-first" data-wizard-clickable="true">
-                <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
-                    <div class="col-xl-12 col-xxl-7">
-                        <!--begin::Form Wizard Form-->
-                            <!--begin::Form Wizard Step 1-->
-                            <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
-                                <h3 class="mb-10 font-weight-bold text-dark">{{ empty($agenda) ? 'Tambah Data' : 'Ubah Data' }}</h3>
-                                <div class="row">
-                                    <div class="col-xl-12">
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-lg-3 col-form-label">Tanggal</label>
+                            <div class="col-lg-9 col-xl-9">
+                                <input class="form-control @error('date') is-invalid @enderror form-control-lg form-control-solid" type="date" name="date" value="{{$agenda['date'] ?? '' }}" />
+                                @error('date')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
 
-                                        <div class="form-group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">Judul</label>
-                                            <div class="col-lg-9 col-xl-9">
-                                                <input class="form-control form-control-lg @error('title') is-invalid @enderror form-control-solid" type="text" name="title" value="{{$agenda['title'] ?? '' }}" />
-                                                @error('title')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">Author</label>
-                                            <div class="col-lg-9 col-xl-9">
-                                                <input class="form-control @error('author') is-invalid @enderror form-control-lg form-control-solid" type="text" name="author" value="{{$agenda['author'] ?? '' }}" />
-                                                @error('author')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">Tanggal</label>
-                                            <div class="col-lg-9 col-xl-9">
-                                                <input class="form-control @error('date') is-invalid @enderror form-control-lg form-control-solid" type="date" name="date" value="{{$agenda['date'] ?? '' }}" />
-                                                @error('date')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-    
-                                        <div class="form-group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">Deskripsi</label>
-                                            <div class="col-lg-9 col-xl-9">
-                                                <input type="hidden" name="description" value="{{$agenda['description'] ?? '' }}" >
-                                                <div id="kt_quil_1" style="height: 325px">
-                                                    {!! $agenda['description'] ?? '' !!}
-                                                </div>
-                                            </div>
-                                        </div>
-    
-                                    </div>
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-lg-3 col-form-label">Deskripsi</label>
+                            <div class="col-lg-9 col-xl-9">
+                                <input type="hidden" name="description" value="{{$agenda['description'] ?? '' }}" >
+                                <div id="kt_quil_1" style="height: 325px">
+                                    {!! $agenda['description'] ?? '' !!}
                                 </div>
                             </div>
-                        <!--end::Form Wizard Form-->
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-lg-6">
                         </div>
-                        <div class="col-lg-6 text-lg-right">
-                            <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                            <a href="/informasi-desa/agenda" class="btn btn-secondary">Batal</a>
-                        </div>
+
                     </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="row justify-content-end">
+                <div class="col-2 d-flex">
+                    <a href="/informasi-desa/agenda" class="btn btn-secondary mr-2">Batal</a>
+                    <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                 </div>
             </div>
-        </form>
-        <!--end::Wizard-->
+        </div>
     </div>
-    <!--end::Body-->
-</div>
     
+</form>
 @endsection
 
 @push('script')

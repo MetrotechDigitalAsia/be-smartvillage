@@ -54,7 +54,6 @@ class UserMailController extends Controller
         }
 
         $sender = UserData::where('NIK',$user->no_nik)->first();
-        // $applicant = UserData::find($request->resident_id);
 
         $field = json_decode($request->field, true);
 
@@ -105,13 +104,11 @@ class UserMailController extends Controller
 
         try {
 
-            $signature = $request->file('signature')->store('mail-signatures');
-
             $user->mail()->attach($mail,[
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'status' => 'Pending',
-                'signature' => $signature,
+                'signature' => '-',
                 'resident_id' => $request->resident_id,
                 'field' => json_encode($field),
             ]);
