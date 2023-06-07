@@ -294,6 +294,7 @@
                     Livewire.emit('refreshMailDetail')
                 }
             })
+            .fail(res => console.log(res.responseText))
 
     }
 
@@ -327,6 +328,7 @@
                     Livewire.emit('refreshMailDetail')
                 }
             })
+            .fail(res => console.log(res))
 
 
     }

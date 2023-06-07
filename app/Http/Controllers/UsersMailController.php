@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserLogin;
 use App\Notifications\SendPushNotification;
+use App\Notifications\UserMailNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
@@ -105,21 +106,31 @@ class UsersMailController extends Controller
         try {
 
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
-            $mail = DB::table('users_mail as userMail')->where('id',$id)->first('user_id');
-            $token = UserLogin::find($mail->user_id)->first('fcm');
+            $mail = DB::table('users_mail as userMail')
+                    ->join('mails', 'mails.id', '=', 'userMail.mail_id')
+                    ->where('userMail.id',$id)
+                    ->first(['userMail.user_id', 'mails.title']);
+            $token = UserLogin::where('id',$mail->user_id)->first('fcm');
 
             switch ($status) {
                 case 'Done':
                     $msg = 'Surat disetujui';
+                    $notifMsg = 'Surat telah selesai diproses oleh pemerintah desa';
                     break;
                 case 'Process':
-                    $msg = 'Surat diprosess';
+                    $msg = 'Surat diproses';
+                    $notifMsg = 'Surat sedang diproses oleh pemerintah desa';
                     break;
                 case 'Rejected':
                     $msg = 'Surat ditolak';
+                    $notifMsg = 'Surat ditolak oleh pemerintah desa';
                     break;
             }
 
+            Notification::send(UserLogin::find($mail->user_id), new UserMailNotification([
+                'title' => $mail->title,
+                'description' => $notifMsg
+            ]));
             $this->sendMailPushNotification('Notifikasi: Perubahan Status Surat', 'Status surat berubah menjadi '. $msg, $token->fcm);
             
             return redirect()->back()->with('success', $token->fcm);
@@ -132,25 +143,35 @@ class UsersMailController extends Controller
     }
 
     public function changeStatusFromDetail($id, $status){
-
+        
         try {
-
+            
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
-            $mail = DB::table('users_mail as userMail')->where('id',$id)->first('user_id');
+            $mail = DB::table('users_mail as userMail')
+                    ->join('mails', 'mails.id', '=', 'userMail.mail_id')
+                    ->where('userMail.id',$id)
+                    ->first(['userMail.user_id', 'mails.title']);
             $token = UserLogin::where('id',$mail->user_id)->first('fcm');
 
             switch ($status) {
                 case 'Done':
                     $msg = 'Surat disetujui';
+                    $notifMsg = 'Surat telah selesai diproses oleh pemerintah desa';
                     break;
                 case 'Process':
                     $msg = 'Surat diproses';
+                    $notifMsg = 'Surat sedang diproses oleh pemerintah desa';
                     break;
                 case 'Rejected':
                     $msg = 'Surat ditolak';
+                    $notifMsg = 'Surat ditolak oleh pemerintah desa';
                     break;
             }
 
+            Notification::send(UserLogin::find($mail->user_id), new UserMailNotification([
+                'title' => $mail->title,
+                'description' => $notifMsg
+            ]));
             $this->sendMailPushNotification('Notifikasi: Perubahan Status Surat', 'Status surat berubah menjadi '. $msg, $token->fcm);
 
             $status = true;
