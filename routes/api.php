@@ -12,6 +12,7 @@ use App\Http\Controllers\API\{
     ItemBusinessCategoryController,
     KerjaSamaController,
     MailController,
+    NotificationController,
     SignatureController,
     UserDataController,
     UserLoginController,
@@ -103,6 +104,13 @@ Route::group(['middleware' => 'api_key'],function(){
     });
 
     Route::get('/kerjaSama', KerjaSamaController::class);
+
+    Route::group(['prefix' => 'notification'], function(){
+        Route::controller(NotificationController::class)->group(function(){
+            Route::get('/{userLogin}', 'index');
+            Route::get('/read/{databaseNotification}', 'read');
+        });
+    });
 
 
 });
