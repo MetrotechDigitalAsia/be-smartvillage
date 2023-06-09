@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form action="{{ empty($signature) ? route('storeSignature') : '/persuratan/signature/update/'.$signature->uuid }}" enctype="multipart/form-data" method="POST"  >
+<form action="{{ empty($signature) ? route('storeSignature') : '/persuratan/signature/update/'.$signature->id }}" enctype="multipart/form-data" method="POST"  >
 
     @csrf
 

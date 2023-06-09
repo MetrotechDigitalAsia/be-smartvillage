@@ -63,17 +63,22 @@ class SignatureController extends Controller
 
     public function update(Request $request, Signature $signature){
 
-        $data = [
-            'user_login_id' => 2,
-            'uuid' => Str::uuid()->toString()
-        ];
+        $validated = $request->validate([
+            'image' => 'nullable',
+            'name' => 'required',
+            'position' => 'required',
+            'banjar' => 'nullable',
+        ]);
 
-        $data['image'] = $request->file('image')->store('signature');
+        if($request->image){
+            $validated['image'] = $request->file('image')->store('signature');
+        }
+
 
         try {
-            Signature::find($signature->id)->udpate($data);
+            Signature::find($signature->id)->update($validated);
         } catch (\Exception $e){
-            return redirect('/persuratan/signature/create')->with('error', $e->getMessage());
+            return redirect('/persuratan/signature/show/'. $signature->id)->with('error', $e->getMessage());
             die;
         }
 

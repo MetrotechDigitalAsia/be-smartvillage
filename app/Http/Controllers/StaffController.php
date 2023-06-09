@@ -34,7 +34,7 @@ class StaffController extends Controller
 
         }
 
-        $staffPria = Staff::where('gender','Laki Laki')->count();
+        $staffPria = Staff::where('gender','Laki-Laki')->count();
         $staffWanita = Staff::where('gender','Perempuan')->count();
         $total = Staff::count();
 

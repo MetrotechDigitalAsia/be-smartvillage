@@ -1,66 +1,3 @@
-{{-- <div class="cursor-pointer shadow-xs toggle-on pt-10 message-container mx-auto ribbon ribbon-top">
-    <div class="ribbon-target bg-primary" style="top: -2px; right: 20px; font-family: Poppins;">
-        @php
-            switch ($data->status) {
-                case 'Done':
-                    echo 'Selesai';
-                    break;
-                case 'Process':
-                    echo 'Diproses';
-                    break;
-                case 'Pending':
-                    echo 'Dipending';
-                    break;
-                case 'Rejected':
-                    echo 'Ditolak';
-                    break;
-            }
-        @endphp
-    </div>
-    <div class="container bg-white message-content ribbon ribbon-top">
-        @php
-            $field = json_decode($data->field)    
-        @endphp
-        <div class="mail-header">
-            <img src="{{ asset('assets/be/media/desa.png') }}" alt="">
-            <h3 class="text-center m-0 goverment" >PEMERINTAH KABUPATEN BADUNG <br>KECAMATAN PETANG</h3>
-            <h2 class="m-0 my-1 village" >DESA GETASAN</h2>
-            <p class="m-0 mb-3 text-center" >Jalan Tukad Penet No. 14 Getasan, Kec. Petang, Kab. Badung (80353)<br>Telp. 081 353 622 066 Website : Menyusul</p>
-        </div>
-        <div class="mail-body pt-8 px-10 text-center d-flex flex-column align-items-center pb-10">
-            
-            @include('admin.mailView.'.$data->slug)
-
-            <div class="row mt-10" style="width: 100%; margin-bottom: 100px;" >
-                <div class="col text-left">
-                    <p class="m-0" style="text-indent: 0;" >Mengetahui :</p>
-                    <table>
-                        <tr>
-                            <td>Reg No.</td>
-                            <td>:...................</td>
-                        </tr>
-                        <tr>
-                            <td>Tanggal</td>
-                            <td>:...................</td>
-                        </tr>
-                    </table>
-                    <p style="text-indent: 0; margin-bottom: 60px;" >Perbekel Getasan,</p>
-                    @if ($data->status == 'Done')
-                    <img style="position: absolute; left: -20%; bottom: -20%; width: 100%;" src="{{ asset('assets/be/media/perbekel.png') }}" alt="">
-                    @endif
-                    <u >I Wayan Suandi, S.Pt</u>
-                </div>
-                <div class="col text-left" style="position: relative;">
-                    <p style="text-indent: 0; margin-top: 40px; margin-bottom: 0;" >Getasan, 7 april 2023,</p>
-                    <p  style="text-indent: 0; margin-bottom: 60px;" >Kelian Banjar Dinas Ubud</p>
-                    <img style="position: absolute; left: 20%; bottom: -5%; width: 15%;" src="{{ asset('storage/'. $data->signature) }}" alt="">
-                    <u>I Putu Antara, S.Pt</u>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
 <div class="card card-custom card-stretch">
     <!--begin::Header-->
     <div class="card-header align-items-center flex-wrap justify-content-between py-5 h-auto">
@@ -217,8 +154,8 @@
     <!--begin::Body-->
     <div class="card-body p-0">
         <div class="mb-3 py-8 pb-10">
-            <div class="cursor-pointer shadow-xs toggle-on pt-10 message-container mx-auto ribbon ribbon-top">
-                <div class="ribbon-target bg-primary" style="top: -2px; right: 20px; font-family: Poppins;">
+            <div class="cursor-pointer shadow-xs toggle-on pt-10 message-container mx-auto">
+                {{-- <div class="ribbon-target bg-primary" style="top: -2px; right: 20px; font-family: Poppins;">
                     @php
                         switch ($data->status) {
                             case 'Done':
@@ -235,49 +172,188 @@
                                 break;
                         }
                     @endphp
-                </div>
-                <div class="container bg-white message-content ribbon ribbon-top">
-                    @php
-                        $field = json_decode($data->field)    
-                    @endphp
+                </div> --}}
+                <div class="container bg-white message-content ">
                     <div class="mail-header">
-                        <img src="{{ asset('assets/be/media/desa.png') }}" alt="">
-                        <h3 class="text-center m-0 goverment" >PEMERINTAH KABUPATEN BADUNG <br>KECAMATAN PETANG</h3>
-                        <h2 class="m-0 my-1 village" >DESA GETASAN</h2>
-                        <p class="m-0 mb-3 text-center" >Jalan Tukad Penet No. 14 Getasan, Kec. Petang, Kab. Badung (80353)<br>Telp. 081 353 622 066 Website : Menyusul</p>
-                    </div>
-                    <div class="mail-body pt-8 px-10 text-center d-flex flex-column align-items-center pb-10">
-                        
-                        @include('admin.mailView.'.$data->slug)
-            
-                        <div class="row mt-10" style="width: 100%; margin-bottom: 100px;" >
-                            <div class="col text-left">
-                                <p class="m-0" style="text-indent: 0;" >Mengetahui :</p>
-                                <table>
-                                    <tr>
-                                        <td>Reg No.</td>
-                                        <td>:...................</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tanggal</td>
-                                        <td>:...................</td>
-                                    </tr>
-                                </table>
-                                <p style="text-indent: 0; margin-bottom: 60px;" >Perbekel Getasan,</p>
-                                @if ($data->status == 'Done')
-                                <img style="position: absolute; height: 120px; width:320px; left: -25%; bottom: -20%; object-fit: contain;" src="{{ asset('storage/'. $perbekel->image) }}" alt="">
-                                @endif
-                                <u >{{ $perbekel->name }}</u>
-                            </div>
-                            <div class="col text-left" style="position: relative;">
-                                <p style="text-indent: 0; margin-top: 40px; margin-bottom: 0;" >Getasan, 7 april 2023,</p>
-                                <p  style="text-indent: 0; margin-bottom: 60px;" >Kelian Banjar Dinas Ubud</p>
-                                @if ($data->status == 'Done')
-                                <img style="position: absolute; height: 120px; width:50%; bottom: 0; object-fit: contain;" src="{{ asset('storage/'. $kelian->image) }}" alt="">
-                                @endif
-                                <u>{{ $kelian->name }}</u>
+                        <div class="row justify-content-end">
+                            <div class="col-2">
+                                <span class="f2-small-title py-1 px-3 font-weight-bolder" >F-2. 01</span>
                             </div>
                         </div>
+                        <table>
+                            <tr>
+                                <td class="w-140px" >Provinsi</td>
+                                <td>: Bali</td>
+                            </tr>
+                            <tr>
+                                <td>Kabupaten</td>
+                                <td>: Badung</td>
+                            </tr>
+                            <tr>
+                                <td>Kecamatan</td>
+                                <td>: Petang</td>
+                            </tr>
+                            <tr>
+                                <td>Desa/Kelurahan</td>
+                                <td>: Getasan</td>
+                            </tr>
+                            <tr>
+                                <td>Kode Desa</td>
+                                <td>: -</td>
+                            </tr>
+                        </table>
+                        <h6 class="text-center mt-10 font-weight-bolder" >FORMULIR PELAPORAN PENCATATAN SIPIL DI DALAM WILAYAH NKRI</h6>
+                    </div>
+                    <div class="mail-body pt-8 d-flex flex-column pb-10">
+                        
+                        <div class="section__jenis-pelapor">
+                            <span class="font-weight-bolder">Jenis Pelaporan Pencatatan Sipil (centang)</span>
+                            <table class="mt-3" style="width: 100%;" >
+                                <tr>
+                                    <td style="width: 40%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Kelahiran
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Pengakuan Anak
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Lahir Mati
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Pengesahan Anak
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Perkawinan
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Perubahan Nama
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Pembatalan Perkawinan
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Perubahan Status Kewarganegaraan
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Perceraian
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Pencatatan Peristiwa Penting Lainnya
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Pembatalan Perceraian
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Pembetulan Akte
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Kematian
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Pembatalan Akte
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Pengangkatan Anak
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                                        Pelaporan Pencatatan Sipil dari Luar Wilayah NKRI
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                        <div class="section__data-pelapor" style="border: 1px solid black; margin-top: 40px; padding: 5px;" >
+                            <span class="font-weight-bolder">Data Pelapor</span>
+                            <table style="width: 100%;" >
+                                <tr>
+                                    <td style="width: 50%;" >
+                                        Nama
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        : Rahmat Riyadi Syam
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Nik</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>Nomor Dokumen Perjalanan *</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>Nomor Kartu Keluarga</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>Kewarganegaraan</td>
+                                    <td>: Indonesia</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="section__tanda-tangan" style="border: 1px solid black; margin-top: 40px; padding: 5px;" >
+                            <table style="width: 100%;" >
+                                <tr>
+                                    <td style="width: 50%;" >Reg. No :</td>
+                                    <td style="text-align: right;" >Getasan, {{ \Carbon\Carbon::now()->translatedFormat('l d F Y') }}</td>
+                                </tr>
+                                <table style="width: 100%; text-align: center; margin-top: 30px;" >
+                                    <tr>
+                                        <td style="width: 50%;" >Mengetahui : </td>
+                                        <td style="width: 50%;" >Pelapor, </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 50px; position: relative;" >
+                                            <img style="position: absolute; width: 300px; height: 100px; left: 10px; top: 0px;" src="{{ asset('storage/'. $perbekel->image) }}" alt="">
+                                        </td>
+                                        <td style="height: 50px; position: relative;"  >
+                                            <img style="position: absolute; width: 300px; height: 100px; left: 10px; top: 0px;" src="{{ asset('storage/'. $perbekel->image) }}" alt="">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <u style="font-size: 16px;" ><b>I Wayan Suandi, S.Pt</b></u>
+                                        </td>
+                                        <td>
+                                            <u style="font-size: 16px;" ><b>Rahmat Riyadi Syam</b></u>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -335,11 +411,9 @@
             <i class="flaticon2-hourglass-1" ></i>
             Proses
         </a>
-        @if (!is_null($data->mail_number))
         <a href="#" class="btn btn-outline-success font-weight-bold" data-mail-id="{{ $data->id }}" data-mail-num="{{ $data->mail_number }}" onclick="onActionClick(this, 'Done')" data-toggle="modal" data-target="#confirmModal" >
             <i class="flaticon2-check-mark" ></i>
             Setujui
         </a>
-        @endif
     </div>
 </div>

@@ -18,7 +18,7 @@
 		<link href="{{ asset('assets/be/css/style.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
 
 		<!--Mail Style-->
-		<link href="{{ asset('assets/be/css/mail/akta-kematian.css') }}" rel="stylesheet" type="text/css" />
+		@stack('mail-styles')
 
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 

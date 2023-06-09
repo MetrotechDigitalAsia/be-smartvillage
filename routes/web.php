@@ -252,6 +252,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/create', 'create');
                 Route::get('/show/{signature}', 'show');
                 Route::post('/', 'store')->name('storeSignature');
+                Route::post('/update/{signature}', 'update');
                 Route::delete('/delete/{signature}', 'destroy');
             });
         });
