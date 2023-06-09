@@ -53,8 +53,8 @@
             <div class="card-footer">
                 <div class="row">
                     <div class="col text-lg-right">
-                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                        <a href="/persuratan/master-data" class="btn btn-secondary">Batal</a>
+                        <a href="/persuratan/master-data" class="btn btn-secondary mr-2">Batal</a>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                 </div>
             </div>

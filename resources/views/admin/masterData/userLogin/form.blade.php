@@ -68,10 +68,10 @@
     </div>
     <!--end::Form-->
     <div class="card-footer">
-        <div class="row">
-            <div class="col offset-3">
-                <button type="submit" class="btn btn-success mr-2">Simpan</button>
-                <a href="/master-data/user-login" class="btn btn-secondary">Batal</a>
+        <div class="row justify-content-end">
+            <div class="col-2">
+                <a href="/master-data/user-login" class="btn btn-secondary mr-2">Batal</a>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </div>
     </div>

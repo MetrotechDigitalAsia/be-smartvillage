@@ -30,7 +30,7 @@
             <div class="form-group row">
                 <label class="col-xl-3 col-lg-3 col-form-label">Email</label>
                 <div class="col-lg-9 col-xl-9">
-                    <input required class="form-control form-control-lg form-control-solid" type="text" name="email" value="{{$admin['email'] ?? '' }}" />
+                    <input required class="form-control form-control-lg form-control-solid" type="email" name="email" value="{{$admin['email'] ?? '' }}" />
                 </div>
             </div>
 
@@ -82,16 +82,16 @@
                 </div>
             </div>
 
-            <div class="card-footer">
-                <div class="row">
-                    <div class="col text-lg-right">
-                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                        <a href="/master-data/admin" class="btn btn-secondary">Batal</a>
-                    </div>
+            
+            <!--begin::Form Group-->
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col text-lg-right">
+                    <a href="/master-data/admin" class="btn btn-secondary mr-2">Batal</a>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
-
-            <!--begin::Form Group-->
         </div>
         <!--end::Form-->
     </div>

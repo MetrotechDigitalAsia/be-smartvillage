@@ -10,15 +10,20 @@ class MailDetail extends Component
 
     public $userDb;
     public $mailId;
+    public $perbekel;
+    public $kelian;
 
     protected $listeners = [
         'refreshMailDetail' => '$refresh'
     ];
 
-    public function mount($mailId){
+    public function mount($mailId, $perbekel, $kelian){
         $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
         $this->mailId = $mailId;
+        $this->perbekel = $perbekel;
+        $this->kelian = $kelian;
     }
+
 
     public function render()
     {

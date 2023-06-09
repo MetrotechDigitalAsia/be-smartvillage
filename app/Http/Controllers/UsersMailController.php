@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Signature;
 use App\Models\UserLogin;
 use App\Notifications\SendPushNotification;
 use App\Notifications\UserMailNotification;
@@ -12,10 +13,6 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
-use Kreait\Firebase\Messaging;
-use Kreait\Firebase\Messaging\CloudMessage;
-use Kreait\Firebase\Messaging\Message;
-use Kreait\Firebase\Messaging\Notification as MessagingNotification;
 
 class UsersMailController extends Controller
 {
@@ -41,7 +38,10 @@ class UsersMailController extends Controller
 
     public function show($id){
         $data = DB::table('users_mail')->where('id', $id)->first(['id', 'mail_number', 'status']);
-        return view('admin.'.$this->folderName.'.detail', compact('data'));
+        $perbekel = Signature::where('is_used', true)->where('position', 'Perbekel')->first();
+        // dd($perbekel);
+        $kelian = Signature::where('is_used', true)->where('position', 'Kelian Banjar')->first();
+        return view('admin.'.$this->folderName.'.detail', compact('data', 'perbekel', 'kelian'));
     }
 
     public function getAllMail(){
@@ -115,7 +115,7 @@ class UsersMailController extends Controller
             switch ($status) {
                 case 'Done':
                     $msg = 'Surat disetujui';
-                    $notifMsg = 'Surat telah selesai diproses oleh pemerintah desa';
+                    $notifMsg = 'Surat telah disetujui oleh pemerintah desa';
                     break;
                 case 'Process':
                     $msg = 'Surat diproses';
@@ -156,7 +156,7 @@ class UsersMailController extends Controller
             switch ($status) {
                 case 'Done':
                     $msg = 'Surat disetujui';
-                    $notifMsg = 'Surat telah selesai diproses oleh pemerintah desa';
+                    $notifMsg = 'Surat telah selesai disetujui oleh pemerintah desa';
                     break;
                 case 'Process':
                     $msg = 'Surat diproses';

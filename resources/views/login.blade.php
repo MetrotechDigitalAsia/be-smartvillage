@@ -29,6 +29,9 @@
 		<link rel="mask-icon" href="{{ asset('assets/images/favicons/safari-pinned-tab.svg') }}" color="#5bbad5" />
 		<meta name="msapplication-TileColor" content="#ffffff" />
 		<meta name="theme-color" content="#ffffff" />
+		
+		<!-- Plugin -->
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -113,6 +116,9 @@
 		<script src="{{ asset('assets/be/plugins/global/plugins.bundle.js?v=7.0.5') }}"></script>
 		<script src="{{ asset('assets/be/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.5') }}"></script>
 		<script src="{{ asset('assets/be/js/scripts.bundle.js?v=7.0.5') }}"></script>
+		
+		<!-- Plugin -->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 		<!--end::Global Theme Bundle-->
 		<!--begin::Page Scripts(used by this page)-->
 		{{-- <script src="{{ asset('assets/be/js/pages/custom/login/login-general.js?v=7.0.5') }}"></script> --}}
