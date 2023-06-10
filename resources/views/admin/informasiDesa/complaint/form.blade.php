@@ -8,7 +8,7 @@
 
     <div class="card-header py-3">
         <div class="card-title align-items-center flex-row ">
-            <h3 class="card-label font-weight-bolder text-dark">{{ empty($complaint) ? 'Tambah Data' : 'Ubah Data' }}</h3>
+            <h3 class="card-label font-weight-bolder text-dark">{{ empty($complaint) ? 'Detail' : 'Detail' }}</h3>
         </div>
     </div>
 
