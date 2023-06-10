@@ -293,7 +293,7 @@
 
                         </div>
 
-                        <div class="section__data-pelapor" style="border: 1px solid black; margin-top: 40px; padding: 5px;" >
+                        <div class="section__data-pelapor" style="border: 1px solid black; margin-top: 15px; padding: 5px;" >
                             <span class="font-weight-bolder">Data Pelapor</span>
                             <table style="width: 100%;" >
                                 <tr>
@@ -323,7 +323,7 @@
                             </table>
                         </div>
 
-                        <div class="section__saksi" style="border: 1px solid black; margin-top: 40px; padding: 5px;" >
+                        <div class="section__saksi" style="border: 1px solid black; margin-top: 15px; padding: 5px;" >
                             <span class="font-weight-bolder">Data Saksi I</span>
                             <table style="width: 100%; margin-bottom: 10px;" >
                                 <tr>
@@ -372,7 +372,61 @@
                             </table>
                         </div>
 
-                        <div class="section__data-kelahiran" style="border: 1px solid black; margin-top: 40px; padding: 5px;" >
+                        <div class="section__data-orangtua" style="border: 1px solid black; margin-top: 15px; padding: 5px;" >
+                            <span class="font-weight-bolder">Data Orang Tua</span>
+                            <table style="width: 100%; margin-bottom: 10px;" >
+                                <tr>
+                                    <td style="width: 50%;" >
+                                        Nama Ayah
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        : Rahmat Riyadi Syam
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>NIK Ayah</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>Tempat Lahir Ayah</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>Tanggal Lahir Ayah</td>
+                                    <td>: Indonesia</td>
+                                </tr>
+                                <tr>
+                                    <td>Kewarganegaraan</td>
+                                    <td>: Indonesia</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%;" >
+                                        Nama Ibu
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        : Rahmat Riyadi Syam
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>NIK Ibu</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>Tempat Lahir Ibu</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>Tanggal Lahir Ibu</td>
+                                    <td>: Indonesia</td>
+                                </tr>
+                                <tr>
+                                    <td>Kewarganegaraan</td>
+                                    <td>: Indonesia</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="section__data-kelahiran" style="border: 1px solid black; margin-top: 15px; padding: 5px;" >
                             <span class="font-weight-bolder">Data Kelahiran</span>
                             <table style="width: 100%; margin-bottom: 10px;" >
                                 <tr>
@@ -426,7 +480,7 @@
                             </table>
                         </div>
 
-                        <div class="section__tanda-tangan" style="border: 1px solid black; margin-top: 40px; padding: 5px;" >
+                        <div class="section__tanda-tangan" style="border: 1px solid black; margin-top: 15px; padding: 5px;" >
                             <table style="width: 100%;" >
                                 <tr>
                                     <td style="width: 50%;" >Reg. No :</td>
