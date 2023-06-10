@@ -18,7 +18,7 @@
 
 
     <!--begin::Body-->
-    <div class="card-body p-0">
+    <div class="card-body ">
         <div class="row">
             <div class="col-xl-12">
 

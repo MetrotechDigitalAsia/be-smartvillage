@@ -323,6 +323,109 @@
                             </table>
                         </div>
 
+                        <div class="section__saksi" style="border: 1px solid black; margin-top: 40px; padding: 5px;" >
+                            <span class="font-weight-bolder">Data Saksi I</span>
+                            <table style="width: 100%; margin-bottom: 10px;" >
+                                <tr>
+                                    <td style="width: 50%;" >
+                                        Nama
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        : Rahmat Riyadi Syam
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Nik</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>Nomor Kartu Keluarga</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>Kewarganegaraan</td>
+                                    <td>: Indonesia</td>
+                                </tr>
+                            </table>
+                            <span class="font-weight-bolder">Data Saksi II</span>
+                            <table style="width: 100%;" >
+                                <tr>
+                                    <td style="width: 50%;" >
+                                        Nama
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        : Rahmat Riyadi Syam
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Nik</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>Nomor Kartu Keluarga</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>Kewarganegaraan</td>
+                                    <td>: Indonesia</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="section__data-kelahiran" style="border: 1px solid black; margin-top: 40px; padding: 5px;" >
+                            <span class="font-weight-bolder">Data Kelahiran</span>
+                            <table style="width: 100%; margin-bottom: 10px;" >
+                                <tr>
+                                    <td style="width: 50%;" >
+                                        1. Nama
+                                    </td>
+                                    <td style="width: 50%;" >
+                                        : Rahmat Riyadi Syam
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2. Jenis Kelamin</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>3. Tempat Dilahirkan</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>4. Tempat Kelahiran</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>5. Hari dan Tanggal Lahir</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>6. Pukul</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>7. Jenis Kelahiran</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>8. Kelahiran Ke</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>9. Penolong Kelahiran</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>10. Berat Bayi</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                                <tr>
+                                    <td>11. Panjang Bayi</td>
+                                    <td>: 60200120116</td>
+                                </tr>
+                            </table>
+                        </div>
+
                         <div class="section__tanda-tangan" style="border: 1px solid black; margin-top: 40px; padding: 5px;" >
                             <table style="width: 100%;" >
                                 <tr>
