@@ -20,7 +20,7 @@
     <div class="col text-left" style="position: relative;">
         <p style="text-indent: 0; margin-top: 40px; margin-bottom: 0;" >Getasan, 7 april 2023,</p>
         <p  style="text-indent: 0; margin-bottom: 60px;" >Kelian Banjar Dinas Ubud</p>
-        @if ($data->status == 'Done' && !empty($kelian))
+        @if ($data->status == 'Done' && !is_null($kelian))
         <img style="position: absolute; height: 120px; width:50%; bottom: 0; object-fit: contain;" src="{{ asset('storage/'. $kelian->image) }}" alt="">
         @endif
         <u>{{ !empty($kelian) ? $kelian->name : 'belum ada data kelian' }}</u>

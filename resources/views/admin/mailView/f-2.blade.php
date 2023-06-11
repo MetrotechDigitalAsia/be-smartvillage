@@ -154,20 +154,20 @@
                     Nama
                 </td>
                 <td style="width: 50%;" >
-                    : Rahmat Riyadi Syam
+                    : {{ $saksi['saksi_1']->name }}
                 </td>
             </tr>
             <tr>
                 <td>Nik</td>
-                <td>: 60200120116</td>
+                <td>: {{ $saksi['saksi_1']->nik }}</td>
             </tr>
             <tr>
                 <td>Nomor Kartu Keluarga</td>
-                <td>: 60200120116</td>
+                <td>: {{ $saksi['saksi_1']->kk }}</td>
             </tr>
             <tr>
                 <td>Kewarganegaraan</td>
-                <td>: Indonesia</td>
+                <td>: {{ $saksi['saksi_1']->citizenship }}</td>
             </tr>
         </table>
         <span class="font-weight-bolder">Data Saksi II</span>
@@ -177,20 +177,20 @@
                     Nama
                 </td>
                 <td style="width: 50%;" >
-                    : Rahmat Riyadi Syam
+                    : {{ $saksi['saksi_2']->name }}
                 </td>
             </tr>
             <tr>
                 <td>Nik</td>
-                <td>: 60200120116</td>
+                <td>: {{ $saksi['saksi_2']->nik }}</td>
             </tr>
             <tr>
                 <td>Nomor Kartu Keluarga</td>
-                <td>: 60200120116</td>
+                <td>: {{ $saksi['saksi_2']->kk }}</td>
             </tr>
             <tr>
                 <td>Kewarganegaraan</td>
-                <td>: Indonesia</td>
+                <td>: {{ $saksi['saksi_2']->citizenship }}</td>
             </tr>
         </table>
     </div>
@@ -319,14 +319,12 @@
                 </tr>
                 <tr>
                     <td style="height: 50px; position: relative;" >
-                        @if (!empty($perbekel))
+                        @if (!empty($perbekel) && $data->status == 'Done')
                         <img style="position: absolute; width: 300px; height: 100px; left: 10px; top: 0px;" src="{{ asset('storage/'. $perbekel->image) }}" alt="">
                         @endif
                     </td>
                     <td style="height: 50px; position: relative;"  >
-                        @if (!empty($perbekel))
-                        <img style="position: absolute; width: 300px; height: 100px; left: 10px; top: 0px;" src="{{ asset('storage/'. $perbekel->image) }}" alt="">
-                        @endif
+                        <img style="position: absolute; width: 300px; height: 70px; left: 10px; top: 0px; object-fit: contain;" src="{{ asset('storage/'. $data->signature) }}" alt="">
                     </td>
                 </tr>
                 <tr>

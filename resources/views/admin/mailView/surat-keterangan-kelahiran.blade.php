@@ -87,26 +87,26 @@
                 <tr>
                     <td class="w-20px" >1.</td>
                     <td class="w-115px" >Nama Saksi</td>
-                    <td>: Rahmat</td>
+                    <td>: {{ $saksi['saksi_1']->name }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Umur</td>
-                    <td>: 27 tahun</td>
+                    <td>: {{ $saksi['saksi_1']->age }} tahun</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Pekerjaan</td>
-                    <td>: Karyawan Swasta</td>
+                    <td>: {{ $saksi['saksi_1']->job }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Alamat</td>
-                    <td>: Ubud Getasan</td>
+                    <td>: {{ $saksi['saksi_1']->address }}</td>
                 </tr>
             </table>
             <div class="d-flex justify-content-center">
-                <u class="saksi" style="margin-top: 50px;" >I Wayan Sunarta</u>
+                <u class="saksi" style="margin-top: 50px;" >{{ $saksi['saksi_1']->name }}</u>
             </div>
         </div>
         <div class="col">
@@ -114,26 +114,26 @@
                 <tr>
                     <td class="w-20px" >2.</td>
                     <td class="w-115px" >Nama Saksi</td>
-                    <td>: I Putu Antara</td>
+                    <td>: {{ $saksi['saksi_2']->name }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Umur</td>
-                    <td>: 27 tahun</td>
+                    <td>: {{ $saksi['saksi_2']->age }} tahun</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Pekerjaan</td>
-                    <td>: Karyawan Swasta</td>
+                    <td>: {{ $saksi['saksi_2']->job }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Alamat</td>
-                    <td>: Br Ubud Getasan</td>
+                    <td>: {{ $saksi['saksi_2']->address }}</td>
                 </tr>
             </table>
             <div class="d-flex justify-content-center">
-                <u class="saksi" style="margin-top: 50px;" >I Putu Subawa</u>
+                <u class="saksi" style="margin-top: 50px;" >{{ $saksi['saksi_2']->name }}</u>
             </div>
         </div>
     </div>

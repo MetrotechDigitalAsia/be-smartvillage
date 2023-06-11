@@ -97,11 +97,15 @@ class UserMailController extends Controller
 
         try {
 
+            if($request->signature){
+                $signature = $request->file('signature')->store('mailSignature');
+            }
+
             $user->mail()->attach($mail,[
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'status' => 'Pending',
-                'signature' => '-',
+                'signature' => $signature ?? null,
                 'resident_id' => $request->resident_id,
                 'field' => json_encode($field),
             ]);

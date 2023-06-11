@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('position');
             $table->string('kk');
             $table->string('nik');
+            $table->string('age');
+            $table->string('job');
+            $table->string('address');
             $table->string('citizenship');
             $table->timestamps();
         });

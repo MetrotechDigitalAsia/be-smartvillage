@@ -238,7 +238,7 @@
                     @endswitch
                 </div>
                 <div class="container bg-white @if($data->title == 'Surat Keterangan Kelahiran') f2 @endif message-content ribbon ribbon-top">
-                    
+
                     @php $field = json_decode($data->field) @endphp
 
                     @if ($data->title != 'Surat Keterangan Kelahiran')

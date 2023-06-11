@@ -7,7 +7,7 @@
 
 @section('table')
 
-    @livewire('mail-detail', ['mailId' => $data->id, 'perbekel' => $perbekel, 'kelian' => $kelian])
+    @livewire('mail-detail', ['mailId' => $data->id, 'perbekel' => $perbekel ])
     {{-- @include('admin.mailView.f-2') --}}
 
 @endsection

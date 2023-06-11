@@ -19,6 +19,9 @@ class SaksiSeeder extends Seeder
             'nik' => '0210001000',
             'kk' => '0210001000',
             'citizenship' => 'WNI',
+            'job' => 'Wiraswasta',
+            'age' => '32',
+            'address' => 'Jln Alamat 3'
         ]);
 
         Saksi::create([
@@ -27,6 +30,9 @@ class SaksiSeeder extends Seeder
             'nik' => '0210001000',
             'kk' => '0210001000',
             'citizenship' => 'WNI',
+            'job' => 'Wiraswasta',
+            'age' => '32',
+            'address' => 'Jln Alamat 1'
         ]);
 
         Saksi::create([
@@ -35,6 +41,9 @@ class SaksiSeeder extends Seeder
             'nik' => '0210001000',
             'kk' => '0210001000',
             'citizenship' => 'WNI',
+            'job' => 'Wiraswasta',
+            'age' => '32',
+            'address' => 'Jln Alamat 2'
         ]);
 
         Saksi::create([
@@ -43,6 +52,9 @@ class SaksiSeeder extends Seeder
             'nik' => '0210001000',
             'kk' => '0210001000',
             'citizenship' => 'WNI',
+            'job' => 'Wiraswasta',
+            'age' => '32',
+            'address' => 'Jln Alamat 4'
         ]);
 
     }
