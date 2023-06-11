@@ -105,22 +105,21 @@
 			const toast = Toastify({
 							text: "Email atau Password salah",
 							duration: 3000,
-							destination: "https://github.com/apvarun/toastify-js",
-							newWindow: true,
 							close: true,
-							gravity: "bottom", // `top` or `bottom`
+							gravity: "top", // `top` or `bottom`
 							position: "right", // `left`, `center` or `right`
-							stopOnFocus: true, // Prevents dismissing of toast on hover
+							stopOnFocus: true,
 							style: {
 								background: "#fff",
 								border: '1px solid #C91022',
-								color: '#C91022'
+								color: '#C91022',
+								width: '280px',
+								borderRadius: '4px',
 							},
 							onClick: function(){} // Callback after click
 						});
 
 			Livewire.on('loginFailed', () => {
-				console.log('asd')
 				toast.showToast()
 			})						
 
