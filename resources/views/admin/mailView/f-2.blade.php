@@ -116,7 +116,7 @@
 
     </div>
 
-    <div class="section__data-pelapor" style="border: 1px solid black; margin-top: 15px; padding: 5px;" >
+    <div class="section__data-pelapor" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
         <span class="font-weight-bolder">Data Pelapor</span>
         <table style="width: 100%;" >
             <tr>
@@ -124,7 +124,7 @@
                     Nama
                 </td>
                 <td style="width: 50%;" >
-                    : {{ $data->applicant_name }}
+                    : <p style="border: 1px solid black; width: 98%; float: right;" >{{ $data->applicant_name }} </p>
                 </td>
             </tr>
             <tr>
