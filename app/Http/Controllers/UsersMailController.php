@@ -84,7 +84,9 @@ class UsersMailController extends Controller
 
         try {
             $mail =  DB::table('users_mail')->where('id',$id)->first();
-            Storage::delete($mail->signature);
+            if($mail->signature){
+                Storage::delete($mail->signature);
+            }
             DB::table('users_mail')->where('id',$id)->delete();
             $message = 'successfully';
         } catch (\Exception $e) {
