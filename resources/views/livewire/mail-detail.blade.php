@@ -131,6 +131,17 @@
         <!--end::Left-->
         <!--begin::Right-->
         <div class="d-flex align-items-center justify-content-end text-right my-2">
+            @if ($data->title == 'Surat Keterangan Kelahiran')
+            <div class="dropdown mr-2">
+                <button class="btn btn-default btn-sm mail-type-title dropdown-toggle text-dark" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Surat Keterangan Kelahiran
+                </button>
+                <div class="dropdown-menu" >
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat Keterangan Kelahiran" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_keterangan_tab">Surat Keterangan Kelahiran</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat F2.0-1" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_f2_tab">Formulir F-2.01</a>
+                </div>
+            </div>
+            @endif
             @if ($data->status == 'Done')
             <a href='/persuratan/surat/print/{{ $data->id }}' class="btn btn-default btn-sm btn-icon mr-2" data-dismiss="modal">
                 <i class="flaticon2-fax"></i>
@@ -219,66 +230,29 @@
         <div class="mb-3 py-8 pb-10">
             <div class="cursor-pointer shadow-xs toggle-on pt-10 message-container mx-auto ribbon ribbon-top">
                 <div class="ribbon-target bg-primary" style="top: -2px; right: 20px; font-family: Poppins;">
-                    @php
-                        switch ($data->status) {
-                            case 'Done':
-                                echo 'Selesai';
-                                break;
-                            case 'Process':
-                                echo 'Diproses';
-                                break;
-                            case 'Pending':
-                                echo 'Dipending';
-                                break;
-                            case 'Rejected':
-                                echo 'Ditolak';
-                                break;
-                        }
-                    @endphp
+                    @switch($data->status)
+                        @case('Done') Selesai @break
+                        @case('Process') Diproses @break
+                        @case('Pending') Dipending @break
+                        @case('Rejected') Ditolak @break
+                    @endswitch
                 </div>
-                <div class="container bg-white message-content ribbon ribbon-top">
-                    @php
-                        $field = json_decode($data->field)    
-                    @endphp
-                    <div class="mail-header">
-                        <img src="{{ asset('assets/be/media/desa.png') }}" alt="">
-                        <h3 class="text-center m-0 goverment" >PEMERINTAH KABUPATEN BADUNG <br>KECAMATAN PETANG</h3>
-                        <h2 class="m-0 my-1 village" >DESA GETASAN</h2>
-                        <p class="m-0 mb-3 text-center" >Jalan Tukad Penet No. 14 Getasan, Kec. Petang, Kab. Badung (80353)<br>Telp. 081 353 622 066 Website : Menyusul</p>
-                    </div>
-                    <div class="mail-body pt-8 px-10 text-center d-flex flex-column align-items-center pb-10">
-                        
-                        @include('admin.mailView.'.$data->slug)
-            
-                        <div class="row mt-10" style="width: 100%; margin-bottom: 100px;" >
-                            <div class="col text-left">
-                                <p class="m-0" style="text-indent: 0;" >Mengetahui :</p>
-                                <table>
-                                    <tr>
-                                        <td>Reg No.</td>
-                                        <td>:...................</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tanggal</td>
-                                        <td>:...................</td>
-                                    </tr>
-                                </table>
-                                <p style="text-indent: 0; margin-bottom: 60px;" >Perbekel Getasan,</p>
-                                @if ($data->status == 'Done')
-                                <img style="position: absolute; height: 120px; width:320px; left: -25%; bottom: -20%; object-fit: contain;" src="{{ asset('storage/'. $perbekel->image) }}" alt="">
-                                @endif
-                                <u >{{ $perbekel->name }}</u>
-                            </div>
-                            <div class="col text-left" style="position: relative;">
-                                <p style="text-indent: 0; margin-top: 40px; margin-bottom: 0;" >Getasan, 7 april 2023,</p>
-                                <p  style="text-indent: 0; margin-bottom: 60px;" >Kelian Banjar Dinas Ubud</p>
-                                @if ($data->status == 'Done')
-                                <img style="position: absolute; height: 120px; width:50%; bottom: 0; object-fit: contain;" src="{{ asset('storage/'. $kelian->image) }}" alt="">
-                                @endif
-                                <u>{{ $kelian->name }}</u>
-                            </div>
+                <div class="container bg-white @if($data->title == 'Surat Keterangan Kelahiran') f2 @endif message-content ribbon ribbon-top">
+
+                    @php $field = json_decode($data->field) @endphp
+
+                    @if ($data->title != 'Surat Keterangan Kelahiran')
+                        @include('admin.mailView.mail')
+                    @else
+                    <div class="tab-content" >
+                        <div class="tab-pane fade " id="surat_keterangan_tab" role="tabpanel" aria-labelledby="surat_keterangan_tab">
+                            @include('admin.mailView.mail')
+                        </div>
+                        <div class="tab-pane fade show active" id="surat_f2_tab" role="tabpanel" aria-labelledby="surat_f2_tab">
+                            @include('admin.mailView.f-2')
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

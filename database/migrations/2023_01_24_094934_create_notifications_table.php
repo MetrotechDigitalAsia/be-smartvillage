@@ -21,6 +21,11 @@ return new class extends Migration
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
+
+        Schema::table('notifications', function(Blueprint $table){
+            $table->string('notifiable_id')->change();
+        });
+
     }
 
     /**

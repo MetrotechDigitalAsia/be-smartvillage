@@ -43,9 +43,6 @@ class UserMailController extends Controller
     
     public function store(Request $request){
 
-        // event(new NotificationEvent('mail'));
-        // return ResponseController::create('sd', 'fas', 'asdf', 200);
-        
         $user = UserLogin::find($request->user_id);
         $mail = Mail::find($request->mail_id);
 
@@ -53,7 +50,7 @@ class UserMailController extends Controller
             return ResponseController::create(null, 'error', (empty($user) ? 'user tidak ditemukan' : 'jenis surat tidak tersedia'), 200);
         }
 
-        $sender = UserData::where('NIK',$user->no_nik)->first();
+        $applicant = UserData::where('id',$request->resident_id)->first(['NO_KK']);
 
         $field = json_decode($request->field, true);
 
@@ -61,61 +58,61 @@ class UserMailController extends Controller
             case 'Surat Keterangan Kelahiran':
 
                 $husband = UserData::where('SHDK', 'Kepala Keluarga')
-                        ->where('NO_KK', $sender->NO_KK)
-                        ->first(['NAMA as name', 'PEKERJAAN as job', 'UMUR as age']);
+                        ->where('NO_KK', $applicant->NO_KK)
+                        ->first([
+                            'NAMA as name', 
+                            'PEKERJAAN as job', 
+                            'UMUR as age', 
+                            'KEWARGANEGARAAN as citizenship',
+                            'TEMPAT_LAHIR as birthplace',
+                            'TANGGAL_LAHIR as birthdate',
+                            'NIK as nik'
+                        ]);
 
                 $wife = UserData::where('SHDK', 'ISTRI')
-                        ->where('NO_KK', $sender->NO_KK)
-                        ->first(['NAMA as name', 'PEKERJAAN as job', 'UMUR as age']);
+                        ->where('NO_KK', $applicant->NO_KK)
+                        ->first([
+                            'NAMA as name', 
+                            'PEKERJAAN as job', 
+                            'UMUR as age', 
+                            'KEWARGANEGARAAN as citizenship',
+                            'TEMPAT_LAHIR as birthplace',
+                            'TANGGAL_LAHIR as birthdate',
+                            'NIK as nik'
+                        ]);
 
                 $field = [
                     ...$field,
-                    'NO_KK' => $sender->NO_KK,
-                    'address' => $sender->ALAMAT,
+                    'NO_KK' => $applicant->NO_KK,
+                    'address' => $applicant->ALAMAT,
                     'husband' => $husband,
                     'wife' => $wife 
                 ];
 
                 break;
-            
-            case 'Surat Keterangan Tempat Usaha':
-
-                $sender = UserData::where('id',$request->resident_id)->first([
-                    'NAMA as name',
-                    'JENIS_KELAMIN as sex',
-                    'TEMPAT_LAHIR as birth_place',
-                    'TANGGAL_LAHIR as birth_date',
-                    'KEWARGANEGARAAN as citizenship',
-                    'NIK as nik',
-                    'PEKERJAAN as job',
-                    'ALAMAT as address',
-                    'AGAMA as religion'
-                ]);
-
-                $field = [
-                    ...$field,
-                    'applicant' => $sender
-                ];
 
             default:
-            # code...
             break;
         }
 
         try {
 
+            if($request->signature){
+                $signature = $request->file('signature')->store('mailSignature');
+            }
+
             $user->mail()->attach($mail,[
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'status' => 'Pending',
-                'signature' => '-',
+                'signature' => $signature ?? null,
                 'resident_id' => $request->resident_id,
                 'field' => json_encode($field),
             ]);
 
             $notif = [
                 'title' => $mail->title,
-                'sender' => $sender->NAMA ?? $sender->name
+                'sender' => $applicant->NAMA ?? $applicant->name
             ];
 
             Notification::send(Admin::first(), new MailNotification($notif));
