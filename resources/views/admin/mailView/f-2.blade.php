@@ -257,51 +257,48 @@
                     1. Nama
                 </td>
                 <td style="width: 50%;" >
-                    : {{ $field->child_name }}
+                    : {{ $field->child_name ?? '' }}
                 </td>
             </tr>
             <tr>
                 <td>2. Jenis Kelamin</td>
-                <td>: {{ $field->child_sex }}</td>
+                <td>: {{ $field->child_sex ?? '' }}</td>
             </tr>
             <tr>
                 <td>3. Tempat Dilahirkan</td>
-                <td>: {{ $field->child_birth_of_place }}</td>
+                <td>: {{ $field->child_birth_of_place ?? '' }}</td>
             </tr>
             <tr>
                 <td>4. Tempat Kelahiran</td>
-                <td>: {{ $field->child_birthplace }}</td>
+                <td>: {{ $field->child_birthplace ?? '' }}</td>
             </tr>
-            @php
-                $child_birth_date = explode('-',$field->child_birth_date);
-            @endphp
             <tr>
                 <td>5. Hari dan Tanggal Lahir</td>
-                <td>: {{ $field->child_birthday }}, {{ $field->child_birth_date }}</td>
+                <td>: {{ $field->child_birthday ?? '' }}, {{ $field->child_birth_date ?? '' }}</td>
             </tr>
             <tr>
                 <td>6. Pukul</td>
-                <td>: {{ $field->child_birth_time }} WITA</td>
+                <td>: {{ $field->child_birth_time ?? '' }} WITA</td>
             </tr>
             <tr>
                 <td>7. Jenis Kelahiran</td>
-                <td>: {{ $field->child_birth_type }}</td>
+                <td>: {{ $field->child_birth_type ?? '' }}</td>
             </tr>
             <tr>
                 <td>8. Kelahiran Ke</td>
-                <td>: {{ $field->birth_count }}</td>
+                <td>: {{ $field->birth_count ?? '' }}</td>
             </tr>
             <tr>
                 <td>9. Penolong Kelahiran</td>
-                <td>: {{ $field->birth_attendant }}</td>
+                <td>: {{ $field->birth_attendant ?? '' }}</td>
             </tr>
             <tr>
                 <td>10. Berat Bayi</td>
-                <td>: {{ $field->baby_weight }} Kg</td>
+                <td>: {{ $field->baby_weight ?? '' }} Kg</td>
             </tr>
             <tr>
                 <td>11. Panjang Bayi</td>
-                <td>: {{ $field->baby_length }} Cm</td>
+                <td>: {{ $field->baby_length ?? '' }} Cm</td>
             </tr>
         </table>
     </div>
