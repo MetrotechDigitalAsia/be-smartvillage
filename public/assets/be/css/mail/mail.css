@@ -8,6 +8,9 @@
     max-width: 2480px !important;
     max-height: 3508px !important;
 }
+.f2.message-content {
+    max-width: 2580px !important;
+}
 
 .mail-header {
     display: flex;
@@ -77,10 +80,13 @@
     text-indent: 0;
 }
 
-@media print {
+.mail-header-f2, .mail-body-f2 {
+    /* font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif; */
+    font-family: 'Bookman Old Style', sans-serif;
+}
 
-    .message-content {
-        background-color: red !important;
-    }
-
+.dropdown-item.mail-change-btn:active,
+.dropdown-item.mail-change-btn.active {
+    background-color: #f3f6f9 !important;
+    color: var(--primary);
 }

@@ -3,11 +3,17 @@
     width: 730px;
 }
 
-.message-content {
+.f2.message-content {
     max-width: 2580px !important;
     max-height: 3508px !important;
 }
 
 .f2-small-title {
     border: 2px solid black;
+}
+
+.dropdown-item.mail-change-btn:active,
+.dropdown-item.mail-change-btn.active {
+    background-color: #f3f6f9 !important;
+    color: var(--primary);
 }

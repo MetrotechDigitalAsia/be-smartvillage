@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('mail_number')->nullable();
             $table->unsignedBigInteger('resident_id');
             $table->json('field')->nullable();
-            $table->string('signature');
+            $table->string('signature')->nullable();
             $table->enum('status',['Pending', 'Process', 'Done', 'Rejected'])->default('Pending');
             $table->timestamps();
         });

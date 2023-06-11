@@ -10,12 +10,12 @@
         <tr>
             <td></td>
             <td>jenis kelamin</td>
-            <td>: {{ $field->sex }}</td>
+            <td>: {{ $field->child_sex }}</td>
         </tr>
         <tr>
             <td></td>
             <td>Tempat/Tgl.lahir</td>
-            <td>: {{ $field->birthplace. ', '. $field->birth_date }}</td>
+            <td>: {{ $field->child_birthplace. ', '. $field->child_birth_date }}</td>
         </tr>
         <tr>
             <td></td>
@@ -25,7 +25,7 @@
         <tr>
             <td></td>
             <td>Nomor KK</td>
-            <td>: </td>
+            <td>: {{ $field->NO_KK }}</td>
         </tr>
         <tr>
             <td></td>

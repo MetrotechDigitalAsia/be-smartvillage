@@ -1,15 +1,15 @@
 @extends('admin.persuratan.surat.dashboard')
 
 @push('mail-styles')
-    {{-- <link href="{{ asset('assets/be/css/mail/akta-kematian.css') }}" rel="stylesheet" type="text/css" /> --}}
-    <link href="{{ asset('assets/be/css/mail/f-2.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/be/css/mail/mail.css') }}" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ asset('assets/be/css/mail/f-2.css') }}" rel="stylesheet" type="text/css" /> --}}
 @endpush
 
 @section('table')
 
-    {{-- @livewire('mail-detail', ['mailId' => $data->id, 'perbekel' => $perbekel, 'kelian' => $kelian]) --}}
-    @include('admin.mailView.f-2')
-    
+    @livewire('mail-detail', ['mailId' => $data->id, 'perbekel' => $perbekel, 'kelian' => $kelian])
+    {{-- @include('admin.mailView.f-2') --}}
+
 @endsection
 
 @push('script')
@@ -117,6 +117,21 @@
             .fail(res => console.log(res))
 
 
+    }
+
+    $('.kt-selectpicker').selectpicker();
+
+    const handleChangeMail = (btn) => {
+        const el = document.querySelectorAll('.mail-change-btn')
+        const btnText = document.querySelector('.mail-type-title')
+        el.forEach(e => {
+            // console.log(e)
+            e.classList.remove('active')
+        })
+
+        btnText.innerHTML = btn.dataset.mail
+        
+        // window.location.href = el.value
     }
 
 </script>
