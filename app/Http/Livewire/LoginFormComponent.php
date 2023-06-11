@@ -13,7 +13,6 @@ class LoginFormComponent extends Component
 
     protected $messages = [
         'email.required' => 'Email harus diisi',
-        'email.email' => 'Format email tidak sesuai',
         'password.required' => 'Password harus diisi',
     ];
 
@@ -25,14 +24,11 @@ class LoginFormComponent extends Component
     public function handleSubmit(){
 
         $this->validate([
-            'email' => 'required|email',
-            'password' => "required"
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
-        if(Auth::attempt([ 'email' => $this->email, 'password' => $this->password, 'status' => 'Active'])){
-
-            request()->session()->regenerate();
-
+        if(Auth::attempt([ 'email' => $this->email, 'password' => $this->password])){
             switch (Auth::user()->type) {
                 case 'Super':
                     return redirect()->intended('/');
@@ -48,10 +44,10 @@ class LoginFormComponent extends Component
                     break;
             }
 
-            die;
-        }
-
+        }  
+        
         $this->emit('loginFailed');
+        return;
 
     }
 }

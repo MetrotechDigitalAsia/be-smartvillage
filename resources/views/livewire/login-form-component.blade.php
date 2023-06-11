@@ -9,9 +9,9 @@
         @csrf
 
         <div class="form-group">
-            <input wire:model.lazy="email" class="form-control form-control-solid h-auto py-5 px-6 @error('password') is-invalid @enderror" type="text" placeholder="Email" name="email" autocomplete="off" />
+            <input wire:model.lazy="email" class="form-control form-control-solid h-auto py-5 px-6 @error('email') is-invalid @enderror" type="text" placeholder="Email" name="email" autocomplete="off" />
             @error('email')
-            <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
