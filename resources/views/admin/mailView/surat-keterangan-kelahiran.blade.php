@@ -10,12 +10,12 @@
         <tr>
             <td></td>
             <td>jenis kelamin</td>
-            <td>: {{ $field->child_sex }}</td>
+            <td>: {{ $field->child_sex ?? '' }}</td>
         </tr>
         <tr>
             <td></td>
             <td>Tempat/Tgl.lahir</td>
-            <td>: {{ $field->child_birthplace. ', '. $field->child_birth_date }}</td>
+            <td>: {{ $field->child_birthplace ?? ''. ', '. $field->child_birth_date ?? '' }}</td>
         </tr>
         <tr>
             <td></td>
