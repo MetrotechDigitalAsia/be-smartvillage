@@ -118,33 +118,62 @@
 
     <div class="section__data-pelapor" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
         <span class="font-weight-bolder">Data Pelapor</span>
-        <table style="width: 100%;" >
+        <table style="width: 100%; table-layout: fixed;" >
             <tr>
-                <td style="width: 50%;" >
-                    Nama
-                </td>
-                <td style="width: 50%; position: relative;" >
-                    : {{ $data->applicant_name }}
+                <td style="width: 38%;" > Nama</td>
+                <td style="width: 2%" >:</td>
+                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none;" >
+                    {{ $data->applicant_name }}
                 </td>
             </tr>
             <tr>
                 <td>Nik</td>
-                <td>: {{ $data->applicant_nik }}</td>
+                <td>:</td>
+                @php $nik = str_split($data->applicant_nik) @endphp
+                @for ($i = 0; $i < 16; $i++)
+                    <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                        {{ $nik[$i] ?? '' }}
+                    </td>
+                @endfor
+                {{-- <td colspan="7" ></td> --}}
             </tr>
             <tr>
-                <td>Nomor Dokumen Perjalanan *</td>
-                <td>: {{ $field->travel_document ?? '' }}</td>
+                <td>Nomor Dokumen Perjalanan</td>
+                <td>:</td>
+                @for ($i = 0; $i < 16; $i++)
+                    <td style="border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" ></td>
+                @endfor
             </tr>
             <tr>
                 <td>Nomor Kartu Keluarga</td>
-                <td>: {{ $data->applicant_no_kk }}</td>
+                <td>:</td>
+                @php $kk = str_split($data->applicant_no_kk) @endphp
+                @for ($i = 0; $i < 16; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                    {{ $kk[$i] ?? '' }}
+                </td>
+                @endfor
             </tr>
             <tr>
-                <td>Kewarganegaraan</td>
-                <td>: {{ $data->applicant_citizenship }}</td>
+                <td> Kewarganegaraan </td>
+                <td>:</td>
+                @php $citizenship = str_split($data->applicant_citizenship) @endphp
+                @for ($i = 0; $i < 23; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                    {{ $citizenship[$i] ?? '' }}
+                </td>
+                @endfor
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                @for ($i = 0; $i < 23; $i++)
+                    <td style="width: 50px !important;" ></td>
+                @endfor
             </tr>
         </table>
     </div>
+
 
     <div class="section__saksi" style="border: 1px solid black; margin-top: 15px; padding: 5px;" >
         <span class="font-weight-bolder">Data Saksi I</span>

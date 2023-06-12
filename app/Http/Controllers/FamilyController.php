@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BLT;
 use App\Models\Family;
-use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Yajra\DataTables\DataTables;
