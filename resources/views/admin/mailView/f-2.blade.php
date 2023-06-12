@@ -272,18 +272,44 @@
         </table>
     </div>
 
-    <div class="section__data-orangtua" style="border: 1px solid black; margin-top: 15px; padding: 5px;" >
+    <div class="section__data-orangtua" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
         <span class="font-weight-bolder">Data Orang Tua</span>
-        <table style="width: 100%; margin-bottom: 10px;" >
+        <table style="width: 100%; margin-bottom: 10px; table-layout: fixed;" >
             <tr>
-                <td style="width: 50%;" >
-                    Nama Ayah
-                </td>
-                <td style="width: 50%;" >
-                    : {{ $field->husband->name }}
+                <td style="width: 38%;" >Nama Ayah</td>
+                <td style="width: 2%" >:</td>
+                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none;" >
+                    {{ $field->husband->name }}
                 </td>
             </tr>
             <tr>
+                <td>NIK Ayah</td>
+                <td>:</td>
+                @php $ayah_nik = str_split($field->husband->nik) @endphp
+                @for ($i = 0; $i < 16; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                    {{ $ayah_nik[$i] ?? '' }}
+                </td>
+                @endfor
+            </tr>
+            <tr>
+                <td>Tempat Lahir Ayah</td>
+                <td>:</td>
+                <td colspan="16" style="border: 1px solid black; width: 50px !important;" >
+                    {{ $field->husband->birthplace }}
+                </td>
+            </tr>
+            <tr>
+                <td>Kewarganegaraan </td>
+                <td>:</td>
+                @php $ayah_citizenship = str_split($field->husband->citizenship) @endphp
+                @for ($i = 0; $i < 23; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                    {{ $ayah_citizenship[$i] ?? '' }}
+                </td>
+                @endfor
+            </tr>
+            {{-- <tr>
                 <td>NIK Ayah</td>
                 <td>: {{ $field->husband->nik }}</td>
             </tr>
@@ -298,16 +324,44 @@
             <tr>
                 <td>Kewarganegaraan</td>
                 <td>: {{ $field->husband->citizenship }}</td>
-            </tr>
+            </tr> --}}
             <tr>
                 <td style="width: 50%;" >
                     Nama Ibu
                 </td>
-                <td style="width: 50%;" >
-                    : {{ $field->wife->name }}
+                <td style="width: 2%" >:</td>
+                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none;" >
+                    {{ $field->wife->name }}
                 </td>
             </tr>
             <tr>
+                <td>NIK Ayah</td>
+                <td>:</td>
+                @php $ibu_nik = str_split($field->wife->nik) @endphp
+                @for ($i = 0; $i < 16; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                    {{ $ibu_nik[$i] ?? '' }}
+                </td>
+                @endfor
+            </tr>
+            <tr>
+                <td>Tempat Lahir Ibu</td>
+                <td>:</td>
+                <td colspan="16" style="border: 1px solid black; width: 50px !important;" >
+                    {{ $field->wife->birthplace }}
+                </td>
+            </tr>
+            <tr>
+                <td>Kewarganegaraan </td>
+                <td>:</td>
+                @php $ibu_citizenship = str_split($field->wife->citizenship) @endphp
+                @for ($i = 0; $i < 23; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                    {{ $ibu_citizenship[$i] ?? '' }}
+                </td>
+                @endfor
+            </tr>
+            {{-- <tr>
                 <td>NIK Ibu</td>
                 <td>: {{ $field->wife->nik }}</td>
             </tr>
@@ -322,6 +376,13 @@
             <tr>
                 <td>Kewarganegaraan</td>
                 <td>: {{ $field->wife->citizenship }}</td>
+            </tr> --}}
+            <tr>
+                <td></td>
+                <td></td>
+                @for ($i = 0; $i < 23; $i++)
+                    <td style="width: 50px !important;" ></td>
+                @endfor
             </tr>
         </table>
     </div>
