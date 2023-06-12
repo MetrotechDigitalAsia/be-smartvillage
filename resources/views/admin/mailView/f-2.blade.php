@@ -175,51 +175,99 @@
     </div>
 
 
-    <div class="section__saksi" style="border: 1px solid black; margin-top: 15px; padding: 5px;" >
+    <div class="section__saksi" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
         <span class="font-weight-bolder">Data Saksi I</span>
-        <table style="width: 100%; margin-bottom: 10px;" >
+        <table style="width: 100%; margin-bottom: 10px; table-layout: fixed;" >
             <tr>
-                <td style="width: 50%;" >
-                    Nama
-                </td>
-                <td style="width: 50%;" >
-                    : {{ $saksi['saksi_1']->name }}
+                <td style="width: 38%;" > Nama</td>
+                <td style="width: 2%" >:</td>
+                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none;" >
+                    {{ $saksi['saksi_1']->name }}
                 </td>
             </tr>
             <tr>
-                <td>Nik</td>
-                <td>: {{ $saksi['saksi_1']->nik }}</td>
+                <td>NIK</td>
+                <td>:</td>
+                @php $saksi_1_nik = str_split($saksi['saksi_1']->nik) @endphp
+                @for ($i = 0; $i < 16; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                    {{ $saksi_1_nik[$i] ?? '' }}
+                </td>
+                @endfor
             </tr>
             <tr>
                 <td>Nomor Kartu Keluarga</td>
-                <td>: {{ $saksi['saksi_1']->kk }}</td>
+                <td>:</td>
+                @php $saksi_1_kk = str_split($saksi['saksi_1']->no_kk) @endphp
+                @for ($i = 0; $i < 16; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                    {{ $kk[$i] ?? '' }}
+                </td>
+                @endfor
             </tr>
             <tr>
-                <td>Kewarganegaraan</td>
-                <td>: {{ $saksi['saksi_1']->citizenship }}</td>
+                <td> Kewarganegaraan </td>
+                <td>:</td>
+                @php $saksi_1_citizenship = str_split($saksi['saksi_1']->citizenship) @endphp
+                @for ($i = 0; $i < 23; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                    {{ $saksi_1_citizenship[$i] ?? '' }}
+                </td>
+                @endfor
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                @for ($i = 0; $i < 23; $i++)
+                    <td style="width: 50px !important;" ></td>
+                @endfor
             </tr>
         </table>
         <span class="font-weight-bolder">Data Saksi II</span>
-        <table style="width: 100%;" >
+        <table style="width: 100%; table-layout: fixed;" >
             <tr>
-                <td style="width: 50%;" >
-                    Nama
-                </td>
-                <td style="width: 50%;" >
-                    : {{ $saksi['saksi_2']->name }}
+                <td style="width: 38%;" > Nama</td>
+                <td style="width: 2%" >:</td>
+                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none;" >
+                    {{ $saksi['saksi_2']->name }}
                 </td>
             </tr>
             <tr>
-                <td>Nik</td>
-                <td>: {{ $saksi['saksi_2']->nik }}</td>
+                <td>NIK</td>
+                <td>:</td>
+                @php $saksi_2_nik = str_split($saksi['saksi_2']->nik) @endphp
+                @for ($i = 0; $i < 16; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                    {{ $saksi_2_nik[$i] ?? '' }}
+                </td>
+                @endfor
             </tr>
             <tr>
                 <td>Nomor Kartu Keluarga</td>
-                <td>: {{ $saksi['saksi_2']->kk }}</td>
+                <td>:</td>
+                @php $saksi_2_kk = str_split($saksi['saksi_2']->no_kk) @endphp
+                @for ($i = 0; $i < 16; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                    {{ $kk[$i] ?? '' }}
+                </td>
+                @endfor
             </tr>
             <tr>
-                <td>Kewarganegaraan</td>
-                <td>: {{ $saksi['saksi_2']->citizenship }}</td>
+                <td> Kewarganegaraan </td>
+                <td>:</td>
+                @php $saksi_2_citizenship = str_split($saksi['saksi_2']->citizenship) @endphp
+                @for ($i = 0; $i < 23; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                    {{ $saksi_2_citizenship[$i] ?? '' }}
+                </td>
+                @endfor
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                @for ($i = 0; $i < 23; $i++)
+                    <td style="width: 50px !important;" ></td>
+                @endfor
             </tr>
         </table>
     </div>
