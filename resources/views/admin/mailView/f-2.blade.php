@@ -123,8 +123,8 @@
                 <td style="width: 50%;" >
                     Nama
                 </td>
-                <td style="width: 50%;" >
-                    : <p style="border: 1px solid black; width: 98%; float: right;" >{{ $data->applicant_name }} </p>
+                <td style="width: 50%; position: relative;" >
+                    : {{ $data->applicant_name }}
                 </td>
             </tr>
             <tr>

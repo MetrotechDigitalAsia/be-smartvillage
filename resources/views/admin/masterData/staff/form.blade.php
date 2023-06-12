@@ -4,6 +4,11 @@
 
 <form action="{{ empty($staff) ? route('storeStaff') : '/master-data/staff/update/'.$staff->id }}" enctype="multipart/form-data" method="POST"  >
 
+    @csrf
+    
+    @include('partials.success-alert')
+    @include('partials.validation-alert')
+
 <div class="card card-custom gutter-b">
 
 
