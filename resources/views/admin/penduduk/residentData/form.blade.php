@@ -230,7 +230,7 @@
                             Buat Akun Mobile App
                         </label>
                     </div>
-                    <span class="form-text text-muted">Centang untuk membuat akun yang di gunakan di SmartDesaGetasan</span>
+                    <span class="form-text text-muted">Centang untuk membuat akun yang di gunakan di siGetasan</span>
                 </div>
             </div>
         @else
