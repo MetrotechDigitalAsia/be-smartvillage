@@ -300,6 +300,35 @@
                 </td>
             </tr>
             <tr>
+                @php
+                    $ayah_birthdate = Carbon\Carbon::parse($field->husband->birthdate)->format('d-m-Y');
+                    $ayah_birthdate = explode('-', $ayah_birthdate);
+                @endphp
+                <td>Tanggal Lahir Ayah</td>
+                <td>:</td>
+                @php $ayah_birthdate_date = str_split($ayah_birthdate[0]) @endphp
+                <td colspan="2" style="border: 1px solid black; width: 50px !important; border-left: none; text-align: center;" >
+                    Tgl:
+                </td>
+                @foreach ($ayah_birthdate_date as $item)
+                    <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $item }}</td>
+                @endforeach
+                @php $ayah_birthdate_month = str_split($ayah_birthdate[1]) @endphp
+                <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: right;" >
+                    Bulan: 
+                </td>
+                @foreach ($ayah_birthdate_month as $item)
+                    <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $item }}</td>
+                @endforeach
+                @php $ayah_birthdate_year = str_split($ayah_birthdate[2]) @endphp
+                <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: right;" >
+                    Tahun: 
+                </td>
+                @foreach ($ayah_birthdate_year as $item)
+                    <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $item }}</td>
+                @endforeach
+            </tr>
+            <tr>
                 <td>Kewarganegaraan </td>
                 <td>:</td>
                 @php $ayah_citizenship = str_split($field->husband->citizenship) @endphp
@@ -309,22 +338,6 @@
                 </td>
                 @endfor
             </tr>
-            {{-- <tr>
-                <td>NIK Ayah</td>
-                <td>: {{ $field->husband->nik }}</td>
-            </tr>
-            <tr>
-                <td>Tempat Lahir Ayah</td>
-                <td>: {{ $field->husband->birthplace }}</td>
-            </tr>
-            <tr>
-                <td>Tanggal Lahir Ayah</td>
-                <td>: {{ $field->husband->birthdate }}</td>
-            </tr>
-            <tr>
-                <td>Kewarganegaraan</td>
-                <td>: {{ $field->husband->citizenship }}</td>
-            </tr> --}}
             <tr>
                 <td style="width: 50%;" >
                     Nama Ibu
@@ -352,6 +365,35 @@
                 </td>
             </tr>
             <tr>
+                @php
+                    $ibu_birthdate = Carbon\Carbon::parse($field->wife->birthdate)->format('d-m-Y');
+                    $ibu_birthdate = explode('-', $ibu_birthdate);
+                @endphp
+                <td>Tanggal Lahir Ibu</td>
+                <td>:</td>
+                @php $ibu_birthdate_date = str_split($ibu_birthdate[0]) @endphp
+                <td colspan="2" style="border: 1px solid black; width: 50px !important; border-left: none; text-align: center;" >
+                    Tgl:
+                </td>
+                @foreach ($ibu_birthdate_date as $item)
+                    <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $item }}</td>
+                @endforeach
+                @php $ibu_birthdate_month = str_split($ibu_birthdate[1]) @endphp
+                <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: right;" >
+                    Bulan: 
+                </td>
+                @foreach ($ibu_birthdate_month as $item)
+                    <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $item }}</td>
+                @endforeach
+                @php $ibu_birthdate_year = str_split($ibu_birthdate[2]) @endphp
+                <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: right;" >
+                    Tahun: 
+                </td>
+                @foreach ($ibu_birthdate_year as $item)
+                    <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $item }}</td>
+                @endforeach
+            </tr>
+            <tr>
                 <td>Kewarganegaraan </td>
                 <td>:</td>
                 @php $ibu_citizenship = str_split($field->wife->citizenship) @endphp
@@ -361,22 +403,6 @@
                 </td>
                 @endfor
             </tr>
-            {{-- <tr>
-                <td>NIK Ibu</td>
-                <td>: {{ $field->wife->nik }}</td>
-            </tr>
-            <tr>
-                <td>Tempat Lahir Ibu</td>
-                <td>: {{ $field->wife->birthplace }}</td>
-            </tr>
-            <tr>
-                <td>Tanggal Lahir Ibu</td>
-                <td>: {{ $field->wife->birthdate }}</td>
-            </tr>
-            <tr>
-                <td>Kewarganegaraan</td>
-                <td>: {{ $field->wife->citizenship }}</td>
-            </tr> --}}
             <tr>
                 <td></td>
                 <td></td>
@@ -387,56 +413,182 @@
         </table>
     </div>
 
-    <div class="section__data-kelahiran" style="border: 1px solid black; margin-top: 15px; padding: 5px;" >
+    <div class="section__data-kelahiran" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
         <span class="font-weight-bolder">Data Kelahiran</span>
-        <table style="width: 100%; margin-bottom: 10px;" >
+        <table style="width: 100%; margin-bottom: 10px; table-layout: fixed;" >
             <tr>
-                <td style="width: 50%;" >
-                    1. Nama
-                </td>
-                <td style="width: 50%;" >
-                    : {{ $field->child_name ?? '' }}
+                <td style="width: 38%;" >1. Nama</td>
+                <td style="width: 2%" >:</td>
+                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none;" >
+                    {{ $field->child_name }}
                 </td>
             </tr>
             <tr>
                 <td>2. Jenis Kelamin</td>
-                <td>: {{ $field->child_sex ?? '' }}</td>
+                <td>:</td>
+                <td style="border: 1px solid black; width: 50px !important;" >
+                    
+                </td>
+                <td colspan="8" style="width: 50px !important;" >
+                    1. Laki Laki
+                </td>
+                <td style="border: 1px solid black; width: 50px !important;" >
+                    
+                </td>
+                <td colspan="13" >
+                    2. Perempuan
+                </td>
+            </tr>
+            <tr >
+                <td rowspan="2"  >3. Tempat Dilahirkan</td>
+                <td rowspan="2" >:</td>
+                <td style="border: 1px solid black; width: 50px !important;" >
+                    
+                </td>
+                <td colspan="4" style="width: 50px !important;" >
+                    1. RS/RB
+                </td>
+                <td style="border: 1px solid black; width: 50px !important;" >
+                    
+                </td>
+                <td colspan="6" style="width: 50px !important;" >
+                    2. Puskesmas
+                </td>
+                <td style="border: 1px solid black; width: 50px !important;" >
+                    
+                </td>
+                <td colspan="6" style="width: 50px !important;" >
+                    3. Polindes
+                </td>
             </tr>
             <tr>
-                <td>3. Tempat Dilahirkan</td>
-                <td>: {{ $field->child_birth_of_place ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important;" >
+                    
+                </td>
+                <td colspan="4" style="width: 50px !important;" >
+                    4. Rumah
+                </td>
+                <td style="border: 1px solid black; width: 50px !important;" >
+                    
+                </td>
+                <td colspan="6" style="width: 50px !important;" >
+                    5. Lainnya
+                </td>
             </tr>
             <tr>
                 <td>4. Tempat Kelahiran</td>
-                <td>: {{ $field->child_birthplace ?? '' }}</td>
+                <td>:</td>
+                <td colspan="23" >
+                    {{ $field->child_birthplace ?? '' }}
+                </td>
             </tr>
             <tr>
                 <td>5. Hari dan Tanggal Lahir</td>
-                <td>: {{ $field->child_birthday ?? '' }}, {{ $field->child_birth_date ?? '' }}</td>
+                <td>:</td>
+                @php
+                    $child_birthday = str_split($field->child_birthday);
+                    $child_birthdate = Carbon\Carbon::parse($field->child_birth_date)->format('d-m-Y');
+                    $child_birthdate = explode('-',$child_birthdate);
+                    // var_dump($child_birthdate);
+                @endphp
+                @for ($i = 0; $i < 5; $i++)
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                    {{ $child_birthday[$i] ?? '' }}
+                </td>
+                @endfor
+                <td colspan="3" style="text-align: right;" >
+                    Tgl : 
+                </td>
+                @foreach (str_split($child_birthdate[0]) as $item)
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                    {{$item}}
+                </td>
+                @endforeach
+                <td colspan="3" style="text-align: right;" >
+                    Bulan : 
+                </td>
+                @foreach (str_split($child_birthdate[1]) as $item)
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                    {{$item}}
+                </td>
+                @endforeach
+                <td colspan="4" style="text-align: right;" >
+                    Tahun : 
+                </td>
+                @foreach (str_split($child_birthdate[2]) as $item)
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                    {{$item}}
+                </td>
+                @endforeach
             </tr>
             <tr>
                 <td>6. Pukul</td>
-                <td>: {{ $field->child_birth_time ?? '' }} WITA</td>
+                <td>:</td>
+                <td colspan="23" > {{ $field->child_birth_time ?? '' }} WITA </td>
             </tr>
             <tr>
-                <td>7. Jenis Kelahiran</td>
-                <td>: {{ $field->child_birth_type ?? '' }}</td>
+                <td rowspan="2" >7. Jenis Kelahiran</td>
+                <td rowspan="2" >:</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                </td>
+                <td colspan="5" >1. Tunggal</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                </td>
+                <td colspan="5" >2. Kembar 2</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                </td>
+                <td colspan="5" >3. Kembar 3</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                </td>
+                <td colspan="5" >3. Lainnya</td>
             </tr>
             <tr>
                 <td>8. Kelahiran Ke</td>
-                <td>: {{ $field->birth_count ?? '' }}</td>
+                <td>:</td>
+                <td colspan="23" >{{ $field->birth_count ?? '' }}</td>
             </tr>
             <tr>
-                <td>9. Penolong Kelahiran</td>
-                <td>: {{ $field->birth_attendant ?? '' }}</td>
+                <td rowspan="2" >9. Penolong Kelahiran</td>
+                <td rowspan="2" >:</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                </td>
+                <td colspan="5" >1. Dokter</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                </td>
+                <td colspan="8" >2. Bidan/Perawat</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                </td>
+                <td colspan="5" >3. Dukun</td>
             </tr>
             <tr>
-                <td>10. Berat Bayi</td>
-                <td>: {{ $field->baby_weight ?? '' }} Kg</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                </td>
+                <td colspan="5" >5. Lainnya</td>
             </tr>
             <tr>
-                <td>11. Panjang Bayi</td>
-                <td>: {{ $field->baby_length ?? '' }} Cm</td>
+                <td >10. Berat Bayi</td>
+                <td colspan="2" >:</td>
+                <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                    {{ $field->baby_weight }} Kg
+                </td>
+                <td colspan="2" style="text-align: right;" >Kg</td>
+            </tr>
+            <tr>
+                <td >11. Panjang Bayi</td>
+                <td colspan="2" >:</td>
+                <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                    {{ $field->baby_length }} Cm
+                </td>
+                <td colspan="2" style="text-align: right;" >Cm</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                @for ($i = 0; $i < 23; $i++)
+                    <td style="width: 50px !important;" ></td>
+                @endfor
             </tr>
         </table>
     </div>

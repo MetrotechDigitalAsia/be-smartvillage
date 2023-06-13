@@ -51,6 +51,7 @@ class MailDetail extends Component
             'applicant.PEKERJAAN as applicant_job',
             'applicant.ALAMAT as applicant_address',
             'applicant.BANJAR as applicant_banjar',
+            'applicant.UMUR as applicant_age',
             'userMail.created_at'
         ]);
 
