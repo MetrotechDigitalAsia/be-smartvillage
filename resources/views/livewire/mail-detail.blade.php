@@ -246,13 +246,13 @@
                         @include('admin.mailView.mail')
                     @else
                     <div class="tab-content" >
-                        <div class="tab-pane fade " id="surat_keterangan_tab" role="tabpanel" aria-labelledby="surat_keterangan_tab">
+                        <div class="tab-pane fade active show" id="surat_keterangan_tab" role="tabpanel" aria-labelledby="surat_keterangan_tab">
                             @include('admin.mailView.mail')
                         </div>
-                        <div class="tab-pane fadee" id="surat_f2_tab" role="tabpanel" aria-labelledby="surat_f2_tab">
+                        <div class="tab-pane fade" id="surat_f2_tab" role="tabpanel" aria-labelledby="surat_f2_tab">
                             @include('admin.mailView.f-2')
                         </div>
-                        <div class="tab-pane fade active show" id="surat_pernyataan_lahir_tab" role="tabpanel" aria-labelledby="surat_pernyataan_lahir_tab">
+                        <div class="tab-pane fade" id="surat_pernyataan_lahir_tab" role="tabpanel" aria-labelledby="surat_pernyataan_lahir_tab">
                             @include('admin.mailView.surat-pernyataan-kelahiran')
                         </div>
                     </div>
