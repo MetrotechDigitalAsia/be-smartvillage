@@ -65,7 +65,8 @@ class UserMailController extends Controller
                             'kewarganegaraan as citizenship',
                             'tempat_lahir as birthplace',
                             'tanggal_lahir as birthdate',
-                            'no_nik as nik'
+                            'no_nik as nik',
+                            DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
                         ]);
 
                 $wife = UserData::where('SHDK', 'ISTRI')
@@ -76,7 +77,8 @@ class UserMailController extends Controller
                             'kewarganegaraan as citizenship',
                             'tempat_lahir as birthplace',
                             'tanggal_lahir as birthdate',
-                            'no_nik as nik'
+                            'no_nik as nik',
+                            DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
                         ]);
 
                 $field = [
