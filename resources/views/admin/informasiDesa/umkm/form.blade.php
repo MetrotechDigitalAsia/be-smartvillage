@@ -32,35 +32,35 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Nama Item</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input readonly class="form-control form-control-lg form-control-solid" type="text" name="item_name" value="{{$userBusinessItem['item_name'] ?? '' }}" />
+                        <input readonly class="form-control form-control-lg " type="text" name="item_name" value="{{$userBusinessItem['item_name'] ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Harga Item</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input readonly class="form-control form-control-lg form-control-solid" type="text" name="item_price" value="Rp {{ number_format($userBusinessItem['item_price']) ?? '' }}" />
+                        <input readonly class="form-control form-control-lg " type="text" name="item_price" value="Rp {{ number_format($userBusinessItem['item_price']) ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Link Marketpalce</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input readonly class="form-control form-control-lg form-control-solid" type="text" name="item_marketplace_link" value="{{$userBusinessItem['item_marketplace_link'] ?? '' }}" />
+                        <input readonly class="form-control form-control-lg " type="text" name="item_marketplace_link" value="{{$userBusinessItem['item_marketplace_link'] ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Kategori UMKM</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input readonly class="form-control form-control-lg form-control-solid" type="text" name="item_marketplace_link" value="{{$userBusinessItem->itemBusinessCategory->item_category ?? '' }}" />
+                        <input readonly class="form-control form-control-lg " type="text" name="item_marketplace_link" value="{{$userBusinessItem->itemBusinessCategory->item_category ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Telepon</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input readonly class="form-control form-control-lg form-control-solid" type="text" name="user_phone_number" value="{{$userBusinessItem['user_phone_number'] ?? '' }}" />
+                        <input readonly class="form-control form-control-lg " type="text" name="user_phone_number" value="{{$userBusinessItem['user_phone_number'] ?? '' }}" />
                     </div>
                 </div>
 

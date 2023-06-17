@@ -25,21 +25,21 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Nama </label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="name" value="{{$importantNumber['name'] ?? '' }}" />
+                        <input class="form-control form-control-lg " type="text" name="name" value="{{$importantNumber['name'] ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Telepon </label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="phone" value="{{$importantNumber['phone'] ?? '' }}" />
+                        <input class="form-control form-control-lg " type="text" name="phone" value="{{$importantNumber['phone'] ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-xl-3 col-lg-3">Banjar</label>
                     <div class="col-xl-9 col-lg-9">
-                        <select class="form-control form-control-lg form-control-solid" name="regency">
+                        <select class="form-control form-control-lg " name="regency">
                             <option value="">Pilih Banjar...</option>
                             @foreach ($regency as $item)
                             <option value="{{ $item }}" {{ !empty($importantNumber) ? $importantNumber['regency'] == $item ? 'selected' : '' : ''}}  >
@@ -53,7 +53,7 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Alamat </label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="address" value="{{$importantNumber['address'] ?? '' }}" />
+                        <input class="form-control form-control-lg " type="text" name="address" value="{{$importantNumber['address'] ?? '' }}" />
                     </div>
                 </div>
 

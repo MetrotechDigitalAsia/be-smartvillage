@@ -27,7 +27,7 @@ class UsersMailController extends Controller
         $this->DBQuery = DB::table('users_mail as userMail')
         ->join('mails', 'mails.id', '=', 'userMail.mail_id')
         ->join('user_logins as user', function($join){
-            $join->join($this->userDb, 'userDB.NIK', '=', 'user.no_nik')
+            $join->join($this->userDb, 'userDB.no_nik', '=', 'user.no_nik')
             ->on('user.id', '=', 'userMail.user_id');
         });
     }
@@ -65,8 +65,8 @@ class UsersMailController extends Controller
                 'mails.id as mail_id',
                 'userMail.mail_number',
                 'mails.title as mail_type',
-                'userDB.NAMA as name',
-                'userDB.NIK as nik',
+                'userDB.nama as name',
+                'userDB.no_nik as nik',
                 'userMail.status as status',
                 'userMail.created_at'
             ]);

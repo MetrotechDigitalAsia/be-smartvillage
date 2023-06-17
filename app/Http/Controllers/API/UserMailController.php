@@ -50,7 +50,7 @@ class UserMailController extends Controller
             return ResponseController::create(null, 'error', (empty($user) ? 'user tidak ditemukan' : 'jenis surat tidak tersedia'), 200);
         }
 
-        $applicant = UserData::where('id',$request->resident_id)->first(['NO_KK']);
+        $applicant = UserData::where('id',$request->resident_id)->first(['no_kk']);
 
         $field = json_decode($request->field, true);
 
@@ -58,19 +58,18 @@ class UserMailController extends Controller
             case 'Surat Keterangan Kelahiran':
 
                 $husband = UserData::where('SHDK', 'Kepala Keluarga')
-                        ->where('NO_KK', $applicant->NO_KK)
+                        ->where('NO_KK', $applicant->no_kk)
                         ->first([
-                            'NAMA as name', 
-                            'PEKERJAAN as job', 
-                            'UMUR as age', 
-                            'KEWARGANEGARAAN as citizenship',
-                            'TEMPAT_LAHIR as birthplace',
-                            'TANGGAL_LAHIR as birthdate',
-                            'NIK as nik'
+                            'nama as name', 
+                            'pekerjaan as job', 
+                            'kewarganegaraan as citizenship',
+                            'tempat_lahir as birthplace',
+                            'tanggal_lahir as birthdate',
+                            'no_nik as nik'
                         ]);
 
                 $wife = UserData::where('SHDK', 'ISTRI')
-                        ->where('NO_KK', $applicant->NO_KK)
+                        ->where('no_kk', $applicant->no_kk)
                         ->first([
                             'NAMA as name', 
                             'PEKERJAAN as job', 

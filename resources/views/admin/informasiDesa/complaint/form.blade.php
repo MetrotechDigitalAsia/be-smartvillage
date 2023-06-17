@@ -21,28 +21,28 @@
                     <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label">Nama </label>
                         <div class="col-lg-9 col-xl-9">
-                            <input class="form-control form-control-lg form-control-solid" type="text" name="name" value="{{$complaint['name'] ?? '' }}" readonly />
+                            <input class="form-control form-control-lg " type="text" name="name" value="{{$complaint['name'] ?? '' }}" readonly />
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label">Telepon </label>
                         <div class="col-lg-9 col-xl-9">
-                            <input class="form-control form-control-lg form-control-solid" type="text" name="phone" value="{{$complaint['phone'] ?? '' }}" readonly />
+                            <input class="form-control form-control-lg " type="text" name="phone" value="{{$complaint['phone'] ?? '' }}" readonly />
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label">Email </label>
                         <div class="col-lg-9 col-xl-9">
-                            <input class="form-control form-control-lg form-control-solid" type="text" name="email" value="{{$complaint['email'] ?? '' }}" readonly />
+                            <input class="form-control form-control-lg " type="text" name="email" value="{{$complaint['email'] ?? '' }}" readonly />
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label">Kategori Aduan </label>
                         <div class="col-lg-9 col-xl-9">
-                            <input class="form-control form-control-lg form-control-solid" type="text" name="email" value="{{$complaint->complaintCategory->complaint_category ?? '' }}" readonly />
+                            <input class="form-control form-control-lg " type="text" name="email" value="{{$complaint->complaintCategory->complaint_category ?? '' }}" readonly />
                         </div>
                     </div>
 

@@ -40,7 +40,7 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">No KK</label>
             <div class="col-lg-9 col-xl-6">
-                <input required class="form-control @error('NAMA') is-invalid @enderror form-control-lg form-control-solid" type="text" name="no_kk" value="{{$family['no_kk'] ?? '' }}" readonly />
+                <input required class="form-control @error('NAMA') is-invalid @enderror form-control-lg " type="text" name="no_kk" value="{{$family['no_kk'] ?? '' }}" readonly />
                 @error('NAMA')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -50,14 +50,14 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">Status</label>
             <div class="col-lg-9 col-xl-6">
-                <input required class="form-control @error('status') is-invalid @enderror form-control-lg form-control-solid" type="text" name="status" value="{{$family['status'] ?? '' }}" />
+                <input required class="form-control @error('status') is-invalid @enderror form-control-lg " type="text" name="status" value="{{$family['status'] ?? '' }}" />
             </div>
         </div>
 
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">Jenis BLT</label>
             <div class="col-lg-9 col-xl-6">
-                <select class="form-control form-control-lg form-control-solid" name="blt_id">
+                <select class="form-control form-control-lg " name="blt_id">
                     <option value="">Pilih Kategori...</option>
                     @foreach ($blt as $item)
                     <option value="{{ $item->id }}" {{ !empty($item) ? $family['blt_id'] == $item->id ? 'selected' : '' : ''}}  >

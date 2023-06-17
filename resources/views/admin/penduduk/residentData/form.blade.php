@@ -2,14 +2,14 @@
 
 @section('content')
 
-<form action="{{ empty($userData) ? route('storeUserData') : url('/data-penduduk/penduduk/update/'.$userData->id) }}" method="post">
+<form action="{{ empty($user) ? route('storeUserData') : url('/data-penduduk/penduduk/update/'.$user->id) }}" method="post">
 
     @csrf
 
 
-@if (!empty($userData) )
-    <input hidden name="uuid" value="{{ $userData->uuid }}" />
-    <input hidden name="id" value="{{ $userData->id }}" />
+@if (!empty($user) )
+    <input hidden name="uuid" value="{{ $user->uuid }}" />
+    <input hidden name="id" value="{{ $user->id }}" />
 @endif     
 
 <div class="card card-custom">
@@ -17,234 +17,466 @@
     <!--begin::Header-->
     <div class="card-header py-3">
         <div class="card-title align-items-center flex-row ">
-            <h3 class="card-label font-weight-bolder text-dark">{{ empty($userData) ? 'Tambah Data' : 'Ubah Data' }}</h3>
+            <h3 class="card-label font-weight-bolder text-dark">{{ empty($user) ? 'Tambah Data' : 'Ubah Data' }}</h3>
         </div>
     </div>
     <!--end::Header-->
     <!--begin::Form-->
-    <div class="card-body">
+    <div class="card-body pt-0">
 
         <!--begin::Heading-->
         <!--begin::Form Group-->
 
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Nama</label>
-            <div class="col">
-                <input required class="form-control @error('NAMA') is-invalid @enderror form-control-lg form-control-solid" type="text" name="NAMA" value="{{$userData['NAMA'] ?? '' }}" required />
-                @error('NAMA')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+        <div class="card card-custom" style="box-shadow: none;" >
+            <div class="card-header card-header-tabs-line px-0">
+                <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#pribadi_tab">
+                            <span class="nav-icon"><i class="flaticon2-user-outline-symbol"></i></span>
+                            <span class="nav-text">Pribadi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#keluarga_tab">
+                            <span class="nav-icon"><i class="flaticon2-group"></i></span>
+                            <span class="nav-text">Keluarga</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#pernikahan_tab">
+                            <span class="nav-icon"><i class="flaticon2-cube-1"></i></span>
+                            <span class="nav-text">Pernikahan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#lainnya_tab">
+                            <span class="nav-icon"><i class="flaticon2-list-3"></i></span>
+                            <span class="nav-text">Lainnya</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </div>
+            <div class="card-body px-0">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="pribadi_tab" role="tabpanel" aria-labelledby="pribadi_tab" >
 
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Tempat Lahir</label>
-            <div class="col">
-                <input required class="form-control @error('TEMPAT_LAHIR') is-invalid @enderror form-control-lg form-control-solid" type="text" name="TEMPAT_LAHIR" value="{{$userData['TEMPAT_LAHIR'] ?? '' }}" required />
-                @error('TEMPAT_LAHIR')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Tanggal Lahir </label>
-            <div class="col">
-                <input required class="form-control @error('TANGGAL_LAHIR') is-invalid @enderror form-control-lg form-control-solid" type="date" name="TANGGAL_LAHIR" value="{{ !empty($userData['TANGGAL_LAHIR']) ? Carbon\Carbon::createFromFormat('Y-m-d', $userData['TANGGAL_LAHIR'])->format('Y-m-d')  : '' }}" required />
-                @error('TANGGAL_LAHIR')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Umur</label>
-            <div class="col">
-                <input class="form-control form-control-lg form-control-solid" type="number" name="UMUR" value="{{$userData['UMUR'] ?? '' }}" />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Golongan Darah</label>
-            <div class="col">
-                <input class="form-control form-control-lg form-control-solid" type="text" name="GOLONGAN_DARAH" value="{{$userData['GOLONGAN_DARAH'] ?? '' }}" />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Alamat</label>
-            <div class="col">
-                <input required class="form-control @error('ALAMAT') is-invalid @enderror form-control-lg form-control-solid" type="text" name="ALAMAT" value="{{$userData['ALAMAT'] ?? '' }}" required />
-                @error('ALAMAT')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
+                        <div class="row ">
+                            <div class="col mr-10">
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Nama <span style="color: red;" >*</span> </label>
+                                    <div class="col">
+                                        <input required class="form-control @error('nama') is-invalid @enderror form-control-lg " type="text" name="nama" value="{{$user['nama'] ?? '' }}" required />
+                                        @error('nama')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
         
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">RT</label>
-            <div class="col">
-                <input required class="form-control @error('RT') is-invalid @enderror form-control-lg form-control-solid" type="text" name="RT" value="{{$userData['RT'] ?? '' }}" required />
-                @error('RT')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror        
-            </div>
-        </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Tempat Lahir <span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        <input required class="form-control @error('tempat_lahir') is-invalid @enderror form-control-lg " type="text" name="tempat_lahir" value="{{$user['tempat_lahir'] ?? '' }}" required />
+                                    </div>
+                                </div>
         
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">RW</label>
-            <div class="col">
-                <input required class="form-control @error('RW') is-invalid @enderror form-control-lg form-control-solid" type="text" name="RW" value="{{$userData['RW'] ?? '' }}" required />
-                @error('RW')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Tanggal Lahir <span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        <input required class="form-control @error('tanggal_lahir') is-invalid @enderror form-control-lg " type="date" name="tanggal_lahir" value="{{ !empty($user['tanggal_lahir']) ? Carbon\Carbon::createFromFormat('Y-m-d', $user['tanggal_lahir'])->format('Y-m-d')  : '' }}" required />
+                                    </div>
+                                </div>
 
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Banjar</label>
-            <div class="col">
-                <select class="form-control form-control-lg form-control-solid" name="BANJAR">
-                    @php
-                        $banjar = ['Buangga', 'Kauh', 'Ubud', 'Tengah']
-                    @endphp
-                    <option value="">Pilih Banjar...</option>
-                    @foreach ($banjar as $item)
-                    <option value="{{ $item }}" {{ !empty($userData) ? $userData['BANJAR'] == $item ? 'selected' : '' : ''}}  >
-                        {{ $item }}
-                    </option>
-                    @endforeach
-                </select>
-                @error('BANJAR')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Alamat <span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        <input required class="form-control @error('alamat') is-invalid @enderror form-control-lg " type="text" name="alamat" value="{{$user['alamat'] ?? '' }}" required />
+                                        @error('alamat')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
 
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">No KK</label>
-            <div class="col">
-                <input required class="form-control @error('NO_KK') is-invalid @enderror form-control-lg form-control-solid" type="text" name="NO_KK" value="{{$userData['NO_KK'] ?? '' }}" required />
-                @error('NO_KK')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">RT <span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        <input required class="form-control @error('RT') is-invalid @enderror form-control-lg " type="text" name="RT" value="{{$user['RT'] ?? '' }}" required />
+                                        @error('RT')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror        
+                                    </div>
+                                </div>
+        
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">RW <span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        <input required class="form-control @error('RW') is-invalid @enderror form-control-lg " type="text" name="RW" value="{{$user['RW'] ?? '' }}" required />
+                                        @error('RW')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+        
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Banjar <span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        <select class="form-control form-control-lg " name="banjar" required >
+                                            @php
+                                                $banjar = ['Buangga', 'Kauh', 'Ubud', 'Tengah']
+                                            @endphp
+                                            <option value="">Pilih Banjar...</option>
+                                            @foreach ($banjar as $item)
+                                            <option value="{{ $item }}" {{ !empty($user) ? $user['banjar'] == $item ? 'selected' : '' : ''}}  >
+                                                {{ $item }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                        @error('banjar')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
 
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">No NIK</label>
-            <div class="col">
-                <input required class="form-control @error('NIK') is-invalid @enderror form-control-lg form-control-solid" type="text" name="NIK" value="{{$userData['NIK'] ?? '' }}" required />
-                @error('NIK')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Kewarganegaraan<span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        @php
+                                            $status = ['WNA', 'WNI']
+                                        @endphp
+                                        <select class="form-control form-control-lg " name="kewarganegaraan" required >
+                                            <option value="">Pilih ...</option>
+                                            @foreach ($status as $item)
+                                            <option value="{{ $item }}" {{ !empty($user) ? $user['kewarganegaraan'] == $item ? 'selected' : '' : ''}}  >
+                                                {{ $item }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
 
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Status Perkawinan</label>
-            <div class="col">
-                <input class="form-control form-control-lg form-control-solid" type="text" name="STATUS_PERKAWINAN" value="{{$userData['STATUS_PERKAWINAN'] ?? '' }}" />
-            </div>
-        </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Agama <span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        <select class="form-control form-control-lg " name="agama" required >
+                                            @php
+                                                $banjar = ['Islam', 'Kristen', 'Katholik', 'Hindu', 'Budha', 'Konghucu']
+                                            @endphp
+                                            <option value="">Pilih Agama...</option>
+                                            @foreach ($banjar as $item)
+                                            <option value="{{ $item }}" {{ !empty($user) ? $user['agama'] == $item ? 'selected' : '' : ''}}  >
+                                                {{ $item }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
 
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">SHDK</label>
-            <div class="col">
-                <input class="form-control form-control-lg form-control-solid" type="text" name="SHDK" value="{{$userData['SHDK'] ?? '' }}" />
-            </div>
-        </div>
+                            </div>
+                            <div class="col">
 
-        <div class="form-group row">
-            <label class="col-3 col-form-label">Jenis Kelamin</label>
-            <div class="col-9 col-form-label">
-                <div class="radio-inline">
-                    <label class="radio radio-outline radio-success">
-                        <input required {{!empty($userData) ? $userData['JENIS_KELAMIN']=="Laki Laki" ? 'checked' : '' : ''}} type="radio" name="JENIS_KELAMIN" value="Laki Laki" />
-                        <span></span>
-                        Laki Laki
-                    </label>
-                    <label class="radio radio-outline radio-success">
-                        <input required {{!empty($userData) ? $userData['JENIS_KELAMIN']=="Perempuan" ? 'checked' : '' : ''}}  type="radio" name="JENIS_KELAMIN" value="Perempuan" />
-                        <span></span>
-                        Perempuan
-                    </label>
-                </div>
-                @error('JENIS_KELAMIN')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Umur</label>
+                                    <div class="col">
+                                        <input class="form-control form-control-lg " readonly name="UMUR" value="{{$user['UMUR'] ?? '' }}" />
+                                    </div>
+                                </div>
 
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Pendidikan</label>
-            <div class="col">
-                <input class="form-control form-control-lg form-control-solid" type="text" name="PENDIDIKAN" value="{{$userData['PENDIDIKAN'] ?? '' }}" />
-            </div>
-        </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Golongan Darah</label>
+                                    <div class="col">
+                                        @php
+                                            $status = ['A', 'B', 'O', 'AB', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
+                                        @endphp
+                                        <select class="form-control form-control-lg " name="golongan_darah"  >
+                                            <option value="">Pilih ...</option>
+                                            @foreach ($status as $item)
+                                            <option value="{{ $item }}" {{ !empty($user) ? $user['golongan_darah'] == $item ? 'selected' : '' : ''}}  >
+                                                {{ $item }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
 
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Pekerjaan</label>
-            <div class="col">
-                <input class="form-control form-control-lg form-control-solid" type="text" name="PEKERJAAN" value="{{$userData['PEKERJAAN'] ?? '' }}" />
-            </div>
-        </div>
+                                
 
-        <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Kewarganegaraan</label>
-            <div class="col">
-                <input class="form-control form-control-lg form-control-solid" type="text" name="KEWARGANEGARAAN" value="{{$userData['KEWARGANEGARAAN'] ?? '' }}" />
-            </div>
-        </div>
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">Jenis Kelamin <span style="color: red;" >*</span></label>
+                                    <div class="col-9 col-form-label">
+                                        <div class="radio-inline">
+                                            <label class="radio radio-outline radio-success">
+                                                <input required {{!empty($user) ? $user['jenis_kelamin']=="LAKI LAKI" ? 'checked' : '' : ''}} type="radio" name="jenis_kelamin" value="LAKI LAKI" required/>
+                                                <span></span>
+                                                Laki Laki
+                                            </label>
+                                            <label class="radio radio-outline radio-success">
+                                                <input required {{!empty($user) ? $user['jenis_kelamin']=="PEREMPUAN" ? 'checked' : '' : ''}}  type="radio" name="jenis_kelamin" value="PEREMPUAN" />
+                                                <span></span>
+                                                Perempuan
+                                            </label>
+                                        </div>
+                                        @error('jenis_kelamin')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+        
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Pendidikan <span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        @php
+                                            $pendidikan = ['TDK/BLM SEKOLAH','PAUD', 'TK', 'TIDAK TAMAT SD','BELUM TAMAT SD', 'SD', 'SMP/SEDERAJAT', 'SMA/SEDERAJAT', 'D I/II', 'D III', 'D IV/S1', 'S2', 'S3']
+                                        @endphp
+                                        <select class="form-control form-control-lg " name="pendidikan" required >
+                                            <option value="">Pilih...</option>
+                                            @foreach ($pendidikan as $item)
+                                            <option value="{{ $item }}" {{ !empty($user) ? $user['pendidikan'] == $item ? 'selected' : '' : ''}}  >
+                                                {{ $item }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+        
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Pekerjaan</label>
+                                    <div class="col">
+                                        <input class="form-control form-control-lg " type="text" name="pekerjaan" value="{{$user['pekerjaan'] ?? '' }}" />
+                                    </div>
+                                </div>
 
-        <div class="form-group row align-items-center">    
-            <label class="col-xl-3 col-lg-3 col-form-label">Ketua (RT/RW/Banjar)</label>
-            <div class="col-lg-9 col-xl-6">
-                <div class="checkbox-inline">
-                    <label class="checkbox checkbox-outline checkbox-success">
-                        <input type="checkbox" {{ !empty($userData) ? $userData['KETUA_RT'] == '1' ? 'checked' : '' : '' }} name="KETUA_RT"/>
-                        <span></span>
-                        RT
-                    </label>
-                    <label class="checkbox checkbox-outline checkbox-success ">
-                        <input type="checkbox" {{ !empty($userData) ? $userData['KETUA_RW'] == '1' ? 'checked' : '' : '' }} name="KETUA_RW" />
-                        <span></span>
-                        RW
-                    </label>
-                    <label class="checkbox checkbox-outline checkbox-success">
-                        <input type="checkbox" {{ !empty($userData) ? $userData['KETUA_BANJAR'] == '1' ? 'checked' : '' : '' }} name="KETUA_BANJAR" />
-                        <span></span>
-                        Banjar
-                    </label>
-                </div>
-            </div>
-        </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">No KK <span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        <input required class="form-control @error('no_kk') is-invalid @enderror form-control-lg " type="text" name="no_kk" value="{{$user['no_kk'] ?? '' }}" required />
+                                        @error('no_kk')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                        
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">No NIK <span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        <input required class="form-control @error('no_nik') is-invalid @enderror form-control-lg " type="text" name="no_nik" value="{{$user['no_nik'] ?? '' }}" required />
+                                        @error('no_nik')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
 
-        @if (empty($userData))
-            <div class="form-group row mt-5">
-                <div class="col-lg-9 col-xl-6 offset-3">
-                    <div class="checkbox-inline">
-                        <label class="checkbox checkbox-success">
-                            <input type="checkbox" value="1" name="AKUN_MOBILE_APP"/>
-                            <span></span>
-                            Buat Akun Mobile App
-                        </label>
+                                <div class="form-group row align-items-center">    
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Akta Kelahiran</label>
+                                    <div class="col-lg-9 col-xl-6">
+                                        <div class="radio-inline">
+                                            <label class="radio radio-outline radio-success">
+                                                <input onchange="handleChangeRadioKelahiran(this)" {{!empty($user) ? $user['status_akta_kelahiran']=="1" ? 'checked' : '' : ''}} type="radio" name="status_akta_kelahiran" value="1" />
+                                                <span></span>
+                                                Ada
+                                            </label>
+                                            <label class="radio radio-outline radio-success">
+                                                <input onchange="handleChangeRadioKelahiran(this)" {{!empty($user) ? $user['status_akta_kelahiran']=="0" ? 'checked' : '' : ''}}  type="radio" name="status_akta_kelahiran" value="0" />
+                                                <span></span>
+                                                Belum Ada
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">No Akta Kelahiran <span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        <input required class="form-control @error('no_nik') is-invalid @enderror form-control-lg " type="text" name="no_akta_kelahiran" value="{{$user['no_akta_kelahiran'] ?? '' }}" required {{!empty($user) ? $user['status_akta_kelahiran']=="0" ? 'disabled' : '' : ''}} />
+                                        @error('no_nik')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
-                    <span class="form-text text-muted">Centang untuk membuat akun yang di gunakan di siGetasan</span>
+                    <div class="tab-pane" id="keluarga_tab" role="tabpanel" aria-labelledby="keluarga_tab"   >
+
+                        <div class="row">
+                            <div class="col mr-10">
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Ayah</label>
+                                    <div class="col">
+                                        <input class="form-control form-control-lg " type="text" name="ayah" value="{{$user['ayah'] ?? '' }}" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Ibu</label>
+                                    <div class="col">
+                                        <input class="form-control form-control-lg " type="text" name="ibu" value="{{$user['ibu'] ?? '' }}" />
+                                    </div>
+                                </div>
+                                @if (!empty($couple))
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">{{ $user->shdk != 'ISTRI' ? 'Istri' : 'Suami' }}</label>
+                                    <div class="col">
+                                        <input class="form-control form-control-lg" disabled type="text" name="ibu" value="{{$couple['nama'] ?? '' }}" />
+                                    </div>
+                                </div>
+                                @endif
+                                @if (!empty($children) && count($children) != 0)
+                                    @foreach ($children as $key => $child)
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">Anak ke- {{ $key+1 }}</label>
+                                        <div class="col">
+                                            <input class="form-control form-control-lg" disabled type="text" name="ibu" value="{{$child['nama'] ?? '' }}" />
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <div class="col">
+                                @if (!empty($user))
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">No KK <span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        <input required class="form-control @error('no_kk') is-invalid @enderror form-control-lg " type="text" name="no_kk" value="{{$user['no_kk'] ?? '' }}" required />
+                                        @error('no_kk')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                @endif
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">SHDK</label>
+                                    <div class="col">
+                                        @php
+                                            $banjar = ['KEPALA KELUARGA', 'SUAMI', 'ISTRI', 'ANAK', 'MENANTU', 'CUCU']
+                                        @endphp
+                                        <select class="form-control form-control-lg " name="shdk" >
+                                            <option value="">Pilih...</option>
+                                            @foreach ($banjar as $item)
+                                            <option value="{{ $item }}" {{ !empty($user) ? $user['shdk'] == $item ? 'selected' : '' : ''}}  >
+                                                {{ $item }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="pernikahan_tab" role="tabpanel" aria-labelledby="pernikahan_tab"  >
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Status Perkawinan <span style="color: red;" >*</span></label>
+                                    <div class="col">
+                                        @php
+                                            $status = ['Kawin Tercatat', 'Kawin Belum Tercatat', 'Belum Kawin', 'Cerai Hidup', 'Cerai Mati']
+                                        @endphp
+                                        <select class="form-control form-control-lg " name="status_perkawinan" required >
+                                            <option value="">Pilih ...</option>
+                                            @foreach ($status as $item)
+                                            <option value="{{ $item }}" {{ !empty($user) ? $user['status_perkawinan'] == $item ? 'selected' : '' : ''}}  >
+                                                {{ $item }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+        
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Tanggal Perkawinan</label>
+                                    <div class="col">
+                                        <input class="form-control form-control-lg " type="date" name="tanggal_perkawinan" value="{{ !empty($user['tanggal_perkawinan']) ? Carbon\Carbon::createFromFormat('Y-m-d', $user['tanggal_perkawinan'])->format('Y-m-d')  : '' }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group row align-items-center">    
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Akta Perkawinan</label>
+                                    <div class="col-lg-9 col-xl-6">
+                                        <div class="radio-inline">
+                                            <label class="radio radio-outline radio-success">
+                                                <input onchange="handleChangeRadio(this)" {{!empty($user) ? $user['status_akta_perkawinan']=="1" ? 'checked' : '' : ''}} type="radio" name="status_akta_perkawinan" value="1" />
+                                                <span></span>
+                                                Ada
+                                            </label>
+                                            <label class="radio radio-outline radio-success">
+                                                <input onchange="handleChangeRadio(this)" {{!empty($user) ? $user['status_akta_perkawinan']=="0" ? 'checked' : '' : ''}}  type="radio" name="status_akta_perkawinan" value="0" />
+                                                <span></span>
+                                                Belum Ada
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">No. Akta Perkawinan </label>
+                                    <div class="col">
+                                        <input class="form-control form-control-lg" {{!empty($user) ? $user['status_akta_perkawinan']=="0" ? 'disabled' : '' : ''}} name="no_akta_perkawinan" value="{{ $user['no_akta_perkawinan'] ?? '' }}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                    <div class="tab-pane"  id="lainnya_tab" role="tabpanel" aria-labelledby="lainnya_tab" >
+                        
+                        <div class="form-group row align-items-center">    
+                            <label class="col-xl-3 col-lg-3 col-form-label">Ketua (RT/RW/Banjar)</label>
+                            <div class="col-lg-9 col-xl-6">
+                                <div class="checkbox-inline">
+                                    <label class="checkbox checkbox-outline checkbox-success">
+                                        <input type="checkbox" {{ !empty($user) ? $user['ketua_RT'] == '1' ? 'checked' : '' : '' }} name="ketua_RT"/>
+                                        <span></span>
+                                        RT
+                                    </label>
+                                    <label class="checkbox checkbox-outline checkbox-success ">
+                                        <input type="checkbox" {{ !empty($user) ? $user['ketua_RW'] == '1' ? 'checked' : '' : '' }} name="ketua_RW" />
+                                        <span></span>
+                                        RW
+                                    </label>
+                                    <label class="checkbox checkbox-outline checkbox-success">
+                                        <input type="checkbox" {{ !empty($user) ? $user['ketua_banjar'] == '1' ? 'checked' : '' : '' }} name="ketua_banjar" />
+                                        <span></span>
+                                        Banjar
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (empty($user))
+                            <div class="form-group row mt-5">
+                                <div class="col-lg-9 col-xl-6 offset-3">
+                                    <div class="checkbox-inline">
+                                        <label class="checkbox checkbox-success">
+                                            <input type="checkbox" value="1" name="akun_mobile_app"/>
+                                            <span></span>
+                                            Buat Akun Mobile App
+                                        </label>
+                                    </div>
+                                    <span class="form-text text-muted">Centang untuk membuat akun yang di gunakan di siGetasan</span>
+                                </div>
+                            </div>
+                        @else
+                            <div class="form-group row align-items-center">
+                                <label class="col-xl-3 col-lg-3 col-form-label">Status Akun Mobile App</label>
+                                <div class="col">
+                                    @if ($user['akun_mobile_app'] == '1')
+                                        <span class="label label-xl label-inline label-light-success">Tersedia</span>
+                                    @else
+                                        <span class="label label-xl label-inline label-light-danger">Tidak Tersedia</span>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
+
+                    </div>
                 </div>
+        
             </div>
-        @else
-            <div class="form-group row align-items-center">
-                <label class="col-xl-3 col-lg-3 col-form-label">Status Akun Mobile App</label>
-                <div class="col">
-                    @if ($userData['AKUN_MOBILE_APP'] == '1')
-                        <span class="label label-xl label-inline label-light-success">Tersedia</span>
-                    @else
-                        <span class="label label-xl label-inline label-light-danger">Tidak Tersedia</span>
-                    @endif
-                </div>
-            </div>
-        @endif
+        </div>
+
 
         <!--begin::Form Group-->
     </div>
@@ -252,9 +484,9 @@
     <div class="card-footer">
         <div class="row justify-content-end">
             <div class="col text-right">
-                <a href="/data-penduduk/penduduk" class="btn btn-secondary">Batal</a>
-                @if (!empty($userData) && $userData['AKUN_MOBILE_APP'] == '0')
-                <a href="/master-data/data-penduduk/create-mobile-account/{{ $userData['id'] }}" class="btn btn-outline-success mx-3">Buat Akun Mobile</a>
+                <a href="/data-penduduk/penduduk" class="btn btn-secondary {{ !empty($user) ? $user['akun_mobile_app'] == 0 ? : '' : 'mr-2' }}">Batal</a>
+                @if (!empty($user) && $user['akun_mobile_app'] == '0')
+                <a href="/master-data/data-penduduk/create-mobile-account/{{ $user['id'] }}" class="btn btn-outline-success mx-3">Buat Akun Mobile</a>
                 @endif
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
@@ -264,3 +496,25 @@
 
 </form>
 @endsection
+
+@push('script')
+
+    <script>
+        
+        function handleChangeRadio(el){
+            if(el.value == 1)
+                document.querySelector('input[name=no_akta_perkawinan]').removeAttribute('disabled')
+            else 
+                document.querySelector('input[name=no_akta_perkawinan]').setAttribute('disabled', 'disabled')
+        }
+
+        function handleChangeRadioKelahiran(el) {
+            if(el.value == 1)
+                document.querySelector('input[name=no_akta_kelahiran]').removeAttribute('disabled')
+            else 
+                document.querySelector('input[name=no_akta_kelahiran]').setAttribute('disabled', 'disabled')
+        }
+
+    </script>
+    
+@endpush

@@ -77,7 +77,7 @@ class LoginController extends Controller
         $latestMail = DB::table('users_mail as userMail')
                     ->join('mails', 'mails.id', '=', 'userMail.mail_id')
                     ->join('user_logins as user', function($join){
-                        $join->join($this->userDb, 'userDB.NIK', '=', 'user.no_nik')
+                        $join->join($this->userDb, 'userDB.no_nik', '=', 'user.no_nik')
                         ->on('user.id', '=', 'userMail.user_id');
                     })
                     ->latest('userMail.created_at')
@@ -85,12 +85,12 @@ class LoginController extends Controller
                     ->get([
                         'userMail.id as id',
                         'userMail.created_at',
-                        'userDB.NAMA as name',
+                        'userDB.nama as name',
                         'mails.title'
                     ]);
         
         $latestUmkm = UserBusinessItem::join('user_logins as user', function($join){
-                        $join->join($this->userDb, 'userDB.NIK','user.no_nik')
+                        $join->join($this->userDb, 'userDB.no_nik','user.no_nik')
                         ->on('user.id', 'user_business_items.user_id');
                     })
                     ->latest('user_business_items.created_at')
@@ -98,7 +98,7 @@ class LoginController extends Controller
                     ->get([
                         'user_business_items.id',
                         'user_business_items.item_name',
-                        'userDB.NAMA as name',
+                        'userDB.nama as name',
                         'user_business_items.created_at',
                         'user_business_items.status',
                         'user_business_items.item_image as image',
@@ -116,7 +116,7 @@ class LoginController extends Controller
                 ->leftJoin('resident_data', function ($join) {
                     $join->on(DB::raw('MONTH(resident_data.created_at)'), '=', 'months.month')
                         ->whereYear('resident_data.created_at', '=', date('Y'))
-                        ->where('resident_data.UMUR', '<', 18);
+                        ->where(DB::raw('YEAR(NOW()) - YEAR(TANGGAL_LAHIR)'), '<', 18);
                 })
                 ->select(DB::raw('months.month, COALESCE(COUNT(resident_data.id), 0) as data_count'))
                 ->groupBy('months.month')
@@ -127,7 +127,7 @@ class LoginController extends Controller
                 ->leftJoin('resident_data', function ($join) {
                     $join->on(DB::raw('MONTH(resident_data.created_at)'), '=', 'months.month')
                         ->whereYear('resident_data.created_at', '=', date('Y'))
-                        ->whereBetween('resident_data.UMUR',[18, 45]);
+                        ->whereBetween(DB::raw('YEAR(NOW()) - YEAR(TANGGAL_LAHIR)'),[18, 45]);
                 })
                 ->select(DB::raw('months.month, COALESCE(COUNT(resident_data.id), 0) as data_count'))
                 ->groupBy('months.month')
@@ -138,7 +138,7 @@ class LoginController extends Controller
                 ->leftJoin('resident_data', function ($join) {
                     $join->on(DB::raw('MONTH(resident_data.created_at)'), '=', 'months.month')
                         ->whereYear('resident_data.created_at', '=', date('Y'))
-                        ->where('resident_data.UMUR', '>', 45);
+                        ->where(DB::raw('YEAR(NOW()) - YEAR(TANGGAL_LAHIR)'), '>', 45);
                 })
                 ->select(DB::raw('months.month, COALESCE(COUNT(resident_data.id), 0) as data_count'))
                 ->groupBy('months.month')

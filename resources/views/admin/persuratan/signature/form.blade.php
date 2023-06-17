@@ -36,7 +36,7 @@
                     <div class="form-group row align-items-center">
                         <label class="col-xl-3 col-lg-3 col-form-label">Nama</label>
                         <div class="col-lg-9 col-xl-9">
-                            <input class="form-control form-control-lg form-control-solid search_long" type="text" name="name" value="{{$signature['name'] ?? '' }}"/>
+                            <input class="form-control form-control-lg  search_long" type="text" name="name" value="{{$signature['name'] ?? '' }}"/>
                         </div>
                     </div>
 
@@ -61,7 +61,7 @@
                     <div class="form-group row banjar-categories {{ !empty($signature) ? $signature['position'] == 'Perbekel' ? 'd-none' : '' : ''}} ">
                         <label class="col-form-label col-xl-3 col-lg-3">Kategori</label>
                         <div class="col-xl-9 col-lg-9">
-                            <select class="form-control form-control-lg form-control-solid" name="banjar">
+                            <select class="form-control form-control-lg " name="banjar">
                                 <option value="">Pilih Kategori...</option>
                                 <option value="Ubud" {{!empty($signature) ? $signature['banjar']== 'Ubud' ? 'selected' : '' : ''}} >Ubud</option>
                                 <option value="Buangga" {{!empty($signature) ? $signature['banjar']== 'Buangga' ? 'selected' : '' : ''}} >Buangga</option>

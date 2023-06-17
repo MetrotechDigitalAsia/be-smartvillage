@@ -34,14 +34,14 @@
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">Nama</label>
             <div class="col-lg-9 col-xl-6">
-                <input class="form-control form-control-lg form-control-solid" type="text" readonly name="NAMA" value="{{$data['name'] ?? '' }}" />
+                <input class="form-control form-control-lg " type="text" readonly name="NAMA" value="{{$data['name'] ?? '' }}" />
             </div>
         </div>
 
         <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label">Nik</label>
             <div class="col-lg-9 col-xl-6">
-                <input class="form-control form-control-lg form-control-solid" type="text" name="TEMPAT_LAHIR" readonly value="{{$data['nik'] ?? '' }}" />
+                <input class="form-control form-control-lg " type="text" name="TEMPAT_LAHIR" readonly value="{{$data['nik'] ?? '' }}" />
             </div>
         </div>
 

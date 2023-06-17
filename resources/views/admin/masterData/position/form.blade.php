@@ -26,7 +26,7 @@
                     <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label">Nama Posisi </label>
                         <div class="col-lg-9 col-xl-9">
-                            <input class="form-control form-control-lg form-control-solid" type="text" name="position_name" value="{{ $position['position_name'] ?? '' }}" />
+                            <input class="form-control form-control-lg " type="text" name="position_name" value="{{ $position['position_name'] ?? '' }}" />
                         </div>
                     </div>
 

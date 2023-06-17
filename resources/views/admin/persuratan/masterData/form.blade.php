@@ -36,7 +36,7 @@
             <div class="form-group row">
                 <label class="col-xl-3 col-lg-3 col-form-label">Nama Surat</label>
                 <div class="col-lg-9 col-xl-9">
-                    <input readonly class="form-control required form-control-lg form-control-solid" type="text" name="title" value="{{$mail['title'] ?? '' }}" />
+                    <input readonly class="form-control required form-control-lg " type="text" name="title" value="{{$mail['title'] ?? '' }}" />
                 </div>
             </div>
 

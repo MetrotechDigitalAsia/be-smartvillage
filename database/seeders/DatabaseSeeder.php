@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
         ItemBusinessCategory::create(['item_category' => 'Jasa']);
         ItemBusinessCategory::create(['item_category' => 'Makanan & Minuman']);
         ItemBusinessCategory::create(['item_category' => 'Ternak']);
-        ItemBusinessCategory::create(['item_category' => 'Elektronik']);
+        ItemBusinessCategory::create(['item_category' => 'Elektron']);
         ItemBusinessCategory::create(['item_category' => 'Properti']);
         ItemBusinessCategory::create(['item_category' => 'Pakaian']);
         ItemBusinessCategory::create(['item_category' => 'Perabotan']);
@@ -99,10 +99,10 @@ class DatabaseSeeder extends Seeder
         foreach($users as $user){
 
             UserLogin::create([
-                'no_nik' => $user->NIK,
-                'password' => bcrypt($user->NIK),
+                'no_nik' => $user->no_nik,
+                'password' => bcrypt($user->no_nik),
                 'status' => 'Active',
-                'fcm' => $user->NIK . time() * rand(1,60)
+                'fcm' => $user->no_nik . time() * rand(1,60)
             ]);
 
         }

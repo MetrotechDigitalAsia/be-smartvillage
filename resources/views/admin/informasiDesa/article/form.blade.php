@@ -37,21 +37,21 @@
                     <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label">Judul</label>
                         <div class="col-lg-9 col-xl-9">
-                            <input class="form-control form-control-lg form-control-solid" type="text" name="title" value="{{$article['title'] ?? '' }}" />
+                            <input class="form-control form-control-lg " type="text" name="title" value="{{$article['title'] ?? '' }}" />
                         </div>
                     </div>
     
                     <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label">Author</label>
                         <div class="col-lg-9 col-xl-9">
-                            <input class="form-control form-control-lg form-control-solid" type="text" name="updated_by" value="{{$article['updated_by'] ?? '' }}" />
+                            <input class="form-control form-control-lg " type="text" name="updated_by" value="{{$article['updated_by'] ?? '' }}" />
                         </div>
                     </div>
     
                     <div class="form-group row">
                         <label class="col-form-label col-xl-3 col-lg-3">Kategori</label>
                         <div class="col-xl-9 col-lg-9">
-                            <select class="form-control form-control-lg form-control-solid" name="article_category">
+                            <select class="form-control form-control-lg " name="article_category">
                                 <option value="">Pilih Kategori...</option>
                                 @foreach ($categories as $item)
                                 <option value="{{ $item->id }}" {{ !empty($article) ? $article['article_category'] == $item->id ? 'selected' : '' : ''}}  >
@@ -65,7 +65,7 @@
                     <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label">Jam</label>
                         <div class="col-lg-9 col-xl-9">
-                            <input class="form-control form-control-lg form-control-solid" type="time" name="time" value="{{$article['time'] ?? '' }}" />
+                            <input class="form-control form-control-lg " type="time" name="time" value="{{$article['time'] ?? '' }}" />
                         </div>
                     </div>
     
@@ -73,7 +73,7 @@
                     <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label">Tanggal</label>
                         <div class="col-lg-9 col-xl-9">
-                            <input class="form-control form-control-lg form-control-solid" type="date" name="date" value="{{$article['date'] ?? '' }}" />
+                            <input class="form-control form-control-lg " type="date" name="date" value="{{$article['date'] ?? '' }}" />
                         </div>
                     </div>
     
