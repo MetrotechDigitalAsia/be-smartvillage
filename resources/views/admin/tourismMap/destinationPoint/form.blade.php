@@ -47,14 +47,14 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Nama Destinasi</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="name" value="{{$destinationPoint['name'] ?? '' }}" />
+                        <input class="form-control form-control-lg " type="text" name="name" value="{{$destinationPoint['name'] ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-xl-3 col-lg-3">Kategori</label>
                     <div class="col-xl-9 col-lg-9">
-                        <select class="form-control form-control-lg form-control-solid" name="category">
+                        <select class="form-control form-control-lg " name="category">
                             <option value="">Pilih Kategori...</option>
                             @foreach ($categories as $item)
                             <option value="{{ $item }}" {{ !empty($destinationPoint) ? $destinationPoint['category'] == $item ? 'selected' : '' : ''}}  >
@@ -69,41 +69,41 @@
                     <label class="col-xl-3 col-lg-3 col-form-label">Alamat</label>
                     <div class="col-lg-9 col-xl-9">
                         <div class="input-group input-group-lg input-group-solid pr-2" >
-                            <input type="text" class="form-control form-control-lg form-control-solid" id="search_location"  />
+                            <input type="text" class="form-control form-control-lg " id="search_location"  />
                             <div class="btn btn-icon btn-sm btn-success get_map">
                                 <i class="fab fa-sistrix "></i>
                             </div>
                         </div>
                         <div id="geomap" class="mt-5" style="width: 100%; height: 300px;" ></div>
-                        <input class="form-control form-control-lg form-control-solid mt-5 search_addr" type="text" name="address" value="{{$destinationPoint['address'] ?? '' }}" />
+                        <input class="form-control form-control-lg  mt-5 search_addr" type="text" name="address" value="{{$destinationPoint['address'] ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Latitude</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid search_lat" type="text" name="lat" value="{{$destinationPoint['lat'] ?? '' }}" readonly/>
+                        <input class="form-control form-control-lg  search_lat" type="text" name="lat" value="{{$destinationPoint['lat'] ?? '' }}" readonly/>
                     </div>
                 </div>
     
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Longtitude</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid search_long" type="text" name="long" value="{{$destinationPoint['long'] ?? '' }}" readonly/>
+                        <input class="form-control form-control-lg  search_long" type="text" name="long" value="{{$destinationPoint['long'] ?? '' }}" readonly/>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Telepon</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="phone" value="{{$destinationPoint['phone'] ?? '' }}" />
+                        <input class="form-control form-control-lg " type="text" name="phone" value="{{$destinationPoint['phone'] ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Website</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="website" value="{{$destinationPoint['website'] ?? '' }}" />
+                        <input class="form-control form-control-lg " type="text" name="website" value="{{$destinationPoint['website'] ?? '' }}" />
                     </div>
                 </div>
 

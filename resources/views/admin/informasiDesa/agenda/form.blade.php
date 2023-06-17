@@ -22,7 +22,7 @@
                         <div class="form-group row">
                             <label class="col-xl-3 col-lg-3 col-form-label">Judul</label>
                             <div class="col-lg-9 col-xl-9">
-                                <input class="form-control form-control-lg @error('title') is-invalid @enderror form-control-solid" type="text" name="title" value="{{$agenda['title'] ?? '' }}" />
+                                <input class="form-control form-control-lg @error('title') is-invalid @enderror " type="text" name="title" value="{{$agenda['title'] ?? '' }}" />
                                 @error('title')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -32,7 +32,7 @@
                         <div class="form-group row">
                             <label class="col-xl-3 col-lg-3 col-form-label">Author</label>
                             <div class="col-lg-9 col-xl-9">
-                                <input class="form-control @error('author') is-invalid @enderror form-control-lg form-control-solid" type="text" name="author" value="{{$agenda['author'] ?? '' }}" />
+                                <input class="form-control @error('author') is-invalid @enderror form-control-lg " type="text" name="author" value="{{$agenda['author'] ?? '' }}" />
                                 @error('author')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -42,7 +42,7 @@
                         <div class="form-group row">
                             <label class="col-xl-3 col-lg-3 col-form-label">Tanggal</label>
                             <div class="col-lg-9 col-xl-9">
-                                <input class="form-control @error('date') is-invalid @enderror form-control-lg form-control-solid" type="date" name="date" value="{{$agenda['date'] ?? '' }}" />
+                                <input class="form-control @error('date') is-invalid @enderror form-control-lg " type="date" name="date" value="{{$agenda['date'] ?? '' }}" />
                                 @error('date')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

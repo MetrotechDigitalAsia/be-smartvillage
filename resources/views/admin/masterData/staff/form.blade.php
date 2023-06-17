@@ -41,14 +41,14 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Nama Lengkap</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="fullname" value="{{$staff['fullname'] ?? '' }}" required />
+                        <input class="form-control form-control-lg " type="text" name="fullname" value="{{$staff['fullname'] ?? '' }}" required />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-xl-3 col-lg-3">Posisi</label>
                     <div class="col-xl-9 col-lg-9">
-                        <select class="form-control form-control-lg form-control-solid" name="id_position" required >
+                        <select class="form-control form-control-lg " name="id_position" required >
                             <option value="">Pilih Kategori...</option>
                             @foreach ($positions as $item)
                             <option value="{{ $item->id }}" {{ !empty($staff) ? $staff['id_position'] == $item->id ? 'selected' : '' : ''}}  >
@@ -62,35 +62,35 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Tangal Lahir</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="date" name="date_of_birth" value="{{$staff['date_of_birth'] ?? '' }}" required />
+                        <input class="form-control form-control-lg " type="date" name="date_of_birth" value="{{$staff['date_of_birth'] ?? '' }}" required />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Telepon</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="phone" value="{{$staff['phone'] ?? '' }}" required />
+                        <input class="form-control form-control-lg " type="text" name="phone" value="{{$staff['phone'] ?? '' }}" required />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Email</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="email" name="email" value="{{$staff['email'] ?? '' }}" required />
+                        <input class="form-control form-control-lg " type="email" name="email" value="{{$staff['email'] ?? '' }}" required />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Alamat</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="address" value="{{$staff['address'] ?? '' }}" required />
+                        <input class="form-control form-control-lg " type="text" name="address" value="{{$staff['address'] ?? '' }}" required />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Status</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="status" value="{{$staff['status'] ?? '' }}" required />
+                        <input class="form-control form-control-lg " type="text" name="status" value="{{$staff['status'] ?? '' }}" required />
                     </div>
                 </div>
 

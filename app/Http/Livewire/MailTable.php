@@ -17,7 +17,7 @@ class MailTable extends Component
         $this->data = DB::table('users_mail as userMail')
         ->join('mails', 'mails.id', '=', 'userMail.mail_id')
         ->join('user_logins as user', function($join){
-            $join->join($this->userDb.' as userDB', 'userDB.NIK', '=', 'user.no_nik')
+            $join->join($this->userDb.' as userDB', 'userDB.no_nik', '=', 'user.no_nik')
             ->on('user.id', '=', 'userMail.user_id');
         })
         ->where('userMail.status', 'Pending')
@@ -29,8 +29,8 @@ class MailTable extends Component
             'user.id as user_id',
             'mails.id as mail_id',
             'mails.title as mail_type',
-            'userDB.NAMA as name',
-            'userDB.NIK as nik',
+            'userDB.nama as name',
+            'userDB.no_nik as nik',
             'userMail.status as status',
             'userMail.created_at',
         ]);
@@ -40,30 +40,6 @@ class MailTable extends Component
     {
         return view('livewire.mail-table');
     }
-
-    // public function getData(){
-
-    //     return DB::table('users_mail as userMail')
-    //     ->join('mails', 'mails.id', '=', 'userMail.mail_id')
-    //     ->join('user_logins as user', function($join){
-    //         $join->join($this->userDb.' as userDB', 'userDB.NIK', '=', 'user.no_nik')
-    //         ->on('user.id', '=', 'userMail.user_id');
-    //     })
-    //     ->where('userMail.status', 'Pending')
-    //     ->orderBy('userMail.created_at', 'ASC')
-    //     ->get([
-    //         DB::raw('ROW_NUMBER() OVER(ORDER BY userMail.id) as row_index'),
-    //         'userMail.id as id',
-    //         'userMail.mail_number',
-    //         'user.id as user_id',
-    //         'mails.id as mail_id',
-    //         'mails.title as mail_type',
-    //         'userDB.NAMA as name',
-    //         'userDB.NIK as nik',
-    //         'userMail.status as status',
-    //         'userMail.created_at',
-    //     ]);
-    // }
 
     public function changeStatus($id, $status){
 

@@ -3,7 +3,7 @@
 @section('table')
 
  <div class="row">
-    <div class="col">
+    <div class="col col-md-6 col-xl-3 ">
         <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets/be/media/svg/shapes/abstract-3.svg') }})">
             <!--begin::Body-->
             <div class="card-body pt-12">
@@ -14,7 +14,7 @@
             <!--end::Body-->
         </div>
     </div>
-    <div class="col">
+    <div class="col col-md-6 col-xl-3">
         <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets/be/media/svg/shapes/abstract-3.svg') }})">
             <!--begin::Body-->
             <div class="card-body pt-12">
@@ -25,7 +25,7 @@
             <!--end::Body-->
         </div>
     </div>
-    <div class="col">
+    <div class="col col-md-6 col-xl-3">
         <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets/be/media/svg/shapes/abstract-3.svg') }})">
             <!--begin::Body-->
             <div class="card-body pt-12">
@@ -36,7 +36,7 @@
             <!--end::Body-->
         </div>
     </div>
-    <div class="col">
+    <div class="col col-md-6 col-xl-3">
         <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets/be/media/svg/shapes/abstract-3.svg') }})">
             <!--begin::Body-->
             <div class="card-body pt-12">

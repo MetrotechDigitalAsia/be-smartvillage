@@ -25,21 +25,21 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Nama Lengkap</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="fullname" value="{{$investation['fullname'] ?? '' }}" />
+                        <input class="form-control form-control-lg " type="text" name="fullname" value="{{$investation['fullname'] ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Nama Instansi</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="institute_name" value="{{$investation['institute_name'] ?? '' }}" />
+                        <input class="form-control form-control-lg " type="text" name="institute_name" value="{{$investation['institute_name'] ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-xl-3 col-lg-3">Kategori Investasi</label>
                     <div class="col-xl-9 col-lg-9">
-                        <select class="form-control form-control-lg form-control-solid" name="investation_category">
+                        <select class="form-control form-control-lg " name="investation_category">
                             <option value="">Pilih Kategori...</option>
                             @foreach ($categories as $item)
                             <option value="{{ $item }}" {{ !empty($investation) ? $investation['investation_category'] == $item ? 'selected' : '' : ''}}  >
@@ -53,21 +53,21 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Alamat Instansi</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="institute_address" value="{{$investation['institute_address'] ?? '' }}" />
+                        <input class="form-control form-control-lg " type="text" name="institute_address" value="{{$investation['institute_address'] ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Email</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="email" name="institute_email" value="{{$investation['institute_email'] ?? '' }}" />
+                        <input class="form-control form-control-lg " type="email" name="institute_email" value="{{$investation['institute_email'] ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Telepon</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="institute_phone_number" value="{{$investation['institute_phone_number'] ?? '' }}" />
+                        <input class="form-control form-control-lg " type="text" name="institute_phone_number" value="{{$investation['institute_phone_number'] ?? '' }}" />
                     </div>
                 </div>
 

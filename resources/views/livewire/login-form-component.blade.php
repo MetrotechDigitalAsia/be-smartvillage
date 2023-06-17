@@ -9,13 +9,13 @@
         @csrf
 
         <div class="form-group">
-            <input wire:model.lazy="email" class="form-control form-control-solid h-auto py-5 px-6 @error('email') is-invalid @enderror" type="text" placeholder="Email" name="email" autocomplete="off" />
+            <input wire:model.lazy="email" class="form-control  h-auto py-5 px-6 @error('email') is-invalid @enderror" type="text" placeholder="Email" name="email" autocomplete="off" />
             @error('email')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
-            <input wire:model.lazy="password" class="form-control form-control-solid @error('password') is-invalid @enderror h-auto py-5 px-6" type="password" placeholder="Password" name="password" autocomplete="off" />
+            <input wire:model.lazy="password" class="form-control  @error('password') is-invalid @enderror h-auto py-5 px-6" type="password" placeholder="Password" name="password" autocomplete="off" />
             @error('password')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror

@@ -119,18 +119,18 @@
 					selector: false,
 					textAlign: 'center',
 				},{
-					field: 'NAMA',
+					field: 'nama',
 					title: 'Nama',
 				},{
-					field: 'NIK',
+					field: 'no_nik',
 					title: 'NIK',
 				},{
-					field: 'ALAMAT',
+					field: 'alamat',
 					title: 'ALAMAT',
 				},{
 					field: 'AKUN_MOBILE_APP',
 					title: 'Akun Mobile',
-					template: (e) => `<span class="label label-light-${e.AKUN_MOBILE_APP == 1 ? 'success' : 'danger'} label-pill label-inline mr-2">${e.AKUN_MOBILE_APP == 1 ? 'Tersedia' : 'Tidak Tersedia'}</span>`
+					template: (e) => `<span class="label label-light-${e.akun_mobile_app == 1 ? 'success' : 'danger'} label-pill label-inline mr-2">${e.akun_mobile_app == 1 ? 'Tersedia' : 'Tidak Tersedia'}</span>`
 				},{   
 					field: 'Actions',
 					title: 'Aksi',
@@ -141,7 +141,7 @@
 					template: function(e) {
 						return `\
 							<a data-href="/data-penduduk/penduduk/status/${e.id}" onclick="updateMobileStatus(this)" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Akun Mobile">\
-								<span class="svg-icon svg-icon-${e.AKUN_MOBILE_APP == 1 ? 'success' : 'warning'} svg-icon-lg">\
+								<span class="svg-icon svg-icon-${e.akun_mobile_app == 1 ? 'success' : 'warning'} svg-icon-lg">\
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
 											<rect x="0" y="0" width="24" height="24"/>\

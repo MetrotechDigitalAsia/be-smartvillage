@@ -19,11 +19,14 @@ class UserLoginController extends Controller
 
     public function index(Request $request){
 
+        // $data = UserLogin::join($this->userDb, 'userDB.no_nik', '=', 'user_logins.no_nik')->get(['userDB.no_nik', 'userDB.nama as name', 'user_logins.id']);
+        // dd($data);
+
         if($request->ajax()){
-
+            
             $param = $request->get('query')['generalSearch'] ?? '';
-
-            $data = UserLogin::join($this->userDb, 'userDB.NIK', '=', 'user_logins.no_nik')->get(['userDB.nik', 'userDB.NAMA as name', 'user_logins.id']);
+            
+            $data = UserLogin::join($this->userDb, 'userDB.no_nik', '=', 'user_logins.no_nik')->get(['userDB.no_nik as nik', 'userDB.nama as name', 'user_logins.id']);
                     
             return DataTables::of($data)
             ->addIndexColumn()
@@ -35,9 +38,9 @@ class UserLoginController extends Controller
 
     public function show(UserLogin $userLogin){
 
-        $data = UserLogin::join($this->userDb, 'userDB.NIK', '=', 'user_logins.no_nik')
+        $data = UserLogin::join($this->userDb, 'userDB.no_nik', '=', 'user_logins.no_nik')
                             ->where('user_logins.id', $userLogin->id)
-                            ->first(['userDB.NAMA as name', 'userDB.NIK as nik', 'user_logins.status', 'user_logins.id']);
+                            ->first(['userDB.nama as name', 'userDB.no_nik as nik', 'user_logins.status', 'user_logins.id']);
         return view('admin.'.$this->folderName.'.form', compact('data'));
     }
 
@@ -69,7 +72,7 @@ class UserLoginController extends Controller
         $data = UserLogin::find($userLogin->id);
 
         try {
-            UserData::where('NIK', $userLogin->no_nik)->first()->update([ 'AKUN_MOBILE_APP' => 0 ]);
+            UserData::where('no_nik', $userLogin->no_nik)->first()->update([ 'AKUN_MOBILE_APP' => 0 ]);
             $data->delete();
             $message = 'successfully';
         } catch (\Exception $exception){

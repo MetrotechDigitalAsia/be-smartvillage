@@ -23,14 +23,14 @@
             <div class="form-group row">
                 <label class="col-xl-3 col-lg-3 col-form-label">Nama Lengkap</label>
                 <div class="col-lg-9 col-xl-9">
-                    <input required class="form-control form-control-lg form-control-solid" type="text" name="fullname" value="{{$admin['fullname'] ?? '' }}" />
+                    <input required class="form-control form-control-lg " type="text" name="fullname" value="{{$admin['fullname'] ?? '' }}" />
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-xl-3 col-lg-3 col-form-label">Email</label>
                 <div class="col-lg-9 col-xl-9">
-                    <input required class="form-control form-control-lg form-control-solid" type="email" name="email" value="{{$admin['email'] ?? '' }}" />
+                    <input required class="form-control form-control-lg " type="email" name="email" value="{{$admin['email'] ?? '' }}" />
                 </div>
             </div>
 
@@ -38,14 +38,14 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Kata Sandi</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input required class="form-control form-control-lg form-control-solid" type="text" name="password" value="{{$admin['password'] ?? '' }}" />
+                        <input required class="form-control form-control-lg " type="text" name="password" value="{{$admin['password'] ?? '' }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Konfirmasi Kata Sandi</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input required class="form-control form-control-lg form-control-solid" type="text" name="repassword" />
+                        <input required class="form-control form-control-lg " type="text" name="repassword" />
                     </div>
                 </div>
             @endif
@@ -71,7 +71,7 @@
             <div class="form-group row">
                 <label class="col-form-label col-xl-3 col-lg-3">Kategori</label>
                 <div class="col-lg-9 col-xl-9">
-                    <select required class="form-control form-control-lg form-control-solid" name="type">
+                    <select required class="form-control form-control-lg " name="type">
                         <option value="">Pilih Kategori...</option>
                         @foreach ($categories as $item)
                         <option value="{{ $item }}" {{ !empty($admin) ? $admin['type'] == $item ? 'selected' : '' : ''}}  >

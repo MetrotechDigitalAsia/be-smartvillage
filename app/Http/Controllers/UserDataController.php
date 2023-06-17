@@ -20,19 +20,19 @@ class UserDataController extends Controller
 
     public function dashboard(Request $request){
         
-        $gender = UserData::all()->groupBy('JENIS_KELAMIN')->map(fn($entries) => $entries->count());
+        $gender = UserData::all()->groupBy('jenis_kelamin')->map(fn($entries) => $entries->count());
 
         $age = DB::connection('resident_mysql')->table('resident_data')
                 ->select(DB::raw('
                     CASE
-                        WHEN UMUR <= 11 THEN "Anak Anak"
-                        WHEN UMUR >= 12 AND UMUR <= 18 THEN "Remaja"
-                        WHEN UMUR >= 19 AND UMUR <= 45 THEN "Dewasa"
-                        WHEN UMUR > 45 THEN "Lansia"
+                        WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) <= 11 THEN "Anak Anak"
+                        WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) >= 12 AND YEAR(NOW()) - YEAR(TANGGAL_LAHIR) <= 18 THEN "Remaja"
+                        WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) >= 19 AND YEAR(NOW()) - YEAR(TANGGAL_LAHIR) <= 45 THEN "Dewasa"
+                        WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) > 45 THEN "Lansia"
                     END AS KATEGORI,
                     COUNT(*) as jumlah'))
                 ->groupBy('KATEGORI')
-                ->orderBy('UMUR')
+                ->orderBy('KATEGORI')
                 ->get();
 
         $kauh = UserData::where('BANJAR', 'Kauh')->count();
@@ -54,8 +54,8 @@ class UserDataController extends Controller
             $param = $request->get('query')['generalSearch'] ?? '';
 
             $data = UserData::latest()
-                    ->where('resident_data.NAMA', 'like', '%'.$param.'%')
-                    ->orWhere('resident_data.NIK', 'like', '%'.$param.'%')
+                    ->where('resident_data.nama', 'like', '%'.$param.'%')
+                    ->orWhere('resident_data.no_nik', 'like', '%'.$param.'%')
                     ->get();
 
             return DataTables::of($data)
@@ -68,59 +68,49 @@ class UserDataController extends Controller
     }
 
     public function create(){
-        return view('admin.'.$this->folderName.'.form');
+        return view('admin.'.
+        $this->folderName.'.form');
     }
 
-    public function show(UserData $userData){
-        return view('admin.'.$this->folderName.'.form', compact('userData'));
+    public function show($id){
+        $user = UserData::selectRaw('*,YEAR(NOW()) - YEAR(TANGGAL_LAHIR) as UMUR')->find($id); 
+        if($user->status_perkawinan == 'Kawin Tercatat' || $user->status_perkawinan == 'Kawin' || $user->status_perkawinan == 'Kawin Belum Tercatat'){
+            $couple  = UserData::where('no_kk', $user->no_kk)
+                        ->where('shdk', '!=', $user->shdk)
+                        ->where('shdk', '!=', 'ANAK')
+                        ->first();
+
+            $children  = UserData::where('no_kk', $user->no_kk)
+                        ->where('shdk', 'ANAK')
+                        ->get();
+        }
+        return view('admin.'.$this->folderName.'.form', compact('user', 'couple', 'children'));
     }
 
     public function store(Request $request){
 
-        $data = $request->validate([
-            'NAMA' => 'required',
-            'TEMPAT_LAHIR' => 'required',
-            'TANGGAL_LAHIR' => 'required',
-            'SHDK' => 'nullable',
-            'ALAMAT' => 'required',
-            'NO_KK' => 'required',
-            'NIK' => 'required',
-            'JENIS_KELAMIN' => 'required',
-            'UMUR' => 'nullable',
-            'PEKERJAAN' => 'nullable',
-            'KEWARGANEGARAAN' => 'nullable',
-            'PENDIDIKAN' => 'nullable',
-            'AKUN_MOBILE_APP' => 'nullable',
-            'KETUA_RT' => 'nullable',
-            'KETUA_RW' => 'nullable',
-            'KETUA_BANJAR' => 'nullable',
-            'RT' => 'required',
-            'RW' => 'required',
-            'BANJAR' => 'required',
-            'STATUS_PERKAWINAN' => 'required',
-            'GOLONGAN_DARAH' => 'nullable',
-        ]);
+        $data = $request->all();
 
-        if(!empty($data['KETUA_RT'])){
-            $data['KETUA_RT'] = 1;
+        if(!empty($data['ketua_RT'])){
+            $data['ketua_RT'] = 1;
         }
         
-        if(!empty($data['KETUA_RW'])){
-            $data['KETUA_RW'] = 1;
+        if(!empty($data['ketua_RW'])){
+            $data['ketua_RW'] = 1;
         }
 
-        if(!empty($data['KETUA_BANJAR'])){
-            $data['KETUA_BANJAR'] = 1;
+        if(!empty($data['ketua_banjar'])){
+            $data['ketua_banjar'] = 1;
         }
 
         try {
 
             UserData::create($data);
 
-            if(!empty($data['AKUN_MOBILE_APP'])){
+            if(!empty($data['akun_mobile_app'])){
                 UserLogin::create([
-                    'no_nik' => $data['NIK'],
-                    'password' => bcrypt($data['NIK']),
+                    'no_nik' => $data['no_nik'],
+                    'password' => bcrypt($data['no_nik']),
                     'status' => 'Active'
                 ]);
             }
@@ -136,32 +126,15 @@ class UserDataController extends Controller
 
     public function update(Request $request, UserData $userData){
 
-        $data = $request->validate([
-            'NAMA' => 'required',
-            'TEMPAT_LAHIR' => 'required',
-            'TANGGAL_LAHIR' => 'required',
-            'SHDK' => 'nullable',
-            'ALAMAT' => 'required',
-            'NO_KK' => 'required',
-            'NIK' => 'required',
-            'JENIS_KELAMIN' => 'required',
-            'UMUR' => 'nullable',
-            'PEKERJAAN' => 'nullable',
-            'KEWARGANEGARAAN' => 'nullable',
-            'PENDIDIKAN' => 'nullable',
-            'KETUA_RT' => 'nullable',
-            'KETUA_RW' => 'nullable',
-            'KETUA_BANJAR' => 'nullable',
-            'RT' => 'required',
-            'RW' => 'required',
-            'BANJAR' => 'required',
-            'STATUS_PERKAWINAN' => 'required',
-            'GOLONGAN_DARAH' => 'nullable',
-        ]);
+        $data = $request->all();
 
-        $data['KETUA_RT'] = isset($data['KETUA_RT']) ? 1 : 0;
-        $data['KETUA_RW'] = isset($data['KETUA_RW']) ? 1 : 0;
-        $data['KETUA_BANJAR'] = isset($data['KETUA_BANJAR']) ? 1 : 0;
+        $data['ketua_RT'] = isset($data['ketua_RT']) ? 1 : 0;
+        $data['ketua_RW'] = isset($data['ketua_RW']) ? 1 : 0;
+        $data['ketua_banjar'] = isset($data['ketua_banjar']) ? 1 : 0;
+
+        if($data['no_kk'] != $userData->no_kk){
+            UserData::where('no_kk', $userData->no_kk)->update(['no_kk' => $data['no_kk']]);
+        }
 
         try {
             UserData::find($userData->id)->update($data);
@@ -194,13 +167,13 @@ class UserDataController extends Controller
         try {
 
             UserLogin::create([
-                'no_nik' => $userData['NIK'],
-                'password' => bcrypt($userData['NIK']),
+                'no_nik' => $userData['no_nik'],
+                'password' => bcrypt($userData['no_nik']),
                 'status' => 'Active',
-                'fcm' => $userData['NIK'] . time() * rand(1,1000)
+                'fcm' => $userData['no_nik'] . time() * rand(1,1000)
             ]);
 
-            UserData::find($userData->id)->update(['AKUN_MOBILE_APP' => true]);
+            UserData::find($userData->id)->update(['akun_mobile_app' => true]);
             $message = 'create user mobile account successfully';
         } catch (\Exception $e) {
             $message = $e->getMessage();
@@ -213,15 +186,14 @@ class UserDataController extends Controller
     public function changeStatusMobileAccount(UserData $userData){
 
         try {
-            if($userData->AKUN_MOBILE_APP == 1){
-                UserData::find($userData->id)->update(['AKUN_MOBILE_APP' => false]);
-                $user = UserLogin::where('no_nik', '=', $userData->NIK)->delete();
+            if($userData->akun_mobile_app == 1){
+                UserData::find($userData->id)->update(['akun_mobile_app' => false]);
+                $user = UserLogin::where('no_nik', '=', $userData->no_nik)->delete();
             } else {
-                UserData::find($userData->id)->update(['AKUN_MOBILE_APP' => true]);
-                $token = 
+                UserData::find($userData->id)->update(['akun_mobile_app' => true]);
                 UserLogin::create([
-                    'no_nik' => $userData['NIK'],
-                    'password' => bcrypt($userData['NIK']),
+                    'no_nik' => $userData['no_nik'],
+                    'password' => bcrypt($userData['no_nik']),
                     'status' => 'Active',
                 ]);
             }
@@ -241,7 +213,7 @@ class UserDataController extends Controller
 
             $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = UserData::select('NAMA')->distinct('NO_KK')
+            $data = UserData::select('NAMA')->distinct('no_kk')
                     ->where('resident_data.NAMA', 'like', '%'.$param.'%')
                     ->orWhere('resident_data.NIK', 'like', '%'.$param.'%')
                     ->get();

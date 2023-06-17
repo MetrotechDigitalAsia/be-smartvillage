@@ -25,7 +25,7 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Nama Kategori </label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="item_category" value="{{$itemBusinessCategory['item_category'] ?? '' }}" />
+                        <input class="form-control form-control-lg " type="text" name="item_category" value="{{$itemBusinessCategory['item_category'] ?? '' }}" />
                     </div>
                 </div>
             </div>

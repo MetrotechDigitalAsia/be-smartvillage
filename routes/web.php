@@ -296,7 +296,7 @@ Route::group(['middleware' => 'auth'], function(){
             Route::controller(UserDataController::class)->group(function(){
                 Route::get('/', 'index')->name('userData');
                 Route::get('/create', 'create');
-                Route::get('/show/{userData}', 'show');
+                Route::get('/show/{id}', 'show');
                 Route::get('/create-mobile-account/{userData}', 'createMobileAccount');
                 Route::post('/', 'store')->name('storeUserData');
                 Route::post('/update/{userData}', 'update');
