@@ -11,18 +11,18 @@ class UserDataController extends Controller
     
     public function getByAge(){
 
-        $toddler = UserData::where('UMUR', '<=', 5)->count();
-        $kids = UserData::where('UMUR', '>', 5)
-                ->where('UMUR', '<=', 11)
+        $toddler = UserData::where(DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir)'), '<=', 5)->count();
+        $kids = UserData::where(DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir)'), '>', 5)
+                ->where(DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir)'), '<=', 11)
                 ->count();
-        $teenager = UserData::where('UMUR', '>=', 12)
-                ->where('UMUR', '<=', 25)
+        $teenager = UserData::where(DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir)'), '>=', 12)
+                ->where(DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir)'), '<=', 25)
                 ->count();
-        $adult = UserData::where('UMUR', '>=', 26)
-                ->where('UMUR', '<=', 45)
+        $adult = UserData::where(DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir)'), '>=', 26)
+                ->where(DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir)'), '<=', 45)
                 ->count();
         
-        $elderly = UserData::where('UMUR', '>', 45)->count();
+        $elderly = UserData::where(DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir)'), '>', 45)->count();
 
         $data = [
             'balita' => $toddler,
@@ -38,8 +38,8 @@ class UserDataController extends Controller
 
     public function getByEducation(){
 
-        $data = UserData::select('PENDIDIKAN',DB::raw('COUNT(*) as total'))
-                        ->groupBy('PENDIDIKAN')
+        $data = UserData::select('pendidikan',DB::raw('COUNT(*) as total'))
+                        ->groupBy('pendidikan')
                         ->get();
 
         return ResponseController::create($data, 'success', 'get resident data', 200);
@@ -48,8 +48,8 @@ class UserDataController extends Controller
 
     public function getByGender(){
 
-        $data = UserData::select('JENIS_KELAMIN',DB::raw('COUNT(*) as total'))
-                        ->groupBy('PENDIJENIS_KELAMINDIKAN')
+        $data = UserData::select('jenis_kelamin',DB::raw('COUNT(*) as total'))
+                        ->groupBy('jenis_kelamin')
                         ->get();
 
         return ResponseController::create($data, 'success', 'get resident data', 200);
@@ -83,20 +83,20 @@ class UserDataController extends Controller
     public function getFamily($noKK){
         $data = UserData::where('NO_KK', $noKK)->get([
             'id as resident_id', 
-            'NIK as nik', 
-            'NAMA as name',
-            'ALAMAT as address',
-            'SHDK as status'
+            'no_nik as nik', 
+            'nama as name',
+            'alamat as address',
+            'shdk as status'
         ]);
         return ResponseController::create($data, 'success', 'get family data', 200);
     }
 
     public function groupByBanjar(){
 
-        $kauh = UserData::where('BANJAR', 'kauh')->count();
-        $ubud = UserData::where('BANJAR', 'ubud')->count();
-        $tengah = UserData::where('BANJAR', 'tengah')->count();
-        $buangga = UserData::where('BANJAR', 'buangga')->count();
+        $kauh = UserData::where('banjar', 'kauh')->count();
+        $ubud = UserData::where('banjar', 'ubud')->count();
+        $tengah = UserData::where('banjar', 'tengah')->count();
+        $buangga = UserData::where('banjar', 'buangga')->count();
         
         $resident = compact('kauh', 'ubud', 'tengah', 'buangga');
 

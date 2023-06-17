@@ -34,7 +34,7 @@ class UserMailController extends Controller
                         'mails.title as title',
                         'mail.status as status',
                         'mail.created_at as send_time',
-                        'userDB.NAMA as applicant_name'
+                        'userDB.nama as applicant_name'
                     ]);
 
         return ResponseController::create($data, 'success', 'Daftar surat', 200);
@@ -57,8 +57,8 @@ class UserMailController extends Controller
         switch ($mail->title) {
             case 'Surat Keterangan Kelahiran':
 
-                $husband = UserData::where('SHDK', 'Kepala Keluarga')
-                        ->where('NO_KK', $applicant->no_kk)
+                $husband = UserData::where('shdk', 'KEPALA KELUARGA')
+                        ->where('no_kk', $applicant->no_kk)
                         ->first([
                             'nama as name', 
                             'pekerjaan as job', 
@@ -71,19 +71,18 @@ class UserMailController extends Controller
                 $wife = UserData::where('SHDK', 'ISTRI')
                         ->where('no_kk', $applicant->no_kk)
                         ->first([
-                            'NAMA as name', 
-                            'PEKERJAAN as job', 
-                            'UMUR as age', 
-                            'KEWARGANEGARAAN as citizenship',
-                            'TEMPAT_LAHIR as birthplace',
-                            'TANGGAL_LAHIR as birthdate',
-                            'NIK as nik'
+                            'nama as name', 
+                            'pekerjaan as job', 
+                            'kewarganegaraan as citizenship',
+                            'tempat_lahir as birthplace',
+                            'tanggal_lahir as birthdate',
+                            'no_nik as nik'
                         ]);
 
                 $field = [
                     ...$field,
-                    'NO_KK' => $applicant->NO_KK,
-                    'address' => $applicant->ALAMAT,
+                    'NO_KK' => $applicant->no_kk,
+                    'address' => $applicant->alamat,
                     'husband' => $husband,
                     'wife' => $wife 
                 ];
