@@ -25,21 +25,21 @@ class UserLoginController extends Controller
 
         if(Auth::guard('resident')->attempt(['no_nik' => request()->get('nik'), 'password' => request()->get('password'), 'status' => 'Active'])){
 
-            $data = UserLogin::join($this->userDb, 'userDb.NIK', '=', 'user_logins.no_nik')
+            $data = UserLogin::join($this->userDb, 'userDb.no_nik', '=', 'user_logins.no_nik')
                     ->where('user_logins.no_nik', request()->get('nik'))
                     ->first([
                         'user_logins.id',
                         'userDb.id as resident_id',
-                        'userDb.NAMA as name',
-                        'userDb.NIK as nik',
-                        'userDb.NO_KK as kk',
-                        'userDb.ALAMAT as address',
+                        'userDb.nama as name',
+                        'userDb.no_nik as nik',
+                        'userDb.no_kk as kk',
+                        'userDb.alamat as address',
                     ]);
 
-            $family = UserData::where('NO_KK', function($query) use ($data) {
+            $family = UserData::where('no_kk', function($query) use ($data) {
                 $query->from('resident_data')
-                ->select('NO_KK')
-                ->where('NIK', $data->nik)->first();
+                ->select('no_nik')
+                ->where('no_nik', $data->nik)->first();
             })->get([
                 'id as resident_id', 
                 'NO_KK as kk', 
