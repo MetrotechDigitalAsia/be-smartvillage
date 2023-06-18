@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Saksi;
 use App\Models\Signature;
 use App\Models\UserLogin;
 use App\Notifications\SendPushNotification;
@@ -212,7 +213,7 @@ class UsersMailController extends Controller
         $data = DB::table('users_mail as userMail')
             ->join('mails', 'mails.id', '=', 'userMail.mail_id')
             ->join('user_logins as user', function($join){
-                $join->join($this->userDb, 'userDB.NIK', '=', 'user.no_nik');
+                $join->join($this->userDb, 'userDB.no_nik', '=', 'user.no_nik');
             })
             ->where('userMail.id', '=', $id)
             ->first([
@@ -223,10 +224,41 @@ class UsersMailController extends Controller
                 'userMail.status',
                 'userMail.signature as image',
                 'userMail.field',
+                'userDB.banjar as banjar',
+                'userDB.nama as name',
+                'userDB.nama as applicant_name',
+                'userDB.no_nik as applicant_nik',
+                'userDB.no_kk as applicant_no_kk',
+                'userDB.kewarganegaraan as applicant_citizenship',
+                'userDB.jenis_kelamin as applicant_sex',
+                'userDB.tempat_lahir as applicant_birthplace',
+                'userDB.tanggal_lahir as applicant_birthdate',
+                'userDB.agama as applicant_religion',
+                'userDB.pekerjaan as applicant_job',
+                'userDB.alamat as applicant_address',
+                'userDB.banjar as applicant_banjar',
+                'userDB.shdk as applicant_family_status',
+                DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
+                'userMail.created_at'
             ]);
 
-        $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data'));
-        return $pdf->stream('invoice.pdf');
+        $perbekel = Signature::where('position', 'Perbekel')->first();
+        $saksi_1 = Saksi::where('position', '!=', 'Kelian Banjar Dinas '. $data->banjar)->first();
+        $saksi_2 = Saksi::where('position', '!=', 'Kelian Banjar Dinas '. $data->banjar)
+                        ->where('position', '!=', $saksi_1->position)
+                        ->first();
+        
+        $saksi = compact('saksi_1', 'saksi_2');
+
+        $kelian = Signature::where('position', '=','Kelian Banjar')
+                    ->where('banjar', $data->banjar)
+                    ->first();
+        
+        $field = json_decode($data->field);
+        
+        // $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data', 'perbekel', 'saksi', 'kelian', 'field'));
+        $pdf = Pdf::loadView('mailTemplate.surat-pernyataan-lahir', compact('data', 'perbekel', 'saksi', 'kelian', 'field'));
+        return $pdf->stream($data->slug.'-'.$data->id.'-'.$data->name.'.pdf');
 
     }
 

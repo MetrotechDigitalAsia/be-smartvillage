@@ -16,23 +16,29 @@
     <tr>
         <td style="width: 100%;" >
             <div style="position: relative; height: 80px; width: 100%;" >
-                @if ($data->status == 'Done')
-                <img style="position: absolute; bottom: -60%; left: -15%;" width="290" src="{{ public_path().'/assets/be/media/perbekel.png' }}" alt="">
+                @if ($data->status == 'Done' && !empty($perbekel))
+                <img style="position: absolute; width:320px; height: 120px; left: -25%; bottom: -60%; object-fit: contain;" src="{{ public_path(). '/storage/'. $perbekel->image }}" alt="">
                 @endif
             </div>
         </td>
         <td style="width: 100%;" >
             <div style="position: relative; height: 80px; width: 100%;" >
-                <img style="position: absolute; bottom: -55%; left: 5%;" height="100" src="{{ public_path().'/storage/'. $data->image }}" alt="">
+                @if ($data->status == 'Done' && !is_null($kelian))
+                <img style="position: absolute; height: 120px; width:50%; bottom: -30%; object-fit: contain;" src="{{ public_path(). '/storage/'. $kelian->image }}" alt="">
+                @endif
             </div>
         </td>
     </tr>
     <tr>
         <td>
-            <p style="text-indent: 0; text-align: left;" ><u >I Wayan Suandi, S.Pt</u></p>
+            <p style="text-indent: 0; text-align: left;" >
+                <u>{{ !empty($perbekel) ? $perbekel->name : 'belum ada data perbekel' }}</u>
+            </p>
         </td>
         <td>
-            <p style="text-indent: 0; text-align: left;" ><u >I Putu Antara</u></p>
+            <p style="text-indent: 0; text-align: left;" >
+                <u>{{ !empty($kelian) ? $kelian->name : 'belum ada data kelian' }}</u>
+            </p>
         </td>
     </tr>
 </table>
