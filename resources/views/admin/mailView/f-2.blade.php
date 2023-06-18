@@ -34,7 +34,9 @@
         <table class="mt-3" style="width: 100%;" >
             <tr>
                 <td style="width: 40%;" >
-                    <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                    <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left; position: relative;" >
+                        <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -8px; width: 27px; left: -2px;;" >
+                    </div>  
                     Kelahiran
                 </td>
                 <td style="width: 50%;" >
@@ -135,7 +137,6 @@
                         {{ $nik[$i] ?? '' }}
                     </td>
                 @endfor
-                {{-- <td colspan="7" ></td> --}}
             </tr>
             <tr>
                 <td>Nomor Dokumen Perjalanan</td>
@@ -173,7 +174,6 @@
             </tr>
         </table>
     </div>
-
 
     <div class="section__saksi" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
         <span class="font-weight-bolder">Data Saksi I</span>
@@ -426,14 +426,18 @@
             <tr>
                 <td>2. Jenis Kelamin</td>
                 <td>:</td>
-                <td style="border: 1px solid black; width: 50px !important;" >
-                    
+                <td style="border: 1px solid black; width: 50px !important; position: relative;" >
+                    @if ($field->child_sex == 'Laki - Laki')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="8" style="width: 50px !important;" >
                     1. Laki Laki
                 </td>
-                <td style="border: 1px solid black; width: 50px !important;" >
-                    
+                <td style="border: 1px solid black; width: 50px !important; position: relative;" >
+                    @if ($field->child_sex == 'Perempuan')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="13" >
                     2. Perempuan
@@ -442,34 +446,44 @@
             <tr >
                 <td rowspan="2"  >3. Tempat Dilahirkan</td>
                 <td rowspan="2" >:</td>
-                <td style="border: 1px solid black; width: 50px !important;" >
-                    
+                <td style="border: 1px solid black; width: 50px !important; position: relative;" >
+                    @if ($field->child_birth_of_place == 'RS/RB')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="4" style="width: 50px !important;" >
                     1. RS/RB
                 </td>
-                <td style="border: 1px solid black; width: 50px !important;" >
-                    
+                <td style="border: 1px solid black; width: 50px !important; position: relative;" >
+                    @if ($field->child_birth_of_place == 'Puskesmas')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="6" style="width: 50px !important;" >
                     2. Puskesmas
                 </td>
-                <td style="border: 1px solid black; width: 50px !important;" >
-                    
+                <td style="border: 1px solid black; width: 50px !important; position: relative;" >
+                    @if ($field->child_birth_of_place == 'Polindes')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="6" style="width: 50px !important;" >
                     3. Polindes
                 </td>
             </tr>
             <tr>
-                <td style="border: 1px solid black; width: 50px !important;" >
-                    
+                <td style="border: 1px solid black; width: 50px !important; position: relative;" >
+                    @if ($field->child_birth_of_place == 'Rumah')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="4" style="width: 50px !important;" >
                     4. Rumah
                 </td>
-                <td style="border: 1px solid black; width: 50px !important;" >
-                    
+                <td style="border: 1px solid black; width: 50px !important; position: relative;" >
+                    @if ($field->child_birth_of_place == 'Lainnya')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="6" style="width: 50px !important;" >
                     5. Lainnya
@@ -489,7 +503,6 @@
                     $child_birthday = str_split($field->child_birthday);
                     $child_birthdate = Carbon\Carbon::parse($field->child_birth_date)->format('d-m-Y');
                     $child_birthdate = explode('-',$child_birthdate);
-                    // var_dump($child_birthdate);
                 @endphp
                 @for ($i = 0; $i < 5; $i++)
                 <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
@@ -529,18 +542,30 @@
             <tr>
                 <td rowspan="2" >7. Jenis Kelahiran</td>
                 <td rowspan="2" >:</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                    @if ($field->child_birth_type == 'Tunggal')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="5" >1. Tunggal</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                    @if ($field->child_birth_type == 'Kembar 2')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="5" >2. Kembar 2</td>
             </tr>
             <tr>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                    @if ($field->child_birth_type == 'Kembar 3')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="5" >3. Kembar 3</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                    @if ($field->child_birth_type == 'Lainnya')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="5" >3. Lainnya</td>
             </tr>
@@ -552,18 +577,30 @@
             <tr>
                 <td rowspan="2" >9. Penolong Kelahiran</td>
                 <td rowspan="2" >:</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                    @if ($field->birth_attendant == 'Dokter')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="5" >1. Dokter</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                    @if ($field->birth_attendant == 'Bidan/Perawat')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="8" >2. Bidan/Perawat</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                    @if ($field->birth_attendant == 'Dukun')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="5" >3. Dukun</td>
             </tr>
             <tr>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                    @if ($field->birth_attendant == 'Lainnya')
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    @endif
                 </td>
                 <td colspan="5" >5. Lainnya</td>
             </tr>
