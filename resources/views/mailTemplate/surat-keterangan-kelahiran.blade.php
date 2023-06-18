@@ -4,7 +4,7 @@
 @php
     $field = json_decode($data->field)    
 @endphp
-<div class="mail-body">
+<div class="mail-body" style="font-size: 14px;" >
     <p class="mail-type" >
         <b style="text-transform: uppercase;" ><u>{{ $data->title }}</u></b>
     </p>
@@ -19,12 +19,12 @@
         <tr>
             <td></td>
             <td >jenis kelamin</td>
-            <td>: {{ $field->sex }}</td>
+            <td>: {{ $field->child_sex }}</td>
         </tr>
         <tr>
             <td></td>
             <td>Tempat/Tgl.lahir</td>
-            <td>: {{ $field->birthplace }}</td>
+            <td>: {{ $field->child_birthplace }}</td>
         </tr>
         <tr>
             <td></td>
@@ -98,26 +98,26 @@
                 <table style="widows: 100%;" >
                     <tr>
                         <td >1.</td>
-                        <td style="width: 120px;" >Nama Saksi</td>
-                        <td>: I Putu Antara</td>
+                        <td >Nama Saksi</td>
+                        <td>: {{ $saksi['saksi_1']->name }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Umur</td>
-                        <td>: 27 Tahun</td>
+                        <td>: {{ $saksi['saksi_1']->age }} Tahun</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Pekerjaan</td>
-                        <td>: Karyawan Swasta</td>
+                        <td>: {{ $saksi['saksi_1']->job }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Alamat</td>
-                        <td>: Br Ubud Getasan</td>
+                        <td>: {{ $saksi['saksi_1']->address }}</td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="text-align: center; padding-top: 50px;" ><p><u>I Wayan Sunarta</u></p></td>
+                        <td colspan="3" style="text-align: center; padding-top: 50px;" ><p><u>{{ $saksi['saksi_1']->name }}</u></p></td>
                     </tr>
                 </table>
             </td>
@@ -125,26 +125,26 @@
                 <table>
                     <tr>
                         <td>2.</td>
-                        <td style="width: 120px;" >Nama Saksi</td>
-                        <td>: I Putu Antara</td>
+                        <td >Nama Saksi</td>
+                        <td>: {{ $saksi['saksi_2']->name }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Umur</td>
-                        <td>: 27 Tahun</td>
+                        <td>: {{ $saksi['saksi_2']->age }} Tahun</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Pekerjaan</td>
-                        <td>: Karyawan Swasta</td>
+                        <td>: {{ $saksi['saksi_2']->job }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Alamat</td>
-                        <td>: Br Ubud Getasan</td>
+                        <td>: {{ $saksi['saksi_2']->address }}</td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="text-align: center; padding-top: 50px;" ><p><u>I Wayan Sunarta</u></p></td>
+                        <td colspan="3" style="text-align: center; padding-top: 50px;" ><p><u>{{ $saksi['saksi_2']->name }}</u></p></td>
                     </tr>
                 </table>
             </td>

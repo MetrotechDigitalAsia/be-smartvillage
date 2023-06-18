@@ -3,7 +3,7 @@
 @php
     $field = json_decode($data->field)    
 @endphp
-<div class="mail-body">
+<div class="mail-body" style="font-size: 14px;">
     <p class="mail-type" >
         <b style="text-transform: uppercase;" ><u>{{ $data->title }}</u></b>
     </p>
