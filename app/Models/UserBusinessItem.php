@@ -22,7 +22,7 @@ class UserBusinessItem extends Model
                 ->join(env('DB_RESIDENT_DATABASE').'.resident_data', 'resident_data.no_nik', '=', 'user_logins.no_nik')
                 ->select([
                     'user_logins.id as id',
-                    'resident_data.name as name'
+                    'resident_data.nama as name'
                 ]);
     }
 }
