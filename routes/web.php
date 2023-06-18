@@ -179,7 +179,6 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/', [ComplaintCategoryController::class, 'index'])->name('complaintCategory');
             Route::get('/create', [ComplaintCategoryController::class, 'create']);
             Route::get('/show/{complaintCategory}', [ComplaintCategoryController::class, 'show']);
-            // Route::post('/', [ComplaintCategoryController::class, 'store'])->name('storeComplaintCategory');
             Route::post('/', [ComplaintCategoryController::class, 'store'])->name('storeComplaintCategory');
             Route::post('/update/{complaintCategory}', [ComplaintCategoryController::class, 'update']);
             Route::delete('/delete/{complaintCategory}', [ComplaintCategoryController::class, 'destroy']); 

@@ -60,16 +60,13 @@ class UserDataController extends Controller
 
         switch($type) {
             case 'gender':
-                $type = 'JENIS_KELAMIN';
+                $type = 'jenis_kelamin';
                 break;
             case 'education':
-                $type = 'PENDIDIKAN';
-                break;
-            case 'age':
-                $type = 'UMUR';
+                $type = 'pendidikan';
                 break;
             case 'banjar':
-                $type = 'BANJAR';
+                $type = 'banjar';
                 break;
         }
 
@@ -81,7 +78,7 @@ class UserDataController extends Controller
     }
 
     public function getFamily($noKK){
-        $data = UserData::where('NO_KK', $noKK)->get([
+        $data = UserData::where('no_kk', $noKK)->get([
             'id as resident_id', 
             'no_nik as nik', 
             'nama as name',
