@@ -112,7 +112,7 @@ class UserMailController extends Controller
 
             $notif = [
                 'title' => $mail->title,
-                'sender' => $applicant->NAMA ?? $applicant->name
+                'sender' => $applicant->nama ?? $applicant->name
             ];
 
             Notification::send(Admin::first(), new MailNotification($notif));

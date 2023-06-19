@@ -11,9 +11,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use ZipArchive;
 
 class UsersMailController extends Controller
 {
@@ -208,13 +212,11 @@ class UsersMailController extends Controller
 
     }
 
-    public function printMail($id){
+    public function printMail($id, Request $request){
 
         $data = DB::table('users_mail as userMail')
             ->join('mails', 'mails.id', '=', 'userMail.mail_id')
-            ->join('user_logins as user', function($join){
-                $join->join($this->userDb, 'userDB.no_nik', '=', 'user.no_nik');
-            })
+            ->join($this->userDb, 'userDB.id', '=', 'userMail.resident_id')
             ->where('userMail.id', '=', $id)
             ->first([
                 'userMail.id',
@@ -255,10 +257,44 @@ class UsersMailController extends Controller
                     ->first();
         
         $field = json_decode($data->field);
-        
-        // $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data', 'perbekel', 'saksi', 'kelian', 'field'));
-        $pdf = Pdf::loadView('mailTemplate.surat-pernyataan-lahir', compact('data', 'perbekel', 'saksi', 'kelian', 'field'));
-        return $pdf->stream($data->slug.'-'.$data->id.'-'.$data->name.'.pdf');
+
+        if($data->title != 'Surat Keterangan Kelahiran'){
+            $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data', 'perbekel', 'saksi', 'kelian', 'field'));
+            $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$data->slug).'_mail.pdf';
+            return $pdf->download($fileName);
+        }
+
+        $queryParams = $request->query();
+        $queryParams = array_keys($queryParams);
+
+        if(count($queryParams) == 1 && $data->title == 'Surat Keterangan Kelahiran'){
+            $pdf = Pdf::loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'saksi', 'kelian', 'field'));
+            $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$queryParams[0]).'_mail.pdf';
+            return $pdf->download($fileName);
+        }
+
+        $mails = [];
+
+        foreach($queryParams as $mail){
+            $filename = $mail.'-'.$data->id.'-'.$data->name.'.pdf';
+            $mails[] = $filename;
+            $pdf = Pdf::loadView('mailTemplate.'.$mail, compact('data', 'perbekel', 'saksi', 'kelian', 'field'))->save($filename, 'public');
+        }
+
+        $zipFileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.$data->id.'-mails.zip';
+        $zipFilePath = public_path('/storage/'.$zipFileName);
+    
+        $zip = new ZipArchive();
+        if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+            foreach ($mails as $pdfFile) {
+                $pdfFilePath = public_path('/storage/'.$pdfFile);
+                $zip->addFile($pdfFilePath, $pdfFile);
+            }
+    
+            $zip->close();
+        }
+
+        return response()->download($zipFilePath)->deleteFileAfterSend(true);
 
     }
 

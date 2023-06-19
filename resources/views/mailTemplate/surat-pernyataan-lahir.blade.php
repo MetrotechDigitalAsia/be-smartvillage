@@ -9,9 +9,9 @@
 <body>
 
     <div class="mail-header-pernyataan-lahir" style="text-align: center;" >
-        <h4><u>Surat Pernyataan</u></h3>
+        <h3><u>Surat Pernyataan</u></h3>
     </div>
-    <div class="mail-body-pernyataan-lahir" style="padding-top: 40px; padding-left: 30px; padding-bottom: 100px;" >
+    <div class="mail-body-pernyataan-lahir" style="padding-top: 20px; padding-left: 30px; padding-bottom: 100px;" >
         <p>Yang bertanda tangan di bawah ini :</p>
         <table style="margin-left: 50px; margin-bottom: 30px;" >
             <tr>
@@ -83,7 +83,7 @@
             <tr>
                 <td style="width: 50%;" ></td>
                 <td style="width: 50%; position: relative; height: 60px;" >
-                    <img style="position: absolute; width: 200px; height: 70px; left: 0px; top: 0px; object-fit: contain;" src="{{ public_path(). '' asset('storage/'. $data->image) }}" alt="">
+                    <img style="position: absolute; width: 120px; height: 70px; left: 0px; top: 0px; object-fit: contain;" src="{{ public_path(). '/storage/' . $data->image }}" alt="">
                 </td>
             </tr>
             <tr>
