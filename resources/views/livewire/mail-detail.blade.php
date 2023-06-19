@@ -144,7 +144,16 @@
             </div>
             @endif
             @if ($data->status == 'Done')
-            <a href='/persuratan/surat/print/{{ $data->id }}' class="btn btn-default btn-sm btn-icon mr-2" data-dismiss="modal">
+            <a 
+                class="btn btn-default btn-sm btn-icon mr-2"
+                @if ($data->title == 'Surat Keterangan Kelahiran')
+                data-toggle="modal"
+                href="javascript:;"
+                data-target="#downloadModal"
+                @else
+                href='/persuratan/surat/print/{{ $data->id }}'
+                @endif
+            >
                 <i class="flaticon2-fax"></i>
             </a>
             @endif
@@ -320,4 +329,41 @@
         </a>
         @endif
     </div>
+
+    
+    <div class="modal fade" id="downloadModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="font-size: 16px;" >Unduh Surat Kelahiran</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="checkbox-list">
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-keterangan-kelahiran"/>
+                            <span></span>
+                            Surat Keterangan Kelahiran
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="f2-01"/>
+                            <span></span>
+                            Surat F2-01
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-pernyataan-lahir"/>
+                            <span></span>
+                            Surat Pernyataan Lahir
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex py-2 px-2">
+                    <button type="button" style="flex: 1;" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <a href="javascript:;" data-dismiss="modal" onclick="handleDownloadMail()" type="button" style="flex: 1;" class="btn btn-primary">Unduh</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form class="download-form" action="/persuratan/surat/print/{{ $data->id }}" ></form>
+
 </div>

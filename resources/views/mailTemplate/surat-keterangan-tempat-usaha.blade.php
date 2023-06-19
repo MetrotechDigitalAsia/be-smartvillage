@@ -12,35 +12,35 @@
     <table style="width: 100%; margin: 15px 0; margin-left: 16px;" >
         <tr>
             <td style="width: 200px; min-width: unset; max-width: unset;" >Nama</td>
-            <td>: {{ $field->applicant->name }}</td>
+            <td>: {{ $data->applicant_name }}</td>
         </tr>
         <tr>
             <td>Jenis Kelamin</td>
-            <td>: {{ $field->applicant->sex }}</td>
+            <td>: {{ $data->applicant_sex }}</td>
         </tr>
         <tr>
             <td>Tempat/Tgl.lahir</td>
-            <td>: {{ $field->applicant->birth_place }}, {{ Carbon\Carbon::parse($field->applicant->birth_date)->format('d-m-Y') }}</td>
+            <td>: {{ $data->applicant_birthplace }}, {{ Carbon\Carbon::parse($data->applicant_birthdate)->format('d-m-Y') }}</td>
         </tr>
         <tr>
             <td>Kewarganegaraan</td>
-            <td>: {{ $field->applicant->citizenship }}</td>
+            <td>: {{ $data->applicant_citizenship }}</td>
         </tr>
         <tr>
             <td>Agama</td>
-            <td>: {{ $field->applicant->religion ?? '' }}</td>
+            <td>: {{ $data->applicant_religion ?? '' }}</td>
         </tr>
         <tr>
             <td>Nomor KTP</td>
-            <td>: {{ $field->applicant->nik }}</td>
+            <td>: {{ $data->applicant_nik }}</td>
         </tr>
         <tr>
             <td>Pekerjaan</td>
-            <td>: {{ $field->applicant->job }}</td>
+            <td>: {{ $data->applicant_job }}</td>
         </tr>
         <tr>
             <td>Alamat</td>
-            <td>: {{ $field->applicant->address }}</td>
+            <td>: {{ $data->applicant_address }}</td>
         </tr>
         <tr>
             <td>Nama Usaha</td>

@@ -16,6 +16,8 @@
 
 <script>
 
+    var downloadLink = '/persuratan/surat/print'
+
     function handleChangeInput(e){
         const btn = document.querySelector('.submit-mail-number-btn')
         if(e.value === '' || e.value === undefined ){
@@ -49,6 +51,32 @@
 
         approveBtn.setAttribute('data-href', `/persuratan/surat/changeStatus/${mailId}/${type}`)
 
+    }
+
+    function handleClickCheckbox(el){
+
+        const form = document.querySelector('.download-form')
+
+        if(el.checked){
+            const name = el.name
+            let input = document.createElement('input')
+            input.name = name
+            input.value = name
+            input.type = 'hidden'
+            input.classList.add(name)
+            form.appendChild(input)
+        } else {
+            const name = el.name
+            const input = document.querySelector(`.${name}`)
+            input.remove()
+        }
+
+        console.log(form)
+
+    }
+
+    function handleDownloadMail(){
+        document.querySelector('.download-form').submit()
     }
 
     function handleSubmit(btn){
