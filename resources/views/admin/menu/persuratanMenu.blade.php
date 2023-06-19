@@ -4,7 +4,7 @@
 
 <div class="d-flex flex-row">
     <!--begin::Aside-->
-    <div class="flex-row-auto offcanvas-mobile w-200px w-xxl-275px" id="kt_todo_aside">
+    <div class="flex-row-auto offcanvas-mobile w-200px w-xxl-275px" id="menu_aside">
         <!--begin::Card-->
         <div class="card card-custom card-stretch">
             <!--begin::Body-->

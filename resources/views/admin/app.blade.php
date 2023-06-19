@@ -275,6 +275,43 @@
 
 			}
 
+			var _asideEl = _asideEl = KTUtil.getById('menu_aside');
+
+			var _asideOffcanvas = new KTOffcanvas(_asideEl, {
+                overlay: true,
+                baseClass: 'offcanvas-mobile',
+                //closeBy: 'kt_todo_aside_close',
+                toggleBy: 'kt_subheader_mobile_toggle'
+            });
+
+            // View list
+            KTUtil.on(_asideEl, '.list-item[data-action="list"]', 'click', function(e) {
+                var type = KTUtil.attr(this, 'data-type');
+                var listItemsEl = KTUtil.find(_listEl, '.kt-inbox__items');
+                var navItemEl = this.closest('.kt-nav__item');
+                var navItemActiveEl = KTUtil.find(_asideEl, '.kt-nav__item.kt-nav__item--active');
+
+                // demo loading
+                var loading = new KTDialog({
+                    'type': 'loader',
+                    'placement': 'top center',
+                    'message': 'Loading ...'
+                });
+                loading.show();
+
+                setTimeout(function() {
+                    loading.hide();
+
+                    KTUtil.css(_listEl, 'display', 'flex'); // show list
+                    KTUtil.css(_viewEl, 'display', 'none'); // hide view
+
+                    KTUtil.addClass(navItemEl, 'kt-nav__item--active');
+                    KTUtil.removeClass(navItemActiveEl, 'kt-nav__item--active');
+
+                    KTUtil.attr(listItemsEl, 'data-type', type);
+                }, 600);
+            });
+
 			var geocoder; 
 			var map;
 			var marker;
