@@ -2,6 +2,11 @@
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <!--begin::Info-->
         <div class="d-flex align-items-center flex-wrap mr-1">
+
+            <button class="burger-icon burger-icon-left mr-4 d-inline-block d-lg-none" id="kt_subheader_mobile_toggle">
+                <span></span>
+            </button>
+
             <!--begin::Heading-->
             <div class="d-flex flex-column">
                 <!--begin::Title-->

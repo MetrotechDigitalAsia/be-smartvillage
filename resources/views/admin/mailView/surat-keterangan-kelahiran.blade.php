@@ -9,7 +9,7 @@
         </tr>
         <tr>
             <td></td>
-            <td>jenis kelamin</td>
+            <td>Jenis Kelamin</td>
             <td>: {{ $field->child_sex ?? '' }}</td>
         </tr>
         <tr>
@@ -30,7 +30,7 @@
         <tr>
             <td></td>
             <td>Alamat</td>
-            <td>: {{ $field->address }}</td>
+            <td>: {{ $data->applicant_address }}</td>
         </tr>
         <tr>
             <td class="py-2"> </td>
@@ -53,7 +53,7 @@
         <tr>
             <td></td>
             <td>Alamat</td>
-            <td>: {{ $field->address }}</td>
+            <td>: {{ $data->applicant_address }}</td>
         </tr>
         <tr>
             <td class="py-2"> </td>
@@ -76,7 +76,7 @@
         <tr>
             <td></td>
             <td>Alamat</td>
-            <td>: {{ $field->address }}</td>
+            <td>: {{ $data->applicant_address }}</td>
         </tr>
     </table>
     <p class="text-justify mt-10" >Demikian Surat Keterangan Kelahiran ini dibuat dengan sebenarnya sebagai persyaratan untuk melengkapi permohonan Pembuatan Kutipan Akta Kelahiran.</p>
