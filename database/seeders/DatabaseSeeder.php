@@ -74,15 +74,9 @@ class DatabaseSeeder extends Seeder
             'type' => 'Layanan'
         ]);
 
-        // ArticleCategory::create(['article_category' => 'F&B']);
-        // ArticleCategory::create(['article_category' => 'Hangat']);
-        // ArticleCategory::create(['article_category' => 'Lainnya']);
-
         ComplaintCategory::create(['complaint_category' => 'Pariwisata']);
         ComplaintCategory::create(['complaint_category' => 'Umum']);
         ComplaintCategory::create(['complaint_category' => 'layanan Terpadu']);
-
-        // Position::create(['position_name' => 'amdin']);
 
         ItemBusinessCategory::create(['item_category' => 'Jasa']);
         ItemBusinessCategory::create(['item_category' => 'Makanan & Minuman']);
@@ -123,6 +117,22 @@ class DatabaseSeeder extends Seeder
             'id' => '990636ad-0906-4cb3-b64e-242dba590297',
             'title' => 'Surat Keterangan Tempat Usaha',
             'slug' => str_replace(' ','-', strtolower('Surat Keterangan Tempat Usaha')),
+            'image' => '-',
+            'description' => '-',
+        ]);
+
+        Mail::create([
+            'id' => '4dc010d6-0da9-11ee-9013-a45e60e3e12d',
+            'title' => 'F2-01',
+            'slug' => 'f2-01',
+            'image' => '-',
+            'description' => '-',
+        ]);
+
+        Mail::create([
+            'id' => 'd43bb42c-0dbc-11ee-9013-a45e60e3e12d',
+            'title' => 'Surat Pernyataan Lahir',
+            'slug' => 'surat-pernyataan-lahir',
             'image' => '-',
             'description' => '-',
         ]);
