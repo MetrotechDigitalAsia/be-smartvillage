@@ -133,10 +133,10 @@
         <div class="d-flex align-items-center justify-content-end text-right my-2">
             @if ($data->title == 'Surat Keterangan Kelahiran')
             <div class="dropdown mr-2">
-                <button class="btn btn-default btn-sm mail-type-title dropdown-toggle text-dark" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-default btn-sm mail-type-title dropdown-toggle text-dark" type="button" data-offset="0,5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Surat Keterangan Kelahiran
                 </button>
-                <div class="dropdown-menu" >
+                <div class="dropdown-menu dropdown-menu-anim-up" >
                     <a class="dropdown-item mail-change-btn" data-mail="Surat Keterangan Kelahiran" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_keterangan_tab">Surat Keterangan Kelahiran</a>
                     <a class="dropdown-item mail-change-btn" data-mail="Surat F2.0-1" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_f2_tab">Formulir F-2.01</a>
                     <a class="dropdown-item mail-change-btn" data-mail="Surat Pernyataan Lahir" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_pernyataan_lahir_tab">Surat Pernyataan Lahir</a>

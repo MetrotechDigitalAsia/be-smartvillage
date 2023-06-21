@@ -5,15 +5,36 @@
 <!--begin::Inbox-->
 <div class="d-flex flex-row">
     <!--begin::Aside-->
-    <div class="flex-row-auto offcanvas-mobile w-200px w-xxl-275px" id="kt_inbox_aside">
+    <div class="flex-row-auto offcanvas-mobile w-200px w-xxl-275px" id="menu_aside">
         <!--begin::Card-->
         <div class="card card-custom card-stretch">
             <!--begin::Body-->
             <div class="card-body px-5">
                 <!--begin::Compose-->
-                {{-- <div class="px-4 mt-4 mb-10">
-                    <a href="#" class="btn btn-block btn-primary font-weight-bold text-uppercase py-4 px-6 text-center">Buat Surat</a>
-                </div> --}}
+                <div class="px-3 mt-4 mb-5 dropright">
+                    <a href="#" class="btn btn-block btn-primary font-weight-bold text-uppercase py-4 px-6 text-center" data-offset="0,10" data-toggle="dropdown" >Buat Surat</a>
+                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-anim-up">
+                        <ul class="navi">
+                            <li class="navi-item">
+                                <a href="/persuratan/surat/create?type=surat-keterangan-tempat-usaha" class="navi-link">
+                                    <span class="navi-bullet">
+                                        <i class="bullet bullet-dot"></i>
+                                    </span>
+                                    <span class="navi-text">SKTU</span> 
+                                </a>
+                            </li>
+                            {{-- <li class="navi-separator"></li> --}}
+                            <li class="navi-item">
+                                <a href="/persuratan/surat/create?type=surat-keterangan-kelahiran" class="navi-link">
+                                    <span class="navi-bullet">
+                                        <i class="bullet bullet-dot"></i>
+                                    </span>
+                                    <span class="navi-text">Surat Kelahiran</span> 
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <!--end::Compose-->
                 <!--begin::Navigations-->
                 <div class="navi navi-hover navi-active navi-link-rounded navi-bold navi-icon-center navi-light-icon">

@@ -648,7 +648,9 @@
                         @endif
                     </td>
                     <td style="height: 50px; position: relative;"  >
+                        @if (!is_null($data->user_id))
                         <img style="position: absolute; width: 300px; height: 70px; left: 10px; top: 0px; object-fit: contain;" src="{{ asset('storage/'. $data->signature) }}" alt="">
+                        @endif
                     </td>
                 </tr>
                 <tr>

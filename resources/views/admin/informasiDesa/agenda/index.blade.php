@@ -104,6 +104,10 @@
                 	key: 'generalSearch',
 				},
 
+				rows: {
+					autoHide: false
+				},
+
 				// columns definition
 				columns: [
 				{
@@ -112,7 +116,7 @@
 					width: 30,
 					type: 'number',
 					textAlign: 'center',
-				}, {
+				},{
 					field: 'title',
 					title: 'Judul',
 				},{
@@ -126,7 +130,6 @@
 					title: 'Actions',
 					width: 125,
 					overflow: 'visible',
-					autoHide: false,
 					template: function(e) {
 						return `\
 							<a href="/informasi-desa/agenda/show/${e.slug}" class="btn btn-sm btn-clean btn-icon mr-2 bg-light " title="Edit details">\
