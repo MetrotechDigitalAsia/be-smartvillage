@@ -40,6 +40,7 @@ class MailDetail extends Component
             'userMail.status',
             'userMail.field',
             'userMail.signature',
+            'userMail.user_id',
             'applicant.nama as applicant_name',
             'applicant.no_nik as applicant_nik',
             'applicant.no_kk as applicant_no_kk',

@@ -228,6 +228,13 @@ class UserDataController extends Controller
 
     }
 
+    public function userDataForSelectOption(Request $request){
+        $query = $request->query('query');
+        $userData = UserData::where('nama', 'like', '%'.$query.'%')
+                ->orWhere('no_nik', 'like', '%'.$query.'%')->get();
+        return response()->json(['items'=>$userData]);
+    }
+
     // public function generateToken(User){
     //     return $request->token;
     // }

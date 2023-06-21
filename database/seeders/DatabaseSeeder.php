@@ -4,27 +4,14 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Agenda;
-use App\Models\Article;
-use App\Models\ArticleCategory;
-use App\Models\Complaint;
 use App\Models\ComplaintCategory;
-use App\Models\DestinationPoint;
-use App\Models\ImportantNumber;
-use App\Models\Investation;
-use App\Models\InvestationCategory;
 use App\Models\Admin;
 use App\Models\BLT;
 use App\Models\ItemBusinessCategory;
 use App\Models\Mail;
-use App\Models\Position;
-use App\Models\UserBusinessItem;
 use App\Models\UserData;
 use App\Models\UserLogin;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {

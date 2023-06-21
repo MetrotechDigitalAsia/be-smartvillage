@@ -16,6 +16,7 @@
 		<link href="{{ asset('assets/be/plugins/global/plugins.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/be/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/be/css/style.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('assets/be/plugins/custom/datatables/datatables.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
 
 		<!--Mail Style-->
 		@stack('mail-styles')

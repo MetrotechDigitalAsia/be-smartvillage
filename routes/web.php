@@ -233,6 +233,7 @@ Route::group(['middleware' => 'auth'], function(){
             Route::controller(UserDataController::class)->group(function(){
                 Route::get('/', 'index');
                 Route::get('/create', 'create');
+                Route::get('/userDataForSelectOption', 'userDataForSelectOption')->name('userDataForSelectOption');
                 Route::get('/show/{userData}', 'show');
                 Route::get('/create-mobile-account/{userData}', 'createMobileAccount');
                 Route::post('/', 'store')->name('storeUserData');
@@ -270,6 +271,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['prefix' => 'surat'], function(){
             Route::controller(UsersMailController::class)->group(function(){
                 Route::get('/', 'index')->name('inbox');
+                Route::get('/create', 'create');
                 Route::get('/all', 'getAllMail');
                 Route::get('/{status}', 'getMailByStatus')->name('userMailByStatus');
                 Route::get('/create', 'create');
