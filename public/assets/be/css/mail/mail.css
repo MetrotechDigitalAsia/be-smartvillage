@@ -6,7 +6,7 @@
 
 .message-content {
     max-width: 2480px !important;
-    max-height: 3508px !important;
+    /* max-height: 3508px !important; */
 }
 .f2.message-content {
     max-width: 2580px !important;
