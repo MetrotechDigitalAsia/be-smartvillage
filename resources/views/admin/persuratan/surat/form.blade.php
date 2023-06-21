@@ -91,7 +91,7 @@
         function formatRepoSelection(res) {
             if(res?.nama) return res.nama + ' (' + res.no_nik + ')'
 
-            return 'Cari Data'
+            return 'Cari berdasarkan NIK dan Nama'
         }
 
         function submitMailForm(){
