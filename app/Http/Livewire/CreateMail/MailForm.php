@@ -113,7 +113,7 @@ class MailForm extends Component
             'birth_attendant' => $this->birth_attendant,
             'baby_weight' => $this->baby_weight,
             'baby_length' => $this->baby_length,
-            'child_birthday' => Carbon::parse($this->child_birth_date)->translatedFormatformat('l'),
+            'child_birthday' => Carbon::parse($this->child_birth_date)->translatedFormat('l'),
             'NO_KK' => $this->applicant_data->no_kk
         ]);
 
