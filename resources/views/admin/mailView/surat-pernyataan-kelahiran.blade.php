@@ -56,12 +56,12 @@
             <td>: {{ $field->birth_count }}</td>
         </tr>
     </table>
-    <p style="text-indent: 60px;" >Belum pernah dicatatkan kelahiranya pada Kantor Catatan Sipil ditempat kelahirannya ataupun ditempat lainnya, baik dalam daftar kelahiran yang tidak terlambat, maupun kelahiran terlambat, dan kelahiran terlambat tersebut melebihi 60 hari hingga melebihi 1 (satu) tahun berdasarkan surat keterangan Dokter/Bidan/Rumah Sakit Nomor :__ tanggal __ untuk dapat dicatatkan di Kabupaten Badung. :</p>
+    <p style="text-indent: 60px;" >Belum pernah dicatatkan kelahiranya pada Kantor Catatan Sipil ditempat kelahirannya ataupun ditempat lainnya, baik dalam daftar kelahiran yang tidak terlambat, maupun kelahiran terlambat, dan kelahiran terlambat tersebut melebihi 60 hari hingga melebihi 1 (satu) tahun berdasarkan surat keterangan Dokter/Bidan/Rumah Sakit Nomor :__ tanggal __ untuk dapat dicatatkan di Kabupaten Badung. </p>
     <table style="width: 100%;" >
         <tr>
             <td style="width: 50%;" ></td>
             <td style="width: 50%;" >
-                Mangupura, {{ Carbon\Carbon::now()->translatedFormat('l, F d, Y') }}
+                Mangupura, {{ Carbon\Carbon::now()->translatedFormat('d F Y') }}
             </td>
         </tr>
         <tr>
@@ -73,7 +73,9 @@
         <tr>
             <td style="width: 50%;" ></td>
             <td style="width: 50%; position: relative; height: 60px;" >
+                @if (!is_null($data->user_id))
                 <img style="position: absolute; width: 200px; height: 70px; left: 0px; top: 0px; object-fit: contain;" src="{{ asset('storage/'. $data->signature) }}" alt="">
+                @endif
             </td>
         </tr>
         <tr>

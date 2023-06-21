@@ -116,6 +116,7 @@
             @error('birth_count')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
+            <span class="form-text text-muted">Contoh: Satu</span>
         </div>
 
         <div class="form-group validated">
