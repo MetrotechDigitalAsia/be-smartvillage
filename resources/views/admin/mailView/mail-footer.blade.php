@@ -18,7 +18,7 @@
         <u>{{ !empty($perbekel) ? $perbekel->name : 'belum ada data perbekel' }}</u>
     </div>
     <div class="col text-left" style="position: relative;">
-        <p style="text-indent: 0; margin-top: 40px; margin-bottom: 0;" >Getasan, 7 april 2023,</p>
+        <p style="text-indent: 0; margin-top: 40px; margin-bottom: 0;" >Getasan, {{ Carbon\Carbon::now()->translatedFormat('l, d F Y') }}</p>
         <p  style="text-indent: 0; margin-bottom: 60px;" >Kelian Banjar Dinas Ubud</p>
         @if ($data->status == 'Done' && !is_null($kelian))
         <img style="position: absolute; height: 120px; width:50%; bottom: 0; object-fit: contain;" src="{{ asset('storage/'. $kelian->image) }}" alt="">

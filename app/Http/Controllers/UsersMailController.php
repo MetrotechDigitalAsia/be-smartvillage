@@ -228,6 +228,7 @@ class UsersMailController extends Controller
                 'mails.title',
                 'mails.slug',
                 'userMail.mail_number',
+                'userMail.user_id',
                 'userMail.status',
                 'userMail.signature as image',
                 'userMail.field',
