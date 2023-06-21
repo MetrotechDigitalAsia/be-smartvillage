@@ -88,7 +88,7 @@
             <select wire:model="child_birth_of_place" class="form-control @error('child_birth_of_place') is-invalid @enderror" id="exampleSelect1">
                 <option>pilih...</option>
                 @foreach ($birthOfPlace as $key => $item)
-                <option>{{ $key+1 }}. {{ $item }}</option>
+                <option value="{{ $item }}" >{{ $key+1 }}. {{ $item }}</option>
                 @endforeach
             </select>
             @error('child_birth_of_place')
@@ -102,7 +102,7 @@
             <select wire:model.lazy="child_birth_type" class="form-control @error('child_birth_type') is-invalid @enderror" id="exampleSelect1">
                 <option>pilih...</option>
                 @foreach ($birthType as $key => $item)
-                <option>{{ $key+1 }}. {{ $item }}</option>
+                <option value="{{ $item }}" >{{ $key+1 }}. {{ $item }}</option>
                 @endforeach
             </select>
             @error('child_birth_type')
@@ -124,7 +124,7 @@
             <select wire:model.lazy="birth_attendant" class="form-control @error('birth_attendant') is-invalid @enderror" id="exampleSelect1">
                 <option>pilih...</option>
                 @foreach ($birthAttendant as $key => $item)
-                <option>{{ $key+1 }}. {{ $item }}</option>
+                <option value="{{ $item }}" >{{ $key+1 }}. {{ $item }}</option>
                 @endforeach
             </select>
             @error('birth_attendant')
