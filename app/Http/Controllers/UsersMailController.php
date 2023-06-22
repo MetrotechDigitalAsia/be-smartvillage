@@ -117,25 +117,12 @@ class UsersMailController extends Controller
 
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
 
-            $mailId = DB::table('users_mail')->where('id',$id)->first('mail_id');
-
-            if(is_null($mailId)){
-                $mail = DB::table('users_mail as userMail')
-                        ->join('mails', 'mails.id', '=', 'userMail.mail_id')
-                        ->where('userMail.id',$id)
-                        ->first(['userMail.user_id', 'mails.title']);
-                $token = UserLogin::where('id',$mail->user_id)->first('fcm');
-            } else {
-                $mail = DB::table('users_mail as userMail')
-                        ->where('userMail.id',$id)
-                        ->first('mails.title');
-            }
+            // $mailId = DB::table('users_mail')->where('id',$id)->first('mail_id');
 
             $mail = DB::table('users_mail as userMail')
                     ->join('mails', 'mails.id', '=', 'userMail.mail_id')
                     ->where('userMail.id',$id)
                     ->first(['userMail.user_id', 'mails.title']);
-            $token = UserLogin::where('id',$mail->user_id)->first('fcm');
 
             switch ($status) {
                 case 'Done':
@@ -153,7 +140,8 @@ class UsersMailController extends Controller
             }
 
             
-            if(!is_null($token)){
+            if(!is_null($mail->user_id)){
+                $token = UserLogin::where('id',$mail->user_id)->first('fcm');
                 Notification::send(UserLogin::find($mail->user_id), new UserMailNotification([
                     'title' => $mail->title,
                     'description' => $notifMsg
@@ -161,7 +149,7 @@ class UsersMailController extends Controller
                 $this->sendMailPushNotification('Notifikasi: Perubahan Status Surat', 'Status surat berubah menjadi '. $msg, $token->fcm);
             }
             
-            return redirect()->back()->with('success', $token->fcm);
+            return redirect()->back()->with('success');
 
         } catch (\Exception $e) {
             return redirect('/persuratan/surat')->with('error', $e->getMessage());
@@ -176,21 +164,10 @@ class UsersMailController extends Controller
             
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
 
-            $mailId = DB::table('users_mail')->where('id',$id)->first('mail_id');
-
-            if(is_null($mailId)){
-                $mail = DB::table('users_mail as userMail')
-                        ->join('mails', 'mails.id', '=', 'userMail.mail_id')
-                        ->where('userMail.id',$id)
-                        ->first(['userMail.user_id', 'mails.title']);
-                $token = UserLogin::where('id',$mail->user_id)->first('fcm');
-            } else {
-                $mail = DB::table('users_mail as userMail')
-                        ->where('userMail.id',$id)
-                        ->first('mails.title');
-            }
-
-
+            $mail = DB::table('users_mail as userMail')
+                    ->join('mails', 'mails.id', '=', 'userMail.mail_id')
+                    ->where('userMail.id',$id)
+                    ->first(['userMail.user_id', 'mails.title']);
 
             switch ($status) {
                 case 'Done':
@@ -208,7 +185,8 @@ class UsersMailController extends Controller
             }
 
             
-            if(!is_null($token)){
+            if(!is_null($mail->user_id)){
+                $token = UserLogin::where('id',$mail->user_id)->first('fcm');
                 Notification::send(UserLogin::find($mail->user_id), new UserMailNotification([
                     'title' => $mail->title,
                     'description' => $notifMsg
