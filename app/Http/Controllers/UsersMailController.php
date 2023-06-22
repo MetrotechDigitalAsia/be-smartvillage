@@ -116,6 +116,21 @@ class UsersMailController extends Controller
         try {
 
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
+
+            $mailId = DB::table('users_mail')->where('id',$id)->first('mail_id');
+
+            if(is_null($mailId)){
+                $mail = DB::table('users_mail as userMail')
+                        ->join('mails', 'mails.id', '=', 'userMail.mail_id')
+                        ->where('userMail.id',$id)
+                        ->first(['userMail.user_id', 'mails.title']);
+                $token = UserLogin::where('id',$mail->user_id)->first('fcm');
+            } else {
+                $mail = DB::table('users_mail as userMail')
+                        ->where('userMail.id',$id)
+                        ->first('mails.title');
+            }
+
             $mail = DB::table('users_mail as userMail')
                     ->join('mails', 'mails.id', '=', 'userMail.mail_id')
                     ->where('userMail.id',$id)
@@ -137,11 +152,14 @@ class UsersMailController extends Controller
                     break;
             }
 
-            Notification::send(UserLogin::find($mail->user_id), new UserMailNotification([
-                'title' => $mail->title,
-                'description' => $notifMsg
-            ]));
-            $this->sendMailPushNotification('Notifikasi: Perubahan Status Surat', 'Status surat berubah menjadi '. $msg, $token->fcm);
+            
+            if(!is_null($token)){
+                Notification::send(UserLogin::find($mail->user_id), new UserMailNotification([
+                    'title' => $mail->title,
+                    'description' => $notifMsg
+                ]));
+                $this->sendMailPushNotification('Notifikasi: Perubahan Status Surat', 'Status surat berubah menjadi '. $msg, $token->fcm);
+            }
             
             return redirect()->back()->with('success', $token->fcm);
 
@@ -157,11 +175,22 @@ class UsersMailController extends Controller
         try {
             
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
-            $mail = DB::table('users_mail as userMail')
-                    ->join('mails', 'mails.id', '=', 'userMail.mail_id')
-                    ->where('userMail.id',$id)
-                    ->first(['userMail.user_id', 'mails.title']);
-            $token = UserLogin::where('id',$mail->user_id)->first('fcm');
+
+            $mailId = DB::table('users_mail')->where('id',$id)->first('mail_id');
+
+            if(is_null($mailId)){
+                $mail = DB::table('users_mail as userMail')
+                        ->join('mails', 'mails.id', '=', 'userMail.mail_id')
+                        ->where('userMail.id',$id)
+                        ->first(['userMail.user_id', 'mails.title']);
+                $token = UserLogin::where('id',$mail->user_id)->first('fcm');
+            } else {
+                $mail = DB::table('users_mail as userMail')
+                        ->where('userMail.id',$id)
+                        ->first('mails.title');
+            }
+
+
 
             switch ($status) {
                 case 'Done':
@@ -178,11 +207,14 @@ class UsersMailController extends Controller
                     break;
             }
 
-            Notification::send(UserLogin::find($mail->user_id), new UserMailNotification([
-                'title' => $mail->title,
-                'description' => $notifMsg
-            ]));
-            $this->sendMailPushNotification('Notifikasi: Perubahan Status Surat', 'Status surat berubah menjadi '. $msg, $token->fcm);
+            
+            if(!is_null($token)){
+                Notification::send(UserLogin::find($mail->user_id), new UserMailNotification([
+                    'title' => $mail->title,
+                    'description' => $notifMsg
+                ]));
+                $this->sendMailPushNotification('Notifikasi: Perubahan Status Surat', 'Status surat berubah menjadi '. $msg, $token->fcm);
+            }
 
             $status = true;
 
