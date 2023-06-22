@@ -1303,7 +1303,7 @@
         </table>
     </div>
 
-    <div class="section__perceraian-atau-pembatalan-perceration" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
+    <div class="section__perceraian-atau-pembatalan-perceraian" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
         <span class="font-weight-bolder">PERCERAIAN ATAU PEMBATALAN PERCERAIAN</span>
         <table style="width: 100%; margin-bottom: 10px; table-layout: fixed;" >
             <tr>
