@@ -270,9 +270,9 @@ class UsersMailController extends Controller
         
         $field = json_decode($data->field);
 
-        $pdf = Pdf::loadView('mailTemplate.f2-01', compact('data', 'perbekel', 'saksi', 'kelian', 'field'));
-        $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$data->slug).'_mail.pdf';
-        return $pdf->stream($fileName);
+        // $pdf = Pdf::loadView('mailTemplate.f2-01', compact('data', 'perbekel', 'saksi', 'kelian', 'field'));
+        // $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$data->slug).'_mail.pdf';
+        // return $pdf->stream($fileName);
 
         if($data->title != 'Surat Keterangan Kelahiran'){
             $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data', 'perbekel', 'saksi', 'kelian', 'field'));
