@@ -79,6 +79,8 @@ class DatabaseSeeder extends Seeder
 
         foreach($users as $user){
 
+            $user->update(['akun_mobile_app' => 1]);
+
             UserLogin::create([
                 'no_nik' => $user->no_nik,
                 'password' => bcrypt($user->no_nik),
