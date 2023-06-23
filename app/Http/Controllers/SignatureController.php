@@ -82,7 +82,7 @@ class SignatureController extends Controller
             die;
         }
 
-        return redirect('/persuratan/signature')->with('success', 'create signature successfully');
+        return redirect('/persuratan/signature')->with('success', 'update signature successfully');
 
     }
 

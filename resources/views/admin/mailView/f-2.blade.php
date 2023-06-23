@@ -119,12 +119,12 @@
     </div>
 
     <div class="section__data-pelapor" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
-        <span class="font-weight-bolder">Data Pelapor</span>
+        <span class="font-weight-bolder">DATA PELAPOR</span>
         <table style="width: 100%; table-layout: fixed;" >
             <tr>
                 <td style="width: 38%;" > Nama</td>
                 <td style="width: 2%" >:</td>
-                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none;" >
+                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
                     {{ $data->applicant_name }}
                 </td>
             </tr>
@@ -176,7 +176,7 @@
     </div>
 
     <div class="section__data-subjek-akta-satu" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
-        <span class="font-weight-bolder">Data Subjek Akta Satu</span>
+        <span class="font-weight-bolder" style="text-transform: uppercase;" >Data Subjek Akta Satu</span>
         <table style="width: 100%; margin-bottom: 10px; table-layout: fixed;" >
             <tr>
                 <td style="width: 38%;" >Nama</td>
@@ -187,6 +187,14 @@
             </tr>
             <tr>
                 <td>NIK</td>
+                <td>:</td>
+                @for ($i = 0; $i < 16; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                </td>
+                @endfor
+            </tr>
+            <tr>
+                <td>Nomor Dokumen Perjalanan *</td>
                 <td>:</td>
                 @for ($i = 0; $i < 16; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
@@ -221,7 +229,7 @@
     </div>
 
     <div class="section__data-subjek-akta-dua" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
-        <span class="font-weight-bolder">Data Subjek Akta Kedua (Jika Ada)</span>
+        <span class="font-weight-bolder" style="text-transform: uppercase;">Data Subjek Akta Kedua (Jika Ada)</span>
         <table style="width: 100%; margin-bottom: 10px; table-layout: fixed;" >
             <tr>
                 <td style="width: 38%;" >Nama</td>
@@ -232,6 +240,14 @@
             </tr>
             <tr>
                 <td>NIK</td>
+                <td>:</td>
+                @for ($i = 0; $i < 16; $i++)
+                <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
+                </td>
+                @endfor
+            </tr>
+            <tr>
+                <td>Nomor Dokumen Perjalanan *</td>
                 <td>:</td>
                 @for ($i = 0; $i < 16; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
@@ -266,12 +282,12 @@
     </div>
 
     <div class="section__saksi" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
-        <span class="font-weight-bolder">Data Saksi I</span>
+        <span class="font-weight-bolder" style="text-transform: uppercase;">Data Saksi I</span>
         <table style="width: 100%; margin-bottom: 10px; table-layout: fixed;" >
             <tr>
                 <td style="width: 38%;" > Nama</td>
                 <td style="width: 2%" >:</td>
-                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none;" >
+                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
                     {{ $saksi['saksi_1']->name }}
                 </td>
             </tr>
@@ -313,12 +329,12 @@
                 @endfor
             </tr>
         </table>
-        <span class="font-weight-bolder">Data Saksi II</span>
+        <span class="font-weight-bolder" style="text-transform: uppercase;">Data Saksi II</span>
         <table style="width: 100%; table-layout: fixed;" >
             <tr>
                 <td style="width: 38%;" > Nama</td>
                 <td style="width: 2%" >:</td>
-                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none;" >
+                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
                     {{ $saksi['saksi_2']->name }}
                 </td>
             </tr>
@@ -363,12 +379,12 @@
     </div>
 
     <div class="section__data-orangtua" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
-        <span class="font-weight-bolder">Data Orang Tua</span>
+        <span class="font-weight-bolder" >DATA ORANG TUA** (hanya diisi untuk keperluan pencatatan kelahiran, lahir mati dan kematian )</span>
         <table style="width: 100%; margin-bottom: 10px; table-layout: fixed;" >
             <tr>
                 <td style="width: 38%;" >Nama Ayah</td>
                 <td style="width: 2%" >:</td>
-                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none;" >
+                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
                     {{ $field->husband->name }}
                 </td>
             </tr>
@@ -385,7 +401,7 @@
             <tr>
                 <td>Tempat Lahir Ayah</td>
                 <td>:</td>
-                <td colspan="16" style="border: 1px solid black; width: 50px !important;" >
+                <td colspan="16" style="border: 1px solid black; width: 50px !important; text-transform: uppercase;" >
                     {{ $field->husband->birthplace }}
                 </td>
             </tr>
@@ -433,12 +449,12 @@
                     Nama Ibu
                 </td>
                 <td style="width: 2%" >:</td>
-                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none;" >
+                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
                     {{ $field->wife->name }}
                 </td>
             </tr>
             <tr>
-                <td>NIK Ayah</td>
+                <td>NIK Ibu</td>
                 <td>:</td>
                 @php $ibu_nik = str_split($field->wife->nik) @endphp
                 @for ($i = 0; $i < 16; $i++)
@@ -450,7 +466,7 @@
             <tr>
                 <td>Tempat Lahir Ibu</td>
                 <td>:</td>
-                <td colspan="16" style="border: 1px solid black; width: 50px !important;" >
+                <td colspan="16" style="border: 1px solid black; width: 50px !important; text-transform: uppercase;" >
                     {{ $field->wife->birthplace }}
                 </td>
             </tr>
@@ -504,12 +520,12 @@
     </div>
 
     <div class="section__data-kelahiran" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
-        <span class="font-weight-bolder">Data Kelahiran</span>
+        <span class="font-weight-bolder" style="text-transform: uppercase;" >Data Kelahiran</span>
         <table style="width: 100%; margin-bottom: 10px; table-layout: fixed;" >
             <tr>
                 <td style="width: 38%;" >1. Nama</td>
                 <td style="width: 2%" >:</td>
-                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none;" >
+                <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
                     {{ $field->child_name }}
                 </td>
             </tr>
@@ -595,7 +611,7 @@
                     $child_birthdate = explode('-',$child_birthdate);
                 @endphp
                 @for ($i = 0; $i < 5; $i++)
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                <td style="border: 1px solid black; width: 50px !important; text-align: center; text-transform: uppercase" >
                     {{ $child_birthday[$i] ?? '' }}
                 </td>
                 @endfor
@@ -721,7 +737,7 @@
     </div>
 
     <div class="section__data-yang-lahir-mati" style="border: 1px solid black; margin-top: 15px; padding: 5px; padding-right: 0;" >
-        <span class="font-weight-bolder">Yang Lahir Mati</span>
+        <span class="font-weight-bolder" style="text-transform: uppercase;" >Yang Lahir Mati</span>
         <table style="width: 100%; margin-bottom: 10px; table-layout: fixed;" >
             <tr>
                 <td style="width: 38%;" >1. Lamanya dalam kandungan</td>
@@ -740,17 +756,11 @@
                 <td>2. Jenis Kelamin</td>
                 <td>:</td>
                 <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                    @if ($field->child_sex == 'Laki - Laki')
-                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
-                    @endif
                 </td>
                 <td colspan="8" style="width: 50px !important;" >
                     1. Laki Laki
                 </td>
                 <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                    @if ($field->child_sex == 'Perempuan')
-                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
-                    @endif
                 </td>
                 <td colspan="13" >
                     2. Perempuan
@@ -1851,6 +1861,235 @@
             </tr>
             <tr>
                 <td colspan="23" ></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section_pengakuan-anak" style="border: 1px solid black; margin-top: 10px; padding: 5px; padding-right: 0;" >
+        <span class="font-weight-bolder">PENGAKUAN ANAK</span>
+        <table style="width: 100%; margin-bottom: 10px; table-layout: fixed;" >
+            <tr>
+                <td style="width: 38%;" >
+                    1. Nomor Akte Kelahiran
+                </td>
+                <td style="width: 2%" >:</td>
+                @for ($i = 0; $i < 16; $i++)
+                <td style="border: 1px solid black; text-align: center; @if($i == 22) border-right: none; @endif" ></td>
+                @endfor
+                <td colspan="7" ></td>
+            </tr>
+            <tr>
+                <td rowspan="2" >2. Tanggal/Bulan/Tahun <br> <span style="margin-left: 20px;" >Penerbitan Akte Kelahiran</span> </td>
+                <td rowspan="2" >:</td>
+                <td colspan="2" style=" width: 50px !important; border-left: none; text-align: center;" >
+                    Tgl:
+                </td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Bulan: 
+                </td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Tahun: 
+                </td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+            </tr>
+            <tr style="visibility: hidden;" >
+                <td colspan="2" style=" width: 50px !important; border-left: none; text-align: center;" >
+                    Tgl:
+                </td>
+                <td></td>
+                <td></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Bulan: 
+                </td>
+                <td></td>
+                <td></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Tahun: 
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td rowspan="2" style="width: 38%;" >
+                    3. Dinas Kabupaten/Kota yang  <br><span style="margin-left: 10px;" >menerbitkan Akte Kelahiran</span>
+                </td>
+                <td rowspan="2" style="width: 2%" >:</td>
+                @for ($i = 0; $i < 23; $i++)
+                <td style="border: 1px solid black; text-align: center; @if($i == 22) border-right: none; @endif" ></td>
+                @endfor
+            </tr>
+            <tr><td colspan="23" > </td></tr>
+            <tr>
+                <td rowspan="2" >4. Tanggal/Bulan/Tahun <br> <span style="margin-left: 20px;" >Kelahiran Anak</span> </td>
+                <td rowspan="2" >:</td>
+                <td colspan="2" style=" width: 50px !important; border-left: none; text-align: center;" >
+                    Tgl:
+                </td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Bulan: 
+                </td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Tahun: 
+                </td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td></td>
+            </tr>
+            <tr style="visibility: hidden;" >
+                <td colspan="2" style=" width: 50px !important; border-left: none; text-align: center;" >
+                    Tgl:
+                </td>
+                <td></td>
+                <td></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Bulan: 
+                </td>
+                <td></td>
+                <td></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Tahun: 
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td rowspan="2" >5. Tanggal/Bulan/Tahun <br> <span style="margin-left: 20px;" >Perkawinan Agama</span> </td>
+                <td rowspan="2" >:</td>
+                <td colspan="2" style=" width: 50px !important; border-left: none; text-align: center;" >
+                    Tgl:
+                </td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Bulan: 
+                </td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Tahun: 
+                </td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td></td>
+            </tr>
+            <tr style="visibility: hidden;" >
+                <td colspan="2" style=" width: 50px !important; border-left: none; text-align: center;" >
+                    Tgl:
+                </td>
+                <td></td>
+                <td></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Bulan: 
+                </td>
+                <td></td>
+                <td></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Tahun: 
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>6. Nama Ibu Kandung</td>
+                <td>:</td>
+                @for ($i = 0; $i < 23; $i++)
+                <td style="border: 1px solid black; text-align: center; @if($i == 22) border-right: none; @endif" ></td>
+                @endfor
+            </tr>
+            <tr>
+                <td>7. NIK Ibu Kandung</td>
+                <td>:</td>
+                @for ($i = 0; $i < 16; $i++)
+                <td style="border: 1px solid black; text-align: center; @if($i == 22) border-right: none; @endif" ></td>
+                @endfor
+                <td colspan="7" ></td>
+            </tr>
+            <tr>
+                <td>8. Kewarganegaraan Ibu Kandung</td>
+                <td>:</td>
+                @for ($i = 0; $i < 23; $i++)
+                <td style="border: 1px solid black; text-align: center; @if($i == 22) border-right: none; @endif" ></td>
+                @endfor
+            </tr>
+            <tr>
+                <td>9. Nama Ayah Kandung</td>
+                <td>:</td>
+                @for ($i = 0; $i < 23; $i++)
+                <td style="border: 1px solid black; text-align: center; @if($i == 22) border-right: none; @endif" ></td>
+                @endfor
+            </tr>
+            <tr>
+                <td>10. NIK Ayah Kandung</td>
+                <td>:</td>
+                @for ($i = 0; $i < 16; $i++)
+                <td style="border: 1px solid black; text-align: center; @if($i == 22) border-right: none; @endif" ></td>
+                @endfor
+                <td colspan="7" ></td>
+            </tr>
+            <tr>
+                <td>11. Kewarganegaraan Ayah Kandung</td>
+                <td>:</td>
+                @for ($i = 0; $i < 23; $i++)
+                <td style="border: 1px solid black; text-align: center; @if($i == 22) border-right: none; @endif" ></td>
+                @endfor
+            </tr>
+            <tr>
+                <td >12. Tanggal Penetapan Pengadilan</td>
+                <td >:</td>
+                <td colspan="2" style=" width: 50px !important; border-left: none; text-align: center;" >
+                    Tgl:
+                </td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Bulan: 
+                </td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td colspan="3" style="width: 50px !important; text-align: right;" >
+                    Tahun: 
+                </td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>13. No Penetapan Pengadilan</td>
+                <td>:</td>
+                @for ($i = 0; $i < 16; $i++)
+                <td style="border: 1px solid black; text-align: center; @if($i == 22) border-right: none; @endif" ></td>
+                @endfor
+                <td colspan="7" ></td>
+            </tr>
+            <tr>
+                <td>14. Nama Lembaga Pengadilan</td>
+                <td>:</td>
+                @for ($i = 0; $i < 23; $i++)
+                <td style="border: 1px solid black; text-align: center; @if($i == 22) border-right: none; @endif" ></td>
+                @endfor
             </tr>
         </table>
     </div>

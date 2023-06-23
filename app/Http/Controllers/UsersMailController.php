@@ -31,10 +31,7 @@ class UsersMailController extends Controller
         $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
         $this->DBQuery = DB::table('users_mail as userMail')
         ->join('mails', 'mails.id', '=', 'userMail.mail_id')
-        ->join('user_logins as user', function($join){
-            $join->join($this->userDb, 'userDB.no_nik', '=', 'user.no_nik')
-            ->on('user.id', '=', 'userMail.user_id');
-        });
+        ->join($this->userDb, 'userDB.id', '=', 'userMail.resident_id');
     }
 
     public function index(){
@@ -71,7 +68,6 @@ class UsersMailController extends Controller
             ->get([
                 DB::raw('ROW_NUMBER() OVER(ORDER BY userMail.id) as row_index'),
                 'userMail.id as id',
-                'user.id as user_id',
                 'mails.id as mail_id',
                 'userMail.mail_number',
                 'mails.title as mail_type',

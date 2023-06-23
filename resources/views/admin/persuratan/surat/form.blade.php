@@ -34,7 +34,7 @@
 
                     <div class="row justify-content-end">
                         <div class="col-4">
-                            <a href="/informasi-desa/agenda" class="btn btn-secondary mr-2">Batal</a>
+                            <a href="/persuratan/surat" class="btn btn-secondary mr-2">Batal</a>
                             <button type="button" onclick="submitMailForm()" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
