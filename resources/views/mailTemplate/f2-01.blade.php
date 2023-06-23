@@ -748,7 +748,7 @@
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
-                        <td colspan="4" >5. Lainnya</td>
+                        <td colspan="4" >4. Lainnya</td>
                     </tr>
                     <tr>
                         <td >10. Berat Bayi</td>
@@ -834,27 +834,16 @@
                         <td>4. Jenis Kelahiran</td>
                         <td>:</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->child_birth_type == 'Tunggal')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
+                            
                         </td>
                         <td colspan="4" >1. Tunggal</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->child_birth_type == 'Kembar 2')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="4" >2. Kembar 2</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->child_birth_type == 'Kembar 3')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="4" >3. Kembar 3</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->child_birth_type == 'Lainnya')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="4" >4. Lainnya</td>
                     </tr>
@@ -867,41 +856,26 @@
                         <td >6. Tempat Dilahirkan</td>
                         <td >:</td>
                         <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                            @if ($field->child_birth_of_place == 'RS/RB')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="3" style="width: 50px !important;" >
                             1. RS/RB
                         </td>
                         <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                            @if ($field->child_birth_of_place == 'Puskesmas')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="5" style="width: 50px !important;" >
                             2. Puskesmas
                         </td>
                         <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                            @if ($field->child_birth_of_place == 'Polindes')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="4" style="width: 50px !important;" >
                             3. Polindes
                         </td>
                         <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                            @if ($field->child_birth_of_place == 'Rumah')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="3" style="width: 50px !important;" >
                             4. Rumah
                         </td>
                         <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                            @if ($field->child_birth_of_place == 'Lainnya')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="3" style="width: 50px !important;" >
                             5. Lainnya
@@ -911,29 +885,17 @@
                         <td>7. Penolong Kelahiran</td>
                         <td>:</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->birth_attendant == 'Dokter')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="4" >1. Dokter</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->birth_attendant == 'Bidan/Perawat')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="6" >2. Bidan/Perawat</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->birth_attendant == 'Dukun')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="4" >3. Dukun</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->birth_attendant == 'Lainnya')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
-                        <td colspan="4" >5. Lainnya</td>
+                        <td colspan="4" >4. Lainnya</td>
                     </tr>
                     <tr>
                         <td>8. Sebab Lahir Mati </td>
@@ -944,43 +906,26 @@
                         <td>9. Yang Menentukan</td>
                         <td>:</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->birth_attendant == 'Dokter')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="4" >1. Dokter</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->birth_attendant == 'Bidan/Perawat')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="6" >2. Bidan/Perawat</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->birth_attendant == 'Dukun')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
                         <td colspan="4" >3. Dukun</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->birth_attendant == 'Lainnya')
-                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
-                            @endif
                         </td>
-                        <td colspan="4" >5. Lainnya</td>
+                        <td colspan="4" >4. Lainnya</td>
                     </tr>
                     <tr>
                         <td>10. Tempat Kelahiran</td>
                         <td>:</td>
-                        @for ($i = 0; $i < 23; $i++)
-                            <td style="border: 1px solid black; @if($i == 22) border-right: none; @endif" ></td>
-                        @endfor
+                        <td colspan="23" ></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
-                        @for ($i = 0; $i < 23; $i++)
-                            <td style="width: 50px !important;" ></td>
-                        @endfor
                     </tr>
                 </table>
             </div>
@@ -1175,7 +1120,7 @@
                         <td colspan="7" ></td>
                     </tr>
                     <tr>
-                        <td>20. Tanggal Pemberkatan Perkawinan</td>
+                        <td>20. Tanggal Penetapan Pengadilan</td>
                         <td>:</td>
                         <td colspan="2" style=" width: 50px !important; border-left: none; text-align: center;" >
                             Tgl:
@@ -1488,7 +1433,7 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td rowspan="2" >8. Tanggal Putusan Pengadilan Panitera <br> <span style="margin-left: 10px;" >Pengadilan</span> </td>
+                        <td rowspan="2" >8. Tanggal Surat Keterangan Panitera <br> <span style="margin-left: 10px;" >Pengadilan</span> </td>
                         <td rowspan="2" >:</td>
                         <td colspan="2" style=" width: 50px !important; border-left: none; text-align: center;" >
                             Tgl:
@@ -2087,7 +2032,7 @@
                         <td colspan="7" ></td>
                     </tr>
                     <tr>
-                        <td>14. Nama Lembaga Pengadilan</td>
+                        <td>14. Nama Lembaga Penetapan Pengadilan</td>
                         <td>:</td>
                         @for ($i = 0; $i < 23; $i++)
                         <td style="border: 1px solid black; text-align: center; @if($i == 22) border-right: none; @endif" ></td>
