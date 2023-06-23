@@ -83,7 +83,7 @@
 
 
         <div class="form-group validated">
-            <label>Tempat Dilahiran</label>
+            <label>Tempat Dilahirkan</label>
             @php $birthOfPlace = ['RS/RB', 'Puskesmas', 'Polindes', 'Rumah', 'Lainnya'] @endphp
             <select wire:model="child_birth_of_place" class="form-control @error('child_birth_of_place') is-invalid @enderror" id="exampleSelect1">
                 <option>pilih...</option>
@@ -116,7 +116,7 @@
             @error('birth_count')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-            <span class="form-text text-muted">Contoh: Satu</span>
+            <span class="form-text text-muted">Contoh: 1 (Satu)</span>
         </div>
 
         <div class="form-group validated">

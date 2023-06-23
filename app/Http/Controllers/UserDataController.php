@@ -75,6 +75,7 @@ class UserDataController extends Controller
     public function show($id){
         $user = UserData::selectRaw('*,YEAR(NOW()) - YEAR(TANGGAL_LAHIR) as UMUR')->find($id); 
         if($user->status_perkawinan == 'Kawin Tercatat' || $user->status_perkawinan == 'Kawin' || $user->status_perkawinan == 'Kawin Belum Tercatat'){
+
             $couple  = UserData::where('no_kk', $user->no_kk)
                         ->where('shdk', '!=', $user->shdk)
                         ->where('shdk', '!=', 'ANAK')
@@ -84,7 +85,7 @@ class UserDataController extends Controller
                         ->where('shdk', 'ANAK')
                         ->get();
         }
-        return view('admin.'.$this->folderName.'.form', compact('user', 'couple', 'children'));
+        return view('admin.'.$this->folderName.'.form', ['user' => $user, 'couple' => $couple ?? null , 'children' => $children ?? null]);
     }
 
     public function store(Request $request){

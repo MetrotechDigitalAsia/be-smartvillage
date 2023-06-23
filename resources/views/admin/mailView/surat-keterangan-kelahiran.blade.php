@@ -5,7 +5,7 @@
         <tr>
             <td class="w-20px" >1.</td>
             <td class="w-140px" >Nama</td>
-            <td>: {{ $field->child_name }}</td>
+            <td style="text-tansform: capitalize;" >: {{ $field->child_name }}</td>
         </tr>
         <tr>
             <td></td>
@@ -15,7 +15,7 @@
         <tr>
             <td></td>
             <td>Tempat/Tgl.lahir</td>
-            <td>: {{ $field->child_birthplace ?? ''. ', '. $field->child_birth_date ?? '' }}</td>
+            <td>: {{ $field->child_birthplace.', '. Carbon\Carbon::parse($field->child_birth_date)->translatedFormat('d F Y') }}</td>
         </tr>
         <tr>
             <td></td>
@@ -38,7 +38,7 @@
         <tr>
             <td class="w-20px" >2.</td>
             <td class="w-140px" >Nama Ayah</td>
-            <td>: {{ $field->husband->name }}</td>
+            <td style="text-tansform: capitalize;" >: {{ $field->husband->name }}</td>
         </tr>
         <tr>
             <td></td>
@@ -61,7 +61,7 @@
         <tr>
             <td class="w-20px" >3.</td>
             <td class="w-140px" >Nama ibu</td>
-            <td>: {{ $field->wife->name }}</td>
+            <td style="text-tansform: capitalize;" >: {{ $field->wife->name }}</td>
         </tr>
         <tr>
             <td></td>

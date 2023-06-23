@@ -221,7 +221,7 @@
                                 </div>
         
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">Pendidikan <span style="color: red;" >*</span></label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Pendidikan Terakhir <span style="color: red;" >*</span></label>
                                     <div class="col">
                                         @php
                                             $pendidikan = ['TDK/BLM SEKOLAH','PAUD', 'TK', 'TIDAK TAMAT SD','BELUM TAMAT SD', 'SD', 'SMP/SEDERAJAT', 'SMA/SEDERAJAT', 'D I/II', 'D III', 'D IV/S1', 'S2', 'S3']
