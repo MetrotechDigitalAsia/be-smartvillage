@@ -69,7 +69,7 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Telepon</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg " type="text" name="phone" value="{{$staff['phone'] ?? '' }}" required />
+                        <input class="form-control form-control-lg " type="number" name="phone" value="{{$staff['phone'] ?? '' }}" required />
                     </div>
                 </div>
 

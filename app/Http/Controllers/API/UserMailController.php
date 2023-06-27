@@ -101,12 +101,21 @@ class UserMailController extends Controller
                 $signature = $request->file('signature')->store('mailSignature');
             }
 
-            $user->mail()->attach($mail,[
+            // $user->mail()->attach($mail,[
+            //     'created_at' => Carbon::now(),
+            //     'updated_at' => Carbon::now(),
+            //     'status' => 'Pending',
+            //     'signature' => $signature ?? null,
+            //     'resident_id' => $request->resident_id,
+            //     'field' => json_encode($field),
+            // ]);
+
+            DB::table('users_mail')->insert([
+                'mail_id' => $mail->id,
+                'resident_id' => $request->resident_id,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'status' => 'Pending',
                 'signature' => $signature ?? null,
-                'resident_id' => $request->resident_id,
                 'field' => json_encode($field),
             ]);
 
