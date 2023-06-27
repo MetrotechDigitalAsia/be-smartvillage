@@ -67,7 +67,7 @@
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">Telepon</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input class="form-control form-control-lg " type="text" name="institute_phone_number" value="{{$investation['institute_phone_number'] ?? '' }}" />
+                        <input class="form-control form-control-lg " type="number" name="institute_phone_number" value="{{$investation['institute_phone_number'] ?? '' }}" />
                     </div>
                 </div>
 
