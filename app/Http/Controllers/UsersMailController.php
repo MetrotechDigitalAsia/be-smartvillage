@@ -257,15 +257,12 @@ class UsersMailController extends Controller
             ]);
 
         $perbekel = Signature::where('position', 'Perbekel')->first();
-        $saksi_1 = Saksi::where('position', '!=', 'Kelian Banjar Dinas '. $data->banjar)->first();
-        $saksi_2 = Saksi::where('position', '!=', 'Kelian Banjar Dinas '. $data->banjar)
-                        ->where('position', '!=', $saksi_1->position)
-                        ->first();
-        
-        $saksi = compact('saksi_1', 'saksi_2');
-
         $kelian = Signature::where('position', '=','Kelian Banjar')
                     ->where('banjar', $data->banjar)
+                    ->first();
+
+        $saksi_1 = Signature::where('position', '=','Kelian Banjar')
+                    ->where('banjar', '-',$data->banjar)
                     ->first();
         
         $field = json_decode($data->field);

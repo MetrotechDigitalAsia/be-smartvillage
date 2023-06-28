@@ -9,8 +9,10 @@ use App\Models\Admin;
 use App\Models\BLT;
 use App\Models\ItemBusinessCategory;
 use App\Models\Mail;
+use App\Models\Signature;
 use App\Models\UserData;
 use App\Models\UserLogin;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -90,10 +92,6 @@ class DatabaseSeeder extends Seeder
 
         }
 
-        BLT::create(['type' => 'bantuan 1']);
-        BLT::create(['type' => 'bantuan 2']);
-        BLT::create(['type' => 'bantuan 4']);
-
         Mail::create([
             'id' => '990636ad-0896-4953-8fad-19c152424a4f',
             'title' => 'Surat Keterangan Kelahiran',
@@ -124,6 +122,51 @@ class DatabaseSeeder extends Seeder
             'slug' => 'surat-pernyataan-lahir',
             'image' => '-',
             'description' => '-',
+        ]);
+
+        $saksi = UserData::where('banjar', 'Ubud')->inRandomOrder()->first();
+
+        Signature::create([
+            'name' => $saksi->nama,
+            'nik' => $saksi->no_nik,
+            'kk' => $saksi->no_kk,
+            'position' => 'Kelian Banjar',
+            'banjar' => $saksi->banjar,
+            'address' => $saksi->alamat,
+            'citizenship' => $saksi->kewarganegaraan,
+            'job' => $saksi->pekerjaan,
+            'image' => '-',
+            'age' => Carbon::now()->format('Y') - Carbon::parse($saksi->tanggal_lahir)->format('Y'),
+        ]);
+
+        $saksi = UserData::where('banjar', 'Buangga')->inRandomOrder()->first();
+
+        Signature::create([
+            'name' => $saksi->nama,
+            'nik' => $saksi->no_nik,
+            'kk' => $saksi->no_kk,
+            'position' => 'Kelian Banjar',
+            'banjar' => $saksi->banjar,
+            'address' => $saksi->alamat,
+            'citizenship' => $saksi->kewarganegaraan,
+            'job' => $saksi->pekerjaan,
+            'image' => '-',
+            'age' => Carbon::now()->format('Y') - Carbon::parse($saksi->tanggal_lahir)->format('Y'),
+        ]);
+
+        $saksi = UserData::where('banjar', 'Tengah')->inRandomOrder()->first();
+
+        Signature::create([
+            'name' => $saksi->nama,
+            'nik' => $saksi->no_nik,
+            'kk' => $saksi->no_kk,
+            'position' => 'Kelian Banjar',
+            'banjar' => $saksi->banjar,
+            'address' => $saksi->alamat,
+            'citizenship' => $saksi->kewarganegaraan,
+            'job' => $saksi->pekerjaan,
+            'image' => '-',
+            'age' => Carbon::now()->format('Y') - Carbon::parse($saksi->tanggal_lahir)->format('Y'),
         ]);
 
         // $mails = Mail::first();

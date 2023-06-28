@@ -56,7 +56,7 @@
             <td>: {{ $field->birth_count }}</td>
         </tr>
     </table>
-    <p style="text-indent: 60px;" >Belum pernah dicatatkan kelahiranya pada Kantor Catatan Sipil ditempat kelahirannya ataupun ditempat lainnya, baik dalam daftar kelahiran yang tidak terlambat, maupun kelahiran terlambat, dan kelahiran terlambat tersebut melebihi 60 hari hingga melebihi 1 (satu) tahun berdasarkan surat keterangan Dokter/Bidan/Rumah Sakit Nomor :__ tanggal __ untuk dapat dicatatkan di Kabupaten Badung. </p>
+    <p style="text-indent: 60px; text-align: justify;" >Belum pernah dicatatkan kelahiranya pada Kantor Catatan Sipil ditempat kelahirannya ataupun ditempat lainnya, baik dalam daftar kelahiran yang tidak terlambat, maupun kelahiran terlambat, dan kelahiran terlambat tersebut melebihi 60 hari hingga melebihi 1 (satu) tahun berdasarkan surat keterangan Dokter/Bidan/Rumah Sakit Nomor :__ tanggal __ untuk dapat dicatatkan di Kabupaten Badung. </p>
     <table style="width: 100%;" >
         <tr>
             <td style="width: 50%;" ></td>

@@ -17,9 +17,14 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('image');
-            $table->boolean('is_used')->default(false);
             $table->string('position');
             $table->string('banjar')->nullable();
+            $table->string('kk');
+            $table->string('nik');
+            $table->string('age');
+            $table->string('job');
+            $table->string('address');
+            $table->string('citizenship');
             $table->timestamps();
         });
     }

@@ -288,13 +288,13 @@
                 <td style="width: 38%;" > Nama</td>
                 <td style="width: 2%" >:</td>
                 <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
-                    {{ $saksi['saksi_1']->name }}
+                    {{ $saksi['saksi_1']->name ?? 'belum ada data saksi' }}
                 </td>
             </tr>
             <tr>
                 <td>NIK</td>
                 <td>:</td>
-                @php $saksi_1_nik = str_split($saksi['saksi_1']->nik) @endphp
+                @php $saksi_1_nik = str_split($saksi['saksi_1']->nik ?? 'belum ada data saksi') @endphp
                 @for ($i = 0; $i < 16; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                     {{ $saksi_1_nik[$i] ?? '' }}
@@ -304,7 +304,7 @@
             <tr>
                 <td>Nomor Kartu Keluarga</td>
                 <td>:</td>
-                @php $saksi_1_kk = str_split($saksi['saksi_1']->no_kk) @endphp
+                @php $saksi_1_kk = str_split($saksi['saksi_1']->no_kk ?? 'belum ada data saksi') @endphp
                 @for ($i = 0; $i < 16; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                     {{ $kk[$i] ?? '' }}
@@ -314,7 +314,7 @@
             <tr>
                 <td> Kewarganegaraan </td>
                 <td>:</td>
-                @php $saksi_1_citizenship = str_split($saksi['saksi_1']->citizenship) @endphp
+                @php $saksi_1_citizenship = str_split($saksi['saksi_1']->citizenship ?? 'belum ada data saksi' ) @endphp
                 @for ($i = 0; $i < 23; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                     {{ $saksi_1_citizenship[$i] ?? '' }}
@@ -335,13 +335,13 @@
                 <td style="width: 38%;" > Nama</td>
                 <td style="width: 2%" >:</td>
                 <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
-                    {{ $saksi['saksi_2']->name }}
+                    {{ $saksi['saksi_2']->name ?? 'belum ada data saksi' }}
                 </td>
             </tr>
             <tr>
                 <td>NIK</td>
                 <td>:</td>
-                @php $saksi_2_nik = str_split($saksi['saksi_2']->nik) @endphp
+                @php $saksi_2_nik = str_split($saksi['saksi_2']->nik ?? 'belum ada data saksi') @endphp
                 @for ($i = 0; $i < 16; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                     {{ $saksi_2_nik[$i] ?? '' }}
@@ -351,17 +351,17 @@
             <tr>
                 <td>Nomor Kartu Keluarga</td>
                 <td>:</td>
-                @php $saksi_2_kk = str_split($saksi['saksi_2']->no_kk) @endphp
+                @php $saksi_2_kk = str_split($saksi['saksi_2']->no_kk ?? 'belum ada data saksi') @endphp
                 @for ($i = 0; $i < 16; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
-                    {{ $kk[$i] ?? '' }}
+                    {{ $saksi_2_kk[$i] ?? '' }}
                 </td>
                 @endfor
             </tr>
             <tr>
                 <td> Kewarganegaraan </td>
                 <td>:</td>
-                @php $saksi_2_citizenship = str_split($saksi['saksi_2']->citizenship) @endphp
+                @php $saksi_2_citizenship = str_split($saksi['saksi_2']->citizenship ?? 'belum ada data saksi') @endphp
                 @for ($i = 0; $i < 23; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                     {{ $saksi_2_citizenship[$i] ?? '' }}
@@ -2985,7 +2985,7 @@
         <table style="width: 100%;" >
             <tr>
                 <td style="width: 50%;" >Reg. No :</td>
-                <td style="text-align: right;" >Getasan, {{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('l d F Y') }}</td>
+                <td style="text-align: right;" >Getasan, {{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('d F Y') }}</td>
             </tr>
             <table style="width: 100%; text-align: center; margin-top: 30px;" >
                 <tr>

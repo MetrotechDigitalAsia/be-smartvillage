@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Signature;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class SignatureController extends Controller
@@ -46,6 +45,12 @@ class SignatureController extends Controller
             'name' => 'required',
             'position' => 'required',
             'banjar' => 'nullable',
+            'kk' => 'required',
+            'nik' => 'required',
+            'age' => 'required',
+            'job' => 'required',
+            'address' => 'required',
+            'citizenship' => 'required'
         ]);
 
         
@@ -68,6 +73,12 @@ class SignatureController extends Controller
             'name' => 'required',
             'position' => 'required',
             'banjar' => 'nullable',
+            'kk' => 'required',
+            'nik' => 'required',
+            'age' => 'required',
+            'job' => 'required',
+            'address' => 'required',
+            'citizenship' => 'required'
         ]);
 
         if($request->image){

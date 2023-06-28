@@ -22,8 +22,10 @@ return new class extends Migration
             $table->string('mail_number')->nullable();
             $table->unsignedBigInteger('resident_id');
             $table->json('field')->nullable();
-            $table->string('signature')->nullable();
             $table->enum('status',['Pending', 'Process', 'Done', 'Rejected'])->default('Pending');
+            $table->string('saksi_1')->references('id')->on('signature')->nullable();
+            $table->string('saksi_2')->references('id')->on('signature')->nullable();
+            $table->string('signature')->nullable();
             $table->timestamps();
         });
     }

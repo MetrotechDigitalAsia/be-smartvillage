@@ -754,7 +754,7 @@
                         <td >10. Berat Bayi</td>
                         <td colspan="2" >:</td>
                         <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: center;" >
-                            {{ $field->baby_weight }} Kg
+                            {{ $field->baby_weight }}
                         </td>
                         <td style="text-align: right;" >Kg</td>
                         <td colspan="18" ></td>
@@ -763,7 +763,7 @@
                         <td >11. Panjang Bayi</td>
                         <td colspan="2" >:</td>
                         <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: center;" >
-                            {{ $field->baby_length }} Cm
+                            {{ $field->baby_length }}
                         </td>
                         <td style="text-align: right;" >Cm</td>
                         <td colspan="18" ></td>
@@ -2831,7 +2831,7 @@
                 <table style="width: 100%; font-size: 11px;" >
                     <tr>
                         <td style="width: 50%;" >Reg. No :</td>
-                        <td style="width: 50%; text-align: right;" >Getasan, {{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('l d F Y') }}</td>
+                        <td style="width: 50%; text-align: right;" >Getasan, {{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('d F Y') }}</td>
                     </tr>
                 </table>
                 <table style="width: 100%; text-align: center; margin-top: 30px; font-size: 11px;" >
