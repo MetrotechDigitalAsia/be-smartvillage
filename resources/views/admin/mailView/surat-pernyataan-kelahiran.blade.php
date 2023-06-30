@@ -41,11 +41,11 @@
     <table style="margin-left: 50px; margin-bottom: 50px;" >
         <tr>
             <td style="width: 170px;" >Nama</td>
-            <td>: {{ $field->child_name }}</td>
+            <td style="text-transform: capitalize;" >: {{ $field->child_name }}</td>
         </tr>
         <tr>
             <td>Tempat/Tgl. Lahir:</td>
-            <td>: {{ $field->child_birthplace }}, {{ $field->child_birth_date  }}</td>
+            <td style="text-transform: capitalize;" >: {{ $field->child_birthplace }}, {{ Carbon\Carbon::parse($field->child_birth_date)->format('d-m-Y')  }}</td>
         </tr>
         <tr>
             <td>Jenis Kelamin</td>
@@ -56,7 +56,7 @@
             <td>: {{ $field->birth_count }}</td>
         </tr>
     </table>
-    <p style="text-indent: 60px;" >Belum pernah dicatatkan kelahiranya pada Kantor Catatan Sipil ditempat kelahirannya ataupun ditempat lainnya, baik dalam daftar kelahiran yang tidak terlambat, maupun kelahiran terlambat, dan kelahiran terlambat tersebut melebihi 60 hari hingga melebihi 1 (satu) tahun berdasarkan surat keterangan Dokter/Bidan/Rumah Sakit Nomor :__ tanggal __ untuk dapat dicatatkan di Kabupaten Badung. </p>
+    <p style="text-indent: 60px; text-align: justify;" >Belum pernah dicatatkan kelahiranya pada Kantor Catatan Sipil ditempat kelahirannya ataupun ditempat lainnya, baik dalam daftar kelahiran yang tidak terlambat, maupun kelahiran terlambat, dan kelahiran terlambat tersebut melebihi 60 hari hingga melebihi 1 (satu) tahun berdasarkan surat keterangan Dokter/Bidan/Rumah Sakit Nomor : {{ $data->hospital_mail_number ?? '_' }} tanggal {{ $data->hospital_mail_number_date ?? '_' }} untuk dapat dicatatkan di Kabupaten Badung. </p>
     <table style="width: 100%;" >
         <tr>
             <td style="width: 50%;" ></td>

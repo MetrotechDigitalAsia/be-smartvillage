@@ -134,7 +134,7 @@
 			// initFirebaseMessagingRegistration()
 
 
-		  </script>
+		</script>
 		<script>
 
 			// Enable pusher logging - don't include this in production
@@ -157,11 +157,12 @@
 			channel.bind('notification-event', function(data) {
 				Livewire.emit('notifAdded')
 				audio.currentTime = 0
-				if(data.data === 'mail')
+				if(data.data === 'mail'){
+					Livewire.emit('refreshMailTable')
 					audio.play()
+				}
 				notifIcon.classList.add('svg-icon-warning')
 				spanPulse.classList.add('pulse-ring')
-				console.log(data)
 			});
 
 			const notifBtn = document.querySelector('.notif-btn')

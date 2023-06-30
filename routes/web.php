@@ -17,6 +17,7 @@ use App\Http\Controllers\{
     LoginController,
     MailController,
     PositionController,
+    SaksiController,
     SignatureController,
     StaffController,
     UserBusinessItemController,

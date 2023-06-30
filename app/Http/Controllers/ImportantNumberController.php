@@ -35,12 +35,12 @@ class ImportantNumberController extends Controller
     }
 
     public function show(ImportantNumber $importantNumber){
-        $regency = ['Ubud', 'Tengah', 'Buangga', 'Kuah'];
+        $regency = ['Ubud', 'Tengah', 'Buangga', 'Kauh'];
         return view('admin.'.$this->folderName.'.form', compact('importantNumber', 'regency'));
     }
 
     public function create(){
-        $regency = ['Ubud', 'Tengah', 'Buangga', 'Kuah'];
+        $regency = ['Ubud', 'Tengah', 'Buangga', 'Kauh'];
         return view('admin.'.$this->folderName.'.form', compact('regency'));
     }
 

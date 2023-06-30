@@ -1,11 +1,11 @@
 <h3 class="text-center" style="text-transform: uppercase;" >{{ $data->title }}</h3>
     <h6 class="text-center mb-10" >Nomor: {{ $data->mail_number}}</h6>
-    <p class="text-justify" >Yang bertanda tangan di bawah ini Kelian Banjar Dinas Ubud, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali, menerangkan dengan sebenarnya bahwa :</p>
+    <p class="text-justify" >Yang bertanda tangan di bawah ini Kelian Banjar Dinas {{ $data->applicant_banjar }}, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali, menerangkan dengan sebenarnya bahwa :</p>
     <table class="align-self-start ml-10" >
         <tr>
             <td class="w-20px" >1.</td>
             <td class="w-140px" >Nama</td>
-            <td style="text-tansform: capitalize;" >: {{ $field->child_name }}</td>
+            <td style="text-transform: capitalize; !important" >: {{ $field->child_name }}</td>
         </tr>
         <tr>
             <td></td>
@@ -15,7 +15,7 @@
         <tr>
             <td></td>
             <td>Tempat/Tgl.lahir</td>
-            <td>: {{ $field->child_birthplace.', '. Carbon\Carbon::parse($field->child_birth_date)->translatedFormat('d F Y') }}</td>
+            <td style="text-transform: capitalize; !important" >: {{ $field->child_birthplace.', '. Carbon\Carbon::parse($field->child_birth_date)->translatedFormat('d F Y') }}</td>
         </tr>
         <tr>
             <td></td>
@@ -38,7 +38,7 @@
         <tr>
             <td class="w-20px" >2.</td>
             <td class="w-140px" >Nama Ayah</td>
-            <td style="text-tansform: capitalize;" >: {{ $field->husband->name }}</td>
+            <td style="text-transform: capitalize;" >: {{ $field->husband->name }}</td>
         </tr>
         <tr>
             <td></td>
@@ -61,7 +61,7 @@
         <tr>
             <td class="w-20px" >3.</td>
             <td class="w-140px" >Nama ibu</td>
-            <td style="text-tansform: capitalize;" >: {{ $field->wife->name }}</td>
+            <td style="text-transform: capitalize;" >: {{ $field->wife->name }}</td>
         </tr>
         <tr>
             <td></td>
@@ -86,54 +86,54 @@
             <table >
                 <tr>
                     <td class="w-20px" >1.</td>
-                    <td class="w-115px" >Nama Saksi</td>
-                    <td>: {{ $saksi['saksi_1']->name }}</td>
+                    <td >Nama Saksi</td>
+                    <td>: {{ $data->saksi_1->name ?? '' }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Umur</td>
-                    <td>: {{ $saksi['saksi_1']->age }} tahun</td>
+                    <td>: {{ $data->saksi_1->age ?? '-'}} tahun</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Pekerjaan</td>
-                    <td>: {{ $saksi['saksi_1']->job }}</td>
+                    <td>: {{ $data->saksi_1->job ?? '' }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Alamat</td>
-                    <td>: {{ $saksi['saksi_1']->address }}</td>
+                    <td>: {{ $data->saksi_1->address ?? '' }}</td>
                 </tr>
             </table>
             <div class="d-flex justify-content-center">
-                <u class="saksi" style="margin-top: 50px;" >{{ $saksi['saksi_1']->name }}</u>
+                <u class="saksi" style="margin-top: 50px;" >{{ $data->saksi_1->name ?? 'belum ada data saksi' }}</u>
             </div>
         </div>
         <div class="col">
             <table >
                 <tr>
                     <td class="w-20px" >2.</td>
-                    <td class="w-115px" >Nama Saksi</td>
-                    <td>: {{ $saksi['saksi_2']->name }}</td>
+                    <td>Nama Saksi</td>
+                    <td>: {{ $data->saksi_2->name ?? '' }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Umur</td>
-                    <td>: {{ $saksi['saksi_2']->age }} tahun</td>
+                    <td>: {{ $data->saksi_2->age ?? '-' }} tahun</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Pekerjaan</td>
-                    <td>: {{ $saksi['saksi_2']->job }}</td>
+                    <td>: {{ $data->saksi_2->job ?? '' }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Alamat</td>
-                    <td>: {{ $saksi['saksi_2']->address }}</td>
+                    <td>: {{ $data->saksi_2->address ?? '' }}</td>
                 </tr>
             </table>
             <div class="d-flex justify-content-center">
-                <u class="saksi" style="margin-top: 50px;" >{{ $saksi['saksi_2']->name }}</u>
+                <u class="saksi" style="margin-top: 50px;" >{{ $data->saksi_2->name ?? 'belum ada data saksi' }}</u>
             </div>
         </div>
     </div>

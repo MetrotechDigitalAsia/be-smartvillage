@@ -70,6 +70,7 @@ Route::group(['middleware' => 'api_key'],function(){
         Route::post('/category',[UserBusinessItemController::class, 'filterByCategory']);
         Route::get('/latest',[UserBusinessItemController::class, 'getLatest']);
         Route::get('/{userId}',[UserBusinessItemController::class, 'getByUser']);
+        Route::get('/search/{param}',[UserBusinessItemController::class, 'getDataByParam']);
         Route::post('/{userId}',[UserBusinessItemController::class, 'store']);
     });
 

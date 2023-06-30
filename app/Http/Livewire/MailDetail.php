@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Saksi;
 use App\Models\Signature;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -41,6 +40,8 @@ class MailDetail extends Component
             'userMail.field',
             'userMail.signature',
             'userMail.user_id',
+            'userMail.saksi_1',
+            'userMail.saksi_2',
             'applicant.nama as applicant_name',
             'applicant.no_nik as applicant_nik',
             'applicant.no_kk as applicant_no_kk',
@@ -54,20 +55,20 @@ class MailDetail extends Component
             'applicant.banjar as applicant_banjar',
             'applicant.shdk as applicant_family_status',
             DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
-            'userMail.created_at'
+            'userMail.created_at',
         ]);
 
-        $saksi_1 = Saksi::where('position', '!=', 'Kelian Banjar Dinas '. $data->applicant_banjar)->first();
-        $saksi_2 = Saksi::where('position', '!=', 'Kelian Banjar Dinas '. $data->applicant_banjar)
-                        ->where('position', '!=', $saksi_1->position)
-                        ->first();
-        
-        $saksi = compact('saksi_1', 'saksi_2');
+        $data->saksi_1 = Signature::find($data->saksi_1);
+        $data->saksi_2 = Signature::find($data->saksi_2);
 
         $kelian = Signature::where('position', '=','Kelian Banjar')
                     ->where('banjar', $data->applicant_banjar)
                     ->first();
 
-        return view('livewire.mail-detail', compact('data', 'saksi', 'kelian'));
+        return view('livewire.mail-detail', [
+            'data' => $data,
+            'saksi' => $saksi ?? ['saksi_1' => null, 'saksi_2' => null],
+            'kelian' => $kelian
+        ]);
     }
 }

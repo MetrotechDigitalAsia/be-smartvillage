@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Surat F2-01</title>
     <style>
         * {
             font-family: sans-serif;
@@ -324,13 +324,13 @@
                         <td style="width: 38%;" > Nama</td>
                         <td style="width: 2%" >:</td>
                         <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
-                            {{ $saksi['saksi_1']->name }}
+                            {{ $data->saksi_1->name ?? 'belum ada data saksi' }}
                         </td>
                     </tr>
                     <tr>
                         <td>NIK</td>
                         <td>:</td>
-                        @php $saksi_1_nik = str_split($saksi['saksi_1']->nik) @endphp
+                        @php $saksi_1_nik = str_split($data->saksi_1->nik ?? '') @endphp
                         @for ($i = 0; $i < 16; $i++)
                         <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                             {{ $saksi_1_nik[$i] ?? '' }}
@@ -341,7 +341,7 @@
                     <tr>
                         <td>Nomor Kartu Keluarga</td>
                         <td>:</td>
-                        @php $saksi_1_kk = str_split($saksi['saksi_1']->no_kk) @endphp
+                        @php $saksi_1_kk = str_split($data->saksi_1->no_kk ?? '') @endphp
                         @for ($i = 0; $i < 16; $i++)
                         <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                             {{ $kk[$i] ?? '' }}
@@ -352,7 +352,7 @@
                     <tr>
                         <td> Kewarganegaraan </td>
                         <td>:</td>
-                        @php $saksi_1_citizenship = str_split($saksi['saksi_1']->citizenship) @endphp
+                        @php $saksi_1_citizenship = str_split($data->saksi_1->citizenship ?? '') @endphp
                         @for ($i = 0; $i < 23; $i++)
                         <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                             {{ $saksi_1_citizenship[$i] ?? '' }}
@@ -373,13 +373,13 @@
                         <td style="width: 38%;" > Nama</td>
                         <td style="width: 2%" >:</td>
                         <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
-                            {{ $saksi['saksi_2']->name }}
+                            {{ $data->saksi_2->name ?? 'belum ada data saksi' }}
                         </td>
                     </tr>
                     <tr>
                         <td>NIK</td>
                         <td>:</td>
-                        @php $saksi_2_nik = str_split($saksi['saksi_2']->nik) @endphp
+                        @php $saksi_2_nik = str_split($data->saksi_2->nik ?? '') @endphp
                         @for ($i = 0; $i < 16; $i++)
                         <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                             {{ $saksi_2_nik[$i] ?? '' }}
@@ -390,7 +390,7 @@
                     <tr>
                         <td>Nomor Kartu Keluarga</td>
                         <td>:</td>
-                        @php $saksi_2_kk = str_split($saksi['saksi_2']->no_kk) @endphp
+                        @php $saksi_2_kk = str_split($data->saksi_2->no_kk ?? '') @endphp
                         @for ($i = 0; $i < 16; $i++)
                         <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                             {{ $kk[$i] ?? '' }}
@@ -401,7 +401,7 @@
                     <tr>
                         <td> Kewarganegaraan </td>
                         <td>:</td>
-                        @php $saksi_2_citizenship = str_split($saksi['saksi_2']->citizenship) @endphp
+                        @php $saksi_2_citizenship = str_split($data->saksi_2->citizenship ?? '') @endphp
                         @for ($i = 0; $i < 23; $i++)
                         <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                             {{ $saksi_2_citizenship[$i] ?? '' }}
@@ -754,7 +754,7 @@
                         <td >10. Berat Bayi</td>
                         <td colspan="2" >:</td>
                         <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: center;" >
-                            {{ $field->baby_weight }} Kg
+                            {{ $field->baby_weight }}
                         </td>
                         <td style="text-align: right;" >Kg</td>
                         <td colspan="18" ></td>
@@ -763,7 +763,7 @@
                         <td >11. Panjang Bayi</td>
                         <td colspan="2" >:</td>
                         <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: center;" >
-                            {{ $field->baby_length }} Cm
+                            {{ $field->baby_length }}
                         </td>
                         <td style="text-align: right;" >Cm</td>
                         <td colspan="18" ></td>
@@ -2831,7 +2831,7 @@
                 <table style="width: 100%; font-size: 11px;" >
                     <tr>
                         <td style="width: 50%;" >Reg. No :</td>
-                        <td style="width: 50%; text-align: right;" >Getasan, {{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('l d F Y') }}</td>
+                        <td style="width: 50%; text-align: right;" >Getasan, {{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('d F Y') }}</td>
                     </tr>
                 </table>
                 <table style="width: 100%; text-align: center; margin-top: 30px; font-size: 11px;" >

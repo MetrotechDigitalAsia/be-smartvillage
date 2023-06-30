@@ -18,12 +18,11 @@ class MailTable extends Component
         ->join('mails', 'mails.id', '=', 'userMail.mail_id')
         ->join($this->userDb, 'userDB.id', '=', 'userMail.resident_id')
         ->where('userMail.status', 'Pending')
-        ->orderBy('userMail.created_at', 'ASC')
+        ->orderBy('userMail.created_at', 'DESC')
         ->get([
-            DB::raw('ROW_NUMBER() OVER(ORDER BY userMail.id) as row_index'),
+            DB::raw('ROW_NUMBER() OVER(ORDER BY userMail.created_at DESC) as row_index'),
             'userMail.id as id',
             'userMail.mail_number',
-            // 'user.id as user_id',
             'mails.id as mail_id',
             'mails.title as mail_type',
             'userDB.nama as name',

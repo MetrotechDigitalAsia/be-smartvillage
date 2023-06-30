@@ -118,4 +118,20 @@ class UserBusinessItemController extends Controller
         return ResponseController::create($umkm, 'success', 'get umkm success', 200);        
     }
 
+    public function getDataByParam($param){
+
+        $data = UserBusinessItem::where('item_name', 'LIKE', '%'.$param.'%')->paginate(6);
+
+        if(count($data) == 0){
+            return ResponseController::create([], 'success', 'get umkm successfully', 200);
+        }
+
+        foreach ($data as $item) {
+            $item->item_price = number_format($item->item_price);
+            $item->item_image = env('APP_URL').'/storage/' . $item->item_image;
+        }
+
+        return ResponseController::create($data, 'success', 'get umkm successfully', 200);
+    }
+
 }
