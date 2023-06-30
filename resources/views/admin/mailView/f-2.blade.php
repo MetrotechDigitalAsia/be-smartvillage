@@ -714,7 +714,7 @@
                 <td >10. Berat Bayi</td>
                 <td colspan="2" >:</td>
                 <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: center;" >
-                    {{ $field->baby_weight }} Kg
+                    {{ $field->baby_weight }}
                 </td>
                 <td colspan="2" style="text-align: right;" >Kg</td>
             </tr>
@@ -722,7 +722,7 @@
                 <td >11. Panjang Bayi</td>
                 <td colspan="2" >:</td>
                 <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: center;" >
-                    {{ $field->baby_length }} Cm
+                    {{ $field->baby_length }}
                 </td>
                 <td colspan="2" style="text-align: right;" >Cm</td>
             </tr>
@@ -3006,7 +3006,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <u style="font-size: 16px;" ><b>I Wayan Suandi, S.Pt</b></u>
+                        <u style="font-size: 16px;" ><b>{{ $perbekel->name ?? 'Belum ada data perbekel' }}</b></u>
                     </td>
                     <td>
                         <u style="font-size: 16px;" ><b>{{ $data->applicant_name }}</b></u>

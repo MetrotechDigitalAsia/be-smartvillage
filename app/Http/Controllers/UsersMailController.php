@@ -249,7 +249,9 @@ class UsersMailController extends Controller
                 'userDB.banjar as applicant_banjar',
                 'userDB.shdk as applicant_family_status',
                 DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
-                'userMail.created_at'
+                'userMail.created_at',
+                'userMail.saksi_1',
+                'userMail.saksi_2'
             ]);
 
         $perbekel = Signature::where('position', 'Perbekel')->first();

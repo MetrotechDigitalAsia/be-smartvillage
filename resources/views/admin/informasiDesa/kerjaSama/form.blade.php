@@ -36,12 +36,9 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-xl-3 col-lg-3 col-form-label">Deskripsi</label>
+                    <label class="col-xl-3 col-lg-3 col-form-label">Judul</label>
                     <div class="col-lg-9 col-xl-9">
-                        <input type="hidden" name="description" value="{{$kerjaSama['description'] ?? '' }}" >
-                        <div id="kt_quil_1" style="height: 325px">
-                            {!! $kerjaSama['description'] ?? '' !!}
-                        </div>
+                        <input class="form-control form-control-lg " type="text" name="description" value="{{$kerjaSama['description'] ?? '' }}" />
                     </div>
                 </div>
 
@@ -62,64 +59,3 @@
 </div>
     
 @endsection
-
-@push('script')
-    
-    <script>
-        
-        var QuillEditor = function() {
-				var textEditor = function() {
-					var quill = new Quill('#kt_quil_1', {
-						modules: {
-							toolbar: [
-								[{
-									header: [1, 2, false]
-								}],
-								['bold', 'italic', 'underline'],
-							]
-						},
-						readOnly: '{{ $readonly ?? false }}',
-						placeholder: 'Type your text here...',
-						theme: 'snow' // or 'bubble'
-					});
-					quill.on('text-change', function(delta, oldDelta, source) {
-						document.querySelector("input[name='description']").value = quill.root.innerHTML;
-					});
-				}
-
-				var textEditor2 = function() {
-					var quill = new Quill('#kt_quil_2', {
-						modules: {
-							toolbar: [
-								[{
-									header: [1, 2, false]
-								}],
-								['bold', 'italic', 'underline'],
-							]
-						},
-						readOnly: '{{ $readonly ?? false }}',
-						placeholder: 'Type your text here...',
-						theme: 'snow' // or 'bubble'
-					});
-					quill.on('text-change', function(delta, oldDelta, source) {
-						document.querySelector("input[name='short_description']").value = quill.root.innerHTML;
-					});
-				}
-
-				return {
-					// public functions
-					init: function() {
-						textEditor();
-						textEditor2();
-					}
-				};
-			}();
-
-			jQuery(document).ready(function() {
-				QuillEditor.init();
-			});
-
-    </script>
-
-
-@endpush

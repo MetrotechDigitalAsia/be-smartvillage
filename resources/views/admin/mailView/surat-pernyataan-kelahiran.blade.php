@@ -41,11 +41,11 @@
     <table style="margin-left: 50px; margin-bottom: 50px;" >
         <tr>
             <td style="width: 170px;" >Nama</td>
-            <td>: {{ $field->child_name }}</td>
+            <td style="text-transform: capitalize;" >: {{ $field->child_name }}</td>
         </tr>
         <tr>
             <td>Tempat/Tgl. Lahir:</td>
-            <td>: {{ $field->child_birthplace }}, {{ $field->child_birth_date  }}</td>
+            <td style="text-transform: capitalize;" >: {{ $field->child_birthplace }}, {{ Carbon\Carbon::parse($field->child_birth_date)->format('d-m-Y')  }}</td>
         </tr>
         <tr>
             <td>Jenis Kelamin</td>

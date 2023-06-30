@@ -1,6 +1,6 @@
 <h3 class="text-center" style="text-transform: uppercase;" >{{ $data->title }}</h3>
 <h6 class="text-center mb-10" >Nomor: {{ $data->mail_number}}</h6>
-<p class="text-justify" >Yang bertanda tangan di bawah ini Kelian Banjar Dinas Ubud, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali, menerangkan dengan sebenarnya bahwa :</p>
+<p class="text-justify" >Yang bertanda tangan di bawah ini Kelian Banjar Dinas {{ $data->applicant_banjar }}, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali, menerangkan dengan sebenarnya bahwa :</p>
 <table class="align-self-start ml-10 mb-5 mt-1" style="width: 100%;" >
     <tr>
         <td class="w-150px" >Nama</td>

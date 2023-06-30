@@ -373,7 +373,7 @@
                         <td style="width: 38%;" > Nama</td>
                         <td style="width: 2%" >:</td>
                         <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
-                            {{ $data->saksi_2->name }}
+                            {{ $data->saksi_2->name ?? 'belum ada data saksi' }}
                         </td>
                     </tr>
                     <tr>

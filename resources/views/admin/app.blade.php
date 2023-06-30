@@ -134,7 +134,7 @@
 			// initFirebaseMessagingRegistration()
 
 
-		  </script>
+		</script>
 		<script>
 
 			// Enable pusher logging - don't include this in production
