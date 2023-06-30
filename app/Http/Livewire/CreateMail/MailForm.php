@@ -31,6 +31,8 @@ class MailForm extends Component
     public $birth_attendant;
     public $baby_weight;
     public $baby_length;
+    public $hospital_mail_number;
+    public $hospital_mail_number_date;
 
     protected $listeners = [
         'selectResident' => 'selectResident',
@@ -52,6 +54,8 @@ class MailForm extends Component
         'birth_attendant.required' => 'Penolong kelahiran harus diisi',
         'baby_weight.required' => 'Berat Bayi harus diisi',
         'baby_length.required' => 'Panjang Bayi harus diisi',
+        'hospital_mail_number_date.required' => 'Tanggal Nomor Surat Keterangan Dokter/Bidan/Rumah Sakit harus diisi',
+        'hospital_mail_number.required' => 'Nomor Surat Keterangan Dokter/Bidan/Rumah Sakit harus diisi',
     ];
 
     public function mount(){
@@ -99,6 +103,8 @@ class MailForm extends Component
             'birth_attendant' => 'required',
             'baby_weight' => 'required',
             'baby_length' => 'required',
+            'hospital_mail_number_date' => 'required',
+            'hospital_mail_number' => 'required',
         ]);
 
         $field = json_encode([
@@ -114,7 +120,9 @@ class MailForm extends Component
             'baby_weight' => $this->baby_weight,
             'baby_length' => $this->baby_length,
             'child_birthday' => Carbon::parse($this->child_birth_date)->translatedFormat('l'),
-            'NO_KK' => $this->applicant_data->no_kk
+            'NO_KK' => $this->applicant_data->no_kk,
+            'hospital_mail_number_date' => $this->hospital_mail_number_date,
+            'hospital_mail_number' => $this->hospital_mail_number,
         ]);
 
         $field = json_decode($field,true);

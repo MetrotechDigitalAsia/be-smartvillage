@@ -13,9 +13,7 @@ use Yajra\DataTables\DataTables;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
 
@@ -113,8 +111,6 @@ class UsersMailController extends Controller
 
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
 
-            // $mailId = DB::table('users_mail')->where('id',$id)->first('mail_id');
-
             $mail = DB::table('users_mail as userMail')
                     ->join('mails', 'mails.id', '=', 'userMail.mail_id')
                     ->where('userMail.id',$id)
@@ -156,15 +152,16 @@ class UsersMailController extends Controller
 
     public function changeStatusFromDetail($id, $status){
         
+        
         try {
             
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
-
+            
             $mail = DB::table('users_mail as userMail')
-                    ->join('mails', 'mails.id', '=', 'userMail.mail_id')
-                    ->where('userMail.id',$id)
-                    ->first(['userMail.user_id', 'mails.title']);
-
+            ->join('mails', 'mails.id', '=', 'userMail.mail_id')
+            ->where('userMail.id',$id)
+            ->first(['userMail.user_id', 'mails.title']);
+            
             switch ($status) {
                 case 'Done':
                     $msg = 'Surat disetujui';
@@ -180,7 +177,6 @@ class UsersMailController extends Controller
                     break;
             }
 
-            
             if(!is_null($mail->user_id)){
                 $token = UserLogin::where('id',$mail->user_id)->first('fcm');
                 Notification::send(UserLogin::find($mail->user_id), new UserMailNotification([
@@ -200,7 +196,7 @@ class UsersMailController extends Controller
         return response()->json([
             'success' => $status,
             'message' => $msg,
-            'user' => $token ?? null,
+            'mail' => $mail
         ]);
         
     }
@@ -261,18 +257,13 @@ class UsersMailController extends Controller
                     ->where('banjar', $data->banjar)
                     ->first();
 
-        $saksi_1 = Signature::where('position', '=','Kelian Banjar')
-                    ->where('banjar', '-',$data->banjar)
-                    ->first();
+        $data->saksi_1 = Signature::find($data->saksi_1);
+        $data->saksi_2 = Signature::find($data->saksi_2);
         
         $field = json_decode($data->field);
 
-        // $pdf = Pdf::loadView('mailTemplate.f2-01', compact('data', 'perbekel', 'saksi', 'kelian', 'field'));
-        // $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$data->slug).'_mail.pdf';
-        // return $pdf->stream($fileName);
-
         if($data->title != 'Surat Keterangan Kelahiran'){
-            $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data', 'perbekel', 'saksi', 'kelian', 'field'));
+            $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data', 'perbekel', 'kelian', 'field'));
             $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$data->slug).'_mail.pdf';
             return $pdf->download($fileName);
         }
@@ -281,7 +272,7 @@ class UsersMailController extends Controller
         $queryParams = array_keys($queryParams);
 
         if(count($queryParams) == 1 && $data->title == 'Surat Keterangan Kelahiran'){
-            $pdf = Pdf::loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'saksi', 'kelian', 'field'));
+            $pdf = Pdf::loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'kelian', 'field'));
             $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$queryParams[0]).'_mail.pdf';
             return $pdf->download($fileName);
         }
@@ -291,7 +282,7 @@ class UsersMailController extends Controller
         foreach($queryParams as $mail){
             $filename = $mail.'-'.$data->id.'-'.$data->name.'.pdf';
             $mails[] = $filename;
-            $pdf = Pdf::loadView('mailTemplate.'.$mail, compact('data', 'perbekel', 'saksi', 'kelian', 'field'))->save($filename, 'public');
+            $pdf = Pdf::loadView('mailTemplate.'.$mail, compact('data', 'perbekel', 'kelian', 'field'))->save($filename, 'public');
         }
 
         $zipFileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.$data->id.'-mails.zip';

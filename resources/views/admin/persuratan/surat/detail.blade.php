@@ -20,21 +20,21 @@
         <!--end::Item-->
         <!--begin::Item-->
         <li class="nav-item mb-2" data-toggle="tooltip" title="Tolak Surat" data-placement="left">
-            <a onclick="onActionClick(this, 'Rejected')" class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="javascript:;">
+            <a onclick="onActionClick(this, 'Rejected')" data-toggle="modal" data-target="#confirmModal" data-mail-id="{{ $data->id }}" class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="javascript:;">
                 <i class="flaticon-cancel"></i>
             </a>
         </li>
         <!--end::Item-->
         <!--begin::Item-->
         <li class="nav-item mb-2" data-toggle="tooltip" title="Proses Surat" data-placement="left">
-            <a onclick="onActionClick(this, 'Process')" class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="javascript:;">
+            <a onclick="onActionClick(this, 'Process')" data-toggle="modal" data-target="#confirmModal" data-mail-id="{{ $data->id }}" class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="javascript:;">
                 <i class="flaticon2-hourglass"></i>
             </a>
         </li>
         <!--end::Item-->
         <!--begin::Item-->
         <li class="nav-item mb-2" data-toggle="tooltip" title="Setujui Surat" data-placement="left">
-            <a onclick="onActionClick(this, 'Done')" class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="javascript:;">
+            <a onclick="onActionClick(this, 'Done')" data-toggle="modal" data-target="#confirmModal" data-mail-id="{{ $data->id }}" class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="javascript:;">
                 <i class="flaticon2-check-mark"></i>
             </a>
         </li>
@@ -52,6 +52,23 @@
     
         @livewire('mail-setting-panel', ['mailId' => $data->id])
 
+    </div>
+
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title">Pemberitahuan</h5>
+                </div>
+                <div class="modal-body">
+                    <span>yakin ingin <span class="mail-type"></span> surat dengan nomor <span class="mail-num" ></span> ?</span>
+                </div>
+                <div class="modal-footer py-2 border-0">
+                    <button type="button" class="btn btn-text font-weight-bold" data-dismiss="modal">Batal</button>
+                    <button type="button" onclick="handleSubmit(this)" data-dismiss="modal" class="btn btn-primary font-weight-bold approve-btn">Ya, Setujui</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 

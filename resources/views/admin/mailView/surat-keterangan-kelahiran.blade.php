@@ -119,7 +119,7 @@
                 <tr>
                     <td></td>
                     <td>Umur</td>
-                    <td>: {{ $data->saksi_2->age ?? '' }} tahun</td>
+                    <td>: {{ $data->saksi_2->age ?? '-' }} tahun</td>
                 </tr>
                 <tr>
                     <td></td>
