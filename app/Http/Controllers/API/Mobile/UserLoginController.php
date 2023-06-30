@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Mobile;
 
+use App\Http\Controllers\API\ResponseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UserLoginRequest;
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserLoginController extends Controller
 {
-
     protected $userDb;
 
     public function __construct(){
@@ -84,6 +84,4 @@ class UserLoginController extends Controller
         UserLogin::where('id',$userLogin)->first()->update(['fcm' => $request->token]);
         return ResponseController::create($request->token, 'success', 'Token Berhasil Disimpan', 200);
     }
-
-
 }
