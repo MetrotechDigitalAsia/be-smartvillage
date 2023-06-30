@@ -294,7 +294,7 @@
             <tr>
                 <td>NIK</td>
                 <td>:</td>
-                @php $saksi_1_nik = str_split($data->saksi_1->nik ?? 'belum ada data saksi') @endphp
+                @php $saksi_1_nik = str_split($data->saksi_1->nik ?? '') @endphp
                 @for ($i = 0; $i < 16; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                     {{ $saksi_1_nik[$i] ?? '' }}
@@ -304,7 +304,7 @@
             <tr>
                 <td>Nomor Kartu Keluarga</td>
                 <td>:</td>
-                @php $saksi_1_kk = str_split($data->saksi_1->no_kk ?? 'belum ada data saksi') @endphp
+                @php $saksi_1_kk = str_split($data->saksi_1->no_kk ?? '') @endphp
                 @for ($i = 0; $i < 16; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                     {{ $kk[$i] ?? '' }}
@@ -314,7 +314,7 @@
             <tr>
                 <td> Kewarganegaraan </td>
                 <td>:</td>
-                @php $saksi_1_citizenship = str_split($data->saksi_1->citizenship ?? 'belum ada data saksi' ) @endphp
+                @php $saksi_1_citizenship = str_split($data->saksi_1->citizenship ?? '' ) @endphp
                 @for ($i = 0; $i < 23; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                     {{ $saksi_1_citizenship[$i] ?? '' }}
