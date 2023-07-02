@@ -2,23 +2,41 @@
 
 use App\Http\Controllers\API\{
     AgendaController,
-    ArticleController,
+    ArticleController as ArticleControllerOld,
     ComplaintController,
-    DestinationPointController,
-    FamilyController,
-    ImportantNumberController,
-    InvestationController,
-    UserBusinessItemController,
-    ItemBusinessCategoryController,
+    DestinationPointController as DestinationPointControllerOld,
+    ImportantNumberController as ImportantNumberControllerOld,
+    InvestationController as InvestationControllerOld,
+    UserBusinessItemController as UserBusinessItemControllerOld,
+    ItemBusinessCategoryController as ItemBusinessCategoryControllerOld,
     KerjaSamaController,
     MailController,
     NotificationController,
-    SignatureController,
-    UserDataController,
-    UserLoginController,
-    UserMailController
+    UserDataController as UserDataControllerOld,
+    UserLoginController as UserLoginControllerOld,
+    UserMailController as UserMailControllerOld
 };
-use App\Http\Controllers\FCMController;
+
+use App\Http\Controllers\API\sisfo\{
+    UserBusinessItemController as SisfoUserBusinessItem,
+    ItemBusinessCategoryController as SisfoItemBusinessCategoryController,
+    UserDataController,
+    ArticleController,
+    InvestationController
+};
+
+use App\Http\Controllers\API\Mobile\{
+    FamilyController as MobileFamilyController,
+    UserBusinessItemController as MobileUserBusinessItem,
+    ItemBusinessCategoryController as MobileItemBusinessCategoryController,
+    UserLoginController,
+    UserMailController,
+};
+
+use App\Http\Controllers\API\TourismMap\{
+    ImportantNumberController,
+    DestinationPointController
+};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,46 +57,166 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'api_key'],function(){
 
-    Route::controller(UserLoginController::class)->group(function(){
+    Route::group(['prefix' => 'sisfo'],function(){
+
+        Route::group([
+            'prefix' => 'blog',
+            'controller' => ArticleController::class
+        ], function(){
+            Route::get('/', 'index');
+            Route::get('/latest', 'latest');
+        });
+
+        Route::group([
+            'prefix' => 'investment',
+            'controller' => InvestationController::class
+        ], function(){
+            Route::post('/', 'store');
+        });
+
+        Route::group([
+            'prefix' => 'resident',
+            'controller' => UserDataController::class
+        ], function(){
+            Route::get('/getByAge', 'getByAge');
+            Route::get('/getByEducation', 'getByEducation');
+            Route::get('/getByBanjar', 'groupByBanjar');
+            Route::get('/groupBy/{type}', 'getAndGroupBy');
+        });
+
+        Route::group([
+            'prefix' => 'umkm',
+            'controller' => SisfoUserBusinessItem::class
+        ], function(){
+            Route::get('/', 'index');
+            Route::get('/latest', 'getLatest');
+        });
+
+        Route::group([
+            'prefix' => 'umkmCategory',
+            'controller' => SisfoItemBusinessCategoryController::class
+        ], function(){
+            Route::get('/', 'index');
+        });
+
+        Route::post('/complaint', [ComplaintController::class, 'store']);
+
+    });
+
+    Route::group(['prefix' => 'mobile'],function(){
+        
+        Route::group([
+            'prefix' => 'family',
+            'controller' => MobileFamilyController::class
+        ], function(){
+            Route::get('/{no_kk}', 'index');
+        });
+
+        Route::group([
+            'prefix' => 'mail',
+            'controller' => UserMailController::class
+        ], function(){
+            Route::get('/{userId}', 'getMailByUser');
+            Route::get('/all/mail', 'getAllMail');
+            Route::get('/notification/{userLogin}', 'getMailNotification');
+            Route::get('/notification/read/{databaseNotification}', 'readMailNotification');
+            Route::post('/', 'store');
+        });
+
+        Route::group([
+            'controller' => UserLoginController::class
+        ], function(){
+            Route::post('/login', 'login');
+            Route::post('/changePassword/{userLogin}', 'changePassword');
+            Route::post('/token/{userLogin}', 'getUserToken');
+        });
+
+        Route::group([
+            'prefix' => 'umkm',
+            'controller' => MobileUserBusinessItem::class
+        ], function(){
+            Route::get('/', 'index');
+            Route::get('/latest', 'getLatest');
+            Route::get('/{userId}','getByUser');
+            Route::post('/{userId}','store');
+        });
+
+        Route::group([
+            'prefix' => 'umkmCategory',
+            'controller' => MobileItemBusinessCategoryController::class
+        ], function(){
+            Route::get('/', 'index');
+        });
+
+        Route::post('/complaint', [ComplaintController::class, 'store']);
+
+    });
+
+    Route::group(['prefix' => 'tourism-map'],function(){
+
+        Route::group([
+            'prefix' => 'important-number', 
+            'controller' => ImportantNumberController::class
+        ], function(){
+            Route::get('/', 'index');
+            Route::post('/filter-info', 'filterInfo');
+        });
+        
+        Route::group([
+            'prefix' => 'destination-point',
+            'controller' => DestinationPointController::class
+        ], function(){
+            Route::get('/', 'index');
+            Route::get('/priority', 'getPriorityPoints');
+            Route::post('/filter', 'filter');
+        });
+
+        Route::post('/complaint', [ComplaintController::class, 'store']);
+
+    });
+
+    Route::controller(UserLoginControllerOld::class)->group(function(){
         Route::post('/login', 'login');
         Route::post('/changePassword/{userLogin}', 'changePassword');
         Route::post('/token/{userLogin}', 'getUserToken');
     });
 
-    Route::get('/points', [DestinationPointController::class, 'index']);
-    Route::get('/priority', [DestinationPointController::class, 'getPriorityPoints']);
-    Route::get('/important-numbers', [ImportantNumberController::class, 'index']);
-    Route::post('/filter-info', [ImportantNumberController::class, 'filterInfo']);
-    Route::post('/filter', [DestinationPointController::class, 'filter']);
+    Route::get('/points', [DestinationPointControllerOld::class, 'index']);
+    Route::get('/priority', [DestinationPointControllerOld::class, 'getPriorityPoints']);
+    Route::get('/important-numbers', [ImportantNumberControllerOld::class, 'index']);
+    Route::post('/filter-info', [ImportantNumberControllerOld::class, 'filterInfo']);
+    Route::post('/filter', [DestinationPointControllerOld::class, 'filter']);
+
     Route::post('/complaint', [ComplaintController::class, 'store']);
 
-    Route::get('/umkmCategory',[ItemBusinessCategoryController::class, 'index']);
+    Route::get('/umkmCategory',[ItemBusinessCategoryControllerOld::class, 'index']);
 
     Route::group(['prefix' => 'blogs'], function(){
-        Route::get('/', [ArticleController::class, 'index']);
+         Route::get('/', [ArticleController::class, 'index']);
     });
 
     Route::group(['prefix' => 'blog'], function(){
-        Route::get('/latest', [ArticleController::class, 'latest']);
-        Route::post('/{param}', [ArticleController::class, 'getDataByParam']);
+        Route::get('/latest', [ArticleControllerOld::class, 'latest']);
+        Route::post('/{param}', [ArticleControllerOld::class, 'getDataByParam']);
     });
 
-    Route::post('/investment', [InvestationController::class, 'store']);
+    Route::post('/investment', [InvestationControllerOld::class, 'store']);
 
     Route::group(['prefix' => 'umkm'], function(){
-        Route::get('/',[UserBusinessItemController::class, 'index']);
-        Route::post('/category',[UserBusinessItemController::class, 'filterByCategory']);
-        Route::get('/latest',[UserBusinessItemController::class, 'getLatest']);
-        Route::get('/{userId}',[UserBusinessItemController::class, 'getByUser']);
-        Route::get('/search/{param}',[UserBusinessItemController::class, 'getDataByParam']);
-        Route::post('/{userId}',[UserBusinessItemController::class, 'store']);
+
+        Route::get('/',[UserBusinessItemControllerOld::class, 'index']);
+        Route::post('/category',[UserBusinessItemControllerOld::class, 'filterByCategory']);
+        Route::get('/latest',[UserBusinessItemControllerOld::class, 'getLatest']);
+        Route::get('/{userId}',[UserBusinessItemControllerOld::class, 'getByUser']);
+        Route::get('/search/{param}',[UserBusinessItemControllerOld::class, 'getDataByParam']);
+        Route::post('/{userId}',[UserBusinessItemControllerOld::class, 'store']);
     });
 
 
     Route::get('/agenda',[AgendaController::class, 'index']);
 
     Route::group(['prefix' => 'surat'], function(){
-        Route::controller(UserMailController::class)->group(function(){
+        Route::controller(UserMailControllerOld::class)->group(function(){
             Route::get('/{userId}', 'getMailByUser');
             Route::post('/', 'store');
         });
@@ -86,21 +224,13 @@ Route::group(['middleware' => 'api_key'],function(){
         Route::get('/', [MailController::class, 'index']);
     });
 
-    Route::post('/signature', [SignatureController::class, 'store']);
-
     Route::group(['prefix' => 'resident'], function(){
-        Route::controller(UserDataController::class)->group(function(){
+        Route::controller(UserDataControllerOld::class)->group(function(){
             Route::get('/getByAge', 'getByAge');
             Route::get('/getByEducation', 'getByEducation');
             Route::get('/banjar', 'groupByBanjar');
             Route::get('/groupBy/{type}', 'getAndGroupBy');
             Route::get('/family/{noKK}', 'getFamily');
-        });
-    });
-
-    Route::group(['prefix' => 'family'], function(){
-        Route::controller(FamilyController::class)->group(function(){
-            Route::get('/{no_kk}', 'getData');
         });
     });
 
