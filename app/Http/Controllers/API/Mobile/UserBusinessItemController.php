@@ -9,21 +9,18 @@ use App\Http\Requests\StoreApiValidationRequest;
 use App\Models\Admin;
 use App\Models\UserBusinessItem;
 use App\Notifications\UmkmNotification;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 
 class UserBusinessItemController extends Controller
 {
-    public function index(Request $request){
+    public function index(){
 
         $param = request()->query('category_id');
 
-        if(empty($param)){
-            $data = UserBusinessItem::where('status', 'approve')->paginate(10);
-        } else {
-            $data = UserBusinessItem::where('status', 'approve')->where('item_category_id', $param)->paginate(10);
-        }
-
+        $data = UserBusinessItem::where('status', 'approve')
+                ->when(!empty($param), function($q) use ($param) {
+                    $q->where('item_category_id', $param);
+                })->paginate(6);
 
         foreach ($data as $item) {
             $item->item_price = number_format($item->item_price);
@@ -71,5 +68,29 @@ class UserBusinessItemController extends Controller
             $item->item_image = env('APP_URL').'/storage/' . $item->item_image;
         }
         return ResponseController::create($umkm, 'success', 'get umkm success', 200);        
+    }
+
+    public function getLatest(){
+
+        $data = UserBusinessItem::where('status', 'approve')->latest()->limit(4)->get([
+            'id',
+            'item_category_id',
+            'user_id',
+            'user_phone_number',
+            'item_name',
+            'item_image',
+            'item_price',
+            'item_description',
+            'item_marketplace_link',
+            'created_at',
+        ]);
+
+        foreach ($data as $item) {
+            $item->item_price = number_format($item->item_price);
+            $item->item_image = env('APP_URL').'/storage/' . $item->item_image;
+        }
+
+        return ResponseController::create($data, 'success', 'get latest umkm success', 200);
+
     }
 }

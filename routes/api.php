@@ -5,7 +5,6 @@ use App\Http\Controllers\API\{
     ArticleController as ArticleControllerOld,
     ComplaintController,
     DestinationPointController as DestinationPointControllerOld,
-    FamilyController,
     ImportantNumberController as ImportantNumberControllerOld,
     InvestationController as InvestationControllerOld,
     UserBusinessItemController as UserBusinessItemControllerOld,
@@ -32,7 +31,6 @@ use App\Http\Controllers\API\Mobile\{
     ItemBusinessCategoryController as MobileItemBusinessCategoryController,
     UserLoginController,
     UserMailController,
-    UserDataController as MobileUserDataController,
 };
 
 use App\Http\Controllers\API\TourismMap\{
@@ -67,7 +65,6 @@ Route::group(['middleware' => 'api_key'],function(){
         ], function(){
             Route::get('/', 'index');
             Route::get('/latest', 'latest');
-            Route::get('/search/{param}', 'getDataByParam');
         });
 
         Route::group([
@@ -92,8 +89,7 @@ Route::group(['middleware' => 'api_key'],function(){
             'controller' => SisfoUserBusinessItem::class
         ], function(){
             Route::get('/', 'index');
-            Route::get('/search/{param}', 'search');
-            Route::get('/filterByCategory/{param}', 'getByCategory');
+            Route::get('/latest', 'getLatest');
         });
 
         Route::group([
@@ -140,9 +136,8 @@ Route::group(['middleware' => 'api_key'],function(){
             'controller' => MobileUserBusinessItem::class
         ], function(){
             Route::get('/', 'index');
+            Route::get('/latest', 'getLatest');
             Route::get('/{userId}','getByUser');
-            Route::get('/search/{param}', 'search');
-            Route::get('/filterByCategory/{param}', 'getByCategory');
             Route::post('/{userId}','store');
         });
 
