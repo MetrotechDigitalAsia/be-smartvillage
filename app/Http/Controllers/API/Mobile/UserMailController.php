@@ -156,7 +156,7 @@ class UserMailController extends Controller
 
     public function getAllMail(){
 
-        $data = Mail::all();
+        $data = Mail::whereActive(true)->get();
 
         foreach ($data as $item) {
             $item->image = 'storage/' . $item->image;

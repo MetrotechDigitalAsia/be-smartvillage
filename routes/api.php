@@ -18,7 +18,7 @@ use App\Http\Controllers\API\{
 };
 
 use App\Http\Controllers\API\sisfo\{
-    UserBusinessItemController as SisfoUserBusinessItem,
+    UserBusinessItemController as SisfoUserBusinessItemController,
     ItemBusinessCategoryController as SisfoItemBusinessCategoryController,
     UserDataController,
     ArticleController,
@@ -86,7 +86,7 @@ Route::group(['middleware' => 'api_key'],function(){
 
         Route::group([
             'prefix' => 'umkm',
-            'controller' => SisfoUserBusinessItem::class
+            'controller' => SisfoUserBusinessItemController::class
         ], function(){
             Route::get('/', 'index');
             Route::get('/latest', 'getLatest');
