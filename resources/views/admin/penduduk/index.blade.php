@@ -80,6 +80,41 @@
     </div>
 </div>
 
+
+{{-- <div class="row">
+    <div class="col">
+        <div class="card card-custom gutter-b" >
+            <div class="card-header border-0">
+                <div class="card-title">
+                    <h3 class="card-label fs-md">Penduduk Menurut Pekerjaan</h3>
+                </div>
+            </div>
+            <div class="card-body py-10">
+                <!--begin::Chart-->
+                <div id="work_chart"></div>
+                <!--end::Chart-->
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+<div class="row">
+    <div class="col">
+        <div class="card card-custom gutter-b" >
+            <div class="card-header border-0 pb-0">
+                <div class="card-title">
+                    <h3 class="card-label fs-md">Penduduk Menurut Pendidikan</h3>
+                </div>
+            </div>
+            <div class="card-body px-10 pb-10 pt-0">
+                <!--begin::Chart-->
+                <div id="education_chart"></div>
+                <!--end::Chart-->
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('script')
@@ -94,6 +129,8 @@
 
         const gender = {!! json_encode($gender) !!}
         const age = {!! json_encode($age) !!}
+        const work = {!! json_encode($work) !!}
+        const education = {!! json_encode($education) !!}
 
         const ChartWidget = function(){
 
@@ -138,8 +175,6 @@
 
                 const categories = age.map( item => item['KATEGORI'] )
                 const data = age.map( item => ({y: item['jumlah'], x: 'weq'}) )
-
-                console.log({categories, data})
 
                 const el = document.querySelector('#age_chart')
                 const opt = {
@@ -199,12 +234,137 @@
                 chart.render()
             }
 
+            const workChart = function(data){
+
+                const series = data.map(e => e.jumlah)
+                const labels = data.map(e => e.pekerjaan)
+
+                console.log({ series, labels })
+
+                const dataset = data.map(e => ({ x: e.pekerjaan, y: e.jumlah }))
+
+                const el = document.querySelector('#work_chart')
+                const opt = {
+                    chart: {
+                        type: 'bar',
+                        toolbar: {
+                            show: false
+                        }
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: true,
+                            columnWidth: '45%',
+                            distributed: true
+                            // endingShape: 'rounded'
+                        },
+                    },
+                    series: [{
+                        data: dataset
+                    }],
+                    legend: {
+                        position: 'left',
+                    },
+                    colors: [primary, success, warning]
+                }
+
+                const chart = new ApexCharts(el, opt)
+                chart.render()
+
+            }
+
+            const educationChart = function(data){
+
+                const series = data.map(e => e.jumlah)
+                const labels = data.map(e => e.pendidikan)
+
+                // const series = Object.values(gender)
+                // const labels = Object.keys(gender)
+
+                const el = document.querySelector('#education_chart')
+                const opt = {
+                    chart: {
+                        type: 'bar',
+                        height: 600,
+                        toolbar: {
+                            show: false
+                        }
+                    },
+                    series: [{
+                        data: series
+                    }],
+                    xaxis: {
+                        categories: labels,
+                    },
+                    yaxis: {
+                        labels: {
+                            show: false
+                        }
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: true,
+                            columnWidth: '100%',
+                            distributed: true,
+                            borderRadius: 110,
+                            dataLabels: {
+                                // position: 'bottom'
+                            },
+                        },
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        textAnchor: 'start',
+                        style: {
+                            colors: ['#fff']
+                        },
+                        formatter: function (val, opt) {
+                            return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+                        },
+                        offsetX: 0,
+                        dropShadow: {
+                            enabled: true,
+                            opacity: 0.4
+                        },
+                    },
+                    stroke: {
+                        show: true,
+                        width: 2,
+                        colors: ['transparent']
+                    },
+                    fill: {
+                        opacity: 1
+                    },
+                    tooltip: {
+                        y: {
+                            formatter: function (val, e) {
+                                return val + " orang"
+                            }
+                        },
+                        x: {
+                            formatter: function (val) {
+                                return val
+                            },
+                        }
+                    },
+                    legend: {
+                        show: false
+                    },
+                    // colors: [primary, success, warning, '#FF3D00', '#FF5252', '#FF8A80', '#FFC400', '#FFD54F', '#CDDC39']
+                    colors: [primary, success, warning]
+                }
+
+                const chart = new ApexCharts(el, opt)
+                chart.render()
+
+            }
+
             return {
                 init: function(){
-
                     genderChart(gender)
                     ageChart(age)
-
+                    workChart(work[0])
+                    educationChart(education)
                 }
             }
         }()
@@ -212,7 +372,6 @@
         jQuery(document).ready(function () {
             ChartWidget.init();
         });
-
 
 
     </script>
