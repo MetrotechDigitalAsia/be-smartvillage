@@ -40,9 +40,29 @@ class UserDataController extends Controller
         $tengah = UserData::where('BANJAR', 'tengah')->count();
         $ubud = UserData::where('BANJAR', 'ubud')->count();
 
+        $rawWork = DB::connection('resident_mysql')
+                    ->table('resident_data')
+                    ->select('pekerjaan', DB::raw('COUNT(*) as jumlah'))
+                    ->orderBy('jumlah', 'DESC')
+                    ->groupBy('pekerjaan')
+                    ->get()
+                    ->toArray();
+
+        list($work_1, $work_2, $work_3) = array_chunk($rawWork, count($rawWork) / 3);
+
+        $work = [$work_1, $work_2, $work_3];
+
+        $education = DB::connection('resident_mysql')
+                    ->table('resident_data')
+                    ->select('pendidikan', DB::raw('COUNT(*) as jumlah'))
+                    ->orderBy('jumlah')
+                    ->groupBy('pendidikan')
+                    ->get()
+                    ->toArray();
+
         $banjar = compact('kauh', 'buangga', 'tengah', 'ubud');
 
-        return view('admin.penduduk.index', compact('banjar', 'gender', 'age'));
+        return view('admin.penduduk.index', compact('banjar', 'gender', 'age', 'work', 'education'));
     }
 
 
@@ -128,6 +148,10 @@ class UserDataController extends Controller
     public function update(Request $request, UserData $userData){
 
         $data = $request->all();
+
+        if(empty($data['status_mutasi'])){
+            $data['status_mutasi'] = null;
+        }
 
         $data['ketua_RT'] = isset($data['ketua_RT']) ? 1 : 0;
         $data['ketua_RW'] = isset($data['ketua_RW']) ? 1 : 0;

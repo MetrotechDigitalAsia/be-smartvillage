@@ -204,12 +204,12 @@
                                     <div class="col-9 col-form-label">
                                         <div class="radio-inline">
                                             <label class="radio radio-outline radio-success">
-                                                <input required {{!empty($user) ? $user['jenis_kelamin']=="LAKI LAKI" ? 'checked' : '' : ''}} type="radio" name="jenis_kelamin" value="LAKI LAKI" required/>
+                                                <input required {{!empty($user) ? $user['jenis_kelamin']=="Laki-Laki" ? 'checked' : '' : ''}} type="radio" name="jenis_kelamin" value="Laki-Laki" required/>
                                                 <span></span>
                                                 Laki Laki
                                             </label>
                                             <label class="radio radio-outline radio-success">
-                                                <input required {{!empty($user) ? $user['jenis_kelamin']=="PEREMPUAN" ? 'checked' : '' : ''}}  type="radio" name="jenis_kelamin" value="PEREMPUAN" />
+                                                <input required {{!empty($user) ? $user['jenis_kelamin']=="Perempuan" ? 'checked' : '' : ''}}  type="radio" name="jenis_kelamin" value="Perempuan" />
                                                 <span></span>
                                                 Perempuan
                                             </label>
@@ -402,7 +402,7 @@
                                                 Ada
                                             </label>
                                             <label class="radio radio-outline radio-success">
-                                                <input onchange="handleChangeRadio(this)" {{!empty($user) ? $user['status_akta_perkawinan']=="0" ? 'checked' : '' : ''}}  type="radio" name="status_akta_perkawinan" value="0" />
+                                                <input onchange="handleChangeRadio(this)" {{!empty($user) ? ($user['status_akta_perkawinan']=="0") || empty($user['status_akta_perkawinan'])  ? 'checked' : '' : ''}}  type="radio" name="status_akta_perkawinan" value="0" />
                                                 <span></span>
                                                 Belum Ada
                                             </label>
@@ -413,7 +413,7 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">No. Akta Perkawinan </label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg" {{!empty($user) ? $user['status_akta_perkawinan']=="0" ? 'disabled' : '' : ''}} name="no_akta_perkawinan" value="{{ $user['no_akta_perkawinan'] ?? '' }}" />
+                                        <input class="form-control form-control-lg" {{!empty($user) ? ($user['status_akta_perkawinan']=="0") || empty($user['status_akta_perkawinan']) ? 'disabled' : '' : ''}} name="no_akta_perkawinan" value="{{ $user['no_akta_perkawinan'] ?? '' }}" />
                                     </div>
                                 </div>
                             </div>
@@ -440,6 +440,32 @@
                                         <input type="checkbox" {{ !empty($user) ? $user['ketua_banjar'] == '1' ? 'checked' : '' : '' }} name="ketua_banjar" />
                                         <span></span>
                                         Banjar
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row align-items-center">    
+                            <label class="col-xl-3 col-lg-3 col-form-label">Status Mutasi Penduduk</label>
+                            <div class="col-lg-9 col-xl-6">
+                                <div class="radio-inline">
+                                    <label class="radio radio-outline radio-success">
+                                        <input class="mutasi-radio" {{!empty($user) ? $user['status_mutasi']=="Pindah Keluar" ? 'checked' : '' : ''}} type="radio" name="status_mutasi" value="Pindah Keluar" />
+                                        <span></span>
+                                        Pindah Keluar
+                                    </label>
+                                    <label class="radio radio-outline radio-success">
+                                        <input class="mutasi-radio" {{!empty($user) ? $user['status_mutasi']=="Pindah Data" ? 'checked' : '' : ''}}  type="radio" name="status_mutasi" value="Pindah Data" />
+                                        <span></span>
+                                        Pindah Data
+                                    </label>
+                                    <label class="radio radio-outline radio-success">
+                                        <input class="mutasi-radio" {{!empty($user) ? $user['status_mutasi']=="Meninggal" ? 'checked' : '' : ''}}  type="radio" name="status_mutasi" value="Meninggal" />
+                                        <span></span>
+                                        Meninggal
+                                    </label>
+                                    <label class="radio radio-outline radio-success">
+                                        <button type="button" onclick="emptyMutasi()" class="btn btn-text-primary"><u>Atur Ulang</u></button>
                                     </label>
                                 </div>
                             </div>
@@ -513,6 +539,11 @@
                 document.querySelector('input[name=no_akta_kelahiran]').removeAttribute('disabled')
             else 
                 document.querySelector('input[name=no_akta_kelahiran]').setAttribute('disabled', 'disabled')
+        }
+
+        function emptyMutasi(){
+            document.querySelectorAll('.mutasi-radio').forEach( e => e.checked = false )
+            // console.log(el)
         }
 
     </script>
