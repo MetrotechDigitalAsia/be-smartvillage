@@ -40,17 +40,17 @@ class UserDataController extends Controller
         $tengah = UserData::where('BANJAR', 'tengah')->count();
         $ubud = UserData::where('BANJAR', 'ubud')->count();
 
-        $rawWork = DB::connection('resident_mysql')
+        $rawResidentJobs = DB::connection('resident_mysql')
                     ->table('resident_data')
                     ->select('pekerjaan', DB::raw('COUNT(*) as jumlah'))
-                    ->orderBy('jumlah', 'DESC')
+                    ->orderBy('jumlah', 'ASC')
                     ->groupBy('pekerjaan')
                     ->get()
                     ->toArray();
 
-        list($work_1, $work_2, $work_3) = array_chunk($rawWork, count($rawWork) / 3);
+        list($residentJob_1, $residentJob_2, $residentJob_3, $residentJob_4) = array_chunk($rawResidentJobs, count($rawResidentJobs) / 4);
 
-        $work = [$work_1, $work_2, $work_3];
+        $residentJobs = [$residentJob_1, $residentJob_2, $residentJob_3, $residentJob_4];
 
         $education = DB::connection('resident_mysql')
                     ->table('resident_data')
@@ -62,7 +62,7 @@ class UserDataController extends Controller
 
         $banjar = compact('kauh', 'buangga', 'tengah', 'ubud');
 
-        return view('admin.penduduk.index', compact('banjar', 'gender', 'age', 'work', 'education'));
+        return view('admin.penduduk.index', compact('banjar', 'gender', 'age', 'residentJobs', 'education'));
     }
 
 

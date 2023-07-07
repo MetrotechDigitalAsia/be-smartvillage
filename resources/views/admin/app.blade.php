@@ -22,6 +22,7 @@
 		@stack('mail-styles')
 
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" href="https://unpkg.com/@glidejs/glide/dist/css/glide.core.min.css">
 
 		<link rel="shortcut icon" href="{{ asset('assets/be/media/desa.png') }}" />
 
@@ -82,6 +83,7 @@
 		<script src="{{ asset('assets/be/js/scripts.bundle.js?v=7.0.5') }}"></script>
 
 		<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+		<script src="https://unpkg.com/@glidejs/glide/dist/glide.min.js"></script>
 
 		@if (!empty($useMap))
 			<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
