@@ -43,7 +43,7 @@ class UserDataController extends Controller
         $rawResidentJobs = DB::connection('resident_mysql')
                     ->table('resident_data')
                     ->select('pekerjaan', DB::raw('COUNT(*) as jumlah'))
-                    ->orderBy('jumlah', 'ASC')
+                    ->orderBy('jumlah', 'DESC')
                     ->groupBy('pekerjaan')
                     ->get()
                     ->toArray();

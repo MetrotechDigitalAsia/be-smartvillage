@@ -103,8 +103,13 @@
                           </ul>
                         </div>
                         <div class="d-flex flex-wrap justify-content-end py-2 mr-3">
+                            <button onclick="glide.go(`<<`)" class="btn btn-icon btn-sm btn-hover-primary btn-light mr-2 my-1"><i class="ki ki-bold-double-arrow-back icon-xs"></i></button>
                             <button onclick="glide.go(`<`)" class="btn btn-icon btn-sm btn-hover-primary btn-light mr-2 my-1"><i class="ki ki-bold-arrow-back icon-xs"></i></button>
+                            @foreach ($residentJobs as $key => $item)
+                            <button onclick="glide.go('={{{ $key }}}')" class="btn btn-icon btn-sm btn-hover-primary border-0 mr-2 my-1 caro-btn caro-btn-{{ $key }}">{{ $key+1 }}</button>
+                            @endforeach
                             <button onclick="glide.go('>')" class="btn btn-icon btn-sm btn-light btn-hover-primary mr-2 my-1"><i class="ki ki-bold-arrow-next icon-xs"></i></button>
+                            <button onclick="glide.go('>>')" class="btn btn-icon btn-sm btn-light btn-hover-primary mr-2 my-1"><i class="ki ki-bold-double-arrow-next icon-xs"></i></button>
                         </div>
                     </div>
                 </div>
@@ -150,6 +155,12 @@
         const glide = new Glide('.glide')
 
         glide.mount()
+
+        glide.on(['mount.after', 'run'], function(){
+            document.querySelectorAll(`.caro-btn`).forEach(el => el.classList.remove('btn-primary'))
+            const index = glide.index
+            document.querySelector(`.caro-btn-${index}`).classList.add('btn-primary')
+        })
 
         const ChartWidget = function(){
 
@@ -393,6 +404,8 @@
         jQuery(document).ready(function () {
             ChartWidget.init();
         });
+
+        document.querySelector('.caro-btn').classList.add('btn-primary')
 
 
     </script>
