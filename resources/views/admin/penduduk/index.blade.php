@@ -81,22 +81,38 @@
 </div>
 
 
-{{-- <div class="row">
+<div class="row">
     <div class="col">
         <div class="card card-custom gutter-b" >
             <div class="card-header border-0">
                 <div class="card-title">
-                    <h3 class="card-label fs-md">Penduduk Menurut Pekerjaan</h3>
+                    <h3 class="card-label fs-md">Penduduk Menurut Pekerjaan </h3>
                 </div>
             </div>
-            <div class="card-body py-10">
+            <div class="card-body pb-10 pt-0">
                 <!--begin::Chart-->
-                <div id="work_chart"></div>
+                <div id="">
+                    <div class="glide">
+                        <div class="glide__track" data-glide-el="track">
+                          <ul class="glide__slides">
+                            @foreach ($residentJobs as $key => $residentJob)
+                            <li class="glide__slide">
+                                <div id="work_chart_{{ $key+1 }}"></div>
+                            </li>
+                            @endforeach
+                          </ul>
+                        </div>
+                        <div class="d-flex flex-wrap justify-content-end py-2 mr-3">
+                            <button onclick="glide.go(`<`)" class="btn btn-icon btn-sm btn-hover-primary btn-light mr-2 my-1"><i class="ki ki-bold-arrow-back icon-xs"></i></button>
+                            <button onclick="glide.go('>')" class="btn btn-icon btn-sm btn-light btn-hover-primary mr-2 my-1"><i class="ki ki-bold-arrow-next icon-xs"></i></button>
+                        </div>
+                    </div>
+                </div>
                 <!--end::Chart-->
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 
 <div class="row">
     <div class="col">
@@ -126,11 +142,14 @@
         const warning = '#9CCC65'
         const danger = '#F64E60'
 
-
         const gender = {!! json_encode($gender) !!}
         const age = {!! json_encode($age) !!}
-        const work = {!! json_encode($work) !!}
+        const residentJobs = {!! json_encode($residentJobs) !!}
         const education = {!! json_encode($education) !!}
+
+        const glide = new Glide('.glide')
+
+        glide.mount()
 
         const ChartWidget = function(){
 
@@ -234,7 +253,7 @@
                 chart.render()
             }
 
-            const workChart = function(data){
+            const workChart = function(data, elem){
 
                 const series = data.map(e => e.jumlah)
                 const labels = data.map(e => e.pekerjaan)
@@ -243,10 +262,11 @@
 
                 const dataset = data.map(e => ({ x: e.pekerjaan, y: e.jumlah }))
 
-                const el = document.querySelector('#work_chart')
+                const el = document.querySelector(elem)
                 const opt = {
                     chart: {
                         type: 'bar',
+                        height: 350,
                         toolbar: {
                             show: false
                         }
@@ -263,7 +283,8 @@
                         data: dataset
                     }],
                     legend: {
-                        position: 'left',
+                        show: false,
+                        position: 'bottom',
                     },
                     colors: [primary, success, warning]
                 }
@@ -363,8 +384,8 @@
                 init: function(){
                     genderChart(gender)
                     ageChart(age)
-                    workChart(work[0])
                     educationChart(education)
+                    residentJobs.forEach( (data, i) => workChart(data, `#work_chart_${i+1}`))
                 }
             }
         }()
