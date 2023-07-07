@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
         ItemBusinessCategory::create(['item_category' => 'Jasa']);
         ItemBusinessCategory::create(['item_category' => 'Makanan & Minuman']);
         ItemBusinessCategory::create(['item_category' => 'Ternak']);
-        ItemBusinessCategory::create(['item_category' => 'Elektron']);
+        ItemBusinessCategory::create(['item_category' => 'Elektronik']);
         ItemBusinessCategory::create(['item_category' => 'Properti']);
         ItemBusinessCategory::create(['item_category' => 'Pakaian']);
         ItemBusinessCategory::create(['item_category' => 'Perabotan']);
@@ -79,18 +79,18 @@ class DatabaseSeeder extends Seeder
 
         $users = UserData::limit(5)->get();
 
-        foreach($users as $user){
+        // foreach($users as $user){
 
-            $user->update(['akun_mobile_app' => 1]);
+        //     $user->update(['akun_mobile_app' => 1]);
 
-            UserLogin::create([
-                'no_nik' => $user->no_nik,
-                'password' => bcrypt($user->no_nik),
-                'status' => 'Active',
-                'fcm' => $user->no_nik . time() * rand(1,60)
-            ]);
+        //     UserLogin::create([
+        //         'no_nik' => $user->no_nik,
+        //         'password' => bcrypt($user->no_nik),
+        //         'status' => 'Active',
+        //         'fcm' => $user->no_nik . time() * rand(1,60)
+        //     ]);
 
-        }
+        // }
 
         Mail::create([
             'id' => '990636ad-0896-4953-8fad-19c152424a4f',

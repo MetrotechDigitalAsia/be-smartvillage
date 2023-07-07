@@ -4,6 +4,6 @@
         <select onchange="handleChangeResident(this)" class="form-control form-control-lg select2" id="resident_select" name="param">
             <option label="Label"></option>
         </select>
-        <span class="form-text text-muted">Data Saksi bisa langsung dipilih dari data penduduk jika telah terdaftar sebagai pendudk desa.</span>
+        <span class="form-text text-muted">Data Saksi bisa langsung dipilih dari data penduduk jika telah terdaftar sebagai penduduk desa.</span>
     </div>
 </div>

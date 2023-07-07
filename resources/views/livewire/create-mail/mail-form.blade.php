@@ -161,7 +161,7 @@
         </div>
 
         <div class="form-group">
-            <label>Nomor Surat Keterangan Doker/Bidan/Rumah Sakit</label>
+            <label>Nomor Surat Keterangan Dokter/Bidan/Rumah Sakit</label>
             <input wire:model.lazy="hospital_mail_number" class="form-control @error('hospital_mail_number') is-invalid @enderror " type="text"  />
             @error('hospital_mail_number')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -169,7 +169,7 @@
         </div>
 
         <div class="form-group">
-            <label>Tanggal Nomor Surat Keterangan Doker/Bidan/Rumah Sakit</label>
+            <label>Tanggal Surat Keterangan Dokter/Bidan/Rumah Sakit</label>
             <input wire:model.lazy="hospital_mail_number_date" class="form-control @error('hospital_mail_number_date') is-invalid @enderror " type="date"  />
             @error('hospital_mail_number_date')
                 <div class="invalid-feedback">{{ $message }}</div>
