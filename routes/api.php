@@ -17,7 +17,7 @@ use App\Http\Controllers\API\{
     UserMailController as UserMailControllerOld
 };
 
-use App\Http\Controllers\API\sisfo\{
+use App\Http\Controllers\API\Sisfo\{
     UserBusinessItemController as SisfoUserBusinessItemController,
     ItemBusinessCategoryController as SisfoItemBusinessCategoryController,
     UserDataController,
