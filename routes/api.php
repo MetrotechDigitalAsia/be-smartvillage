@@ -2,19 +2,8 @@
 
 use App\Http\Controllers\API\{
     AgendaController,
-    ArticleController as ArticleControllerOld,
     ComplaintController,
-    DestinationPointController as DestinationPointControllerOld,
-    ImportantNumberController as ImportantNumberControllerOld,
-    InvestationController as InvestationControllerOld,
-    UserBusinessItemController as UserBusinessItemControllerOld,
-    ItemBusinessCategoryController as ItemBusinessCategoryControllerOld,
     KerjaSamaController,
-    MailController,
-    NotificationController,
-    UserDataController as UserDataControllerOld,
-    UserLoginController as UserLoginControllerOld,
-    UserMailController as UserMailControllerOld
 };
 
 use App\Http\Controllers\API\Sisfo\{
@@ -176,73 +165,9 @@ Route::group(['middleware' => 'api_key'],function(){
 
     });
 
-    Route::controller(UserLoginControllerOld::class)->group(function(){
-        Route::post('/login', 'login');
-        Route::post('/changePassword/{userLogin}', 'changePassword');
-        Route::post('/token/{userLogin}', 'getUserToken');
-    });
-
-    Route::get('/points', [DestinationPointControllerOld::class, 'index']);
-    Route::get('/priority', [DestinationPointControllerOld::class, 'getPriorityPoints']);
-    Route::get('/important-numbers', [ImportantNumberControllerOld::class, 'index']);
-    Route::post('/filter-info', [ImportantNumberControllerOld::class, 'filterInfo']);
-    Route::post('/filter', [DestinationPointControllerOld::class, 'filter']);
-
     Route::post('/complaint', [ComplaintController::class, 'store']);
-
-    Route::get('/umkmCategory',[ItemBusinessCategoryControllerOld::class, 'index']);
-
-    Route::group(['prefix' => 'blogs'], function(){
-         Route::get('/', [ArticleController::class, 'index']);
-    });
-
-    Route::group(['prefix' => 'blog'], function(){
-        Route::get('/latest', [ArticleControllerOld::class, 'latest']);
-        Route::post('/{param}', [ArticleControllerOld::class, 'getDataByParam']);
-    });
-
-    Route::post('/investment', [InvestationControllerOld::class, 'store']);
-
-    Route::group(['prefix' => 'umkm'], function(){
-
-        Route::get('/',[UserBusinessItemControllerOld::class, 'index']);
-        Route::post('/category',[UserBusinessItemControllerOld::class, 'filterByCategory']);
-        Route::get('/latest',[UserBusinessItemControllerOld::class, 'getLatest']);
-        Route::get('/{userId}',[UserBusinessItemControllerOld::class, 'getByUser']);
-        Route::get('/search/{param}',[UserBusinessItemControllerOld::class, 'getDataByParam']);
-        Route::post('/{userId}',[UserBusinessItemControllerOld::class, 'store']);
-    });
-
-
     Route::get('/agenda',[AgendaController::class, 'index']);
-
-    Route::group(['prefix' => 'surat'], function(){
-        Route::controller(UserMailControllerOld::class)->group(function(){
-            Route::get('/{userId}', 'getMailByUser');
-            Route::post('/', 'store');
-        });
-
-        Route::get('/', [MailController::class, 'index']);
-    });
-
-    Route::group(['prefix' => 'resident'], function(){
-        Route::controller(UserDataControllerOld::class)->group(function(){
-            Route::get('/getByAge', 'getByAge');
-            Route::get('/getByEducation', 'getByEducation');
-            Route::get('/banjar', 'groupByBanjar');
-            Route::get('/groupBy/{type}', 'getAndGroupBy');
-            Route::get('/family/{noKK}', 'getFamily');
-        });
-    });
-
     Route::get('/kerjaSama', KerjaSamaController::class);
-
-    Route::group(['prefix' => 'notification'], function(){
-        Route::controller(NotificationController::class)->group(function(){
-            Route::get('/{userLogin}', 'index');
-            Route::get('/read/{databaseNotification}', 'read');
-        });
-    });
 
 
 });
