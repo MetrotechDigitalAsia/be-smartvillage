@@ -26,11 +26,11 @@ class UserDataController extends Controller
         $elderly = UserData::where(DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir)'), '>', 45)->count();
 
         $data = [
-            'balita' => $toddler,
-            'anak_anak' => $kids,
-            'remaja' => $teenager,
-            'dewasa' => $adult,
-            'lansia' => $elderly
+            [ 'value' => 'Balita', 'total' => $toddler],
+            [ 'value' => 'Anak Anak', 'total' => $kids],
+            [ 'value' => 'Remaja', 'total' => $teenager],
+            [ 'value' => 'Dewasa', 'total' => $adult],
+            [ 'value' => 'Lansia', 'total' => $elderly],
         ];
 
         return ResponseController::create($data, 'success', 'get resident data', 200);
