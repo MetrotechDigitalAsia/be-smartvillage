@@ -80,7 +80,8 @@ Route::group(['middleware' => 'api_key'],function(){
         ], function(){
             Route::get('/getByAge', 'getByAge');
             Route::get('/getByEducation', 'getByEducation');
-            Route::get('/getByBanjar', 'groupByBanjar');
+            Route::get('/getByJob', 'getByJob');
+            Route::get('/getByBanjar', 'getByBanjar');
             Route::get('/groupBy/{type}', 'getAndGroupBy');
         });
 
