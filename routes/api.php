@@ -9,6 +9,7 @@ use App\Http\Controllers\API\{
 use App\Http\Controllers\API\Sisfo\{
     UserBusinessItemController as SisfoUserBusinessItemController,
     ItemBusinessCategoryController as SisfoItemBusinessCategoryController,
+    ArticleCategoryController,
     UserDataController,
     ArticleController,
     InvestationController
@@ -89,6 +90,13 @@ Route::group(['middleware' => 'api_key'],function(){
         Route::group([
             'prefix' => 'umkmCategory',
             'controller' => SisfoItemBusinessCategoryController::class
+        ], function(){
+            Route::get('/', 'index');
+        });
+
+        Route::group([
+            'prefix' => 'articleCategory',
+            'controller' => ArticleCategoryController::class
         ], function(){
             Route::get('/', 'index');
         });

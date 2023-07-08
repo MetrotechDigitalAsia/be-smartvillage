@@ -13,7 +13,7 @@ class ArticleController extends Controller
 
         $param = request()->query('search');
 
-        $data = Article::when(!empty($param), function($q) use ($param){
+        $data = Article::with('articleCategory')->when(!empty($param), function($q) use ($param){
                    $q->where('slug', 'LIKE', '%'.$param.'%')->orWhere('title', 'LIKE', '%'.$param.'%'); 
                 })
                 ->select(['id', 'title', 'slug', 'article_category', 'image', 'time', 'date', 'updated_by', 'created_at', 'updated_at'])
