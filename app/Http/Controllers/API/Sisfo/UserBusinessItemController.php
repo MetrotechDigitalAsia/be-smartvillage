@@ -11,13 +11,9 @@ class UserBusinessItemController extends Controller
 {
     public function index(){
 
-        $keyword = request()->query('search');
         $category_id = request()->query('category_id');
 
         $data = UserBusinessItem::where('status', 'approve')
-                ->when(!empty($keyword), function($q) use ($keyword) {
-                    $q->where('item_name','LIKE', "%$keyword%");
-                })
                 ->when(!empty($category_id), function($q) use ($category_id) {
                     $q->where('item_category_id', $category_id);
                 })->paginate(6);
@@ -28,6 +24,22 @@ class UserBusinessItemController extends Controller
         }
 
         return ResponseController::create($data, 'success', 'get all umkm successfully', 200);
+    }
+
+    public function search($param){
+
+        $data = UserBusinessItem::where('item_name', 'LIKE', "%$param%")->paginate(6);
+
+        foreach ($data as $item) {
+            $item->item_price = number_format($item->item_price);
+            $item->item_image = env('APP_URL').'/storage/' . $item->item_image;
+        }
+
+        return ResponseController::create($data, 'success', 'get all umkm successfully', 200);
+    }
+
+    public function getDetail(UserBusinessItem $userBusinessItem){
+        return ResponseController::create($userBusinessItem, 'success', 'get detail umkm successfully', 200);
     }
 
     public function getLatest(){

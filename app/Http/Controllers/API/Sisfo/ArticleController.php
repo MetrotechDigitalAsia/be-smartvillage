@@ -16,13 +16,30 @@ class ArticleController extends Controller
         $data = Article::when(!empty($param), function($q) use ($param){
                    $q->where('slug', 'LIKE', '%'.$param.'%')->orWhere('title', 'LIKE', '%'.$param.'%'); 
                 })
+                ->select(['id', 'title', 'slug', 'article_category', 'image', 'time', 'date', 'updated_by', 'created_at', 'updated_at'])
                 ->paginate(6);
 
-        $data = Article::paginate(6);
         foreach ($data as $item) {
             $item->image = env('APP_URL').'/storage/'. $item->image;
         }
         return ResponseController::create($data, 'success', 'get all blog successfully', 200);
+    }
+
+    public function search($param){
+
+        $data = Article::where('slug', 'LIKE', "%$param%")
+                        ->orWhere('title', 'LIKE', "%$param%")
+                        ->select(['id', 'title', 'slug', 'article_category', 'image', 'time', 'date', 'updated_by', 'created_at', 'updated_at'])
+                        ->paginate(6);
+
+        foreach ($data as $item) {
+            $item->image = env('APP_URL').'/storage/'. $item->image;
+        }
+        return ResponseController::create($data, 'success', 'get search blog successfully', 200);
+    }
+
+    public function getDetail(Article $article){
+        return ResponseController::create($article, 'success', 'get blog detail successfully', 200);
     }
 
     public function latest(){
