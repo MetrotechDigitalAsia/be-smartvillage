@@ -39,6 +39,7 @@ class ArticleController extends Controller
     }
 
     public function getDetail(Article $article){
+        $article->image = env('APP_URL').'/storage/'. $article->image;
         return ResponseController::create($article, 'success', 'get blog detail successfully', 200);
     }
 

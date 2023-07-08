@@ -53,9 +53,9 @@ Route::group(['middleware' => 'api_key'],function(){
             'controller' => ArticleController::class
         ], function(){
             Route::get('/', 'index');
+            Route::get('/latest', 'latest');
             Route::get('/{article}', 'getDetail');
             Route::post('/search/{param}', 'search');
-            Route::get('/latest', 'latest');
         });
 
         Route::group([
@@ -81,9 +81,9 @@ Route::group(['middleware' => 'api_key'],function(){
             'controller' => SisfoUserBusinessItemController::class
         ], function(){
             Route::get('/', 'index');
+            Route::get('/latest', 'getLatest');
             Route::get('/{userBusinessItem}', 'getDetail');
             Route::post('/search/{param}', 'search');
-            Route::get('/latest', 'getLatest');
         });
 
         Route::group([
