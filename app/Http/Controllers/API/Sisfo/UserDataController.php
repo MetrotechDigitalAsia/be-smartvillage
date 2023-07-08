@@ -39,7 +39,7 @@ class UserDataController extends Controller
 
     public function getByEducation(){
 
-        $data = UserData::select('pendidikan',DB::raw('COUNT(*) as total'))
+        $data = UserData::select('pendidikan as value',DB::raw('COUNT(*) as total'))
                         ->groupBy('pendidikan')
                         ->get();
 
@@ -49,8 +49,28 @@ class UserDataController extends Controller
 
     public function getByGender(){
 
-        $data = UserData::select('jenis_kelamin',DB::raw('COUNT(*) as total'))
+        $data = UserData::select('jenis_kelamin as value',DB::raw('COUNT(*) as total'))
                         ->groupBy('jenis_kelamin')
+                        ->get();
+
+        return ResponseController::create($data, 'success', 'get resident data', 200);
+
+    }
+
+    public function getByJob(){
+
+        $data = UserData::select('pekerjaan as value',DB::raw('COUNT(*) as total'))
+                        ->groupBy('pekerjaan')
+                        ->get();
+
+        return ResponseController::create($data, 'success', 'get resident data', 200);
+
+    }
+
+    public function getByBanjar(){
+
+        $data = UserData::select('banjar as value',DB::raw('COUNT(*) as total'))
+                        ->groupBy('banjar')
                         ->get();
 
         return ResponseController::create($data, 'success', 'get resident data', 200);
@@ -71,7 +91,7 @@ class UserDataController extends Controller
                 break;
         }
 
-        $data = UserData::select($type,DB::raw('COUNT(*) as total'))
+        $data = UserData::select("$type as value",DB::raw('COUNT(*) as total'))
                 ->groupBy($type)
                 ->get();
 
