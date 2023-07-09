@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Sisfo;
 
 use App\Http\Controllers\API\ResponseController;
 use App\Http\Controllers\Controller;
+use App\Models\ItemBusinessCategory;
 use App\Models\UserBusinessItem;
 use Illuminate\Support\Facades\Request;
 
@@ -11,11 +12,13 @@ class UserBusinessItemController extends Controller
 {
     public function index(){
 
-        $category_id = request()->query('category_id');
+        $category_id = request()->query('category');
+
+        $category = ItemBusinessCategory::whereItemCategory($category_id)->first();
 
         $data = UserBusinessItem::where('status', 'approve')
-                ->when(!empty($category_id), function($q) use ($category_id) {
-                    $q->where('item_category_id', $category_id);
+                ->when(!empty($category_id), function($q) use ($category) {
+                    $q->where('item_category_id', $category->id);
                 })->paginate(6);
 
         foreach ($data as $item) {
