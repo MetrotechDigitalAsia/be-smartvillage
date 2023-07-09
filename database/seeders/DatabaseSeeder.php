@@ -67,15 +67,15 @@ class DatabaseSeeder extends Seeder
         ComplaintCategory::create(['complaint_category' => 'Umum']);
         ComplaintCategory::create(['complaint_category' => 'layanan Terpadu']);
 
-        ItemBusinessCategory::create(['item_category' => 'Jasa']);
-        ItemBusinessCategory::create(['item_category' => 'Makanan & Minuman']);
-        ItemBusinessCategory::create(['item_category' => 'Ternak']);
-        ItemBusinessCategory::create(['item_category' => 'Elektronik']);
-        ItemBusinessCategory::create(['item_category' => 'Properti']);
-        ItemBusinessCategory::create(['item_category' => 'Pakaian']);
-        ItemBusinessCategory::create(['item_category' => 'Perabotan']);
-        ItemBusinessCategory::create(['item_category' => 'Kesehatan']);
-        ItemBusinessCategory::create(['item_category' => 'Lainnya']);
+        ItemBusinessCategory::create(['item_category' => 'Jasa', 'slug' => 'jasa']);
+        ItemBusinessCategory::create(['item_category' => 'Makanan & Minuman', 'slug' => 'makanan-&-minuman' ]);
+        ItemBusinessCategory::create(['item_category' => 'Ternak', 'slug' => 'ternak']);
+        ItemBusinessCategory::create(['item_category' => 'Elektronik', 'slug' => 'elektronik']);
+        ItemBusinessCategory::create(['item_category' => 'Properti', 'slug' => 'properti']);
+        ItemBusinessCategory::create(['item_category' => 'Pakaian', 'slug' => 'pakaian']);
+        ItemBusinessCategory::create(['item_category' => 'Perabotan', 'slug' => 'perabotan']);
+        ItemBusinessCategory::create(['item_category' => 'Kesehatan', 'slug' => 'kesehatan']);
+        ItemBusinessCategory::create(['item_category' => 'Lainnya', 'slug' => 'lainnya']);
 
         $users = UserData::limit(5)->get();
 

@@ -14,7 +14,7 @@ class UserBusinessItemController extends Controller
 
         $category_id = request()->query('category');
 
-        $category = ItemBusinessCategory::whereItemCategory($category_id)->first();
+        $category = ItemBusinessCategory::whereSlug($category_id)->first();
 
         $data = UserBusinessItem::where('status', 'approve')
                 ->when(!empty($category_id), function($q) use ($category) {
