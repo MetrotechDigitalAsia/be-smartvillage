@@ -22,19 +22,7 @@
         </tr>
         <tr>
             <td>Status</td>
-            <td>: 
-                @if ($data->applicant_family_status != 'SUAMI' && $data->applicant_family_status != 'KEPALA KELUARGA') <del> @endif
-                Ayah
-                @if ($data->applicant_family_status != 'SUAMI' && $data->applicant_family_status != 'KEPALA KELUARGA') </del> @endif
-                / 
-                @if ($data->applicant_family_status != 'ISTRI')<del> @endif
-                Ibu
-                @if ($data->applicant_family_status != 'ISTRI')</del> @endif
-                /
-                @if ($data->applicant_family_status != 'ISTRI')<del> @endif 
-                Seorang Ibu
-                @if ($data->applicant_family_status != 'ISTRI')<del> @endif 
-            </td>
+            <td>: Ayah/Ibu/Seorang Ibu</td>
         </tr>
     </table>
     <p  >Menyatakan dengan sebenarnya bahwa :</p>

@@ -53,7 +53,7 @@
         <tr>
             <td></td>
             <td>Umur</td>
-            <td>: {{ $field->husband->age }} tahun</td>
+            <td>: {{ $field->husband->age }} Tahun</td>
         </tr>
         <tr>
             <td></td>
@@ -77,7 +77,7 @@
         <tr>
             <td></td>
             <td>Umur</td>
-            <td>: {{ $field->wife->age }} tahun</td>
+            <td>: {{ $field->wife->age }} Tahun</td>
         </tr>
         <tr>
             <td></td>

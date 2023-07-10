@@ -43,7 +43,7 @@
         <tr>
             <td></td>
             <td>Umur</td>
-            <td>: {{ $field->husband->age }} tahun</td>
+            <td>: {{ $field->husband->age }} Tahun</td>
         </tr>
         <tr>
             <td></td>
@@ -66,7 +66,7 @@
         <tr>
             <td></td>
             <td>Umur</td>
-            <td>: {{ $field->wife->age }} tahun</td>
+            <td>: {{ $field->wife->age }} Tahun</td>
         </tr>
         <tr>
             <td></td>
@@ -92,7 +92,7 @@
                 <tr>
                     <td></td>
                     <td>Umur</td>
-                    <td>: {{ $data->saksi_1->age ?? '-'}} tahun</td>
+                    <td>: {{ $data->saksi_1->age ?? '-'}} Tahun</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -119,7 +119,7 @@
                 <tr>
                     <td></td>
                     <td>Umur</td>
-                    <td>: {{ $data->saksi_2->age ?? '-' }} tahun</td>
+                    <td>: {{ $data->saksi_2->age ?? '-' }} Tahun</td>
                 </tr>
                 <tr>
                     <td></td>

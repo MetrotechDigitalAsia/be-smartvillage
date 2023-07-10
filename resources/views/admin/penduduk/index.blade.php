@@ -156,6 +156,23 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col">
+        <div class="card card-custom gutter-b" >
+            <div class="card-header border-0 pb-0">
+                <div class="card-title">
+                    <h3 class="card-label fs-md">Penduduk Penyandang Disabilitas</h3>
+                </div>
+            </div>
+            <div class="card-body px-10 pb-10 pt-0">
+                <!--begin::Chart-->
+                <div id="disability_chart"></div>
+                <!--end::Chart-->
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('script')
@@ -171,6 +188,7 @@
         const age = {!! json_encode($age) !!}
         const residentJobs = {!! json_encode($residentJobs) !!}
         const educations = {!! json_encode($educations) !!}
+        const disabilities = {!! json_encode($disabilityPeople) !!}
 
         const jobGlide = new Glide('.job-glide')
 
@@ -282,8 +300,27 @@
                             }
                         },
                         x: {
-                            formatter: function (val) {
-                                return val
+                            formatter: function (val, e) {
+                                switch (val) {
+                                    case 'Anak Anak':
+                                        return 'Anak Anak Umur 0-10 Tahun'
+                                        break;
+
+                                    case 'Remaja':
+                                        return 'Remaja Umur 11-19 Tahun'
+                                        break;
+
+                                    case 'Dewasa':
+                                        return 'Dewasa Umur 20-59 Tahun'
+                                        break;
+
+                                    case 'Lansia':
+                                        return 'Lansia Umur 60 tahun keatas'
+                                        break;
+                                
+                                    default:
+                                        break;
+                                }
                             },
                         }
                     },
@@ -366,10 +403,47 @@
 
             }
 
+            const disabilityChart = function(data){
+
+                const dataset = data.map(e => ({ x: e.jenis_disabilitas, y: e.jumlah }))
+
+                const el = document.querySelector('#disability_chart')
+                const opt = {
+                    chart: {
+                        type: 'bar',
+                        height: 350,
+                        toolbar: {
+                            show: false
+                        }
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: true,
+                            columnWidth: '45%',
+                            distributed: true
+                            // endingShape: 'rounded'
+                        },
+                    },
+                    series: [{
+                        data: dataset
+                    }],
+                    legend: {
+                        show: false,
+                        position: 'bottom',
+                    },
+                    colors: [primary, success, warning]
+                }
+
+                const chart = new ApexCharts(el, opt)
+                chart.render()
+
+            }
+
             return {
                 init: function(){
                     genderChart(gender)
                     ageChart(age)
+                    disabilityChart(disabilities)
                     residentJobs.forEach( (data, i) => workChart(data, `#work_chart_${i+1}`))
                     educations.forEach( (data, i) => educationChart(data, `#education_chart_${i+1}`))
                 }
