@@ -45,6 +45,8 @@ class ItemBusinessCategoryController extends Controller
             'item_category' => 'required|unique:item_business_categories',
         ]);
 
+        $validated['slug'] = str_replace(' ', '-', strtolower($validated['item_category']));
+
         try {
             ItemBusinessCategory::create($validated);
         } catch (\Exception $e){
@@ -61,6 +63,8 @@ class ItemBusinessCategoryController extends Controller
         $validated = $request->validate([
             'item_category' => 'required|unique:item_business_categories',
         ]);
+
+        $validated['slug'] = str_replace(' ', '-', strtolower($validated['item_category']));
 
         try {
             ItemBusinessCategory::find($itemBusinessCategory->id)->update($validated);
