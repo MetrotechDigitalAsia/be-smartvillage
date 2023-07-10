@@ -55,14 +55,18 @@ class UserDataController extends Controller
         $education = DB::connection('resident_mysql')
                     ->table('resident_data')
                     ->select('pendidikan', DB::raw('COUNT(*) as jumlah'))
-                    ->orderBy('jumlah')
+                    ->orderBy('jumlah', 'DESC')
                     ->groupBy('pendidikan')
                     ->get()
                     ->toArray();
 
+        list($education_1, $education_2) = array_chunk($education, count($education) / 2);
+
+        $educations = [$education_1, $education_2];
+
         $banjar = compact('kauh', 'buangga', 'tengah', 'ubud');
 
-        return view('admin.penduduk.index', compact('banjar', 'gender', 'age', 'residentJobs', 'education'));
+        return view('admin.penduduk.index', compact('banjar', 'gender', 'age', 'residentJobs', 'educations'));
     }
 
 

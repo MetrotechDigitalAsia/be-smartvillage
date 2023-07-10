@@ -92,7 +92,7 @@
             <div class="card-body pb-10 pt-0">
                 <!--begin::Chart-->
                 <div id="">
-                    <div class="glide">
+                    <div class="job-glide">
                         <div class="glide__track" data-glide-el="track">
                           <ul class="glide__slides">
                             @foreach ($residentJobs as $key => $residentJob)
@@ -103,13 +103,13 @@
                           </ul>
                         </div>
                         <div class="d-flex flex-wrap justify-content-end py-2 mr-3">
-                            <button onclick="glide.go(`<<`)" class="btn btn-icon btn-sm btn-hover-primary btn-light mr-2 my-1"><i class="ki ki-bold-double-arrow-back icon-xs"></i></button>
-                            <button onclick="glide.go(`<`)" class="btn btn-icon btn-sm btn-hover-primary btn-light mr-2 my-1"><i class="ki ki-bold-arrow-back icon-xs"></i></button>
+                            <button onclick="jobGlide.go(`<<`)" class="btn btn-icon btn-sm btn-hover-primary btn-light mr-2 my-1"><i class="ki ki-bold-double-arrow-back icon-xs"></i></button>
+                            <button onclick="jobGlide.go(`<`)" class="btn btn-icon btn-sm btn-hover-primary btn-light mr-2 my-1"><i class="ki ki-bold-arrow-back icon-xs"></i></button>
                             @foreach ($residentJobs as $key => $item)
-                            <button onclick="glide.go('={{{ $key }}}')" class="btn btn-icon btn-sm btn-hover-primary border-0 mr-2 my-1 caro-btn caro-btn-{{ $key }}">{{ $key+1 }}</button>
+                            <button onclick="jobGlide.go('={{{ $key }}}')" class="btn btn-icon btn-sm btn-hover-primary border-0 mr-2 my-1 caro-btn caro-btn-{{ $key }}">{{ $key+1 }}</button>
                             @endforeach
-                            <button onclick="glide.go('>')" class="btn btn-icon btn-sm btn-light btn-hover-primary mr-2 my-1"><i class="ki ki-bold-arrow-next icon-xs"></i></button>
-                            <button onclick="glide.go('>>')" class="btn btn-icon btn-sm btn-light btn-hover-primary mr-2 my-1"><i class="ki ki-bold-double-arrow-next icon-xs"></i></button>
+                            <button onclick="jobGlide.go('>')" class="btn btn-icon btn-sm btn-light btn-hover-primary mr-2 my-1"><i class="ki ki-bold-arrow-next icon-xs"></i></button>
+                            <button onclick="jobGlide.go('>>')" class="btn btn-icon btn-sm btn-light btn-hover-primary mr-2 my-1"><i class="ki ki-bold-double-arrow-next icon-xs"></i></button>
                         </div>
                     </div>
                 </div>
@@ -129,7 +129,27 @@
             </div>
             <div class="card-body px-10 pb-10 pt-0">
                 <!--begin::Chart-->
-                <div id="education_chart"></div>
+                <div class="education-glide">
+                    <div class="glide__track" data-glide-el="track">
+                        <ul class="glide__slides">
+                        @foreach ($educations as $key => $residentJob)
+                        <li class="glide__slide">
+                            <div id="education_chart_{{ $key+1 }}"></div>
+                        </li>
+                        @endforeach
+                        </ul>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-end py-2 mr-3">
+                        <button onclick="educationGlide.go(`<<`)" class="btn btn-icon btn-sm btn-hover-primary btn-light mr-2 my-1"><i class="ki ki-bold-double-arrow-back icon-xs"></i></button>
+                        <button onclick="educationGlide.go(`<`)" class="btn btn-icon btn-sm btn-hover-primary btn-light mr-2 my-1"><i class="ki ki-bold-arrow-back icon-xs"></i></button>
+                        @foreach ($educations as $key => $item)
+                        <button onclick="educationGlide.go('={{{ $key }}}')" class="btn btn-icon btn-sm btn-hover-primary border-0 mr-2 my-1 education-caro-btn education-caro-btn-{{ $key }}">{{ $key+1 }}</button>
+                        @endforeach
+                        <button onclick="educationGlide.go('>')" class="btn btn-icon btn-sm btn-light btn-hover-primary mr-2 my-1"><i class="ki ki-bold-arrow-next icon-xs"></i></button>
+                        <button onclick="educationGlide.go('>>')" class="btn btn-icon btn-sm btn-light btn-hover-primary mr-2 my-1"><i class="ki ki-bold-double-arrow-next icon-xs"></i></button>
+                    </div>
+                </div>
+                
                 <!--end::Chart-->
             </div>
         </div>
@@ -150,16 +170,26 @@
         const gender = {!! json_encode($gender) !!}
         const age = {!! json_encode($age) !!}
         const residentJobs = {!! json_encode($residentJobs) !!}
-        const education = {!! json_encode($education) !!}
+        const educations = {!! json_encode($educations) !!}
 
-        const glide = new Glide('.glide')
+        const jobGlide = new Glide('.job-glide')
 
-        glide.mount()
+        jobGlide.mount()
 
-        glide.on(['mount.after', 'run'], function(){
+        jobGlide.on(['mount.after', 'run'], function(){
             document.querySelectorAll(`.caro-btn`).forEach(el => el.classList.remove('btn-primary'))
-            const index = glide.index
+            const index = jobGlide.index
             document.querySelector(`.caro-btn-${index}`).classList.add('btn-primary')
+        })
+
+        const educationGlide = new Glide('.education-glide')
+
+        educationGlide.mount()
+
+        educationGlide.on(['mount.after', 'run'], function(){
+            document.querySelectorAll(`.education-caro-btn`).forEach(el => el.classList.remove('btn-primary'))
+            const index = educationGlide.index
+            document.querySelector(`.education-caro-btn-${index}`).classList.add('btn-primary')
         })
 
         const ChartWidget = function(){
@@ -266,11 +296,6 @@
 
             const workChart = function(data, elem){
 
-                const series = data.map(e => e.jumlah)
-                const labels = data.map(e => e.pekerjaan)
-
-                console.log({ series, labels })
-
                 const dataset = data.map(e => ({ x: e.pekerjaan, y: e.jumlah }))
 
                 const el = document.querySelector(elem)
@@ -305,84 +330,34 @@
 
             }
 
-            const educationChart = function(data){
+            const educationChart = function(data, elem){
 
-                const series = data.map(e => e.jumlah)
-                const labels = data.map(e => e.pendidikan)
+                const dataset = data.map(e => ({ x: e.pendidikan, y: e.jumlah }))
 
-                // const series = Object.values(gender)
-                // const labels = Object.keys(gender)
-
-                const el = document.querySelector('#education_chart')
+                const el = document.querySelector(elem)
                 const opt = {
                     chart: {
                         type: 'bar',
-                        height: 600,
+                        height: 350,
                         toolbar: {
-                            show: false
-                        }
-                    },
-                    series: [{
-                        data: series
-                    }],
-                    xaxis: {
-                        categories: labels,
-                    },
-                    yaxis: {
-                        labels: {
                             show: false
                         }
                     },
                     plotOptions: {
                         bar: {
                             horizontal: true,
-                            columnWidth: '100%',
-                            distributed: true,
-                            borderRadius: 110,
-                            dataLabels: {
-                                // position: 'bottom'
-                            },
+                            columnWidth: '45%',
+                            distributed: true
+                            // endingShape: 'rounded'
                         },
                     },
-                    dataLabels: {
-                        enabled: true,
-                        textAnchor: 'start',
-                        style: {
-                            colors: ['#fff']
-                        },
-                        formatter: function (val, opt) {
-                            return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
-                        },
-                        offsetX: 0,
-                        dropShadow: {
-                            enabled: true,
-                            opacity: 0.4
-                        },
-                    },
-                    stroke: {
-                        show: true,
-                        width: 2,
-                        colors: ['transparent']
-                    },
-                    fill: {
-                        opacity: 1
-                    },
-                    tooltip: {
-                        y: {
-                            formatter: function (val, e) {
-                                return val + " orang"
-                            }
-                        },
-                        x: {
-                            formatter: function (val) {
-                                return val
-                            },
-                        }
-                    },
+                    series: [{
+                        data: dataset
+                    }],
                     legend: {
-                        show: false
+                        show: false,
+                        position: 'bottom',
                     },
-                    // colors: [primary, success, warning, '#FF3D00', '#FF5252', '#FF8A80', '#FFC400', '#FFD54F', '#CDDC39']
                     colors: [primary, success, warning]
                 }
 
@@ -395,8 +370,8 @@
                 init: function(){
                     genderChart(gender)
                     ageChart(age)
-                    educationChart(education)
                     residentJobs.forEach( (data, i) => workChart(data, `#work_chart_${i+1}`))
+                    educations.forEach( (data, i) => educationChart(data, `#education_chart_${i+1}`))
                 }
             }
         }()
@@ -406,6 +381,7 @@
         });
 
         document.querySelector('.caro-btn').classList.add('btn-primary')
+        document.querySelector('.education-caro-btn').classList.add('btn-primary')
 
 
     </script>

@@ -11,7 +11,7 @@ use App\Http\Controllers\API\Sisfo\{
     ItemBusinessCategoryController as SisfoItemBusinessCategoryController,
     ArticleCategoryController,
     UserDataController,
-    ArticleController,
+    ArticleController as SisfoArticleController,
     InvestationController
 };
 
@@ -21,6 +21,7 @@ use App\Http\Controllers\API\Mobile\{
     ItemBusinessCategoryController as MobileItemBusinessCategoryController,
     UserLoginController,
     UserMailController,
+    ArticleController as MobileArticleController,
 };
 
 use App\Http\Controllers\API\TourismMap\{
@@ -51,7 +52,7 @@ Route::group(['middleware' => 'api_key'],function(){
 
         Route::group([
             'prefix' => 'blog',
-            'controller' => ArticleController::class
+            'controller' => SisfoArticleController::class
         ], function(){
             Route::get('/', 'index');
             Route::get('/latest', 'latest');
@@ -115,6 +116,14 @@ Route::group(['middleware' => 'api_key'],function(){
         });
 
         Route::group([
+            'prefix' => 'article',
+            'controller' => MobileArticleController::class
+        ], function(){
+            Route::get('/', 'index');
+            Route::get('/latest', 'latest');
+        });
+
+        Route::group([
             'prefix' => 'mail',
             'controller' => UserMailController::class
         ], function(){
@@ -142,6 +151,8 @@ Route::group(['middleware' => 'api_key'],function(){
             Route::get('/{userId}','getByUser');
             Route::post('/{userId}','store');
         });
+
+
 
         Route::group([
             'prefix' => 'umkmCategory',
