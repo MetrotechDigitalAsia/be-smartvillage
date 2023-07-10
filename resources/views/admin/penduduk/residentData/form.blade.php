@@ -445,6 +445,36 @@
                             </div>
                         </div>
 
+                        <div class="form-group row align-items-center">
+                            <label class="col-xl-3 col-lg-3 col-form-label">Penyandang Disabilitas</label>
+                            <div class="col-lg-9 col-xl-6">
+                                <div class="checkbox-inline">
+                                    <label class="checkbox checkbox-outline checkbox-success">
+                                        <input onchange="handleChangePenyandangDisabilitas(this)" type="checkbox" {{ !empty($user) ? $user['penyandang_disabilitas'] == '1' ? 'checked' : '' : '' }} name="penyandang_disabilitas"/>
+                                        <span></span>
+                                        Ya
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row penyandang-disabilitas-input {{ !empty($user) ? $user['penyandang_disabilitas'] == '0' || empty($user['penyandang_disabilitas']) ? 'd-none' : '' : '' }} ">
+                            <label class="col-xl-3 col-lg-3 col-form-label">Jenis Disabilitas</label>
+                            <div class="col-6">
+                                @php
+                                    $option = ['Fisik', 'Intelektual', 'Mental', 'Sensorik Wicara', 'Sensorik Rungu', 'Sensorik Netra', 'Disabilitas Ganda']
+                                @endphp
+                                <select class="form-control form-control-lg" name="jenis_disabilitas" >
+                                    <option value="">Pilih...</option>
+                                    @foreach ($option as $item)
+                                    <option value="{{ $item }}" {{ !empty($user) ? $user['jenis_disabilitas'] == $item ? 'selected' : '' : ''}}  >
+                                        {{ $item }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group row align-items-center">    
                             <label class="col-xl-3 col-lg-3 col-form-label">Status Mutasi Penduduk</label>
                             <div class="col-lg-9 col-xl-6">
@@ -544,6 +574,13 @@
         function emptyMutasi(){
             document.querySelectorAll('.mutasi-radio').forEach( e => e.checked = false )
             // console.log(el)
+        }
+
+        function handleChangePenyandangDisabilitas(el){
+            if(el.checked)
+                document.querySelector('.penyandang-disabilitas-input').classList.remove('d-none')
+            else
+                document.querySelector('.penyandang-disabilitas-input').classList.add('d-none')
         }
 
     </script>

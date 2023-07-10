@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
         ComplaintCategory::create(['complaint_category' => 'layanan Terpadu']);
 
         ItemBusinessCategory::create(['item_category' => 'Jasa', 'slug' => 'jasa']);
-        ItemBusinessCategory::create(['item_category' => 'Makanan & Minuman', 'slug' => 'makanan-&-minuman' ]);
+        ItemBusinessCategory::create(['item_category' => 'Makanan dan Minuman', 'slug' => 'makanan-dan-minuman' ]);
         ItemBusinessCategory::create(['item_category' => 'Ternak', 'slug' => 'ternak']);
         ItemBusinessCategory::create(['item_category' => 'Elektronik', 'slug' => 'elektronik']);
         ItemBusinessCategory::create(['item_category' => 'Properti', 'slug' => 'properti']);

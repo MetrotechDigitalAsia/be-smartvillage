@@ -25,10 +25,10 @@ class UserDataController extends Controller
         $age = DB::connection('resident_mysql')->table('resident_data')
                 ->select(DB::raw('
                     CASE
-                        WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) <= 11 THEN "Anak Anak"
-                        WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) >= 12 AND YEAR(NOW()) - YEAR(TANGGAL_LAHIR) <= 18 THEN "Remaja"
-                        WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) >= 19 AND YEAR(NOW()) - YEAR(TANGGAL_LAHIR) <= 45 THEN "Dewasa"
-                        WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) > 45 THEN "Lansia"
+                        WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) <= 10 THEN "Anak Anak"
+                        WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) >= 11 AND YEAR(NOW()) - YEAR(TANGGAL_LAHIR) <= 19 THEN "Remaja"
+                        WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) >= 20 AND YEAR(NOW()) - YEAR(TANGGAL_LAHIR) <= 59 THEN "Dewasa"
+                        WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) > 59 THEN "Lansia"
                     END AS KATEGORI,
                     COUNT(*) as jumlah'))
                 ->groupBy('KATEGORI')
@@ -61,12 +61,20 @@ class UserDataController extends Controller
                     ->toArray();
 
         list($education_1, $education_2) = array_chunk($education, count($education) / 2);
-
         $educations = [$education_1, $education_2];
 
         $banjar = compact('kauh', 'buangga', 'tengah', 'ubud');
 
-        return view('admin.penduduk.index', compact('banjar', 'gender', 'age', 'residentJobs', 'educations'));
+        $disabilityPeople = DB::connection('resident_mysql')
+                            ->table('resident_data')
+                            ->where('penyandang_disabilitas', '=', 1)
+                            ->select('jenis_disabilitas', DB::raw('COUNT(*) as jumlah'))
+                            ->orderBy('jumlah', 'DESC')
+                            ->groupBy('jenis_disabilitas')
+                            ->get()
+                            ->toArray();
+
+        return view('admin.penduduk.index', compact('banjar', 'gender', 'age', 'residentJobs', 'educations', 'disabilityPeople'));
     }
 
 
@@ -128,6 +136,10 @@ class UserDataController extends Controller
             $data['ketua_banjar'] = 1;
         }
 
+        $data['penyandang_disabilitas'] = isset($data['penyandang_disabilitas']) ? 1 : 0;
+
+        dd($data);
+
         try {
 
             UserData::create($data);
@@ -160,6 +172,8 @@ class UserDataController extends Controller
         $data['ketua_RT'] = isset($data['ketua_RT']) ? 1 : 0;
         $data['ketua_RW'] = isset($data['ketua_RW']) ? 1 : 0;
         $data['ketua_banjar'] = isset($data['ketua_banjar']) ? 1 : 0;
+
+        $data['penyandang_disabilitas']  = isset($data['penyandang_disabilitas']) ? 1: 0;
 
         if($data['no_kk'] != $userData->no_kk){
             UserData::where('no_kk', $userData->no_kk)->update(['no_kk' => $data['no_kk']]);
