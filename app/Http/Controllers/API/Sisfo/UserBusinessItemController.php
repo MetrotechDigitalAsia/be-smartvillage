@@ -19,7 +19,7 @@ class UserBusinessItemController extends Controller
         $data = UserBusinessItem::where('status', 'approve')
                 ->when(!empty($category_id), function($q) use ($category) {
                     $q->where('item_category_id', $category->id);
-                })->paginate(6);
+                })->paginate(12);
 
         foreach ($data as $item) {
             $item->item_price = number_format($item->item_price);
@@ -31,7 +31,7 @@ class UserBusinessItemController extends Controller
 
     public function search($param){
 
-        $data = UserBusinessItem::where('item_name', 'LIKE', "%$param%")->paginate(6);
+        $data = UserBusinessItem::where('item_name', 'LIKE', "%$param%")->paginate(12);
 
         foreach ($data as $item) {
             $item->item_price = number_format($item->item_price);
