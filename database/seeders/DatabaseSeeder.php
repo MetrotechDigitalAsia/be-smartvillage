@@ -6,12 +6,10 @@ namespace Database\Seeders;
 
 use App\Models\ComplaintCategory;
 use App\Models\Admin;
-use App\Models\BLT;
 use App\Models\ItemBusinessCategory;
 use App\Models\Mail;
 use App\Models\Signature;
 use App\Models\UserData;
-use App\Models\UserLogin;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 

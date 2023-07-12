@@ -93,7 +93,6 @@
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCem_6fvhccSrm6U1cEUQLPEJfEeuxcNY&libraries=places"></script>
 
 		<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
-		{{-- <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script> --}}
 		<script type="module">
 			// Import the functions you need from the SDKs you need
 			import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -117,23 +116,6 @@
 			// Initialize Firebase
 			const app = initializeApp(firebaseConfig);
     		const messaging = getMessaging(app);
-
-
-			// function initFirebaseMessagingRegistration(){
-
-			// 	messaging.requestPermission()
-			// 	.then(() => {
-			// 		messaging.getToken()
-			// 		console.log('hit token')
-			// 	})
-			// 	.then(token => {
-			// 		console.log(token)
-			// 	})
-			// 	.catch(e => console.log(e))
-
-			// }
-
-			// initFirebaseMessagingRegistration()
 
 
 		</script>

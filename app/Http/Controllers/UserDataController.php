@@ -137,8 +137,7 @@ class UserDataController extends Controller
         }
 
         $data['penyandang_disabilitas'] = isset($data['penyandang_disabilitas']) ? 1 : 0;
-
-        dd($data);
+        $data['penerima_bantuan']  = isset($data['penerima_bantuan']) ? 1: 0;
 
         try {
 
@@ -172,8 +171,8 @@ class UserDataController extends Controller
         $data['ketua_RT'] = isset($data['ketua_RT']) ? 1 : 0;
         $data['ketua_RW'] = isset($data['ketua_RW']) ? 1 : 0;
         $data['ketua_banjar'] = isset($data['ketua_banjar']) ? 1 : 0;
-
         $data['penyandang_disabilitas']  = isset($data['penyandang_disabilitas']) ? 1: 0;
+        $data['penerima_bantuan']  = isset($data['penerima_bantuan']) ? 1: 0;
 
         if($data['no_kk'] != $userData->no_kk){
             UserData::where('no_kk', $userData->no_kk)->update(['no_kk' => $data['no_kk']]);
