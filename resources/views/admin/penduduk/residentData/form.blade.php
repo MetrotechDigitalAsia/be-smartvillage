@@ -446,6 +446,19 @@
                         </div>
 
                         <div class="form-group row align-items-center">
+                            <label class="col-xl-3 col-lg-3 col-form-label">Penerima Bantuan</label>
+                            <div class="col-lg-9 col-xl-6">
+                                <div class="checkbox-inline">
+                                    <label class="checkbox checkbox-outline checkbox-success">
+                                        <input type="checkbox" {{ !empty($user) ? $user['penerima_bantuan'] == '1' ? 'checked' : '' : '' }} name="penerima_bantuan"/>
+                                        <span></span>
+                                        Ya
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row align-items-center">
                             <label class="col-xl-3 col-lg-3 col-form-label">Penyandang Disabilitas</label>
                             <div class="col-lg-9 col-xl-6">
                                 <div class="checkbox-inline">
@@ -458,7 +471,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row penyandang-disabilitas-input {{ !empty($user) ? $user['penyandang_disabilitas'] == '0' || empty($user['penyandang_disabilitas']) ? 'd-none' : '' : '' }} ">
+                        <div class="form-group row penyandang-disabilitas-input {{ !empty($user) ? $user['penyandang_disabilitas'] == '0' ? 'd-none' : '' : 'd-none' }} ">
                             <label class="col-xl-3 col-lg-3 col-form-label">Jenis Disabilitas</label>
                             <div class="col-6">
                                 @php
