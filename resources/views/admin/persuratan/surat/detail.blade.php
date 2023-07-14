@@ -61,7 +61,7 @@
                     <h5 class="modal-title">Pemberitahuan</h5>
                 </div>
                 <div class="modal-body">
-                    <span>yakin ingin <span class="mail-type"></span> surat dengan nomor <span class="mail-num" ></span> ?</span>
+                    <span>yakin ingin <span class="mail-type"></span> surat ?</span>
                 </div>
                 <div class="modal-footer py-2 border-0">
                     <button type="button" class="btn btn-text font-weight-bold" data-dismiss="modal">Batal</button>
@@ -92,7 +92,6 @@
 
     function onActionClick(btn, type){
         const mailId = btn.getAttribute('data-mail-id')        
-        const mailNum = btn.getAttribute('data-mail-num')
         const approveBtn = document.querySelector('.approve-btn')
 
         let mailType
@@ -110,8 +109,6 @@
         }
         
         document.querySelector('.mail-type').innerHTML = mailType
-        document.querySelector('.mail-num').innerHTML = mailNum
-
         approveBtn.setAttribute('data-href', `/persuratan/surat/changeStatus/${mailId}/${type}`)
 
     }

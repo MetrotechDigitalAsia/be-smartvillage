@@ -654,9 +654,9 @@
                             $child_birthdate = Carbon\Carbon::parse($field->child_birth_date)->format('d-m-Y');
                             $child_birthdate = explode('-',$child_birthdate);
                         @endphp
-                        @for ($i = 0; $i < 5; $i++)
+                        @for ($i = 0; $i < 6; $i++)
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; text-transform: uppercase;" >
-                            {{ $child_birthday[$i] ?? '' }}
+                            {{ $child_birthday[$i] ?? '#' }}
                         </td>
                         @endfor
                         <td colspan="3" style="text-align: right;" >
@@ -675,7 +675,7 @@
                             {{$item}}
                         </td>
                         @endforeach
-                        <td colspan="4" style="text-align: right;" >
+                        <td colspan="3" style="text-align: right;" >
                             Tahun : 
                         </td>
                         @foreach (str_split($child_birthdate[2]) as $item)

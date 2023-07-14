@@ -4,7 +4,8 @@
         <!--begin::Copyright-->
         <div class="text-dark order-2 order-md-1">
             <span class="text-muted font-weight-bold mr-2">2023©</span>
-            <a href="https://metrotechdigital.asia/" target="_blank" class="text-dark-75 text-hover-primary">develop by Metrotech Digital Asia</a>
+            <span class="text-dark-75" >Developed by <a href="https://metrotechdigital.asia/" target="_blank" class="text-dark-75 text-hover-primary">Metrotech Digital Asia</a> </span>
+            
         </div>
         <!--end::Copyright-->
         <!--begin::Nav-->

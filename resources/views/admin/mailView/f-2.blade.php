@@ -304,7 +304,7 @@
             <tr>
                 <td>Nomor Kartu Keluarga</td>
                 <td>:</td>
-                @php $saksi_1_kk = str_split($data->saksi_1->no_kk ?? '') @endphp
+                @php $saksi_1_kk = str_split($data->saksi_1->kk ?? '') @endphp
                 @for ($i = 0; $i < 16; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                     {{ $saksi_1_kk[$i] ?? '' }}
@@ -351,7 +351,7 @@
             <tr>
                 <td>Nomor Kartu Keluarga</td>
                 <td>:</td>
-                @php $saksi_2_kk = str_split($data->saksi_2->no_kk ?? '') @endphp
+                @php $saksi_2_kk = str_split($data->saksi_2->kk ?? '') @endphp
                 @for ($i = 0; $i < 16; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                     {{ $saksi_2_kk[$i] ?? '' }}
@@ -610,12 +610,12 @@
                     $child_birthdate = Carbon\Carbon::parse($field->child_birth_date)->format('d-m-Y');
                     $child_birthdate = explode('-',$child_birthdate);
                 @endphp
-                @for ($i = 0; $i < 5; $i++)
+                @for ($i = 0; $i < 6; $i++)
                 <td style="border: 1px solid black; width: 50px !important; text-align: center; text-transform: uppercase" >
-                    {{ $child_birthday[$i] ?? '' }}
+                    {{ $child_birthday[$i] ?? '#' }}
                 </td>
                 @endfor
-                <td colspan="3" style="text-align: right;" >
+                <td colspan="2" style="text-align: right;" >
                     Tgl : 
                 </td>
                 @foreach (str_split($child_birthdate[0]) as $item)
