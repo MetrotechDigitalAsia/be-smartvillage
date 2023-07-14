@@ -598,7 +598,7 @@
             <tr>
                 <td>4. Tempat Kelahiran</td>
                 <td>:</td>
-                <td colspan="23" >
+                <td colspan="23" style="text-transform: capitalize;" >
                     {{ $field->child_birthplace ?? '' }}
                 </td>
             </tr>
