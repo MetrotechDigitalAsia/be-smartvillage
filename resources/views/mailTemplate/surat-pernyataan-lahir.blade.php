@@ -39,7 +39,7 @@
         <table style="margin-left: 50px; margin-bottom: 50px;" >
             <tr>
                 <td style="width: 170px;" >Nama</td>
-                <td>: {{ $field->child_name }}</td>
+                <td style="text-transform: capitalize;" >: {{ $field->child_name }}</td>
             </tr>
             <tr>
                 <td>Tempat/Tgl. Lahir:</td>
