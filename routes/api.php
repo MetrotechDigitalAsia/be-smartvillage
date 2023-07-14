@@ -22,6 +22,7 @@ use App\Http\Controllers\API\Mobile\{
     UserLoginController,
     UserMailController,
     ArticleController as MobileArticleController,
+    KerjaSamaController as MobileKerjaSamaController
 };
 
 use App\Http\Controllers\API\TourismMap\{
@@ -108,6 +109,13 @@ Route::group(['middleware' => 'api_key'],function(){
 
     Route::group(['prefix' => 'mobile'],function(){
         
+        Route::group([
+            'prefix' => 'kerja-sama',
+            'controller' => MobileKerjaSamaController::class
+        ], function(){
+            Route::get('/', 'index');
+        });
+
         Route::group([
             'prefix' => 'family',
             'controller' => MobileFamilyController::class

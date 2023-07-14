@@ -65,7 +65,6 @@
 					},
 					pageSize: 10,
 					serverPaging: true,
-					serverFiltering: true,
 					serverSorting: true,
 				},
 		
