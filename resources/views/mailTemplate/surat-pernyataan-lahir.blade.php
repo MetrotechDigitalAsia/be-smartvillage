@@ -16,7 +16,7 @@
         <table style="margin-left: 50px; margin-bottom: 30px;" >
             <tr>
                 <td style="width: 170px;" >Nama</td>
-                <td>: {{ $data->applicant_name }}</td>
+                <td style="text-transform: capitalize;" >: {{ $data->applicant_name }}</td>
             </tr>
             <tr>
                 <td>Umur</td>
@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <td>Tempat/Tgl. Lahir:</td>
-                <td>: {{ $field->child_birthplace }}, {{ $field->child_birth_date  }}</td>
+                <td style="text-transform: capitalize;" >: {{ $field->child_birthplace }}, {{ Carbon\Carbon::parse($field->child_birth_date)->translatedFormat('d-m-Y') }}</td>
             </tr>
             <tr>
                 <td>Jenis Kelamin</td>
@@ -59,7 +59,7 @@
             <tr>
                 <td style="width: 50%;" ></td>
                 <td style="width: 50%;" >
-                    Mangupura, {{ Carbon\Carbon::now()->translatedFormat('l, F d, Y') }}
+                    Mangupura, {{ Carbon\Carbon::now()->translatedFormat('d F Y') }}
                 </td>
             </tr>
             <tr>
