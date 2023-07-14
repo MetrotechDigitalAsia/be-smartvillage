@@ -554,7 +554,7 @@
                 <td rowspan="2" >:</td>
                 <td style="border: 1px solid black; width: 50px !important; position: relative;" >
                     @if ($field->child_birth_of_place == 'RS/RB')
-                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
+                    <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px; text-transform: capitalize;" >
                     @endif
                 </td>
                 <td colspan="4" style="width: 50px !important;" >
