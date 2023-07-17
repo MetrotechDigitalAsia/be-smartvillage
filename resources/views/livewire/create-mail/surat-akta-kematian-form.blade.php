@@ -7,12 +7,25 @@
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
-    <div class="form-group">
-        <label>Tanggal Kematian</label>
-        <input wire:model.lazy="date_of_death" class="form-control @error('date_of_death') is-invalid @enderror " type="date"  />
-        @error('date_of_death')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label>Tanggal Kematian</label>
+                <input wire:model.lazy="date_of_death" class="form-control @error('date_of_death') is-invalid @enderror " type="date"  />
+                @error('date_of_death')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label>Pukul Kematian</label>
+                <input wire:model.lazy="time_of_death" class="form-control @error('time_of_death') is-invalid @enderror " type="time"  />
+                @error('time_of_death')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
     </div>
     <div class="form-group validated">
         <label>Penyebab Kematian</label>
@@ -24,6 +37,13 @@
             @endforeach
         </select>
         @error('cause_of_death')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="form-group">
+        <label>Tempat Meninggal</label>
+        <input wire:model.lazy="place_of_death" class="form-control @error('place_of_death') is-invalid @enderror " type="text"  />
+        @error('place_of_death')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>

@@ -12,6 +12,8 @@ class SuratAktaKematianForm extends Component
 {
 
     public $date_of_death;
+    public $time_of_death;
+    public $place_of_death;
     public $cause_of_death;
     public $annotator;
     public $subject;
@@ -25,6 +27,8 @@ class SuratAktaKematianForm extends Component
     protected $messages = [
         'cause_of_death.required' => 'penyebab kematian diisi',
         'date_of_death.required' => 'tanggal kematian harus diisi',
+        'time_of_death.required' => 'waktu kematian harus diisi',
+        'place_of_death.required' => 'tempat kematian harus diisi',
         'annotator.required' => 'yang menerangkan harus diisi',
         'child_to.required' => 'anak ke - harus diisi',
     ];
@@ -46,18 +50,49 @@ class SuratAktaKematianForm extends Component
 
         $this->validate([
             'date_of_death' => 'required',
+            'time_of_death' => 'required',
             'cause_of_death' => 'required',
+            'place_of_death' => 'required',
             'annotator' => 'required',
             'child_to' => 'required',
         ]);
 
+        $husband = UserData::where('shdk', 'KEPALA KELUARGA')
+                ->where('no_kk', $userData->no_kk)
+                ->first([
+                    'nama as name', 
+                    'pekerjaan as job', 
+                    'kewarganegaraan as citizenship',
+                    'tempat_lahir as birthplace',
+                    'tanggal_lahir as birthdate',
+                    'no_nik as nik',
+                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
+                ]);
+
+        $wife = UserData::where('SHDK', 'ISTRI')
+                ->where('no_kk', $userData->no_kk)
+                ->first([
+                    'nama as name', 
+                    'pekerjaan as job', 
+                    'kewarganegaraan as citizenship',
+                    'tempat_lahir as birthplace',
+                    'tanggal_lahir as birthdate',
+                    'no_nik as nik',
+                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
+                ]);
+
         $field = json_encode([
             'date_of_death' => $this->date_of_death,
+            'time_of_death' => $this->time_of_death,
             'cause_of_death' => $this->cause_of_death,
+            'place_of_death' => $this->place_of_death,
+            'child_to' => $this->child_to,
             'annotator' => $this->annotator,
-            'subject' => $this->subject->id
+            'subject' => $this->subject->id,
+            'husband' => $husband,
+            'wife' => $wife
         ]);
-        
+
         try {
 
             DB::table('users_mail')->insert([

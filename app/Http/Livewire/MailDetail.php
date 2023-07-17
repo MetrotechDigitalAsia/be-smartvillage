@@ -156,6 +156,7 @@ class MailDetail extends Component
             'applicant.no_nik as applicant_nik',
             'applicant.no_kk as applicant_no_kk',
             'applicant.kewarganegaraan as applicant_citizenship',
+            'applicant.alamat as applicant_address',
             'applicant.pekerjaan as applicant_job',
             'applicant.banjar as applicant_banjar',
             DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Saksi;
 use App\Models\Signature;
 use App\Models\UserLogin;
-use App\Notifications\SendPushNotification;
 use App\Notifications\UserMailNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -69,6 +68,7 @@ class UsersMailController extends Controller
                 'mails.id as mail_id',
                 'userMail.mail_number',
                 'mails.title as mail_type',
+                'mails.slug as mail_slug',
                 'userDB.nama as name',
                 'userDB.no_nik as nik',
                 'userMail.status as status',

@@ -22,6 +22,19 @@
                 </div>
             </div>
             @endif
+            @if ($data->title == 'Surat Keterangan Meninggal')
+            <div class="dropdown mr-2">
+                <button class="btn btn-default btn-sm mail-type-title dropdown-toggle text-dark" type="button" data-offset="0,5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Surat Keterangan Meninggal
+                </button>
+                <div class="dropdown-menu dropdown-menu-anim-up" >
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat Keterangan Kelahiran" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_keterangan_meninggal_tab">Surat Keterangan Meninggal</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat F-2.01" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_f2_tab">Formulir F-2.01</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Formulir F-1.02" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_f1-02_tab">Formulir F-1.02</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat Pernyataan Lahir" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_pernyataan_meninggal_tab">Surat Pernyataan Meninggal</a>
+                </div>
+            </div>
+            @endif
             @if ($data->status == 'Done')
             <a 
                 class="btn btn-default btn-sm btn-icon mr-2"
@@ -130,20 +143,34 @@
 
                     @php $field = json_decode($data->field) @endphp
 
-                    @if ($data->title != 'Surat Keterangan Kelahiran')
+                    @if ($data->title == 'Surat Keterangan Tempat Usaha')
                         @include('admin.mailView.mail')
-                    @else
+                    @elseif($data->title == 'Surat Keterangan Kelahiran')
                     <div class="tab-content" >
                         <div class="tab-pane fade active show" id="surat_keterangan_tab" role="tabpanel" aria-labelledby="surat_keterangan_tab">
                             @include('admin.mailView.mail')
                         </div>
                         <div class="tab-pane fade" id="surat_f2_tab" role="tabpanel" aria-labelledby="surat_f2_tab">
-                            {{-- <div style="max-height: 1360px; overflow-y: auto;" > --}}
-                                @include('admin.mailView.f-2')
-                            {{-- </div> --}}
+                            @include('admin.mailView.f-2')
                         </div>
                         <div class="tab-pane fade " id="surat_pernyataan_lahir_tab" role="tabpanel" aria-labelledby="surat_pernyataan_lahir_tab">
                             @include('admin.mailView.surat-pernyataan-kelahiran')
+                        </div>
+                    </div>
+                    @elseif($data->title == 'Surat Keterangan Meninggal')
+                    <div class="tab-content" >
+                        <div class="tab-pane fade " id="surat_keterangan_meninggal_tab" role="tabpanel" aria-labelledby="surat_keterangan_tab">
+                            @include('admin.mailView.mail')
+                        </div>
+                        <div class="tab-pane fade" id="surat_f2_tab" role="tabpanel" aria-labelledby="surat_f2_tab">
+                            @include('admin.mailView.f-2')
+                        </div>
+                        <div class="tab-pane fade" id="surat_f1-02_tab" role="tabpanel" aria-labelledby="surat_f1-02_tab">
+                            f1
+                            {{-- @include('admin.mailView.f-2') --}}
+                        </div>
+                        <div class="tab-pane fade active show" id="surat_pernyataan_meninggal_tab" role="tabpanel" aria-labelledby="surat_pernyataan_meninggal_tab">
+                            @include('admin.mailView.surat-pernyataan-kematian')
                         </div>
                     </div>
                     @endif
