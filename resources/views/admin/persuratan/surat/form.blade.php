@@ -30,6 +30,18 @@
                     </div>
                 <div class="col col-lg-6">
 
+                    <h3 class="font-size-lg text-dark font-weight-bold mb-6">Data Surat</h3>
+
+                    @if (request()->query('type') == 'surat-keterangan-meninggal')
+                    <div class="form-group validated">
+                        <label class="mb-2" >Nama yang Meninggal</label>
+                        <select onchange="handleChangeDeathSubject(this)" class="form-control form-control-lg select2" id="death_select_option" name="param">
+                            <option label="Label"></option>
+                        </select>
+                        <div class="invalid-feedback invalid-feedback-subject d-none">Plih nama yang meninggal</div>
+                    </div>
+                    @endif
+
                     @livewire('create-mail.mail-form')
 
                     <div class="row justify-content-end">
@@ -59,6 +71,10 @@
             document.querySelector('.invalid-feedback-applicant').classList.remove('d-none')
         })
 
+        Livewire.on('subjectNotFound', () => {
+            document.querySelector('.invalid-feedback-subject').classList.remove('d-none')
+        })
+
         Livewire.on('mailSubmitted', data => {
 
             console.log(data)
@@ -77,6 +93,12 @@
 
         function handleChangeResident(el){
             Livewire.emit('selectResident', el.value)
+            document.querySelector('.invalid-feedback-applicant').classList.add('d-none')
+        }
+
+        function handleChangeDeathSubject(el){
+            Livewire.emit('selectDeathSubject', el.value)
+            console.log(el.value)
             document.querySelector('.invalid-feedback-applicant').classList.add('d-none')
         }
 
@@ -99,6 +121,36 @@
         }
 
         $("#resident_select").select2({
+            placeholder: "Cari berdasarkan NIK dan Nama",
+            allowClear: true,
+            ajax: {
+                url: "{{ route('userDataForSelectOption') }}",
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        query: params.term, // search term
+                    };
+                },
+                processResults: function(data, params) {
+                    return {
+                        results: data?.items,
+                        // pagination: {
+                        //     more: (params.page * 30) < data.total_count
+                        // }
+                    };
+                },
+                cache: true,
+            },
+            escapeMarkup: function(markup) {
+                return markup;
+            }, // let our custom formatter work
+            minimumInputLength: 1,
+            templateResult: formatRepo, // omitted for brevity, see the source of this page
+            templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+        });
+
+        $("#death_select_option").select2({
             placeholder: "Cari berdasarkan NIK dan Nama",
             allowClear: true,
             ajax: {

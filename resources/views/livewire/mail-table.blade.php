@@ -109,7 +109,7 @@
                                 <div class="dropdown-menu dropdown-menu-sm">\
                                     <ul class="navi navi-hover">
                                         <li class="navi-item">
-                                            <a class="navi-link" href="/persuratan/surat/show/${e.id}">
+                                            <a class="navi-link" href="/persuratan/surat/show/${e.id}?type=${e.mail_slug}">
                                                 <span class="navi-icon"><i class="flaticon2-paper"></i></span>
                                                 <span class="navi-text">Lihat Detail</span>
                                             </a>
