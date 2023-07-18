@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Saksi;
 use App\Models\Signature;
+use App\Models\UserData;
 use App\Models\UserLogin;
 use App\Notifications\UserMailNotification;
 use Illuminate\Http\Request;
@@ -221,6 +222,72 @@ class UsersMailController extends Controller
 
     public function printMail($id, Request $request){
 
+        switch ($request->type) {
+            case 'surat-keterangan-tempat-usaha':
+                $data = $this->getSKTU($id);
+                break;
+            case 'surat-keterangan-kelahiran':
+                $data = $this->getSuratKelahiran($id);
+                break;
+            case 'surat-keterangan-meninggal':
+                $data = $this->getSuratKematian($id);
+                break;
+        }
+
+        // dd($data);
+
+        $perbekel = Signature::where('position', 'Perbekel')->first();
+        $kelian = Signature::where('position', '=','Kelian Banjar')
+                    ->where('banjar', $data->banjar)
+                    ->first();
+
+        $data->saksi_1 = Signature::find($data->saksi_1);
+        $data->saksi_2 = Signature::find($data->saksi_2);
+        
+        $field = json_decode($data->field);
+
+        if($data->title == 'Surat Keterangan Tempat Usaha'){
+            $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data', 'perbekel', 'kelian', 'field'));
+            $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$data->slug).'_mail.pdf';
+            return $pdf->download($fileName);
+        }
+
+        $queryParams = $request->query();
+        $queryParams = array_slice(array_keys($queryParams), 1);
+
+        if(count($queryParams) == 1){
+            $pdf = Pdf::loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'kelian', 'field'));
+            $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$queryParams[0]).'_mail.pdf';
+            return $pdf->stream($fileName);
+        }
+
+        $mails = [];
+
+        foreach($queryParams as $mail){
+            if($mail == 'type') continue;
+            $filename = $mail.'-'.$data->id.'-'.$data->name.'.pdf';
+            $mails[] = $filename;
+            $pdf = Pdf::loadView('mailTemplate.'.$mail, compact('data', 'perbekel', 'kelian', 'field'))->save($filename, 'public');
+        }
+
+        $zipFileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.$data->id.'-mails.zip';
+        $zipFilePath = public_path('/storage/'.$zipFileName);
+    
+        $zip = new ZipArchive();
+        if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+            foreach ($mails as $pdfFile) {
+                $pdfFilePath = public_path('/storage/'.$pdfFile);
+                $zip->addFile($pdfFilePath, $pdfFile);
+            }
+    
+            $zip->close();
+        }
+
+        return response()->download($zipFilePath)->deleteFileAfterSend(true);
+
+    }
+
+    public function getSKTU($id){
         $data = DB::table('users_mail as userMail')
             ->join('mails', 'mails.id', '=', 'userMail.mail_id')
             ->join($this->userDb, 'userDB.id', '=', 'userMail.resident_id')
@@ -253,54 +320,97 @@ class UsersMailController extends Controller
                 'userMail.saksi_1',
                 'userMail.saksi_2'
             ]);
-
-        $perbekel = Signature::where('position', 'Perbekel')->first();
-        $kelian = Signature::where('position', '=','Kelian Banjar')
-                    ->where('banjar', $data->banjar)
-                    ->first();
-
-        $data->saksi_1 = Signature::find($data->saksi_1);
-        $data->saksi_2 = Signature::find($data->saksi_2);
         
-        $field = json_decode($data->field);
+        return $data;
+    }
 
-        if($data->title != 'Surat Keterangan Kelahiran'){
-            $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data', 'perbekel', 'kelian', 'field'));
-            $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$data->slug).'_mail.pdf';
-            return $pdf->download($fileName);
+    public function getSuratKelahiran($id){
+        $data = DB::table('users_mail as userMail')
+            ->join('mails', 'mails.id', '=', 'userMail.mail_id')
+            ->join($this->userDb, 'userDB.id', '=', 'userMail.resident_id')
+            ->where('userMail.id', '=', $id)
+            ->first([
+                'userMail.id',
+                'mails.title',
+                'mails.slug',
+                'userMail.mail_number',
+                'userMail.user_id',
+                'userMail.status',
+                'userMail.signature as image',
+                'userMail.field',
+                'userDB.banjar as banjar',
+                'userDB.nama as name',
+                'userDB.nama as applicant_name',
+                'userDB.no_nik as applicant_nik',
+                'userDB.no_kk as applicant_no_kk',
+                'userDB.kewarganegaraan as applicant_citizenship',
+                'userDB.jenis_kelamin as applicant_sex',
+                'userDB.tempat_lahir as applicant_birthplace',
+                'userDB.tanggal_lahir as applicant_birthdate',
+                'userDB.agama as applicant_religion',
+                'userDB.pekerjaan as applicant_job',
+                'userDB.alamat as applicant_address',
+                'userDB.banjar as applicant_banjar',
+                'userDB.shdk as applicant_family_status',
+                DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
+                'userMail.created_at',
+                'userMail.saksi_1',
+                'userMail.saksi_2'
+            ]);
+        
+        return $data;
+    }
+
+    public function getSuratKematian($id){
+
+        $data = DB::table('users_mail as userMail')
+            ->join('mails', 'mails.id', '=', 'userMail.mail_id')
+            ->join($this->userDb, 'userDB.id', '=', 'userMail.resident_id')
+            ->where('userMail.id', '=', $id)
+            ->first([
+                'userMail.id',
+                'mails.title',
+                'mails.slug',
+                'userMail.mail_number',
+                'userMail.status',
+                'userMail.field',
+                'userMail.signature',
+                'userMail.user_id',
+                'userMail.saksi_1',
+                'userMail.saksi_2',
+                'userDB.banjar as banjar',
+                'userDB.nama as name',
+                'userDB.nama as applicant_name',
+                'userDB.no_nik as applicant_nik',
+                'userDB.no_kk as applicant_no_kk',
+                'userDB.kewarganegaraan as applicant_citizenship',
+                'userDB.alamat as applicant_address',
+                'userDB.pekerjaan as applicant_job',
+                'userDB.banjar as applicant_banjar',
+                DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
+                'userMail.created_at',
+                'userMail.petugas',
+            ]);
+            
+        $json = json_decode($data->field);
+
+        if(!is_null($data->petugas)){
+            $data->petugas = Signature::find($data->petugas)->first(['name']);
         }
 
-        $queryParams = $request->query();
-        $queryParams = array_keys($queryParams);
-
-        if(count($queryParams) == 1 && $data->title == 'Surat Keterangan Kelahiran'){
-            $pdf = Pdf::loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'kelian', 'field'));
-            $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$queryParams[0]).'_mail.pdf';
-            return $pdf->download($fileName);
-        }
-
-        $mails = [];
-
-        foreach($queryParams as $mail){
-            $filename = $mail.'-'.$data->id.'-'.$data->name.'.pdf';
-            $mails[] = $filename;
-            $pdf = Pdf::loadView('mailTemplate.'.$mail, compact('data', 'perbekel', 'kelian', 'field'))->save($filename, 'public');
-        }
-
-        $zipFileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.$data->id.'-mails.zip';
-        $zipFilePath = public_path('/storage/'.$zipFileName);
-    
-        $zip = new ZipArchive();
-        if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
-            foreach ($mails as $pdfFile) {
-                $pdfFilePath = public_path('/storage/'.$pdfFile);
-                $zip->addFile($pdfFilePath, $pdfFile);
-            }
-    
-            $zip->close();
-        }
-
-        return response()->download($zipFilePath)->deleteFileAfterSend(true);
+        $data->subject = UserData::whereId($json->subject)->first([
+            'nama as name',
+            'jenis_kelamin as gender',
+            'tempat_lahir as birthplace',
+            'tanggal_lahir as birthdate',
+            'kewarganegaraan as citizenship',
+            'agama as religion',
+            'no_nik as nik',
+            'pekerjaan as job',
+            'alamat as address'
+        ]);
+        
+        return $data;
 
     }
 

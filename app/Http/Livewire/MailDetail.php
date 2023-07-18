@@ -161,9 +161,14 @@ class MailDetail extends Component
             'applicant.banjar as applicant_banjar',
             DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
             'userMail.created_at',
+            'userMail.petugas'
         ]);
 
         $json = json_decode($data->field);
+
+        if(!is_null($data->petugas)){
+            $data->petugas = Signature::find($data->petugas)->first(['name']);
+        }
 
         $data->subject = UserData::whereId($json->subject)->first([
             'nama as name',

@@ -1565,7 +1565,7 @@
                 </td>
                 <td style="width: 2%" >:</td>
                 @for ($i = 0; $i < 16; $i++)
-                <td style="border: 1px solid black; text-align: center;" >{{ $data->subject->nik[$i] }}</td>
+                <td style="border: 1px solid black; text-align: center;" >{{ $data->subject->nik[$i] ?? '' }}</td>
                 @endfor
                 <td colspan="7" ></td>
             </tr>
@@ -1574,7 +1574,7 @@
                     2. Nama Lengkap
                 </td>
                 <td style="width: 2%" >:</td>
-                <td colspan="23" style="border: 1px solid black; text-align: left; border-right: none; text-transform: uppercase;" >{{ $data->subject->name }}</td>
+                <td colspan="23" style="border: 1px solid black; text-align: left; border-right: none; text-transform: uppercase;" >{{ $data->subject->name ?? '' }}</td>
             </tr>
             <tr>
                 @php
@@ -1616,7 +1616,7 @@
                 <td colspan="3" >WITA</td>
             </tr>
             <tr>
-                <td rowspan="3" >5. Sebab Kematian  {{ $field->cause_of_death }} </td>
+                <td rowspan="3" >5. Sebab Kematian </td>
                 <td rowspan="3" >:</td>
                 <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
                     @if (!empty($field->cause_of_death) && $field->cause_of_death == 'Sakit Biasa/Tua')

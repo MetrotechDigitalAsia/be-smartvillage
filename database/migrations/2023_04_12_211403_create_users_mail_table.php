@@ -25,6 +25,7 @@ return new class extends Migration
             $table->enum('status',['Pending', 'Process', 'Done', 'Rejected'])->default('Pending');
             $table->string('saksi_1')->references('id')->on('signature')->nullable();
             $table->string('saksi_2')->references('id')->on('signature')->nullable();
+            $table->string('petugas')->references('id')->on('signature')->nullable();
             $table->string('signature')->nullable();
             $table->timestamps();
         });

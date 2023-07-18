@@ -572,14 +572,14 @@
                         <td style="width: 38%;" >1. Nama</td>
                         <td style="width: 2%" >:</td>
                         <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
-                            {{ $field->child_name }}
+                            {{ $field->child_name ?? '' }}
                         </td>
                     </tr>
                     <tr>
                         <td>2. Jenis Kelamin</td>
                         <td>:</td>
                         <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                            @if ($field->child_sex == 'Laki - Laki')
+                            @if (!(empty($field->child_sex)) && $field->child_sex == 'Laki - Laki')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
@@ -587,7 +587,7 @@
                             1. Laki Laki
                         </td>
                         <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                            @if ($field->child_sex == 'Perempuan')
+                            @if (!(empty($field->child_sex)) && $field->child_sex == 'Perempuan')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
@@ -599,7 +599,7 @@
                         <td   >3. Tempat Dilahirkan</td>
                         <td  >:</td>
                         <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                            @if ($field->child_birth_of_place == 'RS/RB')
+                            @if (!empty($field->child_birth_of_place) && $field->child_birth_of_place == 'RS/RB')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
@@ -607,7 +607,7 @@
                             1. RS/RB
                         </td>
                         <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                            @if ($field->child_birth_of_place == 'Puskesmas')
+                            @if (!empty($field->child_birth_of_place) && $field->child_birth_of_place == 'Puskesmas')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
@@ -615,7 +615,7 @@
                             2. Puskesmas
                         </td>
                         <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                            @if ($field->child_birth_of_place == 'Polindes')
+                            @if (!empty($field->child_birth_of_place) && $field->child_birth_of_place == 'Polindes')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
@@ -623,7 +623,7 @@
                             3. Polindes
                         </td>
                         <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                            @if ($field->child_birth_of_place == 'Rumah')
+                            @if (!empty($field->child_birth_of_place) && $field->child_birth_of_place == 'Rumah')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
@@ -631,7 +631,7 @@
                             4. Rumah
                         </td>
                         <td style="border: 1px solid black; width: 50px !important; position: relative;" >
-                            @if ($field->child_birth_of_place == 'Lainnya')
+                            @if (!empty($field->child_birth_of_place) && $field->child_birth_of_place == 'Lainnya')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
@@ -650,39 +650,48 @@
                         <td>5. Hari dan Tanggal Lahir</td>
                         <td>:</td>
                         @php
-                            $child_birthday = str_split($field->child_birthday);
-                            $child_birthdate = Carbon\Carbon::parse($field->child_birth_date)->format('d-m-Y');
+                            $child_birthday = str_split($field->child_birthday ?? '');
+                            $child_birthdate = !empty($field->child_birth_date) ? Carbon\Carbon::parse($field->child_birth_date)->format('d-m-Y') : '';
                             $child_birthdate = explode('-',$child_birthdate);
                         @endphp
                         @for ($i = 0; $i < 6; $i++)
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; text-transform: uppercase;" >
-                            {{ $child_birthday[$i] ?? '#' }}
+                            {{ !empty($field->child_birthday) ? $child_birthday[$i] ?? '#' : ''}}
                         </td>
                         @endfor
                         <td colspan="3" style="text-align: right;" >
                             Tgl : 
                         </td>
-                        @foreach (str_split($child_birthdate[0]) as $item)
                         <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
-                            {{$item}}
+                            {{$child_birthdate[0][0] ?? '' }}
                         </td>
-                        @endforeach
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                            {{$child_birthdate[0][1] ?? '' }}
+                        </td>
                         <td colspan="3" style="text-align: right;" >
                             Bulan : 
                         </td>
-                        @foreach (str_split($child_birthdate[1]) as $item)
                         <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
-                            {{$item}}
+                            {{$child_birthdate[1][0] ?? '' }}
                         </td>
-                        @endforeach
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                            {{$child_birthdate[1][1] ?? '' }}
+                        </td>
                         <td colspan="3" style="text-align: right;" >
                             Tahun : 
                         </td>
-                        @foreach (str_split($child_birthdate[2]) as $item)
                         <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
-                            {{$item}}
+                            {{$child_birthdate[2][0] ?? '' }}
                         </td>
-                        @endforeach
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                            {{$child_birthdate[2][1] ?? '' }}
+                        </td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                            {{$child_birthdate[2][2] ?? '' }}
+                        </td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
+                            {{$child_birthdate[2][3] ?? '' }}
+                        </td>
                     </tr>
                     <tr>
                         <td>6. Pukul</td>
@@ -693,25 +702,25 @@
                         <td>7. Jenis Kelahiran</td>
                         <td>:</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->child_birth_type == 'Tunggal')
+                            @if (!empty($field->child_birth_type) && $field->child_birth_type == 'Tunggal')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
                         <td colspan="4" >1. Tunggal</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->child_birth_type == 'Kembar 2')
+                            @if (!empty($field->child_birth_type) && $field->child_birth_type == 'Kembar 2')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
                         <td colspan="4" >2. Kembar 2</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->child_birth_type == 'Kembar 3')
+                            @if (!empty($field->child_birth_type) && $field->child_birth_type == 'Kembar 3')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
                         <td colspan="4" >3. Kembar 3</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->child_birth_type == 'Lainnya')
+                            @if (!empty($field->child_birth_type) && $field->child_birth_type == 'Lainnya')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
@@ -726,25 +735,25 @@
                         <td>9. Penolong Kelahiran</td>
                         <td>:</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->birth_attendant == 'Dokter')
+                            @if (!empty($field->birth_attendant) && $field->birth_attendant == 'Dokter')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
                         <td colspan="4" >1. Dokter</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->birth_attendant == 'Bidan/Perawat')
+                            @if (!empty($field->birth_attendant) && $field->birth_attendant == 'Bidan/Perawat')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
                         <td colspan="6" >2. Bidan/Perawat</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->birth_attendant == 'Dukun')
+                            @if (!empty($field->birth_attendant) && $field->birth_attendant == 'Dukun')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
                         <td colspan="4" >3. Dukun</td>
                         <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
-                            @if ($field->birth_attendant == 'Lainnya')
+                            @if (!empty($field->birth_attendant) && $field->birth_attendant == 'Lainnya')
                             <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                             @endif
                         </td>
@@ -754,7 +763,7 @@
                         <td >10. Berat Bayi</td>
                         <td colspan="2" >:</td>
                         <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: center;" >
-                            {{ $field->baby_weight }}
+                            {{ $field->baby_weight ?? '' }}
                         </td>
                         <td style="text-align: right;" >Kg</td>
                         <td colspan="18" ></td>
@@ -763,7 +772,7 @@
                         <td >11. Panjang Bayi</td>
                         <td colspan="2" >:</td>
                         <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: center;" >
-                            {{ $field->baby_length }}
+                            {{ $field->baby_length ?? '' }}
                         </td>
                         <td style="text-align: right;" >Cm</td>
                         <td colspan="18" ></td>
@@ -1553,7 +1562,7 @@
                         </td>
                         <td style="width: 2%" >:</td>
                         @for ($i = 0; $i < 16; $i++)
-                        <td style="border: 1px solid black; text-align: center;" ></td>
+                        <td style="border: 1px solid black; text-align: center;" >{{ $data->subject->nik[$i] ?? '' }}</td>
                         @endfor
                         <td colspan="7" ></td>
                     </tr>
@@ -1562,79 +1571,125 @@
                             2. Nama Lengkap
                         </td>
                         <td style="width: 2%" >:</td>
-                        @for ($i = 0; $i < 23; $i++)
-                        <td style="border: 1px solid black; text-align: center;" ></td>
-                        @endfor
+                        <td colspan="23" style="border: 1px solid black; text-align: left;" >{{ $data->subject->name ?? '' }}</td>
                     </tr>
                     <tr>
+                        @php
+                            $date_of_death = !empty($field->date_of_death) ? Carbon\Carbon::parse($field->date_of_death)->format('d-m-Y')  : '';
+                            $date_of_death = explode('-',$date_of_death);
+                        @endphp
                         <td>3. Tanggal Kematian</td>
                         <td>:</td>
                         <td colspan="2" style=" width: 50px !important; border-left: none; text-align: center;" >
                             Tgl:
                         </td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $date_of_death[0][0] ?? '' }}</td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $date_of_death[0][1] ?? '' }}</td>
                         <td colspan="3" style="width: 50px !important; text-align: right;" >
                             Bulan: 
                         </td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $date_of_death[1][0] ?? '' }}</td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $date_of_death[1][1] ?? '' }}</td>
                         <td colspan="3" style="width: 50px !important; text-align: right;" >
                             Tahun: 
                         </td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $date_of_death[2][0] ?? '' }}</td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $date_of_death[2][1] ?? '' }}</td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $date_of_death[2][2] ?? '' }}</td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $date_of_death[2][3] ?? '' }}</td>
                         <td colspan="7" ></td>
                     </tr>
                     <tr>
+                        @php
+                            $time_of_death = $field->time_of_death ?? '';
+                            $time_of_death = explode(':',$time_of_death);
+                        @endphp
                         <td>4. Pukul</td>
                         <td>:</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $time_of_death[0][0] ?? '' }}</td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{  $time_of_death[0][1]  ?? '' }}</td>
                         <td style="text-align: center;" >:</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $time_of_death[1][0] ?? '' }}</td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{  $time_of_death[1][1]  ?? '' }}</td>
                         <td colspan="3" >WITA</td>
                         <td colspan="10" ></td>
                     </tr>
                     <tr>
                         <td rowspan="2" >5. Sebab Kematian</td>
                         <td rowspan="2" >:</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                            @if (!empty($field->cause_of_death) && $field->cause_of_death == 'Sakit Biasa/Tua')
+                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                            @endif
+                        </td>
                         <td colspan="6" >1. Sakit Biasa/Tua</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                            @if (!empty($field->cause_of_death) && $field->cause_of_death == 'Wabah Penyakit')
+                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                            @endif
+                        </td>
                         <td colspan="6" >2. Wabah Penyakit</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                            @if (!empty($field->cause_of_death) && $field->cause_of_death == 'Bunuh Diri')
+                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                            @endif
+                        </td>
                         <td colspan="5" >3. Bunuh Diri</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                            @if (!empty($field->cause_of_death) && $field->cause_of_death == 'Kriminalitas')
+                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                            @endif
+                        </td>
                         <td colspan="6" >4. Kriminalitas</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                            @if (!empty($field->cause_of_death) && $field->cause_of_death == 'Kecelakaan')
+                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                            @endif
+                        </td>
                         <td colspan="6" >5. Kecelakaan</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                            @if (!empty($field->cause_of_death) && $field->cause_of_death == 'Lainnya')
+                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                            @endif
+                        </td>
                         <td colspan="5" >6. Lainnya</td>
                     </tr>
                     <tr>
                         <td>6. Tempat Kematian</td>
                         <td>:</td>
                         @for ($i = 0; $i < 16; $i++)
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $field->place_of_death[$i] ?? '' }}</td>
                         @endfor
                         <td colspan="7" ></td>
                     </tr>
                     <tr>
                         <td>7. Yang Menerangkan</td>
                         <td>:</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                            @if (!empty($field->annotator) && $field->annotator == 'Dokter')
+                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                            @endif
+                        </td>
                         <td colspan="3" >1. Dokter</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                            @if (!empty($field->annotator) && $field->annotator == 'Tenaga Kesehatan')
+                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                            @endif
+                        </td>
                         <td colspan="6" >2. Tenaga Kesehatan</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                            @if (!empty($field->annotator) && $field->annotator == 'Kepolisian')
+                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                            @endif
+                        </td>
                         <td colspan="5" >3. Kepolisian</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" ></td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center; position: relative;" >
+                            @if (!empty($field->annotator) && $field->annotator == 'Lainnya')
+                            <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                            @endif
+                        </td>
                         <td colspan="4" >4. Lainnya</td>
                     </tr>
                 </table>

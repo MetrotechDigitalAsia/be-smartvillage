@@ -7,7 +7,7 @@
     </tr>
     <tr>
         <td >Tanggal : ...............</td>
-        <td>Getasan, {{ Carbon\Carbon::now()->format('d F Y') }}</td>
+        <td>Getasan, {{ Carbon\Carbon::now()->translatedFormat('d F Y') }}</td>
     </tr>
     <tr>
         <td>Perbekel Getasan,</td>

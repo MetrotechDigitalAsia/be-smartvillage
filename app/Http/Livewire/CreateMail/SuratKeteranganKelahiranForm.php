@@ -82,7 +82,7 @@ class SuratKeteranganKelahiranForm extends Component
             'baby_weight' => $this->baby_weight,
             'baby_length' => $this->baby_length,
             'child_birthday' => Carbon::parse($this->child_birth_date)->translatedFormat('l'),
-            'NO_KK' => $this->applicant_data->no_kk,
+            'NO_KK' => $userData->no_kk,
             'hospital_mail_number_date' => $this->hospital_mail_number_date,
             'hospital_mail_number' => $this->hospital_mail_number,
         ]);
