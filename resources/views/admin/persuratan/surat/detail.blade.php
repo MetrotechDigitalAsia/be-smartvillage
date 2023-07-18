@@ -176,7 +176,6 @@
         const el = document.querySelectorAll('.mail-change-btn')
         const btnText = document.querySelector('.mail-type-title')
         el.forEach(e => {
-            // console.log(e)
             e.classList.remove('active')
         })
 

@@ -122,6 +122,30 @@ class DatabaseSeeder extends Seeder
             'description' => '-',
         ]);
 
+        Mail::create([
+            'id' => 'ed62246b-0f68-4538-96a0-93d248dde334',
+            'title' => 'Surat Keterangan Meninggal',
+            'slug' => 'surat-keterangan-meninggal',
+            'image' => '-',
+            'description' => '-',
+        ]);
+
+        Mail::create([
+            'id' => '89cce6ed-98dc-4685-bd3b-df41358ce5a7',
+            'title' => 'F1-02',
+            'slug' => 'f1-02',
+            'image' => '-',
+            'description' => '-',
+        ]);
+
+        Mail::create([
+            'id' => '821a5253-f8b7-42a9-815b-b9e1d6fc842c',
+            'title' => 'Surat Pernyataan Meninggal',
+            'slug' => 'surat-pernyataan-meninggal',
+            'image' => '-',
+            'description' => '-',
+        ]);
+
         $saksi = UserData::where('banjar', 'Ubud')->inRandomOrder()->first();
 
         Signature::create([

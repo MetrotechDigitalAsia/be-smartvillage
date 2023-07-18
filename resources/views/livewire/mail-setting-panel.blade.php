@@ -24,6 +24,17 @@
                     @endforeach
                 </select>
             </div>
+            @if ($slug == 'surat-keterangan-meninggal')
+            <div class="form-group">
+                <label for="petugas" >Petugas </label>
+                <select class="form-control" wire:model.lazy="petugas" id="petugas">
+                    <option>pilih petugas ...</option>
+                    @foreach ($signatures as $item)
+                    <option value="{{ $item->id }}" @if($petugas == $item->id) selected @endif >{{ $item->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @endif
         </div>
         <!--end::Wrapper-->
         <!--begin::Purchase-->

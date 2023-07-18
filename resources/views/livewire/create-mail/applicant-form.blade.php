@@ -1,4 +1,4 @@
-<div  >  
+<div>  
     
     @if (!empty($applicantData) || !is_null($applicantData))
 

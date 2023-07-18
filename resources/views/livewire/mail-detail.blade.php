@@ -22,13 +22,26 @@
                 </div>
             </div>
             @endif
+            @if ($data->title == 'Surat Keterangan Meninggal')
+            <div class="dropdown mr-2">
+                <button class="btn btn-default btn-sm mail-type-title dropdown-toggle text-dark" type="button" data-offset="0,5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Surat Keterangan Meninggal
+                </button>
+                <div class="dropdown-menu dropdown-menu-anim-up" >
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat Keterangan Kelahiran" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_keterangan_meninggal_tab">Surat Keterangan Meninggal</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat F-2.01" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_f2_tab">Formulir F-2.01</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Formulir F-1.02" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_f1-02_tab">Formulir F-1.02</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat Pernyataan Meninggal" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_pernyataan_meninggal_tab">Surat Pernyataan Meninggal</a>
+                </div>
+            </div>
+            @endif
             @if ($data->status == 'Done')
             <a 
                 class="btn btn-default btn-sm btn-icon mr-2"
-                @if ($data->title == 'Surat Keterangan Kelahiran')
+                @if ($data->title == 'Surat Keterangan Kelahiran' || $data->title == 'Surat Keterangan Meninggal')
                 data-toggle="modal"
                 href="javascript:;"
-                data-target="#downloadModal"
+                data-target="#downloadModal_{{ str_replace('-','_',request()->query('type')) }}"
                 @else
                 href='/persuratan/surat/print/{{ $data->id }}'
                 @endif
@@ -130,20 +143,33 @@
 
                     @php $field = json_decode($data->field) @endphp
 
-                    @if ($data->title != 'Surat Keterangan Kelahiran')
+                    @if ($data->title == 'Surat Keterangan Tempat Usaha')
                         @include('admin.mailView.mail')
-                    @else
+                    @elseif($data->title == 'Surat Keterangan Kelahiran')
                     <div class="tab-content" >
                         <div class="tab-pane fade active show" id="surat_keterangan_tab" role="tabpanel" aria-labelledby="surat_keterangan_tab">
                             @include('admin.mailView.mail')
                         </div>
                         <div class="tab-pane fade" id="surat_f2_tab" role="tabpanel" aria-labelledby="surat_f2_tab">
-                            {{-- <div style="max-height: 1360px; overflow-y: auto;" > --}}
-                                @include('admin.mailView.f-2')
-                            {{-- </div> --}}
+                            @include('admin.mailView.f-2')
                         </div>
                         <div class="tab-pane fade " id="surat_pernyataan_lahir_tab" role="tabpanel" aria-labelledby="surat_pernyataan_lahir_tab">
                             @include('admin.mailView.surat-pernyataan-kelahiran')
+                        </div>
+                    </div>
+                    @elseif($data->title == 'Surat Keterangan Meninggal')
+                    <div class="tab-content" >
+                        <div class="tab-pane fade active show" id="surat_keterangan_meninggal_tab" role="tabpanel" aria-labelledby="surat_keterangan_tab">
+                            @include('admin.mailView.mail')
+                        </div>
+                        <div class="tab-pane fade" id="surat_f2_tab" role="tabpanel" aria-labelledby="surat_f2_tab">
+                            @include('admin.mailView.f-2')
+                        </div>
+                        <div class="tab-pane fade" id="surat_f1-02_tab" role="tabpanel" aria-labelledby="surat_f1-02_tab">
+                            @include('admin.mailView.f1-02')
+                        </div>
+                        <div class="tab-pane fade " id="surat_pernyataan_meninggal_tab" role="tabpanel" aria-labelledby="surat_pernyataan_meninggal_tab">
+                            @include('admin.mailView.surat-pernyataan-kematian')
                         </div>
                     </div>
                     @endif
@@ -173,7 +199,7 @@
     </div>
 
     
-    <div class="modal fade" id="downloadModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal fade" id="downloadModal_surat_keterangan_kelahiran" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -206,6 +232,46 @@
         </div>
     </div>
 
-    <form class="download-form" action="/persuratan/surat/print/{{ $data->id }}" ></form>
+    <div class="modal fade" id="downloadModal_surat_keterangan_meninggal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="font-size: 16px;" >Unduh Surat Kematian</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="checkbox-list">
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-keterangan-meninggal"/>
+                            <span></span>
+                            Surat Keterangan Meninggal
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="f2-01"/>
+                            <span></span>
+                            Surat F2-01
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="f1-02"/>
+                            <span></span>
+                            Surat F1-02
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-pernyataan-meninggal"/>
+                            <span></span>
+                            Surat Pernyataan Meninggal
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex py-2 px-2">
+                    <button type="button" style="flex: 1;" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <a href="javascript:;" data-dismiss="modal" onclick="handleDownloadMail()" type="button" style="flex: 1;" class="btn btn-primary">Unduh</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form class="download-form" action="/persuratan/surat/print/{{ $data->id }}" >
+        <input type="hidden" name="type" value="{{ $data->slug }}" >
+    </form>
 
 </div>

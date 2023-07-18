@@ -25,6 +25,7 @@ class MailTable extends Component
             'userMail.mail_number',
             'mails.id as mail_id',
             'mails.title as mail_type',
+            'mails.slug as mail_slug',
             'userDB.nama as name',
             'userDB.no_nik as nik',
             'userMail.status as status',

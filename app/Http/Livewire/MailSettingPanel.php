@@ -12,7 +12,9 @@ class MailSettingPanel extends Component
     public $mailId;
     public $saksi1;
     public $saksi2;
+    public $petugas;
     public $mail_num;
+    public $slug;
 
     protected $listeners = [
         'setMailNumber' => 'setMailNumber',
@@ -24,16 +26,21 @@ class MailSettingPanel extends Component
         $this->mailId = $mailId;
 
         $mail = DB::table('users_mail')
-        ->where('id', $mailId)
+        ->join('mails', 'mails.id', '=', 'users_mail.mail_id')
+        ->where('users_mail.id', $mailId)
         ->first([
             'mail_number',
             'saksi_1',
-            'saksi_2'
+            'saksi_2',
+            'petugas',
+            'slug',
         ]);
 
+        $this->slug = $mail->slug;
         $this->saksi1 = $mail->saksi_1;
         $this->saksi2 = $mail->saksi_2;
         $this->mail_num = $mail->mail_number;
+        $this->petugas = $mail->petugas;
     }
 
     public function render()
@@ -51,7 +58,8 @@ class MailSettingPanel extends Component
             ->update([
                 'mail_number' => $this->mail_num,
                 'saksi_1' => $this->saksi1,
-                'saksi_2' => $this->saksi2
+                'saksi_2' => $this->saksi2,
+                'petugas' => $this->petugas
             ]);
             $status = true;
             $msg = 'Perubahan diterapkan';
@@ -72,7 +80,8 @@ class MailSettingPanel extends Component
             ->update([
                 'mail_number' => null,
                 'saksi_1' => null,
-                'saksi_2' => null
+                'saksi_2' => null,
+                'petugas' => null
             ]);
             $status = true;
             $msg = 'Perubahan diterapkan';
@@ -84,6 +93,7 @@ class MailSettingPanel extends Component
         $this->saksi1 = '';
         $this->saksi2 = '';
         $this->mail_num = '';
+        $this->petugas = '';
 
         $this->emit('mailChanges', compact('msg', 'status'));
         $this->emitTo('mail-detail','refreshMailDetail');
