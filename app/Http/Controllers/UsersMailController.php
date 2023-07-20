@@ -258,7 +258,7 @@ class UsersMailController extends Controller
         if(count($queryParams) == 1){
             $pdf = Pdf::loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'kelian', 'field'));
             $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$queryParams[0]).'_mail.pdf';
-            return $pdf->stream($fileName);
+            return $pdf->download($fileName);
         }
 
         $mails = [];

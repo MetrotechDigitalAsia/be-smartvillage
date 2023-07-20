@@ -38,8 +38,8 @@
         <td class="py-2"> </td>
     </tr>
 </table>
-<p class="text-justify mt-10" >Orang yang namanya tersebut di atas adalah memang benar telah meninggal pada hari {{  Carbon\Carbon::parse($data->subject->birthdate)->translatedFormat('l') }}, tanggal {{  Carbon\Carbon::parse($data->subject->date_of_date)->translatedFormat('d F Y') }} </p>
-<p class="text-justify mt-2" >Demikian Surat Keterangan Kelahiran ini dibuat dengan sebenarnya sebagai persyaratan untuk melengkapi permohonan Pembuatan Kutipan Akta Kelahiran.</p>
+<p class="text-justify mt-10" >Orang yang namanya tersebut di atas adalah memang benar telah meninggal pada hari {{  Carbon\Carbon::parse($data->subject->birthdate)->translatedFormat('l') }}, tanggal {{  Carbon\Carbon::parse($data->subject->date_of_date)->translatedFormat('d F Y') }}, karna sakit di Br. {{ $data->subject->banjar }} </p>
+<p class="text-justify mt-2" >Demikian Surat Keterangan Meninggal ini dibuat dengan sebenarnya sebagai persyaratan untuk melengkapi permohonan Pembuatan Akta Kematian.</p>
 <p class="text-center mt-3" >Saksi-Saksi :</p>
 <div class="row mt-5" style="width: 100%;" >
     <div class="col">

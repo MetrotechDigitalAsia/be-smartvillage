@@ -47,7 +47,7 @@
             <td style="text-align: center;" >A</td>
             <td>BARU</td>
             <td style="text-align: center;" >A</td>
-            <td>BARU</td>
+            <td>KK</td>
         </tr>
         <tr>
             <td style="text-align: center;" >1</td>
@@ -85,7 +85,7 @@
             <td style="text-align: center;" >C</td>
             <td>HILANG/RUSAK</td>
             <td style="text-align: center;" >2</td>
-            <td>Hilang</td>
+            <td>Rusak</td>
             <td style="text-align: center;" >C</td>
             <td>KIA</td>
         </tr>
@@ -96,8 +96,14 @@
             <td>Hilang</td>
             <td style="text-align: center;" ></td>
             <td></td>
-            <td style="text-align: center;" ></td>
-            <td></td>
+            <td rowspan="9" style="text-align: center;" ></td>
+            <td rowspan="9" >
+                melampirkan
+                <ol style="padding-left: 20px; " >
+                    <li>Formulir Perubahan Data</li>
+                    <li>Bukti Perubahan Data</li>
+                </ol>
+            </td>
         </tr>
         <tr>
             <td style="text-align: center;" >6</td>
@@ -106,14 +112,10 @@
             <td>Rusak</td>
             <td style="text-align: center;" >C</td>
             <td>Perpanjangan ITAP</td>
-            <td style="text-align: center;" ></td>
-            <td></td>
         </tr>
         <tr>
             <td style="text-align: center;" >B</td>
             <td>PERUBAHAN DATA </td>
-            <td style="text-align: center;" ></td>
-            <td></td>
             <td style="text-align: center;" ></td>
             <td></td>
             <td style="text-align: center;" ></td>
@@ -126,14 +128,10 @@
             <td>PERPANJANGAN ITAP</td>
             <td style="text-align: center;" >D</td>
             <td>Lainnya</td>
-            <td style="text-align: center;" ></td>
-            <td></td>
         </tr>
         <tr>
             <td style="text-align: center;" >2</td>
             <td>Perisistiwa Penting</td>
-            <td style="text-align: center;" ></td>
-            <td></td>
             <td style="text-align: center;" ></td>
             <td></td>
             <td style="text-align: center;" ></td>
@@ -146,16 +144,12 @@
             <td>PERUBAHAN STATUS KEWARGANEGARAAN</td>
             <td style="text-align: center;" ></td>
             <td></td>
-            <td style="text-align: center;" ></td>
-            <td></td>
         </tr>
         <tr>
             <td style="text-align: center;" >C</td>
             <td>HILANG/RUSAK</td>
             <td style="text-align: center;" >F</td>
             <td>LUAR DOMISILI</td>
-            <td style="text-align: center;" ></td>
-            <td></td>
             <td style="text-align: center;" ></td>
             <td></td>
         </tr>
@@ -166,16 +160,12 @@
             <td></td>
             <td style="text-align: center;" ></td>
             <td></td>
-            <td style="text-align: center;" ></td>
-            <td></td>
         </tr>
         <tr>
             <td style="text-align: center;" >2</td>
             <td>Rusak</td>
-            <td style="text-align: center;" ></td>
-            <td></td>
-            <td style="text-align: center;" ></td>
-            <td></td>
+            <td style="text-align: center;" >G</td>
+            <td>TRANSMIGRASI</td>
             <td style="text-align: center;" ></td>
             <td></td>
         </tr>
@@ -335,7 +325,7 @@
         <tr>
             <td style="width: 40%;" >Petugas,</td>
             <td style="height: 115px;" ></td>
-            <td style="text-align: center;" >Pemohon,</td>
+            <td style="text-align: center; padding-bottom: 15px;" >Getasan, {{ Carbon\Carbon::now()->translatedFormat('d F Y') }} <br>Pemohon,</td>
         </tr>
         <tr>
             <td>{{ $data->petugas->name ?? 'belum ada data petugas' }}</td>

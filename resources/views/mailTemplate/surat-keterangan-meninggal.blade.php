@@ -44,8 +44,8 @@
             <td>: {{ $data->subject->address }}</td>
         </tr>
     </table>
-    <p style="text-align: justify; margin-top: ;" >Orang yang namanya tersebut di atas adalah memang benar telah meninggal pada hari {{  Carbon\Carbon::parse($data->subject->birthdate)->translatedFormat('l') }}, tanggal {{  Carbon\Carbon::parse($data->subject->date_of_date)->translatedFormat('d F Y') }} </p>
-    <p style="text-align: justify; margin-top: 17px;" >Demikian Surat Keterangan Kelahiran ini dibuat dengan sebenarnya sebagai persyaratan untuk melengkapi permohonan Pembuatan Kutipan Akta Kelahiran.</p>
+    <p style="text-align: justify; margin-top: ;" >Orang yang namanya tersebut di atas adalah memang benar telah meninggal pada hari {{  Carbon\Carbon::parse($data->subject->birthdate)->translatedFormat('l') }}, tanggal {{  Carbon\Carbon::parse($data->subject->date_of_date)->translatedFormat('d F Y') }}, karna sakit di Br. {{ $data->subject->banjar }}  </p>
+    <p style="text-align: justify; margin-top: 17px;" >Demikian Surat Keterangan Meninggal ini dibuat dengan sebenarnya sebagai persyaratan untuk melengkapi permohonan Pembuatan Akta Kematian.</p>
     <p style="text-align: center; margin: 20px 0;">Saksi-Saksi :</p>
     <table style="width: 100%;" >
         <tr>

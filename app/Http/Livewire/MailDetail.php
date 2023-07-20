@@ -172,6 +172,7 @@ class MailDetail extends Component
 
         $data->subject = UserData::whereId($json->subject)->first([
             'nama as name',
+            'banjar',
             'jenis_kelamin as gender',
             'tempat_lahir as birthplace',
             'tanggal_lahir as birthdate',

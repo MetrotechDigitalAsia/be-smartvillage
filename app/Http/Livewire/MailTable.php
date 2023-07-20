@@ -10,7 +10,7 @@ class MailTable extends Component
 
     public $data;
     protected $userDb;
-    protected $listeners = ['refreshMailTable' => '$refresh'];
+    // protected $listeners = ['refreshMailTable' => 'render'];
 
     public function mount(){
         $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
