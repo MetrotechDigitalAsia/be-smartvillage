@@ -50,7 +50,7 @@ class UserMailController extends Controller
             return ResponseController::create(null, 'error', (empty($user) ? 'user tidak ditemukan' : 'jenis surat tidak tersedia'), 200);
         }
 
-        $applicant = UserData::where('id',$request->resident_id)->first(['nama','no_kk']);
+        $applicant = UserData::where('id',$request->resident_id)->first(['id','nama','no_kk']);
 
         $field = json_decode($request->field, true);
 
@@ -100,7 +100,9 @@ class UserMailController extends Controller
 
     }
 
-    public function createSuratKelahiran(UserData $applicant){
+    public function createSuratKelahiran($id){
+
+        $applicant = UserData::find($id);
 
         $husband = UserData::where('shdk', 'KEPALA KELUARGA')
                 ->where('no_kk', $applicant->no_kk)
