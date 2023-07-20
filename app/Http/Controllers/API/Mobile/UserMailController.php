@@ -50,45 +50,18 @@ class UserMailController extends Controller
             return ResponseController::create(null, 'error', (empty($user) ? 'user tidak ditemukan' : 'jenis surat tidak tersedia'), 200);
         }
 
-        $applicant = UserData::where('id',$request->resident_id)->first(['no_kk']);
+        $applicant = UserData::where('id',$request->resident_id)->first(['nama','no_kk']);
 
         $field = json_decode($request->field, true);
 
         switch ($mail->title) {
             case 'Surat Keterangan Kelahiran':
-
-                $husband = UserData::where('shdk', 'KEPALA KELUARGA')
-                        ->where('no_kk', $applicant->no_kk)
-                        ->first([
-                            'nama as name', 
-                            'pekerjaan as job', 
-                            'kewarganegaraan as citizenship',
-                            'tempat_lahir as birthplace',
-                            'tanggal_lahir as birthdate',
-                            'no_nik as nik',
-                            DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
-                        ]);
-
-                $wife = UserData::where('SHDK', 'ISTRI')
-                        ->where('no_kk', $applicant->no_kk)
-                        ->first([
-                            'nama as name', 
-                            'pekerjaan as job', 
-                            'kewarganegaraan as citizenship',
-                            'tempat_lahir as birthplace',
-                            'tanggal_lahir as birthdate',
-                            'no_nik as nik',
-                            DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
-                        ]);
-
-                $field = [
-                    ...$field,
-                    'NO_KK' => $applicant->no_kk,
-                    'address' => $applicant->alamat,
-                    'husband' => $husband,
-                    'wife' => $wife 
-                ];
-
+                $additionalField = $this->createSuratKelahiran($applicant->id);
+                $field = [ ...$field, ...$additionalField ];
+                break;
+            case 'Surat Keterangan Meninggal':
+                $additionalField = $this->createSuratKematian($field['subject']);
+                $field = [ ...$field, ...$additionalField ];
                 break;
 
             default:
@@ -104,7 +77,7 @@ class UserMailController extends Controller
             DB::table('users_mail')->insert([
                 'user_id' => $user->id,
                 'mail_id' => $mail->id,
-                'resident_id' => $request->resident_id,
+                'resident_id' => $request->resident_id || UserData::where('no_nik', $user->no_nik)->first(['id']),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'signature' => $signature ?? null,
@@ -113,7 +86,7 @@ class UserMailController extends Controller
 
             $notif = [
                 'title' => $mail->title,
-                'sender' => $applicant->nama ?? $applicant->name
+                'sender' => $applicant->nama ?? UserData::where('no_nik', $user->no_nik)->first(['nama'])
             ];
 
             Notification::send(Admin::first(), new MailNotification($notif));
@@ -124,6 +97,80 @@ class UserMailController extends Controller
         }
 
         return ResponseController::success('success', 'Surat Berhasil Dikirim', 200);
+
+    }
+
+    public function createSuratKelahiran(UserData $applicant){
+
+        $husband = UserData::where('shdk', 'KEPALA KELUARGA')
+                ->where('no_kk', $applicant->no_kk)
+                ->first([
+                    'nama as name', 
+                    'pekerjaan as job', 
+                    'kewarganegaraan as citizenship',
+                    'tempat_lahir as birthplace',
+                    'tanggal_lahir as birthdate',
+                    'no_nik as nik',
+                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
+                ]);
+
+        $wife = UserData::where('SHDK', 'ISTRI')
+                ->where('no_kk', $applicant->no_kk)
+                ->first([
+                    'nama as name', 
+                    'pekerjaan as job', 
+                    'kewarganegaraan as citizenship',
+                    'tempat_lahir as birthplace',
+                    'tanggal_lahir as birthdate',
+                    'no_nik as nik',
+                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
+                ]);
+
+        $field = [
+            'NO_KK' => $applicant->no_kk,
+            'address' => $applicant->alamat,
+            'husband' => $husband,
+            'wife' => $wife 
+        ];
+
+        return $field;
+
+    }
+
+    public function createSuratKematian($id){
+
+        $subject = UserData::find($id);
+
+         $husband = UserData::where('shdk', 'KEPALA KELUARGA')
+                ->where('no_kk', $subject->no_kk)
+                ->first([
+                    'nama as name', 
+                    'pekerjaan as job', 
+                    'kewarganegaraan as citizenship',
+                    'tempat_lahir as birthplace',
+                    'tanggal_lahir as birthdate',
+                    'no_nik as nik',
+                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
+                ]);
+
+        $wife = UserData::where('SHDK', 'ISTRI')
+                ->where('no_kk', $subject->no_kk)
+                ->first([
+                    'nama as name', 
+                    'pekerjaan as job', 
+                    'kewarganegaraan as citizenship',
+                    'tempat_lahir as birthplace',
+                    'tanggal_lahir as birthdate',
+                    'no_nik as nik',
+                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
+                ]);
+
+        $field = [
+            'husband' => $husband,
+            'wife' => $wife 
+        ];
+
+        return $field;
 
     }
 

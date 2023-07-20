@@ -60,7 +60,7 @@
                 <td style="text-align: center;" >A</td>
                 <td>BARU</td>
                 <td style="text-align: center;" >A</td>
-                <td>BARU</td>
+                <td>KK</td>
             </tr>
             <tr>
                 <td style="text-align: center;" >1</td>
@@ -98,7 +98,7 @@
                 <td style="text-align: center;" >C</td>
                 <td>HILANG/RUSAK</td>
                 <td style="text-align: center;" >2</td>
-                <td>Hilang</td>
+                <td>Rusak</td>
                 <td style="text-align: center;" >C</td>
                 <td>KIA</td>
             </tr>
@@ -144,7 +144,7 @@
             </tr>
             <tr>
                 <td style="text-align: center;" >2</td>
-                <td>Perisistiwa Penting</td>
+                <td>Peristiwa Penting</td>
                 <td style="text-align: center;" ></td>
                 <td></td>
                 <td style="text-align: center;" ></td>
@@ -177,8 +177,8 @@
             <tr>
                 <td style="text-align: center;" >2</td>
                 <td>Rusak</td>
-                <td style="text-align: center;" ></td>
-                <td></td>
+                <td style="text-align: center;" >G</td>
+                <td>TRANSMIGRASI</td>
                 <td style="text-align: center;" ></td>
                 <td></td>
             </tr>
@@ -339,7 +339,7 @@
             <tr>
                 <td style="width: 40%;" >Petugas,</td>
                 <td style="height: 115px;" ></td>
-                <td style="text-align: center;" >Pemohon,</td>
+                <td style="text-align: center; padding-bottom: 10px;" >Getasan, {{ Carbon\Carbon::now()->translatedFormat('d F Y') }} <br>Pemohon,</td>
             </tr>
             <tr>
                 <td>{{ $data->petugas->name }}</td>

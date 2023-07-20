@@ -51,7 +51,9 @@
                     <tr >
                         <td style="width: 40%; padding-top: -1px;" >
                             <div style="width: 16px; height: 16px; margin-right: 5px;  border: 1px solid black; float: left; position: relative;" >
-                                <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                                @if (!empty($field->child_name))
+                                    <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                                @endif
                             </div>  
                             Kelahiran
                             <div style="clear: both;" ></div>
@@ -124,7 +126,11 @@
                     </tr>
                     <tr>
                         <td style="width: 40%; padding: 0;" >
-                            <div style="width: 16px; height: 16px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                            <div style="width: 16px; height: 16px; margin-right: 5px; border: 1px solid black; float: left; position: relative;" >
+                                @if (!empty($field->date_of_death))
+                                    <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                                @endif
+                            </div>  
                             Kematian
                             <div style="clear: both;" ></div>
                         </td>
@@ -2902,7 +2908,7 @@
                         </td>
                         <td style="height: 50px; position: relative;"  >
                             @if (!is_null($data->user_id))
-                            <img style="position: absolute; width: 100px; height: 60px; left: 120px; top: 0px; object-fit: fill;" src="{{ public_path(). '/storage/'. $data->image }}" alt="">
+                            <img style="position: absolute; width: 100px; height: 60px; left: 120px; top: 0px; object-fit: fill;" src="{{ public_path(). '/storage/'. $data->signature }}" alt="">
                             @endif
                         </td>
                     </tr>

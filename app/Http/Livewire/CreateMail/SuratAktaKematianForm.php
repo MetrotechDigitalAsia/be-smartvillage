@@ -28,7 +28,7 @@ class SuratAktaKematianForm extends Component
         'cause_of_death.required' => 'penyebab kematian diisi',
         'date_of_death.required' => 'tanggal kematian harus diisi',
         'time_of_death.required' => 'waktu kematian harus diisi',
-        'place_of_death.required' => 'tempat kematian harus diisi',
+        'place_of_death.required' => 'tempat meninggal harus diisi',
         'annotator.required' => 'yang menerangkan harus diisi',
         'child_to.required' => 'anak ke - harus diisi',
     ];
@@ -58,7 +58,7 @@ class SuratAktaKematianForm extends Component
         ]);
 
         $husband = UserData::where('shdk', 'KEPALA KELUARGA')
-                ->where('no_kk', $userData->no_kk)
+                ->where('no_kk', $this->subject->no_kk)
                 ->first([
                     'nama as name', 
                     'pekerjaan as job', 
@@ -70,7 +70,7 @@ class SuratAktaKematianForm extends Component
                 ]);
 
         $wife = UserData::where('SHDK', 'ISTRI')
-                ->where('no_kk', $userData->no_kk)
+                ->where('no_kk', $this->subject->no_kk)
                 ->first([
                     'nama as name', 
                     'pekerjaan as job', 

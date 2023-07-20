@@ -35,7 +35,9 @@
             <tr>
                 <td style="width: 40%;" >
                     <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left; position: relative;" >
-                        <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -8px; width: 27px; left: -2px;;" >
+                        @if (request()->query('type') == 'surat-keterangan-kelahiran')
+                            <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -8px; width: 27px; left: -2px;;" >
+                        @endif
                     </div>  
                     Kelahiran
                 </td>
@@ -96,7 +98,11 @@
             </tr>
             <tr>
                 <td style="width: 40%;" >
-                    <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                    <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left; position: relative;" >
+                        @if (request()->query('type') == 'surat-keterangan-meninggal')
+                            <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -8px; width: 27px; left: -2px;;" >
+                        @endif
+                    </div>  
                     Kematian
                 </td>
                 <td style="width: 50%;" >
