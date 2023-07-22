@@ -17,7 +17,7 @@
                         </span>
                         <div class="navi-text">
                             <div class="font-weight-bold">{{ $item->data['data']['title'] }}</div>
-                            {{-- <div class="text-muted"> ~<span style="font-size: 12px;" >{{ $item->data['data']['sender'] }}</span> <br> {{ $item->created_at->diffForHumans() }}</div> --}}
+                            <div class="text-muted"> ~<span style="font-size: 12px;" >{{ $item->data['data']['sender'] }}</span> <br> {{ $item->created_at->diffForHumans() }}</div>
                         </div>
                         <div class="navi-label">
                             <i wire:click="deleteNotif('{{ $item->id }}')" class="flaticon-close text-hover-primary" ></i>
