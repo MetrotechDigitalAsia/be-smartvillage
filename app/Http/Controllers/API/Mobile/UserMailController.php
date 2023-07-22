@@ -86,7 +86,7 @@ class UserMailController extends Controller
 
             $notif = [
                 'title' => $mail->title,
-                'sender' => $applicant->nama ?? UserData::where('no_nik', $user->no_nik)->first(['nama'])
+                'sender' => $applicant->nama ?? UserData::where('no_nik', $user->no_nik)->first(['nama'])->nama
             ];
 
             Notification::send(Admin::first(), new MailNotification($notif));
