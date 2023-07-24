@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\CreateMail;
 
-use App\Models\Mail;
 use App\Models\UserData;
 use Livewire\Component;
 
@@ -15,12 +14,6 @@ class ApplicantForm extends Component
     ];
 
     public $applicantData;
-    public $mail;
-
-    public function mount(){
-        $mailType = request()->query('type');
-        $this->mail = Mail::where('slug', $mailType)->first();
-    }
 
     public function render()
     {

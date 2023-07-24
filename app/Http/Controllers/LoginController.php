@@ -78,7 +78,7 @@ class LoginController extends Controller
                     ->join('mails', 'mails.id', '=', 'userMail.mail_id')
                     ->join('user_logins as user', function($join){
                         $join->join($this->userDb, 'userDB.no_nik', '=', 'user.no_nik')
-                        ->on('user.id', '=', 'userMail.user_id');
+                        ->on('user.id', '=', 'userMail.resident_id');
                     })
                     ->latest('userMail.created_at')
                     ->limit(3)

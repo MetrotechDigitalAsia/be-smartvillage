@@ -42,9 +42,8 @@ class MailDetail extends Component
             case 'Surat Keterangan Meninggal':
                 $data = $this->getSuratKematian();
                 break;
-            
-            default:
-                # code...
+            case 'Surat Keterangan Perkawinan':
+                $data = $this->getSuratPerkawinan();
                 break;
         }
 
@@ -185,6 +184,36 @@ class MailDetail extends Component
 
         return $data;
 
+    }
+
+    public function getSuratPerkawinan(){
+        $data = DB::table('users_mail as userMail')
+        ->join('mails', 'mails.id', '=', 'userMail.mail_id')
+        ->join($this->userDb, 'applicant.id', '=', 'userMail.resident_id')
+        ->where('userMail.id', '=', $this->mailId)
+        ->first([
+            'userMail.id',
+            'mails.title',
+            'mails.slug',
+            'userMail.mail_number',
+            'userMail.status',
+            'userMail.field',
+            'userMail.signature',
+            'userMail.user_id',
+            'userMail.saksi_1',
+            'userMail.saksi_2',
+            'applicant.nama as applicant_name',
+            'applicant.no_nik as applicant_nik',
+            'applicant.no_kk as applicant_no_kk',
+            'applicant.kewarganegaraan as applicant_citizenship',
+            'applicant.alamat as applicant_address',
+            'applicant.pekerjaan as applicant_job',
+            'applicant.banjar as applicant_banjar',
+            DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
+            'userMail.created_at',
+        ]);
+
+        return $data;
     }
 
 

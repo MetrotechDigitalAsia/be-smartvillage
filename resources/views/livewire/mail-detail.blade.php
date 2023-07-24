@@ -35,6 +35,22 @@
                 </div>
             </div>
             @endif
+            @if ($data->title == 'Surat Keterangan Perkawinan')
+            <div class="dropdown mr-2">
+                <button class="btn btn-default btn-sm mail-type-title dropdown-toggle text-dark" type="button" data-offset="0,5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Surat Keterangan Perkawinan
+                </button>
+                <div class="dropdown-menu dropdown-menu-anim-up" >
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat Keterangan Perkawinan" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_keterangan_perkawinan_tab">Surat Keterangan Perkawinan</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat F-2.01" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_f2_tab">Formulir F-2.01</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Formulir F-1.01" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_f1-01_tab">Formulir F-1.01</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat Pernyataan Suka Sama Suka" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_pernyataan_suka_sama_suka_tab">Surat Pernyataan Suka Sama Suka</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat Pernyataan Belum Pernah Kawin (Suami)" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_pernyataan_belum_pernah_kawin_suami_tab">Surat Pernyataan Belum Pernah Kawin (Suami)</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat Pernyataan Belum Pernah Kawin (Istri)" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_pernyataan_belum_pernah_kawin_istri_tab">Surat Pernyataan Belum Pernah Kawin (Istri)</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Pengumuman Perkawinan" onclick="handleChangeMail(this)" data-toggle="tab" href="#pengumuman_perkawinan_tab">Pengumuman Perkawinan</a>
+                </div>
+            </div>
+            @endif
             @if ($data->status == 'Done')
             <a 
                 class="btn btn-default btn-sm btn-icon mr-2"
@@ -142,7 +158,7 @@
                 <div class="container bg-white @if($data->title == 'Surat Keterangan Kelahiran') f2 @endif message-content ribbon ribbon-top">
 
                     @php $field = json_decode($data->field) @endphp
-
+                    
                     @if ($data->title == 'Surat Keterangan Tempat Usaha')
                         @include('admin.mailView.mail')
                     @elseif($data->title == 'Surat Keterangan Kelahiran')
@@ -170,6 +186,30 @@
                         </div>
                         <div class="tab-pane fade " id="surat_pernyataan_meninggal_tab" role="tabpanel" aria-labelledby="surat_pernyataan_meninggal_tab">
                             @include('admin.mailView.surat-pernyataan-kematian')
+                        </div>
+                    </div>
+                    @elseif($data->title == 'Surat Keterangan Perkawinan')
+                    <div class="tab-content" >
+                        <div class="tab-pane fade active show" id="surat_keterangan_perkawinan_tab" role="tabpanel" aria-labelledby="surat_keterangan_perkawinan_tab">
+                            @include('admin.mailView.surat-keterangan-perkawinan')
+                        </div>
+                        <div class="tab-pane fade" id="surat_f2_tab" role="tabpanel" aria-labelledby="surat_f2_tab">
+                            @include('admin.mailView.f-2')
+                        </div>
+                        <div class="tab-pane fade" id="surat_f1-01_tab" role="tabpanel" aria-labelledby="surat_f1-01_tab">
+                            {{-- @include('admin.mailView.f1-02') --}}
+                        </div>
+                        <div class="tab-pane fade" id="surat_pernyataan_suka_sama_suka_tab" role="tabpanel" aria-labelledby="surat_pernyataan_suka_sama_suka_tab">
+                            @include('admin.mailView.surat-pernyataan-suka-sama-suka')
+                        </div>
+                        <div class="tab-pane fade" id="surat_pernyataan_belum_pernah_kawin_suami_tab" role="tabpanel" aria-labelledby="surat_pernyataan_belum_pernah_kawin_suami_tab">
+                            @include('admin.mailView.surat-keterangan-belum-pernah-kawin', ['subject' => $field->subject_1])
+                        </div>
+                        <div class="tab-pane fade" id="surat_pernyataan_belum_pernah_kawin_istri_tab" role="tabpanel" aria-labelledby="surat_pernyataan_belum_pernah_kawin_istri_tab">
+                            @include('admin.mailView.surat-keterangan-belum-pernah-kawin', ['subject' => $field->subject_2])
+                        </div>
+                        <div class="tab-pane fade " id="pengumuman_perkawinan_tab" role="tabpanel" aria-labelledby="pengumuman_perkawinan_tab">
+                            @include('admin.mailView.pengumuman-perkawinan')
                         </div>
                     </div>
                     @endif

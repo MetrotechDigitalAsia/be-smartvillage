@@ -9,6 +9,9 @@
         @case('Surat Keterangan Meninggal')
             @livewire('create-mail.surat-akta-kematian-form')
             @break
+        @case('Surat Keterangan Perkawinan')
+            @livewire('create-mail.surat-keterangan-perkawinan-form')
+            @break
         @default
     @endswitch
 
