@@ -42,6 +42,23 @@
                     </div>
                     @endif
 
+                    @if (request()->query('type') == 'surat-keterangan-perkawinan')
+                    <div class="form-group validated">
+                        <label class="mb-2" >Subjek 1</label>
+                        <select onchange="handleChangeSubject1(this)" class="form-control form-control-lg select2" id="subject_1_select_option" name="param">
+                            <option label="Label"></option>
+                        </select>
+                        <div class="invalid-feedback invalid-feedback-subject-1 d-none">Plih nama subjek pertama</div>
+                    </div>
+                    <div class="form-group validated">
+                        <label class="mb-2" >Subjek 2</label>
+                        <select onchange="handleChangeSubject2(this)" class="form-control form-control-lg select2" id="subject_2_select_option" name="param">
+                            <option label="Label"></option>
+                        </select>
+                        <div class="invalid-feedback invalid-feedback-subject-2 d-none">Plih nama subjek kedua</div>
+                    </div>
+                    @endif
+
                     @livewire('create-mail.mail-form')
 
                     <div class="row justify-content-end">
@@ -75,9 +92,15 @@
             document.querySelector('.invalid-feedback-subject').classList.remove('d-none')
         })
 
-        Livewire.on('mailSubmitted', data => {
+        Livewire.on('subject1NotFound', () => {
+            document.querySelector('.invalid-feedback-subject-1').classList.remove('d-none')
+        })
 
-            console.log(data)
+        Livewire.on('subject2NotFound', () => {
+            document.querySelector('.invalid-feedback-subject-2').classList.remove('d-none')
+        })
+
+        Livewire.on('mailSubmitted', data => {
 
             swalWithBootstrapButtons.fire({
                 title: data.status ? 'Berhasil' : 'Gagal',
@@ -98,7 +121,16 @@
 
         function handleChangeDeathSubject(el){
             Livewire.emit('selectDeathSubject', el.value)
-            console.log(el.value)
+            document.querySelector('.invalid-feedback-applicant').classList.add('d-none')
+        }
+
+        function handleChangeSubject1(el){
+            Livewire.emit('selectSubject1', el.value)
+            document.querySelector('.invalid-feedback-applicant').classList.add('d-none')
+        }
+
+        function handleChangeSubject2(el){
+            Livewire.emit('selectSubject2', el.value)
             document.querySelector('.invalid-feedback-applicant').classList.add('d-none')
         }
 
@@ -151,6 +183,66 @@
         });
 
         $("#death_select_option").select2({
+            placeholder: "Cari berdasarkan NIK dan Nama",
+            allowClear: true,
+            ajax: {
+                url: "{{ route('userDataForSelectOption') }}",
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        query: params.term, // search term
+                    };
+                },
+                processResults: function(data, params) {
+                    return {
+                        results: data?.items,
+                        // pagination: {
+                        //     more: (params.page * 30) < data.total_count
+                        // }
+                    };
+                },
+                cache: true,
+            },
+            escapeMarkup: function(markup) {
+                return markup;
+            }, // let our custom formatter work
+            minimumInputLength: 1,
+            templateResult: formatRepo, // omitted for brevity, see the source of this page
+            templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+        });
+
+        $("#subject_1_select_option").select2({
+            placeholder: "Cari berdasarkan NIK dan Nama",
+            allowClear: true,
+            ajax: {
+                url: "{{ route('userDataForSelectOption') }}",
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        query: params.term, // search term
+                    };
+                },
+                processResults: function(data, params) {
+                    return {
+                        results: data?.items,
+                        // pagination: {
+                        //     more: (params.page * 30) < data.total_count
+                        // }
+                    };
+                },
+                cache: true,
+            },
+            escapeMarkup: function(markup) {
+                return markup;
+            }, // let our custom formatter work
+            minimumInputLength: 1,
+            templateResult: formatRepo, // omitted for brevity, see the source of this page
+            templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+        });
+
+        $("#subject_2_select_option").select2({
             placeholder: "Cari berdasarkan NIK dan Nama",
             allowClear: true,
             ajax: {

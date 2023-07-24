@@ -96,6 +96,7 @@ class DatabaseSeeder extends Seeder
             'slug' => str_replace(' ','-', strtolower('Surat Keterangan Kelahiran')),
             'image' => '-',
             'description' => '-',
+            'active' => true
         ]);
 
         Mail::create([
@@ -104,6 +105,7 @@ class DatabaseSeeder extends Seeder
             'slug' => str_replace(' ','-', strtolower('Surat Keterangan Tempat Usaha')),
             'image' => '-',
             'description' => '-',
+            'active' => true
         ]);
 
         Mail::create([
@@ -128,6 +130,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'surat-keterangan-meninggal',
             'image' => '-',
             'description' => '-',
+            'active' => true
         ]);
 
         Mail::create([
@@ -142,6 +145,56 @@ class DatabaseSeeder extends Seeder
             'id' => '821a5253-f8b7-42a9-815b-b9e1d6fc842c',
             'title' => 'Surat Pernyataan Meninggal',
             'slug' => 'surat-pernyataan-meninggal',
+            'image' => '-',
+            'description' => '-',
+        ]);
+
+
+        Mail::create([
+            'id' => 'ce0e4983-792a-467f-9814-b50a9949b270',
+            'title' => 'Surat Keterangan Perkawinan',
+            'slug' => 'surat-keterangan-perkawinan',
+            'image' => '-',
+            'description' => '-',
+            'active' => true
+        ]);
+
+        Mail::create([
+            'id' => '9a9f7f45-99d1-415b-a196-db6c7b366d79',
+            'title' => 'F1-01',
+            'slug' => 'f1-01',
+            'image' => '-',
+            'description' => '-',
+        ]);
+
+        Mail::create([
+            'id' => 'f0920d02-e5fb-41e1-a3ac-a2b2a047cb1d',
+            'title' => 'Surat Keterangan Belum Pernah Kawin',
+            'slug' => 'surat-keterangan-belum-pernah-kawin',
+            'image' => '-',
+            'description' => '-',
+        ]);
+
+        Mail::create([
+            'id' => 'a2ec0d70-4d6b-4555-b191-4479ff5071e7',
+            'title' => 'Surat Keterangan Belum Pernah Kawin',
+            'slug' => 'surat-keterangan-belum-pernah-kawin',
+            'image' => '-',
+            'description' => '-',
+        ]);
+
+        Mail::create([
+            'id' => 'cee4b3ba-a272-4f6d-9662-d0b332de4c91',
+            'title' => 'Pengumuman Perkawinan',
+            'slug' => 'pengumuman-perkawinan',
+            'image' => '-',
+            'description' => '-',
+        ]);
+
+        Mail::create([
+            'id' => '3ed5e5a3-67dd-4f8e-89ee-5456a639ea85',
+            'title' => 'Surat Pernyataan Suka Sama Suka',
+            'slug' => 'surat-pernyataan-suka-sama-suka',
             'image' => '-',
             'description' => '-',
         ]);

@@ -10,7 +10,6 @@ class MailForm extends Component
 {
 
     public $mail;
-
     public $applicant_data;
 
     protected $listeners = [
@@ -44,6 +43,9 @@ class MailForm extends Component
                 break;
             case 'Surat Keterangan Meninggal':
                 $this->emitTo('create-mail.surat-akta-kematian-form', 'submitMail', $this->applicant_data->id, $this->mail->id);
+                break;
+            case 'Surat Keterangan Perkawinan':
+                $this->emitTo('create-mail.surat-keterangan-perkawinan-form', 'submitMail', $this->applicant_data->id, $this->mail->id);
                 break;
             default:
                 # code...

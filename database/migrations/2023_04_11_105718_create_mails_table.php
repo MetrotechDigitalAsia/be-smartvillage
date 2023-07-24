@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('image');
-            $table->boolean('active')->default(true);
+            $table->boolean('active')->default(false);
             $table->text('description');
             $table->timestamps();
         });

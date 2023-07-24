@@ -40,6 +40,14 @@
                                     <span class="navi-text">Surat Akta Kematian</span> 
                                 </a>
                             </li>
+                            <li class="navi-item">
+                                <a href="/persuratan/surat/create?type=surat-keterangan-perkawinan" class="navi-link">
+                                    <span class="navi-bullet">
+                                        <i class="bullet bullet-dot"></i>
+                                    </span>
+                                    <span class="navi-text">Surat Akta Pernikahan</span> 
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
