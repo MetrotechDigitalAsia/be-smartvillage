@@ -77,7 +77,7 @@ class UserMailController extends Controller
             DB::table('users_mail')->insert([
                 'user_id' => $user->id,
                 'mail_id' => $mail->id,
-                'resident_id' => $request->resident_id || UserData::where('no_nik', $user->no_nik)->first(['id'])->id,
+                'resident_id' => $request->resident_id ?? UserData::where('no_nik', $user->no_nik)->first(['id'])->id,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'signature' => $signature ?? null,
