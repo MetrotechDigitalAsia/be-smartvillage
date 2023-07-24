@@ -76,10 +76,7 @@ class LoginController extends Controller
 
         $latestMail = DB::table('users_mail as userMail')
                     ->join('mails', 'mails.id', '=', 'userMail.mail_id')
-                    ->join('user_logins as user', function($join){
-                        $join->join($this->userDb, 'userDB.no_nik', '=', 'user.no_nik')
-                        ->on('user.id', '=', 'userMail.resident_id');
-                    })
+                    ->join($this->userDb, 'userDB.id', '=', 'userMail.resident_id')
                     ->latest('userMail.created_at')
                     ->limit(3)
                     ->get([
