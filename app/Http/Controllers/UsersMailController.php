@@ -232,6 +232,9 @@ class UsersMailController extends Controller
             case 'surat-keterangan-meninggal':
                 $data = $this->getSuratKematian($id);
                 break;
+            case 'surat-keterangan-perkawinan':
+                $data = $this->getSuratPerkawinan($id);
+                break;
         }
 
         // dd($data);
@@ -258,7 +261,7 @@ class UsersMailController extends Controller
         if(count($queryParams) == 1){
             $pdf = Pdf::loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'kelian', 'field'));
             $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$queryParams[0]).'_mail.pdf';
-            return $pdf->download($fileName);
+            return $pdf->stream($fileName);
         }
 
         $mails = [];
@@ -410,6 +413,41 @@ class UsersMailController extends Controller
             'alamat as address'
         ]);
         
+        return $data;
+
+    }
+
+    public function getSuratPerkawinan($id){
+
+        $data = DB::table('users_mail as userMail')
+            ->join('mails', 'mails.id', '=', 'userMail.mail_id')
+            ->join($this->userDb, 'userDB.id', '=', 'userMail.resident_id')
+            ->where('userMail.id', '=', $id)
+            ->first([
+                'userMail.id',
+                'mails.title',
+                'mails.slug',
+                'userMail.mail_number',
+                'userMail.status',
+                'userMail.field',
+                'userMail.signature',
+                'userMail.user_id',
+                'userMail.saksi_1',
+                'userMail.saksi_2',
+                'userDB.banjar as banjar',
+                'userDB.nama as name',
+                'userDB.nama as applicant_name',
+                'userDB.no_nik as applicant_nik',
+                'userDB.no_kk as applicant_no_kk',
+                'userDB.kewarganegaraan as applicant_citizenship',
+                'userDB.alamat as applicant_address',
+                'userDB.pekerjaan as applicant_job',
+                'userDB.banjar as applicant_banjar',
+                DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
+                'userMail.created_at',
+                'userMail.petugas',
+            ]);
+
         return $data;
 
     }

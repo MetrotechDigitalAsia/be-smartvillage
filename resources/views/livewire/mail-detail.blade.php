@@ -48,13 +48,14 @@
                     <a class="dropdown-item mail-change-btn" data-mail="Surat Pernyataan Belum Pernah Kawin (Suami)" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_pernyataan_belum_pernah_kawin_suami_tab">Surat Pernyataan Belum Pernah Kawin (Suami)</a>
                     <a class="dropdown-item mail-change-btn" data-mail="Surat Pernyataan Belum Pernah Kawin (Istri)" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_pernyataan_belum_pernah_kawin_istri_tab">Surat Pernyataan Belum Pernah Kawin (Istri)</a>
                     <a class="dropdown-item mail-change-btn" data-mail="Pengumuman Perkawinan" onclick="handleChangeMail(this)" data-toggle="tab" href="#pengumuman_perkawinan_tab">Pengumuman Perkawinan</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Tanda Tangan Suami Istri" onclick="handleChangeMail(this)" data-toggle="tab" href="#tanda_tangan_tab">Tanda Tangan Mempelai</a>
                 </div>
             </div>
             @endif
             @if ($data->status == 'Done')
             <a 
                 class="btn btn-default btn-sm btn-icon mr-2"
-                @if ($data->title == 'Surat Keterangan Kelahiran' || $data->title == 'Surat Keterangan Meninggal')
+                @if ($data->title == 'Surat Keterangan Kelahiran' || $data->title == 'Surat Keterangan Meninggal' || $data->title == 'Surat Keterangan Perkawinan')
                 data-toggle="modal"
                 href="javascript:;"
                 data-target="#downloadModal_{{ str_replace('-','_',request()->query('type')) }}"
@@ -197,7 +198,7 @@
                             @include('admin.mailView.f-2')
                         </div>
                         <div class="tab-pane fade" id="surat_f1-01_tab" role="tabpanel" aria-labelledby="surat_f1-01_tab">
-                            {{-- @include('admin.mailView.f1-02') --}}
+                            @include('admin.mailView.f1-01')
                         </div>
                         <div class="tab-pane fade" id="surat_pernyataan_suka_sama_suka_tab" role="tabpanel" aria-labelledby="surat_pernyataan_suka_sama_suka_tab">
                             @include('admin.mailView.surat-pernyataan-suka-sama-suka')
@@ -210,6 +211,9 @@
                         </div>
                         <div class="tab-pane fade " id="pengumuman_perkawinan_tab" role="tabpanel" aria-labelledby="pengumuman_perkawinan_tab">
                             @include('admin.mailView.pengumuman-perkawinan')
+                        </div>
+                        <div class="tab-pane fade" id="tanda_tangan_tab" role="tabpanel" aria-labelledby="tanda_tangan_tab">
+                            @include('admin.mailView.tanda-tangan-suami-istri')
                         </div>
                     </div>
                     @endif
@@ -299,6 +303,59 @@
                             <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-pernyataan-meninggal"/>
                             <span></span>
                             Surat Pernyataan Meninggal
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex py-2 px-2">
+                    <button type="button" style="flex: 1;" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <a href="javascript:;" data-dismiss="modal" onclick="handleDownloadMail()" type="button" style="flex: 1;" class="btn btn-primary">Unduh</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="downloadModal_surat_keterangan_perkawinan" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="font-size: 16px;" >Unduh Surat Kematian</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="checkbox-list">
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-keterangan-perkawinan"/>
+                            <span></span>
+                            Surat Keterangan Perkawinan
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="f2-01"/>
+                            <span></span>
+                            Surat F2-01
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="f1-01"/>
+                            <span></span>
+                            Surat F1-01
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-pernyataan-suka-sama-suka"/>
+                            <span></span>
+                            Surat Pernyataan Suka Sama Suka
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-pernyataan-belum-pernah-kawin_suami"/>
+                            <span></span>
+                            Surat Pernyataan Belum Pernah Kawin (Suami)
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-pernyataan-belum-pernah-kawin_istri"/>
+                            <span></span>
+                            Surat Pernyataan Belum Pernah Kawin (Istri)
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="pengumuman-perkawinan"/>
+                            <span></span>
+                            Pengumuman Perkawinan
                         </label>
                     </div>
                 </div>

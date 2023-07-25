@@ -199,6 +199,14 @@ class DatabaseSeeder extends Seeder
             'description' => '-',
         ]);
 
+        Mail::create([
+            'id' => '3ed5e5a3-67dd-4f8e-89ee-5456a639ea85',
+            'title' => 'Tanda Tangan Suami Istri',
+            'slug' => 'tanda-tangan-suami-istri',
+            'image' => '-',
+            'description' => '-',
+        ]);
+
         $saksi = UserData::where('banjar', 'Ubud')->inRandomOrder()->first();
 
         Signature::create([

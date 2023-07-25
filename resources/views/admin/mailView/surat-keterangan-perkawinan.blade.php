@@ -1,5 +1,5 @@
 <div class="mail-header">
-    <img style="bottom: 30px;" src="{{ asset('assets/be/media/desa.png') }}" alt="">
+    <img style="bottom: 30px; left: 0; mix-blend-mode: darken;" src="{{ asset('assets/be/media/pengumuman-perkawinan-logo.jpeg') }}" width="90px" alt="">
     <h3 style="font-weight: bold; text-align: center; line-height: 28px;" >DESA ADAT GETASAN <br>DESA GETASAN KECAMATAN PETANG <br> KABUPATEN BADUNG</h3>
     <p >Sekretariat : Kantor Perbekel Getasan Jln. Tukad Penet Nomor : 14 Telp. 081 353 622 066</p>
 </div>
