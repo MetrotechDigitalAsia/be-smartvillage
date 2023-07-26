@@ -70,8 +70,8 @@ class SuratKeteranganPerkawinanForm extends Component
             'kewarganegaraan as citizenship',
             'jenis_kelamin as gender',
             'banjar',
-            DB::raw('CASE WHEN status_akta_kelahiran = 1 THEN ADA ELSE TIDAK ADA END as birth_certificate'),
-            DB::raw('CASE WHEN status_akta_perkawinan = 1 THEN ADA ELSE TIDAK ADA END as marriage_certificate'),
+            DB::raw("CASE WHEN status_akta_kelahiran = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as birth_certificate"),
+            DB::raw("CASE WHEN status_akta_perkawinan = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as marriage_certificate"),
             'no_akta_kelahiran as birth_certifcate_number',
             'golongan_darah as blood_type',
             'pendidikan as education'
@@ -90,8 +90,8 @@ class SuratKeteranganPerkawinanForm extends Component
             'kewarganegaraan as citizenship',
             'jenis_kelamin as gender',
             'banjar',
-            DB::raw('CASE WHEN status_akta_kelahiran = 1 THEN ADA ELSE TIDAK ADA END as birth_certificate'),
-            DB::raw('CASE WHEN status_akta_perkawinan = 1 THEN ADA ELSE TIDAK ADA END as marriage_certificate'),
+            DB::raw("CASE WHEN status_akta_kelahiran = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as birth_certificate"),
+            DB::raw("CASE WHEN status_akta_perkawinan = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as marriage_certificate"),
             'no_akta_kelahiran as birth_certifcate_number',
             'golongan_darah as blood_type',
             'pendidikan as education'
