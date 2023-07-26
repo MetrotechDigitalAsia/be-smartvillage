@@ -69,7 +69,12 @@ class SuratKeteranganPerkawinanForm extends Component
             'no_kk as kk',
             'kewarganegaraan as citizenship',
             'jenis_kelamin as gender',
-            'banjar'
+            'banjar',
+            DB::raw('CASE WHEN status_akta_kelahiran = 1 THEN ADA ELSE TIDAK ADA END as birth_certificate'),
+            DB::raw('CASE WHEN status_akta_perkawinan = 1 THEN ADA ELSE TIDAK ADA END as marriage_certificate'),
+            'no_akta_kelahiran as birth_certifcate_number',
+            'golongan_darah as blood_type',
+            'pendidikan as education'
         ]);
 
         $subject_2 = UserData::whereId($this->subject2)->first([
@@ -84,7 +89,12 @@ class SuratKeteranganPerkawinanForm extends Component
             'no_kk as kk',
             'kewarganegaraan as citizenship',
             'jenis_kelamin as gender',
-            'banjar'
+            'banjar',
+            DB::raw('CASE WHEN status_akta_kelahiran = 1 THEN ADA ELSE TIDAK ADA END as birth_certificate'),
+            DB::raw('CASE WHEN status_akta_perkawinan = 1 THEN ADA ELSE TIDAK ADA END as marriage_certificate'),
+            'no_akta_kelahiran as birth_certifcate_number',
+            'golongan_darah as blood_type',
+            'pendidikan as education'
         ]);
 
         $subject_1_father = UserData::where('no_kk', $subject_1->kk)
@@ -114,7 +124,7 @@ class SuratKeteranganPerkawinanForm extends Component
                                 'no_nik as nik',
                                 DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age'),
                                 'banjar',
-                                'pekerjaan as job'
+                                'pekerjaan as job',
                             ]);
 
         $subject_2_mother = UserData::where('no_kk', $subject_2->kk)
@@ -124,7 +134,7 @@ class SuratKeteranganPerkawinanForm extends Component
                                 'no_nik as nik',
                                 DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age'),
                                 'banjar',
-                                'pekerjaan as job'
+                                'pekerjaan as job',
                             ]);
 
         $this->validate([
