@@ -13,6 +13,7 @@ use Yajra\DataTables\DataTables;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
@@ -259,18 +260,47 @@ class UsersMailController extends Controller
         $queryParams = array_slice(array_keys($queryParams), 1);
 
         if(count($queryParams) == 1){
-            $pdf = Pdf::loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'kelian', 'field'));
+
+            if(str_contains($queryParams[0], 'surat-pernyataan-belum-pernah-kawin')){
+                $result = explode('_', $queryParams[0]);
+                $status = $result[1];
+                $subject = $status == 'suami' ? $field->subject_1 : $field->subject_2;
+                $pdf = Pdf::loadView('mailTemplate.'.$result[0], compact('data', 'perbekel', 'kelian', 'field', 'status', 'subject'));
+            } else {
+                if($queryParams[0] == 'f1-01'){
+                    $pdf = Pdf::setPaper('legal', 'landscape')->loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'kelian', 'field'));
+                } else {
+                    $pdf = Pdf::loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'kelian', 'field'));
+                }
+            }
+
             $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$queryParams[0]).'_mail.pdf';
-            return $pdf->stream($fileName);
+            return $pdf->download($fileName);
         }
 
         $mails = [];
 
         foreach($queryParams as $mail){
             if($mail == 'type') continue;
+            Log::info($mail);
+            if(str_contains($mail, 'surat-pernyataan-belum-pernah-kawin')){
+                $result = explode('_', $mail);
+                Log::info($result);
+                $status = $result[1];
+                $subject = $status == 'suami' ? $field->subject_1 : $field->subject_2;
+                $pdf = Pdf::loadView('mailTemplate.'.$result[0], compact('data', 'perbekel', 'kelian', 'field', 'status', 'subject'));
+            } else {
+                if($queryParams[0] == 'f1-01'){
+                    $pdf = Pdf::setPaper('legal', 'landscape')->loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'kelian', 'field'));
+                } else {
+                    $pdf = Pdf::loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'kelian', 'field'));
+                }
+            }
+
+
             $filename = $mail.'-'.$data->id.'-'.$data->name.'.pdf';
             $mails[] = $filename;
-            $pdf = Pdf::loadView('mailTemplate.'.$mail, compact('data', 'perbekel', 'kelian', 'field'))->save($filename, 'public');
+            $pdf->save($filename, 'public');
         }
 
         $zipFileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.$data->id.'-mails.zip';
