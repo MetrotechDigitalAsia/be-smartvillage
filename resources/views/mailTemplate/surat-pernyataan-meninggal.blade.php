@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td>Tempat/Tgl. Lahir: </td>
-                <td style="text-transform: capitalize;" >: {{ $data->subject->birthplace }}, {{ Carbon\Carbon::parse($data->subject->birthdate)->translatedFormat('d-m-Y')  }}</td>
+                <td style="text-transform: capitalize;" >: {{ $field->place_of_death }}, {{ Carbon\Carbon::parse($field->date_of_death)->translatedFormat('d F Y') }}</td>
             </tr>
             <tr>
                 <td>Jenis Kelamin</td>
@@ -49,6 +49,10 @@
             <tr>
                 <td>Anak yang ke-</td>
                 <td>: {{ $field->child_to ?? '' }}</td>
+            </tr>
+            <tr>
+                <td>Alamat</td>
+                <td>: {{ $data->subject->address ?? '' }}</td>
             </tr>
         </table>
         <p style="text-indent: 0px; text-align: justify;" >Belum pernah dicatatkan kematiannya pada Kantor Pencatatan Sipil ditempat kejadian ataupun ditempat lainnya, baik dalam daftar kematian  tidak terlambat, maupun kematian terlambat.</p>

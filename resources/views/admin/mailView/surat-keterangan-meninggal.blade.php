@@ -16,7 +16,7 @@
     </tr>
     <tr>
         <td>Kewarganegaraan</td>
-        <td>: {{ $data->subject->citizenship }}</td>
+        <td>: {{ $data->subject->citizenship == 'WNI' ? "Warga Negara Indonesia (WNI)" : "Warga Negara Asing (WNA)" }}</td>
     </tr>
     <tr>
         <td>Agama</td>
@@ -38,7 +38,7 @@
         <td class="py-2"> </td>
     </tr>
 </table>
-<p class="text-justify mt-10" >Orang yang namanya tersebut di atas adalah memang benar telah meninggal pada hari {{  Carbon\Carbon::parse($data->subject->birthdate)->translatedFormat('l') }}, tanggal {{  Carbon\Carbon::parse($data->subject->date_of_date)->translatedFormat('d F Y') }}, karna sakit di Br. {{ $data->subject->banjar }} </p>
+<p class="text-justify mt-10" >Orang yang namanya tersebut di atas adalah memang benar telah meninggal pada hari {{  Carbon\Carbon::parse($field->date_of_death)->translatedFormat('l') }}, tanggal {{  Carbon\Carbon::parse($field->date_of_death)->translatedFormat('d F Y') }}, karna {{ $field->cause_of_death }} di {{ $field->place_of_death }} </p>
 <p class="text-justify mt-2" >Demikian Surat Keterangan Meninggal ini dibuat dengan sebenarnya sebagai persyaratan untuk melengkapi permohonan Pembuatan Akta Kematian.</p>
 <p class="text-center mt-3" >Saksi-Saksi :</p>
 <div class="row mt-5" style="width: 100%;" >

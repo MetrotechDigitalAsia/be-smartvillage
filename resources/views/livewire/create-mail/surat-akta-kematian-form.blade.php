@@ -6,6 +6,7 @@
         @error('child_to')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
+        <span class="form-text text-muted">Contoh: 1 (Satu)</span>
     </div>
     <div class="row">
         <div class="col">
