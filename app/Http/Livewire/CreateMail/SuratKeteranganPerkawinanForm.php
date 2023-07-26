@@ -104,7 +104,8 @@ class SuratKeteranganPerkawinanForm extends Component
                                 'no_nik as nik',
                                 DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age'),
                                 'banjar',
-                                'pekerjaan as job'
+                                'pekerjaan as job',
+                                'alamat as address'
                             ]);
 
         $subject_1_mother = UserData::where('no_kk', $subject_1->kk)
@@ -114,7 +115,8 @@ class SuratKeteranganPerkawinanForm extends Component
                                 'no_nik as nik',
                                 DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age'),
                                 'banjar',
-                                'pekerjaan as job'
+                                'pekerjaan as job',
+                                'alamat as address'
                             ]);
 
         $subject_2_father = UserData::where('no_kk', $subject_2->kk)
@@ -125,6 +127,7 @@ class SuratKeteranganPerkawinanForm extends Component
                                 DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age'),
                                 'banjar',
                                 'pekerjaan as job',
+                                'alamat as address'
                             ]);
 
         $subject_2_mother = UserData::where('no_kk', $subject_2->kk)
@@ -135,6 +138,7 @@ class SuratKeteranganPerkawinanForm extends Component
                                 DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age'),
                                 'banjar',
                                 'pekerjaan as job',
+                                'alamat as address'
                             ]);
 
         $this->validate([
