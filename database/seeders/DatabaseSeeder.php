@@ -200,7 +200,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Mail::create([
-            'id' => '3ed5e5a3-67dd-4f8e-89ee-5456a639ea85',
+            'id' => '9be3f95a-798b-4326-ae38-01edce6dcbf3',
             'title' => 'Tanda Tangan Suami Istri',
             'slug' => 'tanda-tangan-suami-istri',
             'image' => '-',
