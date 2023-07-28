@@ -1,5 +1,5 @@
 <div style="padding: 0 30px;" >
-    <h4 style="text-align: center;" >DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL <br>KABUPATEN SIPIL</h4>
+    <h4 style="text-align: center;" >DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL <br>KABUPATEN BADUNG</h4>
     <div style="height: 2px; background-color: black; margin-bottom: 4px; margin-top: 10px;" ></div>
     <div style="height: 4px; background-color: black;" ></div>
     <p style="text-align: center; font-size: 16px; margin: 25px 0;" ><u>DAFTAR</u><br>UNTUK</p>

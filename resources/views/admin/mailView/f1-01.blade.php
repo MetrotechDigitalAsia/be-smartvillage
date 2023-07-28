@@ -31,15 +31,15 @@
             @endfor
             <span style="margin: 0 2px;" >4 RT</span>
             @for ($i = 0; $i < 3; $i++)
-                <span style="border: 1px solid black; width: 20px; @if($i != 2) border-right: none; @endif" class="text-center" >{{ $field->postal_code[$i] ?? '' }}</span>
+                <span style="border: 1px solid black; width: 20px; @if($i != 2) border-right: none; @endif" class="text-center" >{{ $field->rt[$i] ?? '' }}</span>
             @endfor
             <span style="margin: 0 2px;" >5 RW</span>
             @for ($i = 0; $i < 3; $i++)
-                <span style="border: 1px solid black; width: 20px; @if($i != 2) border-right: none; @endif" class="text-center" >{{ $field->postal_code[$i] ?? '' }}</span>
+                <span style="border: 1px solid black; width: 20px; @if($i != 2) border-right: none; @endif" class="text-center" >{{ $field->rw[$i] ?? '' }}</span>
             @endfor
             <span style="margin: 0 2px;" class="flex-grow-1" >6 JML ANGGOTA KELUARGA</span>
             <span style="border: 1px solid black; width: 20px; border-right: 0;" class="text-center" >{{ $field->postal_code[$i] ?? '' }}</span>
-            <span style="border: 1px solid black; width: 20px;" class="text-center" >{{ $field->postal_code[$i] ?? '' }}</span>
+            <span style="border: 1px solid black; width: 20px;" class="text-center" >{{ $field->number_of_family_members[$i] ?? '' }}</span>
             <span style="width: 20px;" class="text-center" >Org</span>
         </div>
         <div class="d-flex" style="font-size: 8.5px; margin: 1px 0;" >

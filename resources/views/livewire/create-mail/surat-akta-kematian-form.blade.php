@@ -42,7 +42,7 @@
         @enderror
     </div>
     <div class="form-group">
-        <label>Tempat Meninggal</label>
+        <label>Tempat Kematian</label>
         <input wire:model.lazy="place_of_death" class="form-control @error('place_of_death') is-invalid @enderror " type="text"  />
         @error('place_of_death')
             <div class="invalid-feedback">{{ $message }}</div>
@@ -82,7 +82,7 @@
 
     <div class="form-group validated">
         <label>Kewarganegaraan Ayah</label>
-        <select wire:model="annotator" class="form-control @error('subject_father_citizenship') is-invalid @enderror" id="exampleSelect1">
+        <select wire:model="subject_father_citizenship" class="form-control @error('subject_father_citizenship') is-invalid @enderror" id="exampleSelect1">
             <option>pilih...</option>
             <option value="WNI" >Warga Negara Indonesia (WNI)</option>
             <option value="WNA" >Warga Negara Asing (WNA)</option>
@@ -96,7 +96,7 @@
         <div class="col">
             <div class="form-group">
                 <label>Tempat Lahir Ayah</label>
-                <input wire:model.lazy="subject_father_birthdate" class="form-control @error('subject_father_birthdate') is-invalid @enderror " type="number"  />
+                <input wire:model.lazy="subject_father_birthplace" class="form-control @error('subject_father_birthplace') is-invalid @enderror " type="text"  />
                 @error('subject_father_birthdate')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -105,7 +105,7 @@
         <div class="col">
             <div class="form-group">
                 <label>Tanggal Lahir Ayah</label>
-                <input wire:model.lazy="subject_father_birthplace" class="form-control @error('subject_father_birthplace') is-invalid @enderror " type="number"  />
+                <input wire:model.lazy="subject_father_birthdate" class="form-control @error('subject_father_birthdate') is-invalid @enderror " type="date"  />
                 @error('subject_father_birthplace')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -131,7 +131,7 @@
 
     <div class="form-group validated">
         <label>Kewarganegaraan Ibu</label>
-        <select wire:model="annotator" class="form-control @error('subject_mother_citizenship') is-invalid @enderror" id="exampleSelect1">
+        <select wire:model="subject_mother_citizenship" class="form-control @error('subject_mother_citizenship') is-invalid @enderror" id="exampleSelect1">
             <option>pilih...</option>
             <option value="WNI" >Warga Negara Indonesia (WNI)</option>
             <option value="WNA" >Warga Negara Asing (WNA)</option>
@@ -145,7 +145,7 @@
         <div class="col">
             <div class="form-group">
                 <label>Tempat Lahir Ibu</label>
-                <input wire:model.lazy="subject_mother_birthdate" class="form-control @error('subject_mother_birthdate') is-invalid @enderror " type="number"  />
+                <input wire:model.lazy="subject_mother_birthplace" class="form-control @error('subject_mother_birthplace') is-invalid @enderror " type="text"  />
                 @error('subject_mother_birthdate')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -154,7 +154,7 @@
         <div class="col">
             <div class="form-group">
                 <label>Tanggal Lahir Ibu</label>
-                <input wire:model.lazy="subject_mother_birthplace" class="form-control @error('subject_mother_birthplace') is-invalid @enderror " type="number"  />
+                <input wire:model.lazy="subject_mother_birthdate" class="form-control @error('subject_mother_birthdate') is-invalid @enderror " type="date"  />
                 @error('subject_mother_birthplace')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
