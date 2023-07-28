@@ -282,22 +282,22 @@ class UsersMailController extends Controller
 
         foreach($queryParams as $mail){
             if($mail == 'type') continue;
-            Log::info($mail);
             if(str_contains($mail, 'surat-pernyataan-belum-pernah-kawin')){
                 $result = explode('_', $mail);
                 $status = $result[1];
                 $subject = $status == 'suami' ? $field->subject_1 : $field->subject_2;
                 $pdf = Pdf::loadView('mailTemplate.'.$result[0], compact('data', 'perbekel', 'kelian', 'field', 'status', 'subject'));
             } else {
-                if($queryParams[0] == 'f1-01'){
-                    $pdf = Pdf::setPaper('legal', 'landscape')->loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'kelian', 'field'));
+                if($mail == 'f1-01'){
+                    $pdf = Pdf::setPaper('legal', 'landscape')->loadView('mailTemplate.'.$mail, compact('data', 'perbekel', 'kelian', 'field'));
                 } else {
-                    $pdf = Pdf::loadView('mailTemplate.'.$queryParams[0], compact('data', 'perbekel', 'kelian', 'field'));
+                    $pdf = Pdf::loadView('mailTemplate.'.$mail, compact('data', 'perbekel', 'kelian', 'field'));
                 }
             }
-
-
+            
+            Log::info($mail);
             $filename = $mail.'-'.$data->id.'-'.$data->name.'.pdf';
+            Log::info($filename);
             $mails[] = $filename;
             $pdf->save($filename, 'public');
         }
@@ -306,7 +306,7 @@ class UsersMailController extends Controller
         $zipFilePath = public_path('/storage/'.$zipFileName);
     
         $zip = new ZipArchive();
-        if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+            if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
             foreach ($mails as $pdfFile) {
                 $pdfFilePath = public_path('/storage/'.$pdfFile);
                 $zip->addFile($pdfFilePath, $pdfFile);

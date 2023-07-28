@@ -44,14 +44,22 @@
 
                     @if (request()->query('type') == 'surat-keterangan-perkawinan')
                     <div class="form-group validated">
-                        <label class="mb-2" >Subjek 1</label>
+                        <label class="mb-2" >
+                            @if (Str::contains(Request::getRequestUri(), 'surat-keterangan-perkawinan'))
+                                Nama Calon Suami
+                            @endif
+                        </label>
                         <select onchange="handleChangeSubject1(this)" class="form-control form-control-lg select2" id="subject_1_select_option" name="param">
                             <option label="Label"></option>
                         </select>
                         <div class="invalid-feedback invalid-feedback-subject-1 d-none">Plih nama subjek pertama</div>
                     </div>
                     <div class="form-group validated">
-                        <label class="mb-2" >Subjek 2</label>
+                        <label class="mb-2" >
+                            @if (Str::contains(Request::getRequestUri(), 'surat-keterangan-perkawinan'))
+                                Nama Calon Istri
+                            @endif
+                        </label>
                         <select onchange="handleChangeSubject2(this)" class="form-control form-control-lg select2" id="subject_2_select_option" name="param">
                             <option label="Label"></option>
                         </select>

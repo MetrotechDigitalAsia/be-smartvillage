@@ -59,11 +59,6 @@ class UserMailController extends Controller
                 $additionalField = $this->createSuratKelahiran($applicant->id);
                 $field = [ ...$field, ...$additionalField ];
                 break;
-            case 'Surat Keterangan Meninggal':
-                $additionalField = $this->createSuratKematian($field['subject']);
-                $field = [ ...$field, ...$additionalField ];
-                break;
-
             default:
             break;
         }

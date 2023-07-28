@@ -1612,7 +1612,7 @@
                             2. Nama Lengkap
                         </td>
                         <td style="width: 2%" >:</td>
-                        <td colspan="23" style="border: 1px solid black; text-align: left;" >{{ $data->subject->name ?? '' }}</td>
+                        <td colspan="23" style="border: 1px solid black; text-align: left; text-transform: uppercase;" >{{ $data->subject->name ?? '' }}</td>
                     </tr>
                     <tr>
                         @php
@@ -1701,7 +1701,7 @@
                         <td>6. Tempat Kematian</td>
                         <td>:</td>
                         @for ($i = 0; $i < 16; $i++)
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $field->place_of_death[$i] ?? '' }}</td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center; text-transform: uppercase;" >{{ $field->place_of_death[$i] ?? '' }}</td>
                         @endfor
                         <td colspan="7" ></td>
                     </tr>

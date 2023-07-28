@@ -35,7 +35,7 @@
             <tr>
                 <td style="width: 40%;" >
                     <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left; position: relative;" >
-                        @if (request()->query('type') == 'surat-keterangan-kelahiran')
+                        @if (Str::contains(Request::getRequestUri(), 'surat-keterangan-kelahiran'))
                             <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -8px; width: 27px; left: -2px;;" >
                         @endif
                     </div>  
@@ -59,7 +59,7 @@
             <tr>
                 <td style="width: 40%;" >
                     <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left; position: relative;" >
-                        @if (request()->query('type') == 'surat-keterangan-perkawinan')
+                        @if (Str::contains(Request::getRequestUri(), 'surat-keterangan-perkawinan'))
                             <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -8px; width: 27px; left: -2px;;" >
                         @endif
                     </div>  
@@ -103,7 +103,7 @@
             <tr>
                 <td style="width: 40%;" >
                     <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left; position: relative;" >
-                        @if (request()->query('type') == 'surat-keterangan-meninggal')
+                        @if (Str::contains(Request::getRequestUri(), 'surat-keterangan-meninggal'))
                             <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -8px; width: 27px; left: -2px;;" >
                         @endif
                     </div>  
@@ -3094,7 +3094,7 @@
             </tr>
             <table style="width: 100%; text-align: center; margin-top: 30px;" >
                 <tr>
-                    <td style="width: 50%;" >Mengetahui : </td>
+                    <td style="width: 50%;" >Mengetahui :<br> Perbekel Getasan  </td>
                     <td style="width: 50%;" >Pelapor, </td>
                 </tr>
                 <tr>
