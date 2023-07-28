@@ -285,7 +285,6 @@ class UsersMailController extends Controller
             Log::info($mail);
             if(str_contains($mail, 'surat-pernyataan-belum-pernah-kawin')){
                 $result = explode('_', $mail);
-                Log::info($result);
                 $status = $result[1];
                 $subject = $status == 'suami' ? $field->subject_1 : $field->subject_2;
                 $pdf = Pdf::loadView('mailTemplate.'.$result[0], compact('data', 'perbekel', 'kelian', 'field', 'status', 'subject'));

@@ -342,7 +342,7 @@
                 <td style="text-align: center; padding-bottom: 10px;" >Getasan, {{ Carbon\Carbon::now()->translatedFormat('d F Y') }} <br>Pemohon,</td>
             </tr>
             <tr>
-                <td>{{ $data->petugas->name }}</td>
+                <td>{{ $data->petugas->name ?? '' }}</td>
                 <td></td>
                 <td style="text-align: center;">{{ $data->applicant_name }}</td>
             </tr>
