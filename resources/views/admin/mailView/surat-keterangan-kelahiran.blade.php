@@ -38,22 +38,22 @@
         <tr>
             <td class="w-20px" >2.</td>
             <td class="w-140px" >Nama Ayah</td>
-            <td style="text-transform: capitalize;" >: {{ $field->husband->name }}</td>
+            <td style="text-transform: capitalize;" >: {{ $field->subject_father_name }}</td>
         </tr>
         <tr>
             <td></td>
             <td>Umur</td>
-            <td>: {{ $field->husband->age }} Tahun</td>
+            <td>: {{ $field->subject_father_age }} Tahun</td>
         </tr>
         <tr>
             <td></td>
             <td>Pekerjaan</td>
-            <td>: {{ $field->husband->job }}</td>
+            <td>: {{  $field->subject_father_job }}</td>
         </tr>
         <tr>
             <td></td>
             <td>Alamat</td>
-            <td>: {{ $data->applicant_address }}</td>
+            <td>: {{ $field->subject_father_address }}</td>
         </tr>
         <tr>
             <td class="py-2"> </td>
@@ -61,22 +61,22 @@
         <tr>
             <td class="w-20px" >3.</td>
             <td class="w-140px" >Nama ibu</td>
-            <td style="text-transform: capitalize;" >: {{ $field->wife->name }}</td>
+            <td style="text-transform: capitalize;" >: {{ $field->subject_mother_name }}</td>
         </tr>
         <tr>
             <td></td>
             <td>Umur</td>
-            <td>: {{ $field->wife->age }} Tahun</td>
+            <td>: {{ $field->subject_mother_age }} Tahun</td>
         </tr>
         <tr>
             <td></td>
             <td>Pekerjaan</td>
-            <td>: {{ $field->wife->job }}</td>
+            <td>: {{ $field->subject_mother_job }}</td>
         </tr>
         <tr>
             <td></td>
             <td>Alamat</td>
-            <td>: {{ $data->applicant_address }}</td>
+            <td>: {{ $field->subject_mother_address }}</td>
         </tr>
     </table>
     <p class="text-justify mt-10" >Demikian Surat Keterangan Kelahiran ini dibuat dengan sebenarnya sebagai persyaratan untuk melengkapi permohonan Pembuatan Kutipan Akta Kelahiran.</p>
