@@ -104,7 +104,7 @@ class UserMailController extends Controller
 
         $applicant = UserData::find($id);
 
-        $husband = UserData::where('shdk', 'KEPALA KELUARGA')
+        $father = UserData::where('shdk', 'KEPALA KELUARGA')
                 ->where('no_kk', $applicant->no_kk)
                 ->first([
                     'nama as name', 
@@ -113,10 +113,11 @@ class UserMailController extends Controller
                     'tempat_lahir as birthplace',
                     'tanggal_lahir as birthdate',
                     'no_nik as nik',
+                    'alamat as address',
                     DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
                 ]);
 
-        $wife = UserData::where('SHDK', 'ISTRI')
+        $mother = UserData::where('SHDK', 'ISTRI')
                 ->where('no_kk', $applicant->no_kk)
                 ->first([
                     'nama as name', 
@@ -125,14 +126,29 @@ class UserMailController extends Controller
                     'tempat_lahir as birthplace',
                     'tanggal_lahir as birthdate',
                     'no_nik as nik',
+                    'alamat as address',
                     DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
                 ]);
 
         $field = [
             'NO_KK' => $applicant->no_kk,
             'address' => $applicant->alamat,
-            'husband' => $husband,
-            'wife' => $wife 
+            'subject_father_name' => $father->name,
+            'subject_father_nik' => $father->nik,
+            'subject_father_citizenship' => $father->citizenship,
+            'subject_father_birthplace' => $father->birthplace,
+            'subject_father_birthdate' => $father->birthdate,
+            'subject_father_job' => $father->job,
+            'subject_father_address' => $father->address,
+            'subject_father_age' => $father->age,
+            'subject_mother_name' => $mother->name,
+            'subject_mother_nik' => $mother->nik,
+            'subject_mother_citizenship' => $mother->citizenship,
+            'subject_mother_birthplace' => $mother->birthplace,
+            'subject_mother_birthdate' => $mother->birthdate,
+            'subject_mother_age' => $mother->age,
+            'subject_mother_job' => $mother->job,
+            'subject_mother_address' => $mother->address,
         ];
 
         return $field;
