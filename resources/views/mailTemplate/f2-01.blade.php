@@ -439,13 +439,13 @@
                         <td style="width: 38%;" >Nama Ayah</td>
                         <td style="width: 2%" >:</td>
                         <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
-                            {{ $field->husband->name ?? '' }}
+                            {{ $field->subject_father_name ?? '' }}
                         </td>
                     </tr>
                     <tr>
                         <td>NIK Ayah</td>
                         <td>:</td>
-                        @php $ayah_nik = str_split($field->husband->nik ?? '') @endphp
+                        @php $ayah_nik = str_split($field->subject_father_nik ?? '') @endphp
                         @for ($i = 0; $i < 16; $i++)
                         <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                             {{ $ayah_nik[$i] ?? '' }}
@@ -457,13 +457,13 @@
                         <td>Tempat Lahir Ayah</td>
                         <td>:</td>
                         <td colspan="16" style="border: 1px solid black; width: 50px !important; text-transform: uppercase;" >
-                            {{ $field->husband->birthplace ?? '' }}
+                            {{ $field->subject_father_birthplace ?? '' }}
                         </td>
                         <td ></td>
                     </tr>
                     <tr>
                         @php
-                            $ayah_birthdate = !empty($field->husband->birthdate) ? Carbon\Carbon::parse($field->husband->birthdate)->format('d-m-Y') : '';
+                            $ayah_birthdate = !empty($field->subject_father_birthdate) ? Carbon\Carbon::parse($field->subject_father_birthdate)->format('d-m-Y') : '';
                             $ayah_birthdate = explode('-', $ayah_birthdate);
                         @endphp
                         <td>Tanggal Lahir Ayah</td>
@@ -495,7 +495,7 @@
                     <tr>
                         <td>Kewarganegaraan </td>
                         <td>:</td>
-                        @php $ayah_citizenship = str_split($field->husband->citizenship ?? '') @endphp
+                        @php $ayah_citizenship = str_split($field->subject_father_citizenship ?? '') @endphp
                         @for ($i = 0; $i < 23; $i++)
                         <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                             {{ $ayah_citizenship[$i] ?? '' }}
@@ -508,13 +508,13 @@
                         </td>
                         <td style="width: 2%" >:</td>
                         <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
-                            {{ $field->wife->name ?? '' }}
+                            {{ $field->subject_mother_name ?? '' }}
                         </td>
                     </tr>
                     <tr>
                         <td>NIK Ibu</td>
                         <td>:</td>
-                        @php $ibu_nik = str_split($field->wife->nik ?? '') @endphp
+                        @php $ibu_nik = str_split($field->subject_mother_nik ?? '') @endphp
                         @for ($i = 0; $i < 16; $i++)
                         <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                             {{ $ibu_nik[$i] ?? '' }}
@@ -526,13 +526,13 @@
                         <td>Tempat Lahir Ibu</td>
                         <td>:</td>
                         <td colspan="16" style="border: 1px solid black; width: 50px !important; text-transform: uppercase;" >
-                            {{ $field->wife->birthplace ?? '' }}
+                            {{ $field->subject_mother_birthplace ?? '' }}
                         </td>
                         <td ></td>
                     </tr>
                     <tr>
                         @php
-                            $ibu_birthdate = (!empty($field->wife->birthdate)) ? Carbon\Carbon::parse($field->wife->birthdate)->format('d-m-Y') : '';
+                            $ibu_birthdate = (!empty($field->subject_mother_birthdate)) ? Carbon\Carbon::parse($field->subject_mother_birthdate)->format('d-m-Y') : '';
                             $ibu_birthdate = explode('-', $ibu_birthdate);
                         @endphp
                         <td>Tanggal Lahir Ibu</td>
@@ -562,7 +562,7 @@
                     <tr>
                         <td>Kewarganegaraan </td>
                         <td>:</td>
-                        @php $ibu_citizenship = str_split($field->wife->citizenship ?? '') @endphp
+                        @php $ibu_citizenship = str_split($field->subject_mother_citizenship ?? '') @endphp
                         @for ($i = 0; $i < 23; $i++)
                         <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
                             {{ $ibu_citizenship[$i] ?? '' }}

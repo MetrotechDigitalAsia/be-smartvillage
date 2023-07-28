@@ -69,6 +69,32 @@ class SuratKeteranganKelahiranForm extends Component
             'hospital_mail_number' => 'required',
         ]);
 
+        $father = UserData::where('shdk', 'KEPALA KELUARGA')
+                ->where('no_kk', $userData->no_kk)
+                ->first([
+                    'nama as name', 
+                    'pekerjaan as job', 
+                    'kewarganegaraan as citizenship',
+                    'tempat_lahir as birthplace',
+                    'tanggal_lahir as birthdate',
+                    'no_nik as nik',
+                    'alamat as address',
+                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
+                ]);
+
+        $mother = UserData::where('SHDK', 'ISTRI')
+                ->where('no_kk', $userData->no_kk)
+                ->first([
+                    'nama as name', 
+                    'pekerjaan as job', 
+                    'kewarganegaraan as citizenship',
+                    'tempat_lahir as birthplace',
+                    'tanggal_lahir as birthdate',
+                    'no_nik as nik',
+                    'alamat as address',
+                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
+                ]);
+
         $field = json_encode([
             'child_name' => $this->child_name,
             'child_sex' => $this->child_sex,
@@ -85,40 +111,30 @@ class SuratKeteranganKelahiranForm extends Component
             'NO_KK' => $userData->no_kk,
             'hospital_mail_number_date' => $this->hospital_mail_number_date,
             'hospital_mail_number' => $this->hospital_mail_number,
+            'subject_father_name' => $father->name,
+            'subject_father_nik' => $father->nik,
+            'subject_father_citizenship' => $father->citizenship,
+            'subject_father_birthplace' => $father->birthplace,
+            'subject_father_birthdate' => $father->birthdate,
+            'subject_father_job' => $father->job,
+            'subject_father_address' => $father->address,
+            'subject_father_age' => $father->age,
+            'subject_mother_name' => $mother->name,
+            'subject_mother_nik' => $mother->nik,
+            'subject_mother_citizenship' => $mother->citizenship,
+            'subject_mother_birthplace' => $mother->birthplace,
+            'subject_mother_birthdate' => $mother->birthdate,
+            'subject_mother_age' => $mother->age,
+            'subject_mother_job' => $mother->job,
+            'subject_mother_address' => $mother->address,
         ]);
 
         $field = json_decode($field,true);
-
-        $husband = UserData::where('shdk', 'KEPALA KELUARGA')
-                ->where('no_kk', $userData->no_kk)
-                ->first([
-                    'nama as name', 
-                    'pekerjaan as job', 
-                    'kewarganegaraan as citizenship',
-                    'tempat_lahir as birthplace',
-                    'tanggal_lahir as birthdate',
-                    'no_nik as nik',
-                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
-                ]);
-
-        $wife = UserData::where('SHDK', 'ISTRI')
-                ->where('no_kk', $userData->no_kk)
-                ->first([
-                    'nama as name', 
-                    'pekerjaan as job', 
-                    'kewarganegaraan as citizenship',
-                    'tempat_lahir as birthplace',
-                    'tanggal_lahir as birthdate',
-                    'no_nik as nik',
-                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
-                ]);
 
         $field = [
             ...$field,
             'NO_KK' => $userData->no_kk,
             'address' => $userData->alamat,
-            'husband' => $husband,
-            'wife' => $wife 
         ];
 
         try {

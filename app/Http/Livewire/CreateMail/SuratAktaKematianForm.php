@@ -18,6 +18,16 @@ class SuratAktaKematianForm extends Component
     public $annotator;
     public $subject;
     public $child_to;
+    public $subject_father_name;
+    public $subject_father_nik;
+    public $subject_father_citizenship;
+    public $subject_father_birthplace;
+    public $subject_father_birthdate;
+    public $subject_mother_name;
+    public $subject_mother_nik;
+    public $subject_mother_citizenship;
+    public $subject_mother_birthplace;
+    public $subject_mother_birthdate;
 
     protected $listeners = [
         'selectDeathSubject' => 'selectSubject',
@@ -31,6 +41,16 @@ class SuratAktaKematianForm extends Component
         'place_of_death.required' => 'tempat meninggal harus diisi',
         'annotator.required' => 'yang menerangkan harus diisi',
         'child_to.required' => 'anak ke - harus diisi',
+        'subject_father_name.required' => 'nama ayah diisi',
+        'subject_father_nik.required' => 'nik ayah diisi',
+        'subject_father_citizenship.required' => 'kewarganegaraan ayah diisi',
+        'subject_father_birthplace.required' => 'tempat lahir ayah diisi',
+        'subject_father_birthdate.required' => 'tanggal lahir ayah diisi',
+        'subject_mother_name.required' => 'nama ibu diisi',
+        'subject_mother_nik.required' => 'nik ibu diisi',
+        'subject_mother_citizenship.required' => 'kewarganegaraan ibu diisi',
+        'subject_mother_birthplace.required' => 'tempat lahir ibu diisi',
+        'subject_mother_birthdate.required' => 'tanggal lahir ibu diisi',
     ];
 
     public function render()
@@ -55,31 +75,17 @@ class SuratAktaKematianForm extends Component
             'place_of_death' => 'required',
             'annotator' => 'required',
             'child_to' => 'required',
+            'subject_father_name' => 'required',
+            'subject_father_nik' => 'required',
+            'subject_father_citizenship' => 'required',
+            'subject_father_birthplace' => 'required',
+            'subject_father_birthdate' => 'required',
+            'subject_mother_name' => 'required',
+            'subject_mother_nik' => 'required',
+            'subject_mother_citizenship' => 'required',
+            'subject_mother_birthplace' => 'required',
+            'subject_mother_birthdate' => 'required',
         ]);
-
-        $husband = UserData::where('shdk', 'KEPALA KELUARGA')
-                ->where('no_kk', $this->subject->no_kk)
-                ->first([
-                    'nama as name', 
-                    'pekerjaan as job', 
-                    'kewarganegaraan as citizenship',
-                    'tempat_lahir as birthplace',
-                    'tanggal_lahir as birthdate',
-                    'no_nik as nik',
-                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
-                ]);
-
-        $wife = UserData::where('SHDK', 'ISTRI')
-                ->where('no_kk', $this->subject->no_kk)
-                ->first([
-                    'nama as name', 
-                    'pekerjaan as job', 
-                    'kewarganegaraan as citizenship',
-                    'tempat_lahir as birthplace',
-                    'tanggal_lahir as birthdate',
-                    'no_nik as nik',
-                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
-                ]);
 
         $field = json_encode([
             'date_of_death' => $this->date_of_death,
@@ -89,8 +95,16 @@ class SuratAktaKematianForm extends Component
             'child_to' => $this->child_to,
             'annotator' => $this->annotator,
             'subject' => $this->subject->id,
-            'husband' => $husband,
-            'wife' => $wife
+            'subject_father_name' => $this->subject_father_name,
+            'subject_father_nik' => $this->subject_father_nik,
+            'subject_father_citizenship' => $this->subject_father_citizenship,
+            'subject_father_birthplace' => $this->subject_father_birthplace,
+            'subject_father_birthdate' => $this->subject_father_birthdate,
+            'subject_mother_name' => $this->subject_mother_name,
+            'subject_mother_nik' => $this->subject_mother_nik,
+            'subject_mother_citizenship' => $this->subject_mother_citizenship,
+            'subject_mother_birthplace' => $this->subject_mother_birthplace,
+            'subject_mother_birthdate' => $this->subject_mother_birthdate,
         ]);
 
         try {

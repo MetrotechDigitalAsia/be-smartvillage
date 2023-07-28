@@ -48,22 +48,22 @@
         <tr>
             <td >2.</td>
             <td >Nama Ayah</td>
-            <td>: {{ $field->husband->name }}</td>
+            <td>: {{ $field->subject_father_name }}</td>
         </tr>
         <tr>
             <td></td>
             <td>Umur</td>
-            <td>: {{ $field->husband->age }} Tahun</td>
+            <td>: {{ $field->subject_father_age }} Tahun</td>
         </tr>
         <tr>
             <td></td>
             <td>Pekerjaan</td>
-            <td>: {{ $field->husband->job }}</td>
+            <td>: {{ $field->subject_father_job }}</td>
         </tr>
         <tr>
             <td></td>
             <td>Alamat</td>
-            <td>: {{ $field->address }}</td>
+            <td>: {{ $field->subject_father_address }}</td>
         </tr>
         <tr><td></td></tr>
         <tr><td></td></tr>
@@ -72,22 +72,22 @@
         <tr>
             <td  >3.</td>
             <td >Nama ibu</td>
-            <td>: {{ $field->wife->name }}</td>
+            <td>: {{ $field->subject_mother_name }}</td>
         </tr>
         <tr>
             <td></td>
             <td>Umur</td>
-            <td>: {{ $field->wife->age }} Tahun</td>
+            <td>: {{ $field->subject_mother_age }} Tahun</td>
         </tr>
         <tr>
             <td></td>
             <td>Pekerjaan</td>
-            <td>: {{ $field->wife->job }}</td>
+            <td>: {{ $field->subject_mother_job }}</td>
         </tr>
         <tr>
             <td></td>
             <td>Alamat</td>
-            <td>: {{ $field->address }}</td>
+            <td>: {{ $field->subject_mother_address }}</td>
         </tr>
     </table>
     <p class="long" >Demikian Surat Keterangan Kelahiran ini dibuat dengan sebenarnya sebagai persyaratan untuk melengkapi permohonan Pembuatan Kutipan Akta Kelahiran.</p>
