@@ -463,7 +463,7 @@
                 </td>
                 <td style="width: 2%" >:</td>
                 <td colspan="23" style="border: 1px solid black; width: 50px !important; border-right: none; text-transform: uppercase;" >
-                    {{ $field->subject_mother_birthdate ?? "" }}
+                    {{ $field->subject_mother_name ?? "" }}
                 </td>
             </tr>
             <tr>
