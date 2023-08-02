@@ -110,24 +110,6 @@
                 @enderror
             </div>
         </div>
-        <div class="col-6">
-            <div class="form-group">
-                <label>RT</label>
-                <input wire:model.lazy="rt" class="form-control @error('rt') is-invalid @enderror " type="number"  />
-                @error('rt')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="form-group">
-                <label>RW</label>
-                <input wire:model.lazy="rw" class="form-control @error('rw') is-invalid @enderror " type="number"  />
-                @error('rw')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
     </div>
 
 
