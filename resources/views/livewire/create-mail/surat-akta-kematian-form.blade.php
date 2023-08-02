@@ -72,14 +72,6 @@
         @enderror
     </div>
 
-    <div class="form-group">
-        <label>Nik Ayah</label>
-        <input wire:model.lazy="subject_father_nik" class="form-control @error('subject_father_nik') is-invalid @enderror " type="number"  />
-        @error('subject_father_nik')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-    </div>
-
     <div class="form-group validated">
         <label>Kewarganegaraan Ayah</label>
         <select wire:model="subject_father_citizenship" class="form-control @error('subject_father_citizenship') is-invalid @enderror" id="exampleSelect1">
@@ -92,39 +84,10 @@
         @enderror
     </div>
 
-    <div class="row">
-        <div class="col">
-            <div class="form-group">
-                <label>Tempat Lahir Ayah</label>
-                <input wire:model.lazy="subject_father_birthplace" class="form-control @error('subject_father_birthplace') is-invalid @enderror " type="text"  />
-                @error('subject_father_birthdate')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-        <div class="col">
-            <div class="form-group">
-                <label>Tanggal Lahir Ayah</label>
-                <input wire:model.lazy="subject_father_birthdate" class="form-control @error('subject_father_birthdate') is-invalid @enderror " type="date"  />
-                @error('subject_father_birthplace')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-    </div>
-
     <div class="form-group">
         <label>Nama Ibu</label>
         <input wire:model.lazy="subject_mother_name" class="form-control @error('subject_mother_name') is-invalid @enderror " type="text"  />
         @error('subject_mother_name')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-    </div>
-
-    <div class="form-group">
-        <label>Nik Ibu</label>
-        <input wire:model.lazy="subject_mother_nik" class="form-control @error('subject_mother_nik') is-invalid @enderror " type="number"  />
-        @error('subject_mother_nik')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
@@ -140,27 +103,5 @@
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
-
-    <div class="row">
-        <div class="col">
-            <div class="form-group">
-                <label>Tempat Lahir Ibu</label>
-                <input wire:model.lazy="subject_mother_birthplace" class="form-control @error('subject_mother_birthplace') is-invalid @enderror " type="text"  />
-                @error('subject_mother_birthdate')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-        <div class="col">
-            <div class="form-group">
-                <label>Tanggal Lahir Ibu</label>
-                <input wire:model.lazy="subject_mother_birthdate" class="form-control @error('subject_mother_birthdate') is-invalid @enderror " type="date"  />
-                @error('subject_mother_birthplace')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-    </div>
-
 
 </div>

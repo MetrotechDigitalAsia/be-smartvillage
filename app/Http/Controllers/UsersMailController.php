@@ -247,13 +247,13 @@ class UsersMailController extends Controller
 
         $data->saksi_1 = Signature::find($data->saksi_1);
         $data->saksi_2 = Signature::find($data->saksi_2);
-        
+
         $field = json_decode($data->field);
 
         if($data->title == 'Surat Keterangan Tempat Usaha'){
             $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data', 'perbekel', 'kelian', 'field'));
             $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$data->slug).'_mail.pdf';
-            return $pdf->download($fileName);
+            return $pdf->stream($fileName);
         }
 
         $queryParams = $request->query();
@@ -275,7 +275,7 @@ class UsersMailController extends Controller
             }
 
             $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$queryParams[0]).'_mail.pdf';
-            return $pdf->download($fileName);
+            return $pdf->stream($fileName);
         }
 
         $mails = [];
@@ -426,9 +426,7 @@ class UsersMailController extends Controller
             
         $json = json_decode($data->field);
 
-        if(!is_null($data->petugas)){
-            $data->petugas = Signature::find($data->petugas)->first(['name']);
-        }
+        $data->petugas = Signature::find($data->petugas);
 
         $data->subject = UserData::whereId($json->subject)->first([
             'nama as name',

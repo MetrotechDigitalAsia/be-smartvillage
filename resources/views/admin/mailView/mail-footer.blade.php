@@ -1,14 +1,14 @@
-<div class="row mt-10" style="width: 100%; margin-bottom: 100px;" >
+<div class="row mt-10" style="width: 100%; margin-bottom: 100px; margin-left: 35px;" >
     <div class="col text-left">
         <p class="m-0" style="text-indent: 0;" >Mengetahui :</p>
         <table>
             <tr>
                 <td>Reg No.</td>
-                <td>:...................</td>
+                <td>:................................</td>
             </tr>
             <tr>
                 <td>Tanggal</td>
-                <td>:...................</td>
+                <td>:................................</td>
             </tr>
         </table>
         <p style="text-indent: 0; margin-bottom: 60px;" >Perbekel Getasan,</p>
