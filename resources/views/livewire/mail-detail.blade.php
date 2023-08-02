@@ -356,6 +356,11 @@
                             <span></span>
                             Pengumuman Perkawinan
                         </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="tanda-tangan-suami-istri"/>
+                            <span></span>
+                            Tanda Tangan Suami Istri
+                        </label>
                     </div>
                 </div>
                 <div class="modal-footer d-flex py-2 px-2">

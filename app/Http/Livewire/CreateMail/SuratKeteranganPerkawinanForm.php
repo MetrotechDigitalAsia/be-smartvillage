@@ -70,9 +70,10 @@ class SuratKeteranganPerkawinanForm extends Component
             'banjar',
             DB::raw("CASE WHEN status_akta_kelahiran = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as birth_certificate"),
             DB::raw("CASE WHEN status_akta_perkawinan = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as marriage_certificate"),
-            'no_akta_kelahiran as birth_certifcate_number',
+            'no_akta_kelahiran as birth_certificate_number',
             'golongan_darah as blood_type',
-            'pendidikan as education'
+            'pendidikan as education',
+            'status_perkawinan as marriage_status'
         ]);
 
         $subject_2 = UserData::whereId($this->subject2)->first([
@@ -90,9 +91,10 @@ class SuratKeteranganPerkawinanForm extends Component
             'banjar',
             DB::raw("CASE WHEN status_akta_kelahiran = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as birth_certificate"),
             DB::raw("CASE WHEN status_akta_perkawinan = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as marriage_certificate"),
-            'no_akta_kelahiran as birth_certifcate_number',
+            'no_akta_kelahiran as birth_certificate_number',
             'golongan_darah as blood_type',
-            'pendidikan as education'
+            'pendidikan as education',
+            'status_perkawinan as marriage_status'
         ]);
 
         $subject_1_father = UserData::where('no_kk', $subject_1->kk)

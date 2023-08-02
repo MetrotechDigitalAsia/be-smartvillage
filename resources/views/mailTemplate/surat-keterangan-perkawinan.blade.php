@@ -67,7 +67,7 @@
         <p style="font-size: 14.5px; text-align: center; margin-bottom: 20px;" >Nomor: .............................................................</p>
         <p style="font-size: 12px;text-align: justify; text-indent: 0; margin-bottom: 45px;" >Pada hari ini Jumat, tanggal : {{ Carbon\Carbon::parse($field->marriage_date)->subDays(10)->format('d/m/Y') }}, hadir di hadapan saya I Gede Darma, S.Pd, Bendesa Adat Getasan, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali.</p>
         <p style="font-size: 12px;text-align: justify; text-indent: 0; margin-bottom: 25px;" >Nama Suami : {{ $field->subject_1->name ?? '' }} agama {{ $field->subject_1->religion ?? '' }}, lahir di {{ $field->subject_2->birthplace ?? '' }}, pada tanggal {{ Carbon\Carbon::parse($field->subject_1->birthdate)->format('d/m/Y') }}, pekerjaan {{ $field->subject_1->job }}, alamat tempat tinggal di : {{ $field->subject_1->address ?? '' }}. Anak laki-Laki dari : {{ $field->subject_1_father->name }} dan {{ $field->subject_1_mother->name }} Keduanya bertempat tinggal di : {{ $field->subject_1_father->address ?? '' }}.</p>
-        <p style="font-size: 12px;text-align: center; margin-bottom: 0;" ><b>dengan</b></p>
+        <p style="font-size: 12px;text-align: center; margin-bottom: 10px;" ><b>dengan</b></p>
         <p style="font-size: 12px;text-align: justify; text-indent: 0; margin-bottom: 45px;" >Nama Istri : {{ $field->subject_2->name ?? '' }}. agama {{ $field->subject_2->religion ?? '' }}, lahir di {{ $field->subject_2->birthplace ?? '' }}, pada tanggal {{ Carbon\Carbon::parse($field->subject_2->birthdate)->format('d/m/Y') }}, pekerjaan {{  $field->subject_2->job  }}, alamat tempat tinggal di : Br. {{ $field->subject_2->address ?? '' }}. Anak Perempuan dari : {{ $field->subject_2_father->name }} dan {{ $field->subject_2_mother->name }}. Keduanya bertempat tinggal di : {{ $field->subject_2_father->address ?? '' }}.</p>
         <p style="font-size: 12px;text-align: justify; text-indent: 0;" >Atas dasar suka sama suka mereka telah melangsungkan tata cara perkawinan secara Agama Hindu untuk yang pertama kalinya, pada hari : Jumat, tanggal : {{ Carbon\Carbon::parse($field->marriage_date)->format('d/m/Y') }}, dan yang berkedudukan sebagai PURUSA adalah : I Made Yoga Astawa, S.E.</p>
         <p style="font-size: 12px;text-align: justify; text-indent: 0; margin-bottom: 25px;" >Selanjutnya karena syarat-syarat dan upacara perkawinan secara Agama Hindu, telah dilaksanakan maka, saya nyatakan bahwa keduanya telah dalam ikatan perkawinan dan menjadi suami istri yang sah.</p>
@@ -114,11 +114,7 @@
             </tr>
             <tr>
                 <td style="" ><u>{{ !empty($perbekel) ? $perbekel->name : 'belum ada data perbekel' }}</u></td>
-                <td><u>Anak Agung Ngurah Raka Sukaeling, SH, M.A.P</u></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Penata Tk. I/III.d<br> NIP. 19771231 199803 1 001</td>
+                <td><u>...................................</u></td>
             </tr>
         </table>
     </div>

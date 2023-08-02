@@ -408,7 +408,7 @@
                 @php $ayah_nik = str_split($field->subject_father_nik ?? '') @endphp
                 @for ($i = 0; $i < 16; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
-                    {{ $ayah_nik[$i] ?? '' }}
+                    {{ !empty($field->date_of_death) ? ($i == 0) ? '-' : '' : $ayah_nik[$i] ?? ''  }}
                 </td>
                 @endfor
             </tr>
@@ -416,7 +416,7 @@
                 <td>Tempat Lahir Ayah</td>
                 <td>:</td>
                 <td colspan="16" style="border: 1px solid black; width: 50px !important; text-transform: uppercase;" >
-                    {{ $field->subject_father_birthplace ?? '' }}
+                    {{ !empty($field->date_of_death) ?  '-': $field->subject_father_birthplace ?? ''  }}
                 </td>
             </tr>
             <tr>
@@ -430,22 +430,22 @@
                 <td colspan="2" style="border: 1px solid black; width: 50px !important; border-left: none; text-align: center;" >
                     Tgl:
                 </td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ayah_birthdate_date[0] ?? '' }}</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ayah_birthdate_date[1] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ayah_birthdate_date[0] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ayah_birthdate_date[1] ?? '' }}</td>
                 @php $ayah_birthdate_month = str_split($ayah_birthdate[1] ?? '') @endphp
                 <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: right;" >
                     Bulan: 
                 </td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ayah_birthdate_month[0] ?? '' }}</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ayah_birthdate_month[1] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ayah_birthdate_month[0] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ayah_birthdate_month[1] ?? '' }}</td>
                 @php $ayah_birthdate_year = str_split($ayah_birthdate[2] ?? '') @endphp
                 <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: right;" >
                     Tahun: 
                 </td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ayah_birthdate_year[0] ?? '' }}</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ayah_birthdate_year[1] ?? '' }}</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ayah_birthdate_year[2] ?? '' }}</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ayah_birthdate_year[3] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ayah_birthdate_year[0] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ayah_birthdate_year[1] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ayah_birthdate_year[2] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ayah_birthdate_year[3] ?? '' }}</td>
             </tr>
             <tr>
                 <td>Kewarganegaraan </td>
@@ -472,7 +472,7 @@
                 @php $ibu_nik = str_split($field->subject_mother_nik ?? '') @endphp
                 @for ($i = 0; $i < 16; $i++)
                 <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
-                    {{ $ibu_nik[$i] ?? '' }}
+                    {{ !empty($field->date_of_death) ? ($i == 0) ? '-' : '' : $ibu_nik[$i] ?? ''  }}
                 </td>
                 @endfor
             </tr>
@@ -480,7 +480,7 @@
                 <td>Tempat Lahir Ibu</td>
                 <td>:</td>
                 <td colspan="16" style="border: 1px solid black; width: 50px !important; text-transform: uppercase;" >
-                    {{ $field->subject_mother_birthplace ?? '' }}
+                    {{ !empty($field->date_of_death) ?  '-': $field->subject_mother_birthplace ?? ''  }}
                 </td>
             </tr>
             <tr>
@@ -494,22 +494,22 @@
                 <td colspan="2" style="border: 1px solid black; width: 50px !important; border-left: none; text-align: center;" >
                     Tgl:
                 </td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ibu_birthdate_date[0] ?? '' }}</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ibu_birthdate_date[1] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_date[0] ?? '' }}</td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_date[1] ?? '' }}</td>
                 @php $ibu_birthdate_month = str_split($ibu_birthdate[1] ?? '') @endphp
                 <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: right;" >
                     Bulan: 
                 </td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ibu_birthdate_month[0] ?? '' }}</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ibu_birthdate_month[1] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_month[0] ?? '' }}</td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_month[1] ?? '' }}</td>
                 @php $ibu_birthdate_year = str_split($ibu_birthdate[2] ?? '') @endphp
                 <td colspan="3" style="border: 1px solid black; width: 50px !important; text-align: right;" >
                     Tahun: 
                 </td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ibu_birthdate_year[0] ?? '' }}</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ibu_birthdate_year[1] ?? '' }}</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ibu_birthdate_year[2] ?? '' }}</td>
-                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ $ibu_birthdate_year[3] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_year[0] ?? '' }}</td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_year[1] ?? '' }}</td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_year[2] ?? '' }}</td>
+                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_year[3] ?? '' }}</td>
             </tr>
             <tr>
                 <td>Kewarganegaraan </td>
@@ -1718,11 +1718,7 @@
             <tr>
                 <td>6. Tempat Kematian</td>
                 <td>:</td>
-                @for ($i = 0; $i < 16; $i++)
-                <td style="border: 1px solid black; width: 50px !important; text-align: center; text-transform: uppercase;" >
-                    {{ $field->place_of_death[$i] ?? '' }}
-                </td>
-                @endfor
+                <td colspan="23" style="border: 1px solid black; text-align: left; border-right: none; text-transform: uppercase;" >{{ $field->place_of_death ?? '' }}</td>
             </tr>
             <tr>
                 <td rowspan="2" >7. Yang Menerangkan</td>

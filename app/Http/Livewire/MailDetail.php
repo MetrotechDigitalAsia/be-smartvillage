@@ -165,9 +165,7 @@ class MailDetail extends Component
 
         $json = json_decode($data->field);
 
-        if(!is_null($data->petugas)){
-            $data->petugas = Signature::find($data->petugas)->first(['name']);
-        }
+        $data->petugas = Signature::find($data->petugas);
 
         $data->subject = UserData::whereId($json->subject)->first([
             'nama as name',
