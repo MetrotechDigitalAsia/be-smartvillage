@@ -15,14 +15,14 @@
             <div class="row justify-content-between">
                     <div class="col col-lg-6">
                         
-                        <h3 class="font-size-lg text-dark font-weight-bold mb-6">Data Pengaju</h3>
+                        <h3 class="font-size-lg text-dark font-weight-bold mb-6">Data Pemohon</h3>
 
                         <div class="form-group validated">
-                            <label class="mb-2" >Pilih Pengaju</label>
+                            <label class="mb-2" >Pilih Pemohon</label>
                             <select onchange="handleChangeResident(this)" class="form-control form-control-lg select2" id="resident_select" name="param">
                                 <option label="Label"></option>
                             </select>
-                            <div class="invalid-feedback invalid-feedback-applicant d-none">Plih Pengaju surat</div>
+                            <div class="invalid-feedback invalid-feedback-applicant d-none">Plih pemohon surat</div>
                         </div>
 
                         @livewire('create-mail.applicant-form')

@@ -45,8 +45,7 @@
                     <a class="dropdown-item mail-change-btn" data-mail="Surat F-2.01" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_f2_tab">Formulir F-2.01</a>
                     <a class="dropdown-item mail-change-btn" data-mail="Formulir F-1.01" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_f1-01_tab">Formulir F-1.01</a>
                     <a class="dropdown-item mail-change-btn" data-mail="Surat Pernyataan Suka Sama Suka" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_pernyataan_suka_sama_suka_tab">Surat Pernyataan Suka Sama Suka</a>
-                    <a class="dropdown-item mail-change-btn" data-mail="Surat Pernyataan Belum Pernah Kawin (Suami)" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_pernyataan_belum_pernah_kawin_suami_tab">Surat Pernyataan Belum Pernah Kawin (Suami)</a>
-                    <a class="dropdown-item mail-change-btn" data-mail="Surat Pernyataan Belum Pernah Kawin (Istri)" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_pernyataan_belum_pernah_kawin_istri_tab">Surat Pernyataan Belum Pernah Kawin (Istri)</a>
+                    <a class="dropdown-item mail-change-btn" data-mail="Surat Pernyataan Belum Pernah Kawin" onclick="handleChangeMail(this)" data-toggle="tab" href="#surat_pernyataan_belum_pernah_kawin_suami_tab">Surat Pernyataan Belum Pernah Kawin</a>
                     <a class="dropdown-item mail-change-btn" data-mail="Pengumuman Perkawinan" onclick="handleChangeMail(this)" data-toggle="tab" href="#pengumuman_perkawinan_tab">Pengumuman Perkawinan</a>
                     <a class="dropdown-item mail-change-btn" data-mail="Tanda Tangan Suami Istri" onclick="handleChangeMail(this)" data-toggle="tab" href="#tanda_tangan_tab">Tanda Tangan Mempelai</a>
                 </div>

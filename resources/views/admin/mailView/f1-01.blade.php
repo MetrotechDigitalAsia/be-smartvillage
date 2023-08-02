@@ -17,7 +17,7 @@
         <p style="margin-bottom : 2px; font-size: 8px;" >DATA KEPALA KELUARGA:</p>
         <div class="d-flex" style="font-size: 8.5px;" >
             <span style="width: 240px; padding-left: 5px;" >1 Nama Kepala Keluarga/Name of Head of the Family</span>
-            <span style="border: 1px solid black; font-weight: bolder; padding-left: 2px;" class="flex-grow-1" >{{ $field->head_of_family_name ?? '' }}</span>
+            <span style="border: 1px solid black; font-weight: bolder; padding-left: 2px; text-transform: uppercase;" class="flex-grow-1" >{{ $field->head_of_family_name ?? '' }}</span>
             <span style="width: 20px;" class="text-center" ></span>
         </div>
         <div class="d-flex" style="font-size: 8.5px; margin: 1px 0;" >
@@ -38,8 +38,8 @@
                 <span style="border: 1px solid black; width: 20px; @if($i != 2) border-right: none; @endif" class="text-center" >{{ $field->rw[$i] ?? '' }}</span>
             @endfor
             <span style="margin: 0 2px;" class="flex-grow-1" >6 JML ANGGOTA KELUARGA</span>
-            <span style="border: 1px solid black; width: 20px; border-right: 0;" class="text-center" >{{ $field->postal_code[$i] ?? '' }}</span>
-            <span style="border: 1px solid black; width: 20px;" class="text-center" >{{ $field->number_of_family_members[$i] ?? '' }}</span>
+            <span style="border: 1px solid black; width: 20px; border-right: 0;" class="text-center" >{{ strlen($field->number_of_family_members) == 1 ? '0' : $field->number_of_family_members[0]  }}</span>
+            <span style="border: 1px solid black; width: 20px;" class="text-center" >{{ strlen($field->number_of_family_members) == 1 ? $field->number_of_family_members[0] : $field->number_of_family_members[1] }}</span>
             <span style="width: 20px;" class="text-center" >Org</span>
         </div>
         <div class="d-flex" style="font-size: 8.5px; margin: 1px 0;" >
@@ -180,7 +180,7 @@
         </tr>
         <tr>
             <td style="border: 1px solid black; height: 15px; text-align: center;" >1</td>
-            <td style="font-weight: bold; border: 1px solid black; height: 15px;" >{{ $field->subject_1->name ?? '' }}</td>
+            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-transform: uppercase;" >{{ $field->subject_1->name ?? '' }}</td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
@@ -189,7 +189,7 @@
         </tr>
         <tr>
             <td style="border: 1px solid black; height: 15px; text-align: center;" >2</td>
-            <td style="font-weight: bold; border: 1px solid black; height: 15px;" >{{ $field->subject_2->name ?? '' }}</td>
+            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-transform: uppercase;" >{{ $field->subject_2->name ?? '' }}</td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
