@@ -340,12 +340,7 @@
                         <label class="checkbox">
                             <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-pernyataan-belum-pernah-kawin_suami"/>
                             <span></span>
-                            Surat Pernyataan Belum Pernah Kawin (Suami)
-                        </label>
-                        <label class="checkbox">
-                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-pernyataan-belum-pernah-kawin_istri"/>
-                            <span></span>
-                            Surat Pernyataan Belum Pernah Kawin (Istri)
+                            Surat Pernyataan Belum Pernah Kawin
                         </label>
                         <label class="checkbox">
                             <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="pengumuman-perkawinan"/>

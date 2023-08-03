@@ -49,7 +49,9 @@
             <tr>
                 <td style="width: 400px; padding-left: 25px;" >3 Kode Pos/ Post Code</td>
                 @for ($i = 0; $i < 4; $i++)
-                <td style="border: 1.5px solid black; text-transform: uppercase; font-weight: bold; padding: 2px 1px; width: 35px; text-align: center;" >0</td>
+                <td style="border: 1.5px solid black; text-transform: uppercase; font-weight: bold; padding: 2px 1px; width: 35px; text-align: center;" >
+                    {{ $field->postal_code[$i] ?? '' }}
+                </td>
                 @endfor
                 <td style="padding: 2px 1px; text-align: center;" >4.RT</td>
                 @for ($i = 0; $i < 3; $i++)
@@ -60,8 +62,8 @@
                 <td style="border: 1.5px solid black; text-transform: uppercase; font-weight: bold; padding: 2px 1px; width: 35px;" ></td>
                 @endfor
                 <td style=" padding: 2px 2px;" >6. JML ANGGOTA KELUARGA</td>
-                <td style="border: 1.5px solid black; text-transform: uppercase; font-weight: bold; padding: 2px 1px; width: 35px;" ></td>
-                <td style="border: 1.5px solid black; text-transform: uppercase; font-weight: bold; padding: 2px 1px; width: 35px;" ></td>
+                <td style="border: 1.5px solid black; text-transform: uppercase; font-weight: bold; padding: 2px 1px; width: 35px; text-align: center;" >{{ strlen($field->number_of_family_members) == 1 ? '0' : $field->number_of_family_members[0]  }}</td>
+                <td style="border: 1.5px solid black; text-transform: uppercase; font-weight: bold; padding: 2px 1px; width: 35px; text-align: center;" >{{ strlen($field->number_of_family_members) == 1 ? $field->number_of_family_members[0] : $field->number_of_family_members[1] }}</td>
                 <td style="width: 20px; " >Org</td>
             </tr>   
         </table>

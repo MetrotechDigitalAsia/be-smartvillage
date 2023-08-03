@@ -99,52 +99,52 @@
                     <tr>
                         <td >1.</td>
                         <td >Nama Saksi</td>
-                        <td>: {{ $data->saksi_1->name }}</td>
+                        <td>: {{ $data->saksi_1->name ?? '' }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Umur</td>
-                        <td>: {{ $data->saksi_1->age }} Tahun</td>
+                        <td>: {{ $data->saksi_1->age ?? '' }} Tahun</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Pekerjaan</td>
-                        <td>: {{ $data->saksi_1->job }}</td>
+                        <td>: {{ $data->saksi_1->job ?? '' }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Alamat</td>
-                        <td>: {{ $data->saksi_1->address }}</td>
+                        <td>: {{ $data->saksi_1->address ?? '' }}</td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="text-align: center; padding-top: 50px;" ><p><u>{{ $data->saksi_1->name }}</u></p></td>
+                        <td colspan="3" style="text-align: center; padding-top: 50px; padding-left: 30px;" ><p><u>{{ $data->saksi_1->name ?? 'belum ada data saksi' }}</u></p></td>
                     </tr>
                 </table>
             </td>
             <td style="width: 50%;" >
-                <table>
+                <table  >
                     <tr>
                         <td>2.</td>
                         <td >Nama Saksi</td>
-                        <td>: {{ $data->saksi_2->name }}</td>
+                        <td>: {{ $data->saksi_2->name ?? '' }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Umur</td>
-                        <td>: {{ $data->saksi_2->age }} Tahun</td>
+                        <td>: {{ $data->saksi_2->age ?? '' }} Tahun</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Pekerjaan</td>
-                        <td>: {{ $data->saksi_2->job }}</td>
+                        <td>: {{ $data->saksi_2->job ?? '' }}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>Alamat</td>
-                        <td>: {{ $data->saksi_2->address }}</td>
+                        <td>: {{ $data->saksi_2->address ?? '' }}</td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="text-align: center; padding-top: 50px;" ><p><u>{{ $data->saksi_2->name }}</u></p></td>
+                        <td colspan="3" style="text-align: center; padding-top: 50px; padding-left: 30px;" ><p><u>{{ $data->saksi_2->name ?? 'belum ada data saksi' }}</u></p></td>
                     </tr>
                 </table>
             </td>
