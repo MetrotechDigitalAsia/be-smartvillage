@@ -101,7 +101,7 @@
             <b style="text-transform: uppercase; margin-top: 0;" ><u>Surat Keterangan Belum Pernah Kawin/Nikah</u></b>
         </p>
         <p class="mail-num" >Nomor : {{ $data->mail_number }}</p>
-        <p class="long" >Yang bertanda tangan di bawah ini Kelian Banjar Dinas Ubud, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali, menerangkan dengan sebenarnya bahwa :</p>
+        <p class="long" >Yang bertanda tangan di bawah ini Kelian Banjar Dinas {{ $field->subject_1->banjar }}, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali, menerangkan dengan sebenarnya bahwa :</p>
         <table style="width: 100%; margin: 15px 0; margin-left: 16px;" >
             <tr>
                 <td style="width: 200px; min-width: unset; max-width: unset;" >Nama</td>
