@@ -218,14 +218,14 @@
             <td style="width: 100%;" >
                 <div style="position: relative; height: 80px; width: 100%;" >
                     @if ($data->status == 'Done' && !empty($perbekel))
-                    <img style="position: absolute; width:320px; height: 120px; left: -25%; bottom: -60%; object-fit: contain;" src="{{ public_path(). '/storage/'. $perbekel->image }}" alt="">
+                    {{-- <img style="position: absolute; width:320px; height: 120px; left: -25%; bottom: -60%; object-fit: contain;" src="{{ public_path(). '/storage/'. $perbekel->image }}" alt=""> --}}
                     @endif
                 </div>
             </td>
             <td style="width: 100%;" >
                 <div style="position: relative; height: 80px; width: 100%;" >
                     @if ($data->status == 'Done' && !is_null($kelian))
-                    <img style="position: absolute; height: 120px; width:50%; left: 50px; bottom: -30%; object-fit: contain;" src="{{ public_path(). '/storage/'. $kelian->image }}" alt="">
+                    {{-- <img style="position: absolute; height: 120px; width:50%; left: 50px; bottom: -30%; object-fit: contain;" src="{{ public_path(). '/storage/'. $kelian->image }}" alt=""> --}}
                     @endif
                 </div>
             </td>

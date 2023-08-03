@@ -35,7 +35,8 @@
                             @else
                                 <img class="img-preview img-fluid my-2 d-none" style="max-height: 320px; object-fit: contain;">
                             @endif
-                            <input type="file" name="image" id="image" onchange="previewImage()" class="form-control-file col-md-9"  @if(empty($signature)) required @endif >
+                            {{-- <input type="file" name="image" id="image" onchange="previewImage()" class="form-control-file col-md-9"  @if(empty($signature)) required @endif > --}}
+                            <input type="file" name="image" id="image" onchange="previewImage()" class="form-control-file col-md-9"  >
                         </div>
                     </div>
 

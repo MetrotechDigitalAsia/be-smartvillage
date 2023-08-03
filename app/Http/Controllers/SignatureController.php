@@ -41,7 +41,7 @@ class SignatureController extends Controller
     public function store(Request $request){
 
         $validated = $request->validate([
-            'image' => 'required',
+            'image' => 'nullable',
             'name' => 'required',
             'position' => 'required',
             'banjar' => 'nullable',
@@ -53,9 +53,11 @@ class SignatureController extends Controller
             'citizenship' => 'required'
         ]);
 
+        if($request->file('image')){
+            $validated['image'] = $request->file('image')->store('signature');
+        }
         
         try {
-            $validated['image'] = $request->file('image')->store('signature');
             Signature::create($validated);
         } catch (\Exception $e){
             return redirect('/persuratan/signature/create')->with('error', $e->getMessage());
