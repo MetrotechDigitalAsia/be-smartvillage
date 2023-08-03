@@ -24,7 +24,7 @@
         </tr>
         <tr>
             <td>Kewarganegaraan</td>
-            <td>: {{ $data->applicant_citizenship }}</td>
+            <td>: {{ $data->applicant_citizenship == 'WNI' ? 'Warga Negara Indonesia (WNI)' : "Warga Negara Asing (WNA)" }}</td>
         </tr>
         <tr>
             <td>Agama</td>

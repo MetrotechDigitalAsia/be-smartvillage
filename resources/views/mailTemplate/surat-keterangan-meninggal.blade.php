@@ -72,7 +72,7 @@
                         <td>: {{ $data->saksi_1->address ?? '' }}</td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="text-align: center; padding-top: 50px;" ><p><u>{{ $data->saksi_1->name ?? 'belum ada data saksi' }}</u></p></td>
+                        <td colspan="3" style="text-align: center; padding-top: 50px; padding-left: 20px;" ><p><u>{{ $data->saksi_1->name ?? 'belum ada data saksi' }}</u></p></td>
                     </tr>
                 </table>
             </td>
@@ -99,7 +99,7 @@
                         <td>: {{ $data->saksi_2->address ?? '' }}</td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="text-align: center; padding-top: 50px;" ><p><u>{{ $data->saksi_2->name ?? 'belum ada data saksi' }}</u></p></td>
+                        <td colspan="3" style="text-align: center; padding-top: 50px; padding-left: 20px;" ><p><u>{{ $data->saksi_2->name ?? 'belum ada data saksi' }}</u></p></td>
                     </tr>
                 </table>
             </td>

@@ -131,12 +131,13 @@
             input.remove()
         }
 
-        console.log(form)
-
     }
 
     function handleDownloadMail(){
         document.querySelector('.download-form').submit()
+        document.querySelectorAll('.mail-checkbox').forEach(e => {
+            e.checked = false
+        })
     }
 
     function handleSubmit(btn){

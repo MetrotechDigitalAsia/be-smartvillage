@@ -35,7 +35,7 @@
             <tr>
                 <td style="width: 40%;" >
                     <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left; position: relative;" >
-                        @if (Str::contains(Request::getRequestUri(), 'surat-keterangan-kelahiran'))
+                        @if ($data->slug == 'surat-keterangan-kelahiran')
                             <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -8px; width: 27px; left: -2px;;" >
                         @endif
                     </div>  
@@ -59,7 +59,7 @@
             <tr>
                 <td style="width: 40%;" >
                     <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left; position: relative;" >
-                        @if (Str::contains(Request::getRequestUri(), 'surat-keterangan-perkawinan'))
+                        @if ($data->slug == 'surat-keterangan-perkawinan')
                             <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -8px; width: 27px; left: -2px;;" >
                         @endif
                     </div>  
@@ -103,7 +103,7 @@
             <tr>
                 <td style="width: 40%;" >
                     <div style="width: 20px; height: 20px; margin-right: 5px; border: 1px solid black; float: left; position: relative;" >
-                        @if (Str::contains(Request::getRequestUri(), 'surat-keterangan-meninggal'))
+                        @if ($data->slug == 'surat-keterangan-meninggal')
                             <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -8px; width: 27px; left: -2px;;" >
                         @endif
                     </div>  
@@ -507,9 +507,9 @@
                     Tahun: 
                 </td>
                 <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_year[0] ?? '' }}</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_year[1] ?? '' }}</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_year[2] ?? '' }}</td>
-                        <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_year[3] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_year[1] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_year[2] ?? '' }}</td>
+                <td style="border: 1px solid black; width: 50px !important; text-align: center;" >{{ !empty($field->date_of_death) ?  '-' :  $ibu_birthdate_year[3] ?? '' }}</td>
             </tr>
             <tr>
                 <td>Kewarganegaraan </td>

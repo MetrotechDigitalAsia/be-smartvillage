@@ -1,12 +1,12 @@
-<table style="width: 100%; margin-top: 15px;"  >
+<table style="width: 100%; margin-top: 15px; margin-left: 20px;"  >
     <tr>
         <td span="2" >Mengetahui :</td>
     </tr>
     <tr>
-        <td>Reg No. : ...............</td>
+        <td>Reg No. : .....................</td>
     </tr>
     <tr>
-        <td >Tanggal : ...............</td>
+        <td >Tanggal : .....................</td>
         <td>Getasan, {{ Carbon\Carbon::now()->translatedFormat('d F Y') }}</td>
     </tr>
     <tr>

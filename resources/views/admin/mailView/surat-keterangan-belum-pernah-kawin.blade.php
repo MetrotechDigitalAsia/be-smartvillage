@@ -15,11 +15,11 @@
         </tr>
         <tr>
             <td>Tempat/Tgl.lahir</td>
-            <td style="text-transform: capitalize;" >: {{ $subject->birthplace ?? '' }}, {{ Carbon\Carbon::parse($subject->birth_date ?? '')->format('d-m-Y') }}</td>
+            <td style="text-transform: capitalize;" >: {{ $subject->birthplace ?? '' }}, {{ Carbon\Carbon::parse($subject->birth_date ?? '')->translatedFormat('d F Y') }}</td>
         </tr>
         <tr>
             <td>Kewarganegaraan</td>
-            <td>: {{ $subject->citizenship ?? '' }}</td>
+            <td>: {{ $subject->citizenship  == 'WNI' ? 'Warga Negara Indonesia (WNI)' : 'Warga Negara Asing (WNA)' }}</td>
         </tr>
         <tr>
             <td>Agama</td>

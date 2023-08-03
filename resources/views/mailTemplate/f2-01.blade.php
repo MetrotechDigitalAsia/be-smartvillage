@@ -51,7 +51,7 @@
                     <tr >
                         <td style="width: 40%; padding-top: -1px;" >
                             <div style="width: 16px; height: 16px; margin-right: 5px;  border: 1px solid black; float: left; position: relative;" >
-                                @if (!empty($field->child_name))
+                                @if ($data->slug == 'surat-keterangan-kelahiran')
                                     <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                                 @endif
                             </div>  
@@ -78,7 +78,11 @@
                     </tr>
                     <tr>
                         <td style="width: 40%; padding: 0;" >
-                            <div style="width: 16px; height: 16px; margin-right: 5px; border: 1px solid black; float: left;" ></div>  
+                            <div style="width: 16px; height: 16px; margin-right: 5px;  border: 1px solid black; float: left; position: relative;" >
+                                @if ($data->slug == 'surat-keterangan-perkawinan')
+                                    <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
+                                @endif
+                            </div>    
                             Perkawinan
                             <div style="clear: both;" ></div>
                         </td>
@@ -126,11 +130,11 @@
                     </tr>
                     <tr>
                         <td style="width: 40%; padding: 0;" >
-                            <div style="width: 16px; height: 16px; margin-right: 5px; border: 1px solid black; float: left; position: relative;" >
-                                @if (!empty($field->date_of_death))
+                            <div style="width: 16px; height: 16px; margin-right: 5px;  border: 1px solid black; float: left; position: relative;" >
+                                @if ($data->slug == 'surat-keterangan-meninggal')
                                     <img src="{{ public_path(). '/assets/be/media/check1.png' }}" alt="" style="position: absolute; top: -3px; width: 17px; left: -2px object-fit: cover;" >
                                 @endif
-                            </div>  
+                            </div>    
                             Kematian
                             <div style="clear: both;" ></div>
                         </td>
