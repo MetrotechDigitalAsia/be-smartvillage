@@ -12,7 +12,7 @@
     </tr>
     <tr>
         <td>Tempat/Tgl.lahir</td>
-        <td style="text-transform: capitalize;" >: {{ $data->applicant_birthplace }}, {{ Carbon\Carbon::parse($data->applicant_birthdate)->format('d-m-Y') }}</td>
+        <td style="text-transform: capitalize;" >: {{ $data->applicant_birthplace }}, {{ Carbon\Carbon::parse($data->applicant_birthdate)->translatedFormat('d F Y') }}</td>
     </tr>
     <tr>
         <td>Kewarganegaraan</td>
