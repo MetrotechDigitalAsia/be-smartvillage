@@ -275,7 +275,7 @@ class UsersMailController extends Controller
             }
 
             $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$queryParams[0]).'_mail.pdf';
-            return $pdf->download($fileName);
+            return $pdf->stream($fileName);
         }
 
         $mails = [];
