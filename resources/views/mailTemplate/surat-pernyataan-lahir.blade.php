@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <td>Tempat/Tgl. Lahir:</td>
-                <td style="text-transform: capitalize;" >: {{ $field->child_birthplace }}, {{ Carbon\Carbon::parse($field->child_birth_date)->translatedFormat('d-m-Y') }}</td>
+                <td style="text-transform: capitalize;" >: {{ $field->child_birthplace }}, {{ Carbon\Carbon::parse($field->child_birth_date)->translatedFormat('d F Y') }}</td>
             </tr>
             <tr>
                 <td>Jenis Kelamin</td>

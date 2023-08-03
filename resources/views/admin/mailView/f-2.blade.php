@@ -643,7 +643,7 @@
                     {{ $child_birthdate[1][0] ?? '' }}
                 </td>
                 <td style="border: 1px solid black; width: 50px !important; text-align: center;" >
-                    {{ $child_birthdate[1][2] ?? '' }}
+                    {{ $child_birthdate[1][1] ?? '' }}
                 </td>
                 <td colspan="4" style="text-align: right;" >
                     Tahun : 
