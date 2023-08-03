@@ -63,7 +63,11 @@
                 </td>
             </tr>
             <tr>
-                <td style="width: 50%;" ></td>
+                <td style="width: 50%; position: relative;" >
+                    <div style="border: 1px solid black; text-align: center; width: fit-content; padding: 5px 10px; position: absolute; right: -10px; top: 30px; font-size: 12px;" >
+                        <span>Materai <br> Rp. 10.000</span>
+                    </div>
+                </td>
                 <td style="width: 50%;" >
                     Yang membuat pernyataan,
                 </td>
