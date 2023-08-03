@@ -2941,7 +2941,7 @@
                     <tr>
                         <td style="height: 50px; position: relative;" >
                             @if (!empty($perbekel) && $data->status == 'Done')
-                            <img style="position: absolute; width: 300px; height: 100px; left: 10px; top: -10px;" src="{{ public_path(). '/storage/'. $perbekel->image }}" alt="">
+                            {{-- <img style="position: absolute; width: 300px; height: 100px; left: 10px; top: -10px;" src="{{ public_path(). '/storage/'. $perbekel->image }}" alt=""> --}}
                             @endif
                         </td>
                         <td style="height: 50px; position: relative;"  >

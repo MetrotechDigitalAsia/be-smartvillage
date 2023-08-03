@@ -3096,12 +3096,12 @@
                 <tr>
                     <td style="height: 50px; position: relative;" >
                         @if (!empty($perbekel) && $data->status == 'Done')
-                        <img style="position: absolute; width: 300px; height: 100px; left: 10px; top: 0px;" src="{{ asset('storage/'. $perbekel->image) }}" alt="">
+                        {{-- <img style="position: absolute; width: 300px; height: 100px; left: 10px; top: 0px;" src="{{ asset('storage/'. $perbekel->image) }}" alt=""> --}}
                         @endif
                     </td>
                     <td style="height: 50px; position: relative;"  >
                         @if (!is_null($data->user_id))
-                        <img style="position: absolute; width: 300px; height: 70px; left: 10px; top: 0px; object-fit: contain;" src="{{ asset('storage/'. $data->signature) }}" alt="">
+                        {{-- <img style="position: absolute; width: 300px; height: 70px; left: 10px; top: 0px; object-fit: contain;" src="{{ asset('storage/'. $data->signature) }}" alt=""> --}}
                         @endif
                     </td>
                 </tr>
