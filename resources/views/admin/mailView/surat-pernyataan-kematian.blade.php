@@ -60,7 +60,11 @@
             </td>
         </tr>
         <tr>
-            <td style="width: 50%;" ></td>
+            <td style="width: 50%; position: relative;" >
+                <div style="border: 1px solid black; text-align: center; width: fit-content; padding: 5px 10px; position: absolute; right: 0; top: 3px; font-size: 11px;" >
+                    <span>Materai <br> Rp. 10.000</span>
+                </div>
+            </td>
             <td style="width: 50%; position: relative; height: 60px;" >
                 @if (!is_null($data->user_id))
                 <img style="position: absolute; width: 200px; height: 70px; left: 0px; top: 0px; object-fit: contain;" src="{{ asset('storage/'. $data->signature) }}" alt="">
