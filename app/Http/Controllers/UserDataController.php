@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UserDataExport;
 use App\Models\UserData;
 use App\Models\UserLogin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class UserDataController extends Controller
 {
     private $folderName;
-    private $userDb;
 
     public function __construct(){
         $this->folderName = 'penduduk.residentData';
-        $this->userDb = env('DB_RESIDENT_DATABASE'). 'resident_data as userDB';
     }
 
     public function dashboard(Request $request){
@@ -83,11 +83,19 @@ class UserDataController extends Controller
 
         if($request->ajax()){
 
-            $param = $request->get('query')['generalSearch'] ?? '';
+            $param = $request->get('query')['generalSearch'] ?? null;
+            $banjar = $request->get('query')['banjar'] ?? null;
 
             $data = UserData::latest()
-                    ->where('resident_data.nama', 'like', '%'.$param.'%')
-                    ->orWhere('resident_data.no_nik', 'like', '%'.$param.'%')
+                    ->when(!is_null($param) && !preg_match('/[0-9]/', $param), function($query) use ($param){
+                        $query->where('nama', 'like', '%'.$param.'%');
+                    })
+                    ->when(!is_null($param) && !preg_match('/[a-zA-Z]/', $param), function($query) use ($param){
+                        $query->where('no_nik', 'like', '%'.$param.'%');
+                    })
+                    ->when(!is_null($banjar), function($query) use ($banjar){
+                        $query->where('banjar', $banjar);
+                    })
                     ->get();
 
             return DataTables::of($data)
@@ -277,8 +285,12 @@ class UserDataController extends Controller
         return response()->json(['items'=>$userData]);
     }
 
-    // public function generateToken(User){
-    //     return $request->token;
-    // }
+    public function exportExcel($banjar){
+
+        $data = array_keys(request()->all());
+        array_shift($data);
+
+        return (new UserDataExport(null, $data))->download('data-penduduk-'.time().'.xlsx');
+    }
 
 }
