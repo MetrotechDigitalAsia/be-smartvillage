@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DeathResidentExport;
+use App\Exports\ResidentMovedDataExport;
+use App\Exports\ResidentMovedOutExport;
 use App\Exports\UserDataExport;
 use App\Models\UserData;
 use App\Models\UserLogin;
@@ -291,6 +294,105 @@ class UserDataController extends Controller
         array_shift($data);
 
         return (new UserDataExport(null, $data))->download('data-penduduk-'.time().'.xlsx');
+    }
+
+    public function getDeathUserData(Request $request){
+
+        if($request->ajax()){
+
+            $param = $request->get('query')['generalSearch'] ?? null;
+            $banjar = $request->get('query')['banjar'] ?? null;
+
+            $data = UserData::latest()
+                    ->where('status_mutasi', 'Meninggal')
+                    ->when(!is_null($param) && !preg_match('/[0-9]/', $param), function($query) use ($param){
+                        $query->where('nama', 'like', '%'.$param.'%');
+                    })
+                    ->when(!is_null($param) && !preg_match('/[a-zA-Z]/', $param), function($query) use ($param){
+                        $query->where('no_nik', 'like', '%'.$param.'%');
+                    })
+                    ->when(!is_null($banjar), function($query) use ($banjar){
+                        $query->where('banjar', $banjar);
+                    })
+                    ->get();
+
+            return DataTables::of($data)
+            ->addIndexColumn()
+            ->make(true);
+        }
+
+        return view('admin.penduduk.mutasi.meninggal.index');
+
+    }
+
+    public function getMovedUserData(Request $request){
+
+        if($request->ajax()){
+
+            $param = $request->get('query')['generalSearch'] ?? null;
+            $banjar = $request->get('query')['banjar'] ?? null;
+
+            $data = UserData::latest()
+                    ->where('status_mutasi', 'Pindah Data')
+                    ->when(!is_null($param) && !preg_match('/[0-9]/', $param), function($query) use ($param){
+                        $query->where('nama', 'like', '%'.$param.'%');
+                    })
+                    ->when(!is_null($param) && !preg_match('/[a-zA-Z]/', $param), function($query) use ($param){
+                        $query->where('no_nik', 'like', '%'.$param.'%');
+                    })
+                    ->when(!is_null($banjar), function($query) use ($banjar){
+                        $query->where('banjar', $banjar);
+                    })
+                    ->get();
+
+            return DataTables::of($data)
+            ->addIndexColumn()
+            ->make(true);
+        }
+
+        return view('admin.penduduk.mutasi.pindahData.index');
+
+    }
+
+    public function getMovedOutUserData(Request $request){
+
+        if($request->ajax()){
+
+            $param = $request->get('query')['generalSearch'] ?? null;
+            $banjar = $request->get('query')['banjar'] ?? null;
+
+            $data = UserData::latest()
+                    ->where('status_mutasi', 'Pindah Keluar')
+                    ->when(!is_null($param) && !preg_match('/[0-9]/', $param), function($query) use ($param){
+                        $query->where('nama', 'like', '%'.$param.'%');
+                    })
+                    ->when(!is_null($param) && !preg_match('/[a-zA-Z]/', $param), function($query) use ($param){
+                        $query->where('no_nik', 'like', '%'.$param.'%');
+                    })
+                    ->when(!is_null($banjar), function($query) use ($banjar){
+                        $query->where('banjar', $banjar);
+                    })
+                    ->get();
+
+            return DataTables::of($data)
+            ->addIndexColumn()
+            ->make(true);
+        }
+
+        return view('admin.penduduk.mutasi.pindahKeluar.index');
+
+    }
+
+    public function exportDeathResident(){
+        return (new DeathResidentExport)->download('data-penduduk-meninggal-'.time().'.xlsx');
+    }
+
+    public function exportMovedResident(){
+        return (new ResidentMovedDataExport)->download('data-penduduk-pindah-data-'.time().'.xlsx');
+    }
+
+    public function exportMovedOutResident(){
+        return (new ResidentMovedOutExport)->download('data-penduduk-pindah-keluar-'.time().'.xlsx');
     }
 
 }

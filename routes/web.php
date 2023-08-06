@@ -297,12 +297,26 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/', 'index')->name('userData');
                 Route::get('/create', 'create');
                 Route::get('/show/{id}', 'show');
-                Route::post('/download/{banjar}', 'exportExcel');
+                
                 Route::get('/create-mobile-account/{userData}', 'createMobileAccount');
                 Route::post('/', 'store')->name('storeUserData');
                 Route::post('/update/{userData}', 'update');
                 Route::delete('/delete/{userData}', 'destroy');
                 Route::post('/status/{userData}', 'changeStatusMobileAccount');
+
+                Route::group(['prefix' => 'mutasi'], function(){
+                    Route::get('/meninggal', 'getDeathUserData')->name('deathUserData');
+                    Route::get('/pindah-data', 'getMovedUserData')->name('movedUserData');
+                    Route::get('/pindah-keluar', 'getMovedOutUserData')->name('movedOutUserData');
+                });
+
+                Route::group(['prefix' => 'download'], function(){
+                    Route::get('/meninggal', 'exportDeathResident');
+                    Route::get('/pindah-data', 'exportMovedResident');
+                    Route::get('/pindah-keluar', 'exportMovedOutResident');
+                    Route::post('/{banjar}', 'exportExcel');
+                });
+
             });
         });
 
