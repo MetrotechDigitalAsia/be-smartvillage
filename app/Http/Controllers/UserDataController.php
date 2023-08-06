@@ -288,12 +288,15 @@ class UserDataController extends Controller
         return response()->json(['items'=>$userData]);
     }
 
-    public function exportExcel($banjar){
+    public function exportExcel(){
 
         $data = array_keys(request()->all());
         array_shift($data);
+        array_pop($data);
 
-        return (new UserDataExport(null, $data))->download('data-penduduk-'.time().'.xlsx');
+        $banjar = request()->get('_banjar');
+
+        return (new UserDataExport($banjar, $data))->download('data-penduduk-'.time().'.xlsx');
     }
 
     public function getDeathUserData(Request $request){

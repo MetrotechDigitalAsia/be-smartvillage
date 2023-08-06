@@ -21,7 +21,7 @@ class UserDataExport implements FromQuery, WithHeadings, WithEvents, WithMapping
     protected $banjar;
     protected $headers;
 
-    public function __construct($banjar = null, $headers)
+    public function __construct($banjar, $headers)
     {
         $this->banjar = $banjar;
         $this->headers = $headers;
@@ -32,7 +32,7 @@ class UserDataExport implements FromQuery, WithHeadings, WithEvents, WithMapping
     */
     public function query()
     {
-        return UserData::query()->when(!is_null($this->banjar), function($query){
+        return UserData::query()->when($this->banjar != '', function($query){
             $query->where('banjar', $this->banjar);
         });
     }
