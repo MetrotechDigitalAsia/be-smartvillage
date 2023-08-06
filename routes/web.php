@@ -314,7 +314,7 @@ Route::group(['middleware' => 'auth'], function(){
                     Route::get('/meninggal', 'exportDeathResident');
                     Route::get('/pindah-data', 'exportMovedResident');
                     Route::get('/pindah-keluar', 'exportMovedOutResident');
-                    Route::post('/{banjar}', 'exportExcel');
+                    Route::post('/', 'exportExcel');
                 });
 
             });

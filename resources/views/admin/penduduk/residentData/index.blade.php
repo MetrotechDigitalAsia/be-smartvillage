@@ -12,7 +12,7 @@
 
 			<div class=" d-flex align-items-center mr-5 ">
 				<label class="mb-0 d-none d-md-block mr-4">Banjar:</label>
-				<select id="kt_datatable_search_banjar" class="form-control status-input w-150px" >
+				<select onchange="handleChangeBanjarSelect(this)" id="kt_datatable_search_banjar" class="form-control status-input w-150px" >
 					<option value="">Semua</option>
 					<option value="Ubud">Ubud</option>
 					<option value="Tengah">Tengah</option>
@@ -73,7 +73,7 @@
     <!--end::Body-->
 </div>
 
-<form action="/data-penduduk/penduduk/download/all" class="export-form" method="POST" >
+<form action="/data-penduduk/penduduk/download" class="export-form" method="POST" >
 
 	@csrf
 
@@ -116,6 +116,7 @@
 						</tbody>
 					</table>
 				</div>
+				<input type="hidden" name="_banjar">
 				<div class="modal-footer">
 					<button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Batal</button>
 					<button type="submit" onclick="handleSubmitExportData()" data-dismiss="modal" class="btn btn-primary font-weight-bold">Export</button>
@@ -129,6 +130,10 @@
 @push('script')
 
 <script>
+
+	function handleChangeBanjarSelect(el){
+		document.querySelector('input[name=_banjar]').value = el.value
+	}
 
 	function handleSelectAllFields(el){
 		document.querySelectorAll('.field-checkbox').forEach(e => {
