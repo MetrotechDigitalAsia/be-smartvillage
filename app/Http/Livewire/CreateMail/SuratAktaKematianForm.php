@@ -20,8 +20,14 @@ class SuratAktaKematianForm extends Component
     public $child_to;
     public $subject_father_name;
     public $subject_father_citizenship;
+    public $subject_father_nik;
+    public $subject_father_birthdate;
+    public $subject_father_birthplace;
     public $subject_mother_name;
     public $subject_mother_citizenship;
+    public $subject_mother_nik;
+    public $subject_mother_birthdate;
+    public $subject_mother_birthplace;
 
     protected $listeners = [
         'selectDeathSubject' => 'selectSubject',
@@ -65,8 +71,14 @@ class SuratAktaKematianForm extends Component
             'child_to' => 'required',
             'subject_father_name' => 'required',
             'subject_father_citizenship' => 'required',
+            'subject_father_nik' => 'nullable',
+            'subject_father_birthplace' => 'nullable',
+            'subject_father_birthdate' => 'nullable',
             'subject_mother_name' => 'required',
             'subject_mother_citizenship' => 'required',
+            'subject_mother_nik' => 'nullable',
+            'subject_mother_birthdate' => 'nullable',
+            'subject_mother_birthplace' => 'nullable',
         ]);
 
         $field = json_encode([
@@ -79,8 +91,14 @@ class SuratAktaKematianForm extends Component
             'subject' => $this->subject->id,
             'subject_father_name' => $this->subject_father_name,
             'subject_father_citizenship' => $this->subject_father_citizenship,
+            'subject_father_nik' => $this->subject_father_nik ?? '-',
+            'subject_father_birthdate' => $this->subject_father_birthdate ?? '-',
+            'subject_father_birthplace' => $this->subject_father_birthplace ?? '-',
             'subject_mother_name' => $this->subject_mother_name,
             'subject_mother_citizenship' => $this->subject_mother_citizenship,
+            'subject_mother_nik' => $this->subject_mother_nik ?? '-',
+            'subject_mother_birthdate' => $this->subject_mother_birthdate ?? '-',
+            'subject_mother_birthplace' => $this->subject_father_birtplace ?? '-',
         ]);
 
         try {

@@ -23,6 +23,20 @@ class SuratKeteranganPerkawinanForm extends Component
     public $number_of_family_members;
     public $postal_code;
     public $banjar;
+    public $subject_1_father_name;
+    public $subject_1_father_address;
+    public $subject_1_father_nik;
+    public $subject_1_father_job;
+    public $subject_1_mother_name;
+    public $subject_1_mother_nik;
+    public $subject_1_mother_job;
+    public $subject_2_father_name;
+    public $subject_2_father_address;
+    public $subject_2_father_nik;
+    public $subject_2_father_job;
+    public $subject_2_mother_name;
+    public $subject_2_mother_nik;
+    public $subject_2_mother_job;
 
     protected $listeners = [
         'selectSubject1' => 'setSubject1Data',
@@ -97,50 +111,6 @@ class SuratKeteranganPerkawinanForm extends Component
             'status_perkawinan as marriage_status'
         ]);
 
-        $subject_1_father = UserData::where('no_kk', $subject_1->kk)
-                            ->where('shdk', 'KEPALA KELUARGA')->first([
-                                'id',
-                                'nama as name',
-                                'no_nik as nik',
-                                DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age'),
-                                'banjar',
-                                'pekerjaan as job',
-                                'alamat as address'
-                            ]);
-
-        $subject_1_mother = UserData::where('no_kk', $subject_1->kk)
-                            ->where('shdk', 'ISTRI')->first([
-                                'id',
-                                'nama as name',
-                                'no_nik as nik',
-                                DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age'),
-                                'banjar',
-                                'pekerjaan as job',
-                                'alamat as address'
-                            ]);
-
-        $subject_2_father = UserData::where('no_kk', $subject_2->kk)
-                            ->where('shdk', 'KEPALA KELUARGA')->first([
-                                'id',
-                                'nama as name',
-                                'no_nik as nik',
-                                DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age'),
-                                'banjar',
-                                'pekerjaan as job',
-                                'alamat as address'
-                            ]);
-
-        $subject_2_mother = UserData::where('no_kk', $subject_2->kk)
-                            ->where('shdk', 'ISTRI')->first([
-                                'id',
-                                'nama as name',
-                                'no_nik as nik',
-                                DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age'),
-                                'banjar',
-                                'pekerjaan as job',
-                                'alamat as address'
-                            ]);
-
         $this->validate([
             'marriage_status' => 'required',
             'marriage_to' => 'required',
@@ -150,6 +120,20 @@ class SuratKeteranganPerkawinanForm extends Component
             'head_of_family_email' => 'required',
             'head_of_family_phone' => 'required',
             'number_of_family_members' => 'required',
+            'subject_1_father_name' => 'required',
+            'subject_1_father_address' => 'required',
+            'subject_1_father_nik' => 'nullable',
+            'subject_1_father_job' => 'nullable',
+            'subject_1_mother_name' => 'required',
+            'subject_1_mother_nik' => 'nullable',
+            'subject_1_mother_job' => 'nullable',
+            'subject_2_father_name' => 'required',
+            'subject_2_father_address' => 'required',
+            'subject_2_father_nik' => 'nullable',
+            'subject_2_father_job' => 'nullable',
+            'subject_2_mother_name' => 'required',
+            'subject_2_mother_nik' => 'nullable',
+            'subject_2_mother_job' => 'nullable',
             'banjar' => 'required',
         ]);
 
@@ -163,10 +147,20 @@ class SuratKeteranganPerkawinanForm extends Component
             'head_of_family_phone' => $this->head_of_family_phone,
             'number_of_family_members' => $this->number_of_family_members,
             'banjar' => $this->banjar,
-            'subject_1_father' => $subject_1_father,
-            'subject_1_mother' => $subject_1_mother,
-            'subject_2_father' => $subject_2_father,
-            'subject_2_mother' => $subject_2_mother,
+            'subject_1_father_name' => $this->subject_1_father_name,
+            'subject_1_father_address' => $this->subject_1_father_address,
+            'subject_1_father_nik' => $this->subject_1_father_nik ?? '',
+            'subject_1_father_job' => $this->subject_1_father_job ?? '',
+            'subject_1_mother_name' => $this->subject_1_mother_name,
+            'subject_1_mother_nik' => $this->subject_1_mother_nik ?? '',
+            'subject_1_mother_job' => $this->subject_1_mother_job ?? '',
+            'subject_2_father_name' => $this->subject_2_father_name,
+            'subject_2_father_address' => $this->subject_2_father_address,
+            'subject_2_father_nik' => $this->subject_2_father_nik ?? '',
+            'subject_2_father_job' => $this->subject_2_father_job ?? '',
+            'subject_2_mother_name' => $this->subject_2_mother_name,
+            'subject_2_mother_nik' => $this->subject_2_mother_nik ?? '',
+            'subject_2_mother_job' => $this->subject_2_mother_job ?? '',
             'subject_1' => $subject_1,
             'subject_2' => $subject_2,
             'postal_code' => $this->postal_code,

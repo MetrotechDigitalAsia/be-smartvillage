@@ -51,7 +51,7 @@
     <div class="form-group validated">
         <label>Yang Menerangkan </label>
         @php $items = ['Dokter', 'Tenaga Kesehatan', 'Kepolisian', 'Lainnya'] @endphp
-        <select wire:model="annotator" class="form-control @error('annotator') is-invalid @enderror" id="exampleSelect1">
+        <select wire:model.lazy="annotator" class="form-control @error('annotator') is-invalid @enderror" id="exampleSelect1">
             <option>pilih...</option>
             @foreach ($items as $key => $item)
             <option value="{{ $item }}" >{{ $key+1 }}. {{ $item }}</option>
@@ -74,7 +74,7 @@
 
     <div class="form-group validated">
         <label>Kewarganegaraan Ayah</label>
-        <select wire:model="subject_father_citizenship" class="form-control @error('subject_father_citizenship') is-invalid @enderror" id="exampleSelect1">
+        <select wire:model.lazy="subject_father_citizenship" class="form-control @error('subject_father_citizenship') is-invalid @enderror" id="exampleSelect1">
             <option>pilih...</option>
             <option value="WNI" >Warga Negara Indonesia (WNI)</option>
             <option value="WNA" >Warga Negara Asing (WNA)</option>
@@ -82,6 +82,26 @@
         @error('subject_father_citizenship')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
+    </div>
+
+    <div class="form-group">
+        <label>NIK Ayah</label>
+        <input wire:model.lazy="subject_father_nik" class="form-control" type="text"  />
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label>Tempat Lahir Ayah</label>
+                <input wire:model.lazy="subject_father_birthplace" class="form-control" type="text"  />
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label>Tanggal Lahir Ayah</label>
+                <input wire:model.lazy="subject_father_birthdate" class="form-control" type="date"  />
+            </div>
+        </div>
     </div>
 
     <div class="form-group">
@@ -94,7 +114,7 @@
 
     <div class="form-group validated">
         <label>Kewarganegaraan Ibu</label>
-        <select wire:model="subject_mother_citizenship" class="form-control @error('subject_mother_citizenship') is-invalid @enderror" id="exampleSelect1">
+        <select wire:model.lazy="subject_mother_citizenship" class="form-control @error('subject_mother_citizenship') is-invalid @enderror" id="exampleSelect1">
             <option>pilih...</option>
             <option value="WNI" >Warga Negara Indonesia (WNI)</option>
             <option value="WNA" >Warga Negara Asing (WNA)</option>
@@ -102,6 +122,26 @@
         @error('subject_mother_citizenship')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
+    </div>
+
+    <div class="form-group">
+        <label>NIK Ibu</label>
+        <input wire:model.lazy="subject_mother_nik" class="form-control" type="text"  />
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label>Tempat Lahir Ibu</label>
+                <input wire:model.lazy="subject_mother_birthplace" class="form-control" type="text"  />
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label>Tanggal Lahir Ibu</label>
+                <input wire:model.lazy="subject_mother_birthdate" class="form-control" type="date"  />
+            </div>
+        </div>
     </div>
 
 </div>
