@@ -223,9 +223,6 @@
 					title: 'NIK',
 					width: 140
 				},{
-					field: 'alamat',
-					title: 'ALAMAT',
-				},{
 					field: 'banjar',
 					title: 'banjar',
 				},{
