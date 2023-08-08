@@ -306,13 +306,13 @@ Route::group(['middleware' => 'auth'], function(){
 
                 Route::group(['prefix' => 'mutasi'], function(){
                     Route::get('/meninggal', 'getDeathUserData')->name('deathUserData');
-                    Route::get('/pindah-data', 'getMovedUserData')->name('movedUserData');
                     Route::get('/pindah-keluar', 'getMovedOutUserData')->name('movedOutUserData');
+                    Route::get('/perkawinan', 'getMarriedResident')->name('getMarriedResident');
                 });
 
                 Route::group(['prefix' => 'download'], function(){
                     Route::get('/meninggal', 'exportDeathResident');
-                    Route::get('/pindah-data', 'exportMovedResident');
+                    Route::get('/perkawinan', 'exportMarriedResident');
                     Route::get('/pindah-keluar', 'exportMovedOutResident');
                     Route::post('/', 'exportExcel');
                 });

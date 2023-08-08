@@ -86,11 +86,11 @@
                         <div id="umkmCollapse" class="collapse @if(Str::contains(Route::current()->uri, 'mutasi')) show @endif " aria-labelledby="headingOne7" data-parent="#accordionMutasi">
                             <div class="navi navi-hover navi-active navi-link-rounded navi-bold navi-icon-center navi-light-icon">
                                 <div class="navi-item my-2 pl-10">
-                                    <a href="/data-penduduk/penduduk/mutasi/pindah-data" class="navi-link @if(Str::contains(Route::current()->uri, 'pindah-data')) active @endif " >
+                                    <a href="/data-penduduk/penduduk/mutasi/perkawinan" class="navi-link @if(Str::contains(Route::current()->uri, 'perkawinan')) active @endif " >
                                         <span class="navi-bullet">
                                             <i class="bullet bullet-dot"></i>
                                         </span>
-                                        <span class="navi-text font-size-lg">Pindah Data</span>
+                                        <span class="navi-text font-size-lg">Perkawinan</span>
                                     </a>
                                 </div>
                                 <div class="navi-item my-2 pl-10">
