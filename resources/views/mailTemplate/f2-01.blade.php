@@ -452,7 +452,7 @@
                         @php $ayah_nik = str_split($field->subject_father_nik ?? '') @endphp
                         @for ($i = 0; $i < 16; $i++)
                         <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
-                            {{ !empty($field->date_of_death) ? ($i == 0) && $ayah_nik[0] == '-' ? '-' : $ayah_nik[$i] ?? '' : $ayah_nik[$i] ?? ''  }}
+                            {{ !empty($field->date_of_death) ? ($i == 0) && ($ayah_nik == '-') ? '-' : $ayah_nik[$i] ?? '' : $ayah_nik[$i] ?? ''  }}
                         </td>
                         @endfor
                         <td colspan="7" ></td>
@@ -519,7 +519,7 @@
                         @php $ibu_nik = str_split($field->subject_mother_nik ?? '') @endphp
                         @for ($i = 0; $i < 16; $i++)
                         <td style="text-align: center;border: 1px solid black; width: 50px !important; @if($i == 22) border-right: none; @endif" >
-                            {{ !empty($field->date_of_death) ? ($i == 0) ? '-' : '' : $ibu_nik[$i] ?? ''  }}
+                            {{ !empty($field->date_of_death) ? ($i == 0) && ($ibu_nik == '-') ? '-' : $ibu_nik[$i] ?? '' : $ibu_nik[$i] ?? ''  }}
                         </td>
                         @endfor
                         <td colspan="7" ></td>
@@ -528,7 +528,7 @@
                         <td>Tempat Lahir Ibu</td>
                         <td>:</td>
                         <td colspan="16" style="border: 1px solid black; width: 50px !important; text-transform: uppercase;" >
-                            {{ !empty($field->date_of_death) ?  '-': $field->subject_mother_birthplace ?? ''  }}
+                            {{ !empty($field->date_of_death) ?  '-' : $field->subject_mother_birthplace ?? ''  }}
                         </td>
                         <td ></td>
                     </tr>
