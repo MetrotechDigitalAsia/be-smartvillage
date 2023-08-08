@@ -33,6 +33,7 @@ class UserLoginController extends Controller
                         'userDb.no_nik as nik',
                         'userDb.no_kk as kk',
                         'userDb.alamat as address',
+                        'userDb.jenis_kelamin as sex'
                     ]);
 
             $family = UserData::where('no_kk', function($query) use ($data) {
