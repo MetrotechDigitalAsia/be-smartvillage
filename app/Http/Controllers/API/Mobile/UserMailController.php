@@ -59,6 +59,10 @@ class UserMailController extends Controller
                 $additionalField = $this->createSuratKelahiran($applicant->id);
                 $field = [ ...$field, ...$additionalField ];
                 break;
+            case 'Surat Keterangan Kelahiran':
+                $additionalField = $this->createSuratPerkawinan($field->subject_1_id, $field->subject_2_id);
+                $field = [ ...$field, ...$additionalField ];
+                break;
             default:
             break;
         }
@@ -150,42 +154,54 @@ class UserMailController extends Controller
 
     }
 
-    public function createSuratKematian($id){
+    public function createSuratPerkawinan($subject_1, $subject_2){
 
-        $subject = UserData::find($id);
+        $subject_1 = UserData::whereId($subject_1)->first([
+            'id',
+            'nama as name',
+            'alamat as address',
+            'pekerjaan as job',
+            'tempat_lahir as birthplace',
+            'tanggal_lahir as birthdate',
+            'agama as religion',
+            'no_nik as nik',
+            'no_kk as kk',
+            'kewarganegaraan as citizenship',
+            'jenis_kelamin as gender',
+            'banjar',
+            DB::raw("CASE WHEN status_akta_kelahiran = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as birth_certificate"),
+            DB::raw("CASE WHEN status_akta_perkawinan = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as marriage_certificate"),
+            'no_akta_kelahiran as birth_certificate_number',
+            'golongan_darah as blood_type',
+            'pendidikan as education',
+            'status_perkawinan as marriage_status'
+        ]);
 
-         $husband = UserData::where('shdk', 'KEPALA KELUARGA')
-                ->where('no_kk', $subject->no_kk)
-                ->first([
-                    'nama as name', 
-                    'pekerjaan as job', 
-                    'kewarganegaraan as citizenship',
-                    'tempat_lahir as birthplace',
-                    'tanggal_lahir as birthdate',
-                    'no_nik as nik',
-                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
-                ]);
+        $subject_2 = UserData::whereId($subject_2)->first([
+            'id',
+            'nama as name',
+            'alamat as address',
+            'pekerjaan as job',
+            'tempat_lahir as birthplace',
+            'tanggal_lahir as birthdate',
+            'agama as religion',
+            'no_nik as nik',
+            'no_kk as kk',
+            'kewarganegaraan as citizenship',
+            'jenis_kelamin as gender',
+            'banjar',
+            DB::raw("CASE WHEN status_akta_kelahiran = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as birth_certificate"),
+            DB::raw("CASE WHEN status_akta_perkawinan = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as marriage_certificate"),
+            'no_akta_kelahiran as birth_certificate_number',
+            'golongan_darah as blood_type',
+            'pendidikan as education',
+            'status_perkawinan as marriage_status'
+        ]);
 
-        $wife = UserData::where('SHDK', 'ISTRI')
-                ->where('no_kk', $subject->no_kk)
-                ->first([
-                    'nama as name', 
-                    'pekerjaan as job', 
-                    'kewarganegaraan as citizenship',
-                    'tempat_lahir as birthplace',
-                    'tanggal_lahir as birthdate',
-                    'no_nik as nik',
-                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
-                ]);
-
-        $field = [
-            'husband' => $husband,
-            'wife' => $wife 
-        ];
-
-        return $field;
+        return [ 'subject_1' => $subject_1, 'subject_2' => $subject_2 ];
 
     }
+
 
     public function getMailNotification(UserLogin $userLogin)
     {
