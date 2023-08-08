@@ -5,7 +5,7 @@ echo "🎬 entrypoint.sh: [$(whoami)] [PHP $(php -r 'echo phpversion();')]"
 composer dump-autoload --no-interaction --no-dev --optimize
 
 echo "🎬 artisan commands"
-php artisan migrate:fresh --seed # first deploy
+# php artisan migrate:fresh --seed # first deploy
 # php artisan migrate # update table
 
 # 💡 Group into a custom command e.g. php artisan app:on-deploy
