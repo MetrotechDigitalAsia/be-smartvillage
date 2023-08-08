@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Exports\DeathResidentExport;
-use App\Exports\ResidentMovedDataExport;
+use App\Exports\MarriedResidentExport;
 use App\Exports\ResidentMovedOutExport;
 use App\Exports\UserDataExport;
 use App\Models\UserData;
 use App\Models\UserLogin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class UserDataController extends Controller
@@ -386,12 +385,37 @@ class UserDataController extends Controller
 
     }
 
+    public function getMarriedResident(Request $request){
+
+        if($request->ajax()){
+
+            $param = $request->get('query')['generalSearch'] ?? null;
+
+            $data = UserData::latest()
+                    ->where('status_perkawinan', 'Kawin Tercatat')
+                    ->when(!is_null($param) && !preg_match('/[0-9]/', $param), function($query) use ($param){
+                        $query->where('nama', 'like', '%'.$param.'%');
+                    })
+                    ->when(!is_null($param) && !preg_match('/[a-zA-Z]/', $param), function($query) use ($param){
+                        $query->where('no_nik', 'like', '%'.$param.'%');
+                    })
+                    ->get();
+
+            return DataTables::of($data)
+            ->addIndexColumn()
+            ->make(true);
+        }
+
+        return view('admin.penduduk.mutasi.perkawinan.index');
+
+    }
+
     public function exportDeathResident(){
         return (new DeathResidentExport)->download('data-penduduk-meninggal-'.time().'.xlsx');
     }
-
-    public function exportMovedResident(){
-        return (new ResidentMovedDataExport)->download('data-penduduk-pindah-data-'.time().'.xlsx');
+    
+    public function exportMarriedResident(){
+        return (new MarriedResidentExport)->download('data-penduduk-perkawinan-'.time().'.xlsx');
     }
 
     public function exportMovedOutResident(){
