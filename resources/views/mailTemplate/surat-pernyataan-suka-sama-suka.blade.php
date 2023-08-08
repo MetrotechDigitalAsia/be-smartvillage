@@ -87,7 +87,7 @@
     </ol>
     <p style="line-height: 23px;" >Dengan ini menyatakan bahwa Tata Cara serta Pencatatan Perkawinan, kami lakukan berdasarkan atas suka sama suka, saling mencintai tanpa ada unsur paksaan dari pihak manapun juga.</p>
     <p style="margin-top:25px; margin-bottom: 35px;" >Demikian surat pernyataan ini dibuat dengan sebenarnya agar dapat dipergunakan seperlunya.</p>
-    <p style="text-align: center; margin-bottom: 0; margin-top: 10px;" >Mangupura, {{ Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
+    <p style="text-align: center; margin-bottom: 0; margin-top: 60px;" >Mangupura, {{ Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
     <p style="text-align: center; margin-top: 5px;" >Yang Membuat Pernyataan,</p>
     <table style="margin: 0 auto; width: 100%; text-align: center;" >
         <tr>
