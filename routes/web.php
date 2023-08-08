@@ -17,18 +17,15 @@ use App\Http\Controllers\{
     LoginController,
     MailController,
     PositionController,
-    SaksiController,
     SignatureController,
     StaffController,
     UserBusinessItemController,
     UserDataController,
     UserLoginController,
-    UsersMailController
+    UsersMailController,
+    OutsiderController
 };
-use Google\Auth\Credentials\ServiceAccountCredentials;
 use Illuminate\Support\Facades\Route;
-use Kreait\Firebase\Auth;
-use Kreait\Laravel\Firebase\Facades\Firebase;
 
 /*
 |--------------------------------------------------------------------------
@@ -292,7 +289,18 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/', 'dashboard')->name('residentDashboard');
         });
 
+        Route::group(['prefix' => 'penduduk-luar'], function(){
+            Route::controller(OutsiderController::class)->group(function(){
+                Route::get('/', 'index')->name('outsiderData');
+                Route::get('/create', 'create');
+                Route::get('/show/{outsider}', 'show');
+                Route::post('/update/{userData}', 'update');
+                Route::delete('/delete/{userData}', 'destroy');
+            });
+        });
+
         Route::group(['prefix' => 'penduduk'], function(){
+            
             Route::controller(UserDataController::class)->group(function(){
                 Route::get('/', 'index')->name('userData');
                 Route::get('/create', 'create');

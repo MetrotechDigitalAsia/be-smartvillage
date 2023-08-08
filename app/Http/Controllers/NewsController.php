@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {

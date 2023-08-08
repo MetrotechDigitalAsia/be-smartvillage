@@ -13,26 +13,52 @@
                 <!--begin:Nav-->
                 <div class="navi navi-hover navi-active navi-link-rounded navi-bold navi-icon-center navi-light-icon">
                     <!--begin:Item-->
-                    <div class="navi-item my-2">
-                        <a href="/data-penduduk/penduduk" class="navi-link  @if(Route::currentRouteName() == 'userData') active @endif ">
+
+                    <div class="navi-item my-2" id="accordionPenduduk" >
+                        {{-- <a href="/informasi-desa/umkm" class="navi-link @if(Str::contains(Route::current()->uri, 'umkm')) active @endif "> --}}
+                        <a href="javascript:;" class="navi-link" data-toggle="collapse" data-target="#umkmCollapse" aria-expanded="true" role="button">
                             <span class="navi-icon mr-4">
-                                <span class="svg-icon svg-icon-lg">
-                                    <!--begin::Svg Icon | path:assets/media/svg/icons/General/Half-star.svg-->
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <polygon points="0 0 24 0 24 24 0 24"/>
-                                            <path d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
-                                            <path d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero"/>
-                                        </g>
-                                    </svg>
-                                    <!--end::Svg Icon-->
-                                </span>
+                                <span class="svg-icon svg-icon-lg"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo2\dist/../src/media/svg/icons\Shopping\Cart3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24"/>
+                                        <path d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                                        <path d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero"/>
+                                    </g>
+                                </svg></span>
                             </span>
                             <span class="navi-text font-weight-bolder font-size-lg">Data Penduduk</span>
+                            <span class="navi-icon" >
+                                <span class="svg-icon"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo2\dist/../src/media/svg/icons\Navigation\Angle-down.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24"/>
+                                        <path d="M6.70710678,15.7071068 C6.31658249,16.0976311 5.68341751,16.0976311 5.29289322,15.7071068 C4.90236893,15.3165825 4.90236893,14.6834175 5.29289322,14.2928932 L11.2928932,8.29289322 C11.6714722,7.91431428 12.2810586,7.90106866 12.6757246,8.26284586 L18.6757246,13.7628459 C19.0828436,14.1360383 19.1103465,14.7686056 18.7371541,15.1757246 C18.3639617,15.5828436 17.7313944,15.6103465 17.3242754,15.2371541 L12.0300757,10.3841378 L6.70710678,15.7071068 Z" fill="#000000" fill-rule="nonzero" transform="translate(12.000003, 11.999999) rotate(-180.000000) translate(-12.000003, -11.999999) "/>
+                                    </g>
+                                </svg><!--end::Svg Icon--></span>
+                            </span>
                         </a>
+
+                        <div id="umkmCollapse" class="collapse @if(Str::contains(Route::current()->uri, 'penduduk-luar') || Str::contains(Route::current()->uri, '/penduduk')) show @endif " aria-labelledby="headingOne7" data-parent="#accordionPenduduk">
+                            <div class="navi navi-hover navi-active navi-link-rounded navi-bold navi-icon-center navi-light-icon">
+                                <div class="navi-item my-2 pl-10">
+                                    <a href="/data-penduduk/penduduk" class="navi-link @if(Str::contains(Route::current()->uri, '/penduduk') && !Str::contains(Route::current()->uri, 'luar')) active @endif " >
+                                        <span class="navi-bullet">
+                                            <i class="bullet bullet-dot"></i>
+                                        </span>
+                                        <span class="navi-text font-size-lg">Penduduk Desa</span>
+                                    </a>
+                                </div>
+                                <div class="navi-item my-2 pl-10">
+                                    <a href="/data-penduduk/penduduk-luar" class="navi-link @if(Str::contains(Route::current()->uri, 'penduduk-luar')) active @endif " >
+                                        <span class="navi-bullet">
+                                            <i class="bullet bullet-dot"></i>
+                                        </span>
+                                        <span class="navi-text  font-size-lg">Penduduk Luar</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <!--end:Item-->
-                    <!--begin:Item-->
 
                     <div class="navi-item my-2" id="accordionMutasi" >
                         {{-- <a href="/informasi-desa/umkm" class="navi-link @if(Str::contains(Route::current()->uri, 'umkm')) active @endif "> --}}

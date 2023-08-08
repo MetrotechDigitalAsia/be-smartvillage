@@ -110,8 +110,7 @@ class UserDataController extends Controller
     }
 
     public function create(){
-        return view('admin.'.
-        $this->folderName.'.form');
+        return view('admin.'.$this->folderName.'.form');
     }
 
     public function show($id){
