@@ -138,7 +138,7 @@
     </div>
 
     <div class="form-group">
-        <label>Alamat Ayah Calon Suami </label>
+        <label>Alamat Lengkap Ayah Calon Suami </label>
         <input wire:model.lazy="subject_1_father_address" class="form-control  @error('subject_1_father_address') is-invalid @enderror" type="text"  />
         @error('subject_1_father_address')
             <div class="invalid-feedback">{{ $message }}</div>
@@ -192,7 +192,7 @@
     </div>
 
     <div class="form-group">
-        <label>Alamat Ayah Calon Istri </label>
+        <label>Alamat Lengkap Ayah Calon Istri </label>
         <input wire:model.lazy="subject_2_father_address" class="form-control @error('subject_2_father_address') is-invalid @enderror" type="text"  />
         @error('subject_2_father_address')
             <div class="invalid-feedback">{{ $message }}</div>
