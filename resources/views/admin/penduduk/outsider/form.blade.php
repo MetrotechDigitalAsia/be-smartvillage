@@ -290,7 +290,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">Pekerjaan Ayah</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Pekerjaan Ayah <span style="color: red;" >*</span></label>
                                     <div class="col">
                                         <input class="form-control form-control-lg " type="text" name="pekerjaan_ayah" value="{{$outsider['pekerjaan_ayah'] ?? '' }}" />
                                     </div>
