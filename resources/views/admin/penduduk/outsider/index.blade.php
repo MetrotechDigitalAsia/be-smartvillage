@@ -212,12 +212,13 @@
 					title: 'NIK',
 					width: 140
 				},{
-					field: 'banjar',
-					title: 'banjar',
+					field: 'no_kk',
+					title: 'NO KK',
+					width: 140
 				},{
-					field: 'AKUN_MOBILE_APP',
-					title: 'Akun Mobile',
-					template: (e) => `<span class="label label-light-${e.akun_mobile_app == 1 ? 'success' : 'danger'} label-pill label-inline mr-2">${e.akun_mobile_app == 1 ? 'Tersedia' : 'Tidak Tersedia'}</span>`
+					field: 'alamat',
+					title: 'Alamat',
+					width: 140
 				},{   
 					field: 'Actions',
 					title: 'Aksi',
