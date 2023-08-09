@@ -467,7 +467,7 @@
                     </tr>
                     <tr>
                         @php
-                            $ayah_birthdate = !empty($field->subject_father_birthdate && $field->subject_father_birthdate !== '-' ) ? Carbon\Carbon::parse($field->subject_father_birthdate)->format('d-m-Y') : '';
+                            $ayah_birthdate = !empty($field->subject_father_birthdate && $field->subject_father_birthdate !== '-' ) ? ($field->subject_father_birthdate !== '-') ? Carbon\Carbon::parse($field->subject_father_birthdate)->format('d-m-Y') : '' : '';
                             $ayah_birthdate = explode('-', $ayah_birthdate);
                         @endphp
                         <td>Tanggal Lahir Ayah</td>
