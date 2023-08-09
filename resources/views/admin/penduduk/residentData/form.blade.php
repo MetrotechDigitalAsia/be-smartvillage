@@ -498,11 +498,6 @@
                                         Pindah Keluar
                                     </label>
                                     <label class="radio radio-outline radio-success">
-                                        <input class="mutasi-radio" {{!empty($user) ? $user['status_mutasi']=="Pindah Data" ? 'checked' : '' : ''}}  type="radio" name="status_mutasi" value="Pindah Data" />
-                                        <span></span>
-                                        Pindah Data
-                                    </label>
-                                    <label class="radio radio-outline radio-success">
                                         <input class="mutasi-radio" {{!empty($user) ? $user['status_mutasi']=="Meninggal" ? 'checked' : '' : ''}}  type="radio" name="status_mutasi" value="Meninggal" />
                                         <span></span>
                                         Meninggal
