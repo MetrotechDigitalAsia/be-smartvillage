@@ -23,7 +23,6 @@ use App\Http\Controllers\API\Mobile\{
     UserMailController,
     ArticleController as MobileArticleController,
     KerjaSamaController as MobileKerjaSamaController,
-    OutsiderController
 };
 
 use App\Http\Controllers\API\TourismMap\{
@@ -166,13 +165,6 @@ Route::group(['middleware' => 'api_key'],function(){
             'controller' => MobileItemBusinessCategoryController::class
         ], function(){
             Route::get('/', 'index');
-        });
-
-        Route::group([
-            'prefix' => 'outsider',
-            'controller' => OutsiderController::class
-        ], function(){
-            Route::post('/', 'store');
         });
 
         Route::post('/complaint', [ComplaintController::class, 'store']);

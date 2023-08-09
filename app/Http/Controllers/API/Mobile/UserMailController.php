@@ -61,7 +61,7 @@ class UserMailController extends Controller
                 $field = [ ...$field, ...$additionalField ];
                 break;
             case 'Surat Keterangan Perkawinan':
-                $additionalField = $this->createSuratPerkawinan($field['subject_1_id'], $field['subject_2_id'], $field['outsider_id']);
+                $additionalField = $this->createSuratPerkawinan($field['subject_1_id'], $field['subject_2_id']);
                 $field = [ ...$field, ...$additionalField ];
                 break;
             default:
@@ -155,93 +155,49 @@ class UserMailController extends Controller
 
     }
 
-    public function createSuratPerkawinan($subject1, $subject2, $outsiderId){
+    public function createSuratPerkawinan($subject1, $subject2){
 
-        if($subject1 == 'outsider'){
-            $subject_1 = Outsider::whereId($outsiderId)->first([
-                'id',
-                'nama as name',
-                'alamat as address',
-                'pekerjaan as job',
-                'tempat_lahir as birthplace',
-                'tanggal_lahir as birthdate',
-                'agama as religion',
-                'no_nik as nik',
-                'no_kk as kk',
-                'kewarganegaraan as citizenship',
-                'jenis_kelamin as gender',
-                DB::raw("CASE WHEN status_akta_kelahiran = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as birth_certificate"),
-                DB::raw("CASE WHEN status_akta_perkawinan = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as marriage_certificate"),
-                'no_akta_kelahiran as birth_certificate_number',
-                'golongan_darah as blood_type',
-                'pendidikan as education',
-                'status_perkawinan as marriage_status'
-            ]);
-        } else {
-            $subject_1 = UserData::where('no_nik',$subject1)->first([
-                'id',
-                'nama as name',
-                'alamat as address',
-                'pekerjaan as job',
-                'tempat_lahir as birthplace',
-                'tanggal_lahir as birthdate',
-                'agama as religion',
-                'no_nik as nik',
-                'no_kk as kk',
-                'kewarganegaraan as citizenship',
-                'jenis_kelamin as gender',
-                'banjar',
-                DB::raw("CASE WHEN status_akta_kelahiran = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as birth_certificate"),
-                DB::raw("CASE WHEN status_akta_perkawinan = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as marriage_certificate"),
-                'no_akta_kelahiran as birth_certificate_number',
-                'golongan_darah as blood_type',
-                'pendidikan as education',
-                'status_perkawinan as marriage_status'
-            ]);
-        }
+        $subject_1 = UserData::where('no_nik',$subject1)->first([
+            'id',
+            'nama as name',
+            'alamat as address',
+            'pekerjaan as job',
+            'tempat_lahir as birthplace',
+            'tanggal_lahir as birthdate',
+            'agama as religion',
+            'no_nik as nik',
+            'no_kk as kk',
+            'kewarganegaraan as citizenship',
+            'jenis_kelamin as gender',
+            'banjar',
+            DB::raw("CASE WHEN status_akta_kelahiran = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as birth_certificate"),
+            DB::raw("CASE WHEN status_akta_perkawinan = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as marriage_certificate"),
+            'no_akta_kelahiran as birth_certificate_number',
+            'golongan_darah as blood_type',
+            'pendidikan as education',
+            'status_perkawinan as marriage_status'
+        ]);
 
-        if($subject2 == 'outsider'){
-            $subject_2 = Outsider::whereId($outsiderId)->first([
-                'id',
-                'nama as name',
-                'alamat as address',
-                'pekerjaan as job',
-                'tempat_lahir as birthplace',
-                'tanggal_lahir as birthdate',
-                'agama as religion',
-                'no_nik as nik',
-                'no_kk as kk',
-                'kewarganegaraan as citizenship',
-                'jenis_kelamin as gender',
-                DB::raw("CASE WHEN status_akta_kelahiran = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as birth_certificate"),
-                DB::raw("CASE WHEN status_akta_perkawinan = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as marriage_certificate"),
-                'no_akta_kelahiran as birth_certificate_number',
-                'golongan_darah as blood_type',
-                'pendidikan as education',
-                'status_perkawinan as marriage_status'
-            ]);
-        } else {
-            $subject_2 = UserData::where('no_nik',$subject2)->first([
-                'id',
-                'nama as name',
-                'alamat as address',
-                'pekerjaan as job',
-                'tempat_lahir as birthplace',
-                'tanggal_lahir as birthdate',
-                'agama as religion',
-                'no_nik as nik',
-                'no_kk as kk',
-                'kewarganegaraan as citizenship',
-                'jenis_kelamin as gender',
-                'banjar',
-                DB::raw("CASE WHEN status_akta_kelahiran = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as birth_certificate"),
-                DB::raw("CASE WHEN status_akta_perkawinan = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as marriage_certificate"),
-                'no_akta_kelahiran as birth_certificate_number',
-                'golongan_darah as blood_type',
-                'pendidikan as education',
-                'status_perkawinan as marriage_status'
-            ]);
-        }
+        $subject_2 = UserData::where('no_nik',$subject2)->first([
+            'id',
+            'nama as name',
+            'alamat as address',
+            'pekerjaan as job',
+            'tempat_lahir as birthplace',
+            'tanggal_lahir as birthdate',
+            'agama as religion',
+            'no_nik as nik',
+            'no_kk as kk',
+            'kewarganegaraan as citizenship',
+            'jenis_kelamin as gender',
+            'banjar',
+            DB::raw("CASE WHEN status_akta_kelahiran = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as birth_certificate"),
+            DB::raw("CASE WHEN status_akta_perkawinan = 1 THEN 'ADA' ELSE 'TIDAK ADA' END as marriage_certificate"),
+            'no_akta_kelahiran as birth_certificate_number',
+            'golongan_darah as blood_type',
+            'pendidikan as education',
+            'status_perkawinan as marriage_status'
+        ]);
 
         return [ 'subject_1' => $subject_1, 'subject_2' => $subject_2 ];
 

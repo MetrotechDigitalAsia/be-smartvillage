@@ -23,7 +23,6 @@ use App\Http\Controllers\{
     UserDataController,
     UserLoginController,
     UsersMailController,
-    OutsiderController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -287,18 +286,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::group(['prefix' => 'data-penduduk'], function(){
         Route::controller(UserDataController::class)->group(function(){
             Route::get('/', 'dashboard')->name('residentDashboard');
-        });
-
-        Route::group(['prefix' => 'penduduk-luar'], function(){
-            Route::controller(OutsiderController::class)->group(function(){
-                Route::get('/', 'index')->name('outsiderData');
-                Route::get('/create', 'create');
-                Route::get('/show/{outsider}', 'show');
-                Route::post('/', 'store')->name('storeOutsiderData');
-                Route::post('/update/{outsider}', 'update');
-                Route::post('/download', 'exportData');
-                Route::delete('/delete/{outsider}', 'destroy');
-            });
         });
 
         Route::group(['prefix' => 'penduduk'], function(){
