@@ -694,7 +694,7 @@
                     <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
                     @endif
                 </td>
-                <td colspan="5" >3. Lainnya</td>
+                <td colspan="5" >4. Lainnya</td>
             </tr>
             <tr>
                 <td>8. Kelahiran Ke</td>
@@ -729,7 +729,7 @@
                     <img src="{{ asset('assets/be/media/svg/icons/Navigation/Check.svg') }}" alt="" style="position: absolute; top: -3px; width: 25px; left: -2px;" >
                     @endif
                 </td>
-                <td colspan="5" >5. Lainnya</td>
+                <td colspan="5" >4. Lainnya</td>
             </tr>
             <tr>
                 <td >10. Berat Bayi</td>

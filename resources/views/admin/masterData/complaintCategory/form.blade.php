@@ -37,11 +37,12 @@
             <div class="col-lg-6">
             </div>
             <div class="col-lg-6  text-lg-right">
-                <a href="/master-data/kategori-artikel" class="btn btn-secondary mr-2">Batal</a>
+                <a href="/master-data/kategori-pengaduan" class="btn btn-secondary mr-2">Batal</a>
                 <button type="submit" class="btn btn-primary ">Simpan</button>
             </div>
         </div>
     </div>
+</div>
     
 </form>
 @endsection

@@ -14,7 +14,7 @@
                 <div class="navi navi-hover navi-active navi-link-rounded navi-bold navi-icon-center navi-light-icon">
 
                     <div class="navi-item my-2">
-                        <a href="/data-penduduk/penduduk" class="navi-link @if(Str::contains(Route::current()->uri, '/penduduk')) active @endif  ">
+                        <a href="/data-penduduk/penduduk" class="navi-link @if(Str::contains(Route::current()->uri, '/penduduk') && !Str::contains(Route::current()->uri, 'mutasi')) active @endif  ">
                             <span class="navi-icon mr-4">
                                 <span class="svg-icon svg-icon-lg">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-heart.svg-->
