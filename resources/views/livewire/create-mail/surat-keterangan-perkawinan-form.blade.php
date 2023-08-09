@@ -128,6 +128,11 @@
     </div>
 
     <div class="form-group">
+        <label>Umur Ayah Calon Suami </label>
+        <input wire:model.lazy="subject_1_father_age" class="form-control" type="number"  />
+    </div>
+
+    <div class="form-group">
         <label>Pekerjaan Ayah Calon Suami </label>
         <input wire:model.lazy="subject_1_father_job" class="form-control" type="text"  />
     </div>
@@ -154,6 +159,11 @@
     </div>
 
     <div class="form-group">
+        <label>Umur Ibu Calon Suami </label>
+        <input wire:model.lazy="subject_1_mother_age" class="form-control" type="number"  />
+    </div>
+
+    <div class="form-group">
         <label>Pekerjaan Ibu Calon Suami </label>
         <input wire:model.lazy="subject_1_mother_job" class="form-control" type="text"  />
     </div>
@@ -169,6 +179,11 @@
     <div class="form-group">
         <label>NIK Ayah Calon Istri </label>
         <input wire:model.lazy="subject_2_father_nik" class="form-control" type="number"  />
+    </div>
+
+    <div class="form-group">
+        <label>Umur Ayah Calon Istri </label>
+        <input wire:model.lazy="subject_2_father_age" class="form-control" type="number"  />
     </div>
 
     <div class="form-group">
@@ -195,6 +210,11 @@
     <div class="form-group">
         <label>NIK Ibu Calon Istri </label>
         <input wire:model.lazy="subject_2_mother_nik" class="form-control" type="number"  />
+    </div>
+
+    <div class="form-group">
+        <label>Umur Ibu Calon Istri </label>
+        <input wire:model.lazy="subject_2_mother_age" class="form-control" type="number"  />
     </div>
 
     <div class="form-group">

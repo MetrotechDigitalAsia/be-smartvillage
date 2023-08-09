@@ -27,14 +27,18 @@ class SuratKeteranganPerkawinanForm extends Component
     public $subject_1_father_address;
     public $subject_1_father_nik;
     public $subject_1_father_job;
+    public $subject_1_father_age;
     public $subject_1_mother_name;
     public $subject_1_mother_nik;
+    public $subject_1_mother_age;
     public $subject_1_mother_job;
     public $subject_2_father_name;
+    public $subject_2_father_age;
     public $subject_2_father_address;
     public $subject_2_father_nik;
     public $subject_2_father_job;
     public $subject_2_mother_name;
+    public $subject_2_mother_age;
     public $subject_2_mother_nik;
     public $subject_2_mother_job;
 
@@ -121,17 +125,21 @@ class SuratKeteranganPerkawinanForm extends Component
             'head_of_family_phone' => 'required',
             'number_of_family_members' => 'required',
             'subject_1_father_name' => 'required',
+            'subject_1_father_age' => 'nullable',
             'subject_1_father_address' => 'required',
             'subject_1_father_nik' => 'nullable',
             'subject_1_father_job' => 'nullable',
             'subject_1_mother_name' => 'required',
             'subject_1_mother_nik' => 'nullable',
+            'subject_1_mother_age' => 'nullable',
             'subject_1_mother_job' => 'nullable',
             'subject_2_father_name' => 'required',
             'subject_2_father_address' => 'required',
             'subject_2_father_nik' => 'nullable',
+            'subject_2_father_age' => 'nullable',
             'subject_2_father_job' => 'nullable',
             'subject_2_mother_name' => 'required',
+            'subject_2_mother_age' => 'required',
             'subject_2_mother_nik' => 'nullable',
             'subject_2_mother_job' => 'nullable',
             'banjar' => 'required',
