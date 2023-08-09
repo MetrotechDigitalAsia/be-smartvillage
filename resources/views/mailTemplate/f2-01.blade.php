@@ -534,7 +534,7 @@
                     </tr>
                     <tr>
                         @php
-                            $ibu_birthdate = (!empty($field->subject_mother_birthdate)) ? Carbon\Carbon::parse($field->subject_mother_birthdate)->format('d-m-Y') : '';
+                            $ibu_birthdate = (!empty($field->subject_mother_birthdate) && $field->subject_mother_birthdate !== '-') ? Carbon\Carbon::parse($field->subject_mother_birthdate)->format('d-m-Y') : '';
                             $ibu_birthdate = explode('-', $ibu_birthdate);
                         @endphp
                         <td>Tanggal Lahir Ibu</td>
