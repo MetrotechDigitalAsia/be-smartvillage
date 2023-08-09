@@ -294,8 +294,10 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/', 'index')->name('outsiderData');
                 Route::get('/create', 'create');
                 Route::get('/show/{outsider}', 'show');
-                Route::post('/update/{userData}', 'update');
-                Route::delete('/delete/{userData}', 'destroy');
+                Route::post('/', 'store')->name('storeOutsiderData');
+                Route::post('/update/{outsider}', 'update');
+                Route::post('/download', 'exportData');
+                Route::delete('/delete/{outsider}', 'destroy');
             });
         });
 

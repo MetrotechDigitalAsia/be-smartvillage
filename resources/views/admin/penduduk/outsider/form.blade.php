@@ -2,22 +2,16 @@
 
 @section('content')
 
-<form action="{{ empty($user) ? route('storeUserData') : url('/data-penduduk/penduduk/update/'.$user->id) }}" method="post">
+<form action="{{ empty($outsider) ? route('storeOutsiderData') : url('/data-penduduk/penduduk-luar/update/'.$outsider->id) }}" method="post">
 
     @csrf
-
-
-@if (!empty($user) )
-    <input hidden name="uuid" value="{{ $user->uuid }}" />
-    <input hidden name="id" value="{{ $user->id }}" />
-@endif     
 
 <div class="card card-custom">
 
     <!--begin::Header-->
     <div class="card-header py-3">
         <div class="card-title align-items-center flex-row ">
-            <h3 class="card-label font-weight-bolder text-dark">{{ empty($user) ? 'Tambah Data' : 'Ubah Data' }}</h3>
+            <h3 class="card-label font-weight-bolder text-dark">{{ empty($outsider) ? 'Tambah Data' : 'Ubah Data' }}</h3>
         </div>
     </div>
     <!--end::Header-->
@@ -59,7 +53,7 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Nama <span style="color: red;" >*</span> </label>
                                     <div class="col">
-                                        <input required class="form-control @error('nama') is-invalid @enderror form-control-lg " type="text" name="nama" value="{{$user['nama'] ?? '' }}" required />
+                                        <input required class="form-control @error('nama') is-invalid @enderror form-control-lg " type="text" name="nama" value="{{$outsider['nama'] ?? '' }}" required />
                                         @error('nama')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -69,28 +63,30 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Tempat Lahir <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input required class="form-control @error('tempat_lahir') is-invalid @enderror form-control-lg " type="text" name="tempat_lahir" value="{{$user['tempat_lahir'] ?? '' }}" required />
+                                        <input required class="form-control @error('tempat_lahir') is-invalid @enderror form-control-lg " type="text" name="tempat_lahir" value="{{$outsider['tempat_lahir'] ?? '' }}" required />
                                     </div>
                                 </div>
         
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Tanggal Lahir <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input required class="form-control @error('tanggal_lahir') is-invalid @enderror form-control-lg " type="date" name="tanggal_lahir" value="{{ !empty($user['tanggal_lahir']) ? Carbon\Carbon::createFromFormat('Y-m-d', $user['tanggal_lahir'])->format('Y-m-d')  : '' }}" required />
+                                        <input required class="form-control @error('tanggal_lahir') is-invalid @enderror form-control-lg " type="date" name="tanggal_lahir" value="{{ !empty($outsider['tanggal_lahir']) ? Carbon\Carbon::createFromFormat('Y-m-d', $outsider['tanggal_lahir'])->format('Y-m-d')  : '' }}" required />
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">Umur</label>
-                                    <div class="col">
-                                        <input class="form-control form-control-lg " readonly name="UMUR" value="{{$user['UMUR'] ?? '' }}" />
+                                @if (!empty($outsider))
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">Umur</label>
+                                        <div class="col">
+                                            <input class="form-control form-control-lg " readonly name="UMUR" value="{{$outsider['umur'] ?? '' }}" />
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
 
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Alamat <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input required class="form-control @error('alamat') is-invalid @enderror form-control-lg " type="text" name="alamat" value="{{$user['alamat'] ?? '' }}" required />
+                                        <input required class="form-control @error('alamat') is-invalid @enderror form-control-lg " type="text" name="alamat" value="{{$outsider['alamat'] ?? '' }}" required />
                                         @error('alamat')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -106,7 +102,7 @@
                                         <select class="form-control form-control-lg " name="kewarganegaraan" required >
                                             <option value="">Pilih ...</option>
                                             @foreach ($status as $item)
-                                            <option value="{{ $item }}" {{ !empty($user) ? $user['kewarganegaraan'] == $item ? 'selected' : '' : ''}}  >
+                                            <option value="{{ $item }}" {{ !empty($outsider) ? $outsider['kewarganegaraan'] == $item ? 'selected' : '' : ''}}  >
                                                 {{ $item }}
                                             </option>
                                             @endforeach
@@ -123,7 +119,7 @@
                                             @endphp
                                             <option value="">Pilih Agama...</option>
                                             @foreach ($banjar as $item)
-                                            <option value="{{ $item }}" {{ !empty($user) ? $user['agama'] == $item ? 'selected' : '' : ''}}  >
+                                            <option value="{{ $item }}" {{ !empty($outsider) ? $outsider['agama'] == $item ? 'selected' : '' : ''}}  >
                                                 {{ $item }}
                                             </option>
                                             @endforeach
@@ -140,7 +136,7 @@
                                         <select class="form-control form-control-lg " name="shdk" >
                                             <option value="">Pilih...</option>
                                             @foreach ($banjar as $item)
-                                            <option value="{{ $item }}" {{ !empty($user) ? $user['shdk'] == $item ? 'selected' : '' : ''}}  >
+                                            <option value="{{ $item }}" {{ !empty($outsider) ? $outsider['shdk'] == $item ? 'selected' : '' : ''}}  >
                                                 {{ $item }}
                                             </option>
                                             @endforeach
@@ -160,7 +156,7 @@
                                         <select class="form-control form-control-lg " name="golongan_darah"  >
                                             <option value="">Pilih ...</option>
                                             @foreach ($status as $item)
-                                            <option value="{{ $item }}" {{ !empty($user) ? $user['golongan_darah'] == $item ? 'selected' : '' : ''}}  >
+                                            <option value="{{ $item }}" {{ !empty($outsider) ? $outsider['golongan_darah'] == $item ? 'selected' : '' : ''}}  >
                                                 {{ $item }}
                                             </option>
                                             @endforeach
@@ -175,12 +171,12 @@
                                     <div class="col-9 col-form-label">
                                         <div class="radio-inline">
                                             <label class="radio radio-outline radio-success">
-                                                <input required {{!empty($user) ? $user['jenis_kelamin']=="Laki-Laki" ? 'checked' : '' : ''}} type="radio" name="jenis_kelamin" value="Laki-Laki" required/>
+                                                <input required {{!empty($outsider) ? $outsider['jenis_kelamin']=="Laki-Laki" ? 'checked' : '' : ''}} type="radio" name="jenis_kelamin" value="Laki-Laki" required/>
                                                 <span></span>
                                                 Laki Laki
                                             </label>
                                             <label class="radio radio-outline radio-success">
-                                                <input required {{!empty($user) ? $user['jenis_kelamin']=="Perempuan" ? 'checked' : '' : ''}}  type="radio" name="jenis_kelamin" value="Perempuan" />
+                                                <input required {{!empty($outsider) ? $outsider['jenis_kelamin']=="Perempuan" ? 'checked' : '' : ''}}  type="radio" name="jenis_kelamin" value="Perempuan" />
                                                 <span></span>
                                                 Perempuan
                                             </label>
@@ -200,7 +196,7 @@
                                         <select class="form-control form-control-lg " name="pendidikan" required >
                                             <option value="">Pilih...</option>
                                             @foreach ($pendidikan as $item)
-                                            <option value="{{ $item }}" {{ !empty($user) ? $user['pendidikan'] == $item ? 'selected' : '' : ''}}  >
+                                            <option value="{{ $item }}" {{ !empty($outsider) ? $outsider['pendidikan'] == $item ? 'selected' : '' : ''}}  >
                                                 {{ $item }}
                                             </option>
                                             @endforeach
@@ -211,14 +207,14 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Pekerjaan</label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg " type="text" name="pekerjaan" value="{{$user['pekerjaan'] ?? '' }}" />
+                                        <input class="form-control form-control-lg " type="text" name="pekerjaan" value="{{$outsider['pekerjaan'] ?? '' }}" />
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">No KK <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input required class="form-control @error('no_kk') is-invalid @enderror form-control-lg " type="number" name="no_kk" value="{{$user['no_kk'] ?? '' }}" required />
+                                        <input required class="form-control @error('no_kk') is-invalid @enderror form-control-lg " type="number" name="no_kk" value="{{$outsider['no_kk'] ?? '' }}" required />
                                         @error('no_kk')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -228,7 +224,7 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">No NIK <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input required class="form-control @error('no_nik') is-invalid @enderror form-control-lg " type="number" name="no_nik" value="{{$user['no_nik'] ?? '' }}" required />
+                                        <input required class="form-control @error('no_nik') is-invalid @enderror form-control-lg " type="number" name="no_nik" value="{{$outsider['no_nik'] ?? '' }}" required />
                                         @error('no_nik')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -240,12 +236,12 @@
                                     <div class="col-lg-9 col-xl-6">
                                         <div class="radio-inline">
                                             <label class="radio radio-outline radio-success">
-                                                <input onchange="handleChangeRadioKelahiran(this)" {{!empty($user) ? $user['status_akta_kelahiran']=="1" ? 'checked' : '' : ''}} type="radio" name="status_akta_kelahiran" value="1" />
+                                                <input onchange="handleChangeRadioKelahiran(this)" {{!empty($outsider) ? $outsider['status_akta_kelahiran']=="1" ? 'checked' : '' : ''}} type="radio" name="status_akta_kelahiran" value="1" />
                                                 <span></span>
                                                 Ada
                                             </label>
                                             <label class="radio radio-outline radio-success">
-                                                <input onchange="handleChangeRadioKelahiran(this)" {{!empty($user) ? $user['status_akta_kelahiran']=="0" ? 'checked' : '' : ''}}  type="radio" name="status_akta_kelahiran" value="0" />
+                                                <input onchange="handleChangeRadioKelahiran(this)" {{!empty($outsider) ? $outsider['status_akta_kelahiran']=="0" ? 'checked' : '' : ''}}  type="radio" name="status_akta_kelahiran" value="0" />
                                                 <span></span>
                                                 Belum Ada
                                             </label>
@@ -256,7 +252,7 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">No Akta Kelahiran <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input required class="form-control @error('no_nik') is-invalid @enderror form-control-lg " type="text" name="no_akta_kelahiran" value="{{$user['no_akta_kelahiran'] ?? '' }}" required {{!empty($user) ? $user['status_akta_kelahiran']=="0" ? 'disabled' : '' : ''}} />
+                                        <input required class="form-control @error('no_nik') is-invalid @enderror form-control-lg " type="text" name="no_akta_kelahiran" value="{{$outsider['no_akta_kelahiran'] ?? '' }}" required {{!empty($outsider) ? $outsider['status_akta_kelahiran']=="0" ? 'disabled' : '' : ''}} />
                                         @error('no_nik')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -275,35 +271,35 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Ayah <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg " type="text" name="ayah" value="{{$user['ayah'] ?? '' }}" />
+                                        <input class="form-control form-control-lg " type="text" name="ayah" value="{{$outsider['ayah'] ?? '' }}" />
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Nik Ayah <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg " type="text" name="nik_ayah" value="{{$user['nik_ayah'] ?? '' }}" />
+                                        <input class="form-control form-control-lg " type="text" name="nik_ayah" value="{{$outsider['nik_ayah'] ?? '' }}" />
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Umur Ayah <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg " type="number" name="umur_ayah" value="{{$user['umur_ayah'] ?? '' }}" />
+                                        <input class="form-control form-control-lg " type="number" name="umur_ayah" value="{{$outsider['umur_ayah'] ?? '' }}" />
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Pekerjaan Ayah</label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg " type="text" name="pekerjaan_ayah" value="{{$user['pekerjaan_ayah'] ?? '' }}" />
+                                        <input class="form-control form-control-lg " type="text" name="pekerjaan_ayah" value="{{$outsider['pekerjaan_ayah'] ?? '' }}" />
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Alamat Ayah <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg " type="text" name="alamat_ayah" value="{{$user['alamat_ayah'] ?? '' }}" />
+                                        <input class="form-control form-control-lg " type="text" name="alamat_ayah" value="{{$outsider['alamat_ayah'] ?? '' }}" />
                                     </div>
                                 </div>
 
@@ -316,7 +312,7 @@
                                         <select class="form-control form-control-lg " name="kewarganegaraan_ayah" required >
                                             <option value="">Pilih ...</option>
                                             @foreach ($status as $item)
-                                            <option value="{{ $item }}" {{ !empty($user) ? $user['kewarganegaraan'] == $item ? 'selected' : '' : ''}}  >
+                                            <option value="{{ $item }}" {{ !empty($outsider) ? $outsider['kewarganegaraan'] == $item ? 'selected' : '' : ''}}  >
                                                 {{ $item }}
                                             </option>
                                             @endforeach
@@ -330,28 +326,28 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Ibu <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg " type="text" name="ibu" value="{{$user['ibu'] ?? '' }}" />
+                                        <input class="form-control form-control-lg " type="text" name="ibu" value="{{$outsider['ibu'] ?? '' }}" />
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Nik Ibu <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg " type="text" name="nik_ibu" value="{{$user['nik_ibu'] ?? '' }}" />
+                                        <input class="form-control form-control-lg " type="text" name="nik_ibu" value="{{$outsider['nik_ibu'] ?? '' }}" />
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Umur Ibu <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg " type="text" name="umur_ibu" value="{{$user['umur_ibu'] ?? '' }}" />
+                                        <input class="form-control form-control-lg " type="text" name="umur_ibu" value="{{$outsider['umur_ibu'] ?? '' }}" />
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Pekerjaan Ibu <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg " type="text" name="pekerjaan_ibu" value="{{$user['pekerjaan_ibu'] ?? '' }}" />
+                                        <input class="form-control form-control-lg " type="text" name="pekerjaan_ibu" value="{{$outsider['pekerjaan_ibu'] ?? '' }}" />
                                     </div>
                                 </div>
 
@@ -364,7 +360,7 @@
                                         <select class="form-control form-control-lg " name="kewarganegaraan_ibu" required >
                                             <option value="">Pilih ...</option>
                                             @foreach ($status as $item)
-                                            <option value="{{ $item }}" {{ !empty($user) ? $user['kewarganegaraan'] == $item ? 'selected' : '' : ''}}  >
+                                            <option value="{{ $item }}" {{ !empty($outsider) ? $outsider['kewarganegaraan'] == $item ? 'selected' : '' : ''}}  >
                                                 {{ $item }}
                                             </option>
                                             @endforeach
@@ -389,7 +385,7 @@
                                         <select class="form-control form-control-lg " name="status_perkawinan" required >
                                             <option value="">Pilih ...</option>
                                             @foreach ($status as $item)
-                                            <option value="{{ $item }}" {{ !empty($user) ? $user['status_perkawinan'] == $item ? 'selected' : '' : ''}}  >
+                                            <option value="{{ $item }}" {{ !empty($outsider) ? $outsider['status_perkawinan'] == $item ? 'selected' : '' : ''}}  >
                                                 {{ $item }}
                                             </option>
                                             @endforeach
@@ -400,7 +396,7 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Tanggal Perkawinan</label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg " type="date" name="tanggal_perkawinan" value="{{ !empty($user['tanggal_perkawinan']) ? Carbon\Carbon::createFromFormat('Y-m-d', $user['tanggal_perkawinan'])->format('Y-m-d')  : '' }}" />
+                                        <input class="form-control form-control-lg " type="date" name="tanggal_perkawinan" value="{{ !empty($outsider['tanggal_perkawinan']) ? Carbon\Carbon::createFromFormat('Y-m-d', $outsider['tanggal_perkawinan'])->format('Y-m-d')  : '' }}" />
                                     </div>
                                 </div>
                             </div>
@@ -410,12 +406,12 @@
                                     <div class="col-lg-9 col-xl-6">
                                         <div class="radio-inline">
                                             <label class="radio radio-outline radio-success">
-                                                <input onchange="handleChangeRadio(this)" {{!empty($user) ? $user['status_akta_perkawinan']=="1" ? 'checked' : '' : ''}} type="radio" name="status_akta_perkawinan" value="1" />
+                                                <input onchange="handleChangeRadio(this)" {{!empty($outsider) ? $outsider['status_akta_perkawinan']=="1" ? 'checked' : '' : ''}} type="radio" name="status_akta_perkawinan" value="1" />
                                                 <span></span>
                                                 Ada
                                             </label>
                                             <label class="radio radio-outline radio-success">
-                                                <input onchange="handleChangeRadio(this)" {{!empty($user) ? ($user['status_akta_perkawinan']=="0") || empty($user['status_akta_perkawinan'])  ? 'checked' : '' : ''}}  type="radio" name="status_akta_perkawinan" value="0" />
+                                                <input onchange="handleChangeRadio(this)" {{!empty($outsider) ? ($outsider['status_akta_perkawinan']=="0") || empty($outsider['status_akta_perkawinan'])  ? 'checked' : '' : ''}}  type="radio" name="status_akta_perkawinan" value="0" />
                                                 <span></span>
                                                 Belum Ada
                                             </label>
@@ -426,7 +422,7 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">No. Akta Perkawinan </label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg" {{!empty($user) ? ($user['status_akta_perkawinan']=="0") || empty($user['status_akta_perkawinan']) ? 'disabled' : '' : ''}} name="no_akta_perkawinan" value="{{ $user['no_akta_perkawinan'] ?? '' }}" />
+                                        <input class="form-control form-control-lg" {{!empty($outsider) ? ($outsider['status_akta_perkawinan']=="0") || empty($outsider['status_akta_perkawinan']) ? 'disabled' : '' : ''}} name="no_akta_perkawinan" value="{{ $outsider['no_akta_perkawinan'] ?? '' }}" />
                                     </div>
                                 </div>
                             </div>
@@ -445,9 +441,9 @@
     <div class="card-footer">
         <div class="row justify-content-end">
             <div class="col text-right">
-                <a href="/data-penduduk/penduduk" class="btn btn-secondary {{ !empty($user) ? $user['akun_mobile_app'] == 0 ? : '' : 'mr-2' }}">Batal</a>
-                @if (!empty($user) && $user['akun_mobile_app'] == '0')
-                <a href="/master-data/data-penduduk/create-mobile-account/{{ $user['id'] }}" class="btn btn-outline-success mx-3">Buat Akun Mobile</a>
+                <a href="/data-penduduk/penduduk" class="btn btn-secondary {{ !empty($outsider) ? $outsider['akun_mobile_app'] == 0 ? : '' : 'mr-2' }}">Batal</a>
+                @if (!empty($outsider) && $outsider['akun_mobile_app'] == '0')
+                <a href="/master-data/data-penduduk/create-mobile-account/{{ $outsider['id'] }}" class="btn btn-outline-success mx-3">Buat Akun Mobile</a>
                 @endif
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>

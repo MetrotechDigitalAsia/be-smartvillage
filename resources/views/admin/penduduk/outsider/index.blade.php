@@ -90,7 +90,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach (['Nama', 'No NIK', 'No KK', 'Jenis Kelamin', 'Tempat Lahir', 'Tanggal Lahir', 'Agama', 'Pendidikan', 'Pekerjaan', 'Golongan Darah', 'Status Perkawinan','Tanggal Perkawinan', 'SHDK', 'Kewarganegaraan', 'Ayah', 'Ibu', 'Alamat', 'Status Akta Kelahiran', 'No Akta Kelahiran', 'Status Akta Perkawinan', 'No Akta Perkawinan', 'Telepon', 'Email', 'RT', 'RW', 'Banjar'] as $i => $item)
+							@foreach (['Nama', 'No NIK', 'No KK', 'Jenis Kelamin', 'Tempat Lahir', 'Tanggal Lahir', 'Agama', 'Pendidikan', 'Pekerjaan', 'Golongan Darah', 'Status Perkawinan','Tanggal Perkawinan', 'SHDK', 'Kewarganegaraan', 'Ayah', 'Ibu', 'Alamat', 'Status Akta Kelahiran', 'No Akta Kelahiran', 'Status Akta Perkawinan', 'No Akta Perkawinan'] as $i => $item)
 							<tr>
 								<td class="text-center" >{{ $i+1 }}</td>
 								<td>{{ $item }}</td>
@@ -105,7 +105,6 @@
 						</tbody>
 					</table>
 				</div>
-				<input type="hidden" name="_banjar">
 				<div class="modal-footer">
 					<button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Batal</button>
 					<button type="submit" onclick="handleSubmitExportData()" data-dismiss="modal" class="btn btn-primary font-weight-bold">Export</button>
@@ -119,10 +118,6 @@
 @push('script')
 
 <script>
-
-	function handleChangeBanjarSelect(el){
-		document.querySelector('input[name=_banjar]').value = el.value
-	}
 
 	function handleSelectAllFields(el){
 		document.querySelectorAll('.field-checkbox').forEach(e => {
@@ -239,7 +234,7 @@
 									</svg>\
 								</span>\
 							</a>\
-							<a href="javascript:;" data-href="/master-data/data-penduduk/penduduk-luar/delete/${e.id}" onclick="deleteData(this)" class="btn btn-sm btn-clean btn-icon bg-light" title="Delete">\
+							<a href="javascript:;" data-href="/data-penduduk/penduduk-luar/delete/${e.id}" onclick="deleteData(this)" class="btn btn-sm btn-clean btn-icon bg-light" title="Delete">\
 								<span class="svg-icon svg-icon-danger svg-icon-lg">\
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
 										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\

@@ -40,7 +40,7 @@ return new class extends Migration
             $table->string('kewarganegaraan_ibu');
             $table->string('nik_ibu');
             $table->string('status_perkawinan')->default('Belum Kawin');
-            $table->string('tanggal_perkawinan')->nullable();
+            $table->date('tanggal_perkawinan')->nullable();
             $table->string('status_akta_perkawinan')->nullable();
             $table->string('no_akta_perkawinan')->nullable();
             $table->timestamps();
