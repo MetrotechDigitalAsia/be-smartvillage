@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('saksi_2')->references('id')->on('signature')->nullable();
             $table->string('petugas')->references('id')->on('signature')->nullable();
             $table->string('signature')->nullable();
+            $table->string('registration_number')->nullable();
             $table->timestamps();
         });
     }

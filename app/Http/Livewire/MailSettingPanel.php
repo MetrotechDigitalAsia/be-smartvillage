@@ -14,6 +14,7 @@ class MailSettingPanel extends Component
     public $saksi2;
     public $petugas;
     public $mail_num;
+    public $registration_number;
     public $slug;
 
     protected $listeners = [
@@ -34,6 +35,7 @@ class MailSettingPanel extends Component
             'saksi_2',
             'petugas',
             'slug',
+            'registration_number'
         ]);
 
         $this->slug = $mail->slug;
@@ -41,6 +43,7 @@ class MailSettingPanel extends Component
         $this->saksi2 = $mail->saksi_2;
         $this->mail_num = $mail->mail_number;
         $this->petugas = $mail->petugas;
+        $this->registration_number = $mail->registration_number;
     }
 
     public function render()
@@ -59,7 +62,8 @@ class MailSettingPanel extends Component
                 'mail_number' => $this->mail_num,
                 'saksi_1' => $this->saksi1,
                 'saksi_2' => $this->saksi2,
-                'petugas' => $this->petugas
+                'petugas' => $this->petugas,
+                'registration_number' => $this->registration_number
             ]);
             $status = true;
             $msg = 'Perubahan diterapkan';
@@ -81,7 +85,8 @@ class MailSettingPanel extends Component
                 'mail_number' => null,
                 'saksi_1' => null,
                 'saksi_2' => null,
-                'petugas' => null
+                'petugas' => null,
+                'registration_number' => null
             ]);
             $status = true;
             $msg = 'Perubahan diterapkan';
@@ -94,6 +99,8 @@ class MailSettingPanel extends Component
         $this->saksi2 = '';
         $this->mail_num = '';
         $this->petugas = '';
+        $this->registration_number = '';
+        
 
         $this->emit('mailChanges', compact('msg', 'status'));
         $this->emitTo('mail-detail','refreshMailDetail');

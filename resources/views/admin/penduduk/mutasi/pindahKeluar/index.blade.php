@@ -10,16 +10,15 @@
         </div>
         <div class="card-toolbar justify-content-between ">
 
-			{{-- <div class=" d-flex align-items-center mr-5 ">
-				<label class="mb-0 d-none d-md-block mr-4">Banjar:</label>
-				<select id="kt_datatable_search_banjar" class="form-control status-input w-150px" >
+			<div class=" d-flex align-items-center mr-5 ">
+				<label class="mb-0 d-none d-md-block mr-4">Waktu:</label>
+				<select onchange="handleChangeRange(this)" id="kt_datatable_search_banjar" class="form-control status-input w-150px" >
 					<option value="">Semua</option>
-					<option value="Ubud">Ubud</option>
-					<option value="Tengah">Tengah</option>
-					<option value="Buangga">Buangga</option>
-					<option value="Kauh">Kauh</option>
+					<option value="1">1 Bulan</option>
+					<option value="6">6 Bulan</option>
+					<option value="12">1 Tahun</option>
 				</select>
-			</div> --}}
+			</div>
 
 			<div class="input-icon mr-5">
 				<input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
@@ -29,7 +28,7 @@
 			</div>
 
 
-			<a href="/data-penduduk/penduduk/download/pindah-keluar" class="btn btn-light-primary font-weight-bolder mr-5" >
+			<a href="/data-penduduk/penduduk/download/pindah-keluar" class="btn btn-light-primary font-weight-bolder mr-5 download-btn" >
 				<span class="svg-icon svg-icon-md">
 					<!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
 					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -77,6 +76,17 @@
 @push('script')
 
 <script>
+
+	function handleChangeRange(el){
+		const downloadBtn = document.querySelector('.download-btn')
+
+		if(el.value !== ''){
+			downloadBtn.href = '/data-penduduk/penduduk/download/pindah-keluar?time='+el.value
+		} else {
+			downloadBtn.href = '/data-penduduk/penduduk/download/pindah-keluar'
+		}
+		console.log(downloadBtn.href)
+	}
 
 	var Table = function() {
 		// Private functions

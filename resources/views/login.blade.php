@@ -77,7 +77,7 @@
 					<!--end::Content body-->
 					<!--begin::Content footer for mobile-->
 					<div class="d-flex d-lg-none flex-column-auto flex-column flex-sm-row justify-content-between align-items-center mt-5 p-5">
-						<div class="text-dark-50 font-weight-bold order-2 order-sm-1 my-2">©2022 All Right Reserved. Grand Wisata Bekasi</div>
+						<div class="text-dark-50 font-weight-bold order-2 order-sm-1 my-2">©2023 All Right Reserved. Desa Getasan Bali</div>
 					</div>
 					<!--end::Content footer for mobile-->
 				</div>

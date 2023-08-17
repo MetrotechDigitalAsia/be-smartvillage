@@ -12,6 +12,7 @@ use App\Models\Signature;
 use App\Models\UserData;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -206,6 +207,48 @@ class DatabaseSeeder extends Seeder
             'image' => '-',
             'description' => '-',
         ]);
+
+        $data = DB::connection('resident_mysql')->table('resident_data')->get();
+
+        foreach($data as $i){
+
+            UserData::create([
+                'nama' => $i->nama,
+                'no_nik'=> $i->no_nik,
+                'no_kk'=> $i->no_kk,
+                'jenis_kelamin'=> $i->jenis_kelamin,
+                'tempat_lahir'=> $i->tempat_lahir,
+                'tanggal_lahir'=> $i->tanggal_lahir,
+                'agama'=> $i->agama,
+                'pendidikan'=> $i->pendidikan,
+                'pekerjaan'=> $i->pekerjaan,
+                'status_perkawinan'=> $i->status_perkawinan,
+                'golongan_darah'=> $i->golongan_darah,
+                'tanggal_perkawinan'=> empty($i->tanggal_perkawinan) ? null : $i->tanggal_perkawinan,
+                'shdk'=> $i->shdk,
+                'kewarganegaraan'=> $i->kewarganegaraan,
+                'ayah'=> $i->ayah,
+                'ibu'=> $i->ibu,
+                'alamat'=> $i->alamat,
+                'status_akta_kelahiran'=> $i->status_akta_kelahiran,
+                'no_akta_kelahiran'=> $i->no_akta_kelahiran,
+                'status_akta_perkawinan'=> $i->status_akta_perkawinan,
+                'no_akta_perkawinan'=> $i->no_akta_perkawinan,
+                'telepon'=> $i->telepon,
+                'email'=> $i->email,
+                'rt'=> $i->RT,
+                'rw'=> $i->RW,
+                'banjar'=> $i->banjar,
+                'ketua_rt'=> $i->ketua_RT,
+                'ketua_rw'=> $i->ketua_RW,
+                'ketua_banjar'=> $i->ketua_banjar,
+                'status_mutasi'=> $i->status_mutasi,
+                'penyandang_disabilitas'=> $i->penyandang_disabilitas,
+                'jenis_disabilitas'=> $i->jenis_disabilitas,
+                'penerima_bantuan'=> $i->penerima_bantuan,
+                'akun_mobile_app'=> $i->akun_mobile_app,
+            ]);
+        }
 
         $saksi = UserData::where('banjar', 'Ubud')->inRandomOrder()->first();
 

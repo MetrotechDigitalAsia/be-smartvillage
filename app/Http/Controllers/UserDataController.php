@@ -8,8 +8,10 @@ use App\Exports\ResidentMovedOutExport;
 use App\Exports\UserDataExport;
 use App\Models\UserData;
 use App\Models\UserLogin;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class UserDataController extends Controller
@@ -302,7 +304,9 @@ class UserDataController extends Controller
         if($request->ajax()){
 
             $param = $request->get('query')['generalSearch'] ?? null;
-            $banjar = $request->get('query')['banjar'] ?? null;
+            $time = $request->get('query')['time'] ?? null;
+
+            Log::info($time);
 
             $data = UserData::latest()
                     ->where('status_mutasi', 'Meninggal')
@@ -312,8 +316,18 @@ class UserDataController extends Controller
                     ->when(!is_null($param) && !preg_match('/[a-zA-Z]/', $param), function($query) use ($param){
                         $query->where('no_nik', 'like', '%'.$param.'%');
                     })
-                    ->when(!is_null($banjar), function($query) use ($banjar){
-                        $query->where('banjar', $banjar);
+                    ->when(!is_null($time) && $time == 1, function($query) use ($time){
+                        $query->whereMonth('waktu_perubahan_mutasi', Carbon::now()->month)
+                        ->whereYear('waktu_perubahan_mutasi', Carbon::now()->year);
+                    })
+                    ->when(!is_null($time) && $time == 6, function($query) use ($time){
+                        Log::info(Carbon::parse("01-01-".Carbon::now()->year));
+                        $query->whereBetween('waktu_perubahan_mutasi', 
+                            [Carbon::parse("01-01-".Carbon::now()->year), Carbon::parse("01-01-".Carbon::now()->year)->addMonth(5)]
+                        );
+                    })
+                    ->when(!is_null($time) && $time == 12, function($query) use ($time){
+                        $query->whereYear('waktu_perubahan_mutasi', Carbon::now()->year);
                     })
                     ->get();
 
@@ -360,7 +374,7 @@ class UserDataController extends Controller
         if($request->ajax()){
 
             $param = $request->get('query')['generalSearch'] ?? null;
-            $banjar = $request->get('query')['banjar'] ?? null;
+            $time = $request->get('query')['time'] ?? null;
 
             $data = UserData::latest()
                     ->where('status_mutasi', 'Pindah Keluar')
@@ -370,8 +384,18 @@ class UserDataController extends Controller
                     ->when(!is_null($param) && !preg_match('/[a-zA-Z]/', $param), function($query) use ($param){
                         $query->where('no_nik', 'like', '%'.$param.'%');
                     })
-                    ->when(!is_null($banjar), function($query) use ($banjar){
-                        $query->where('banjar', $banjar);
+                    ->when(!is_null($time) && $time == 1, function($query) use ($time){
+                        $query->whereMonth('waktu_perubahan_mutasi', Carbon::now()->month)
+                        ->whereYear('waktu_perubahan_mutasi', Carbon::now()->year);
+                    })
+                    ->when(!is_null($time) && $time == 6, function($query) use ($time){
+                        Log::info(Carbon::parse("01-01-".Carbon::now()->year));
+                        $query->whereBetween('waktu_perubahan_mutasi', 
+                            [Carbon::parse("01-01-".Carbon::now()->year), Carbon::parse("01-01-".Carbon::now()->year)->addMonth(5)]
+                        );
+                    })
+                    ->when(!is_null($time) && $time == 12, function($query) use ($time){
+                        $query->whereYear('waktu_perubahan_mutasi', Carbon::now()->year);
                     })
                     ->get();
 
@@ -410,7 +434,10 @@ class UserDataController extends Controller
     }
 
     public function exportDeathResident(){
-        return (new DeathResidentExport)->download('data-penduduk-meninggal-'.time().'.xlsx');
+
+        $timeRange = request()->query('time') ?? null;
+
+        return (new DeathResidentExport($timeRange))->download('data-penduduk-meninggal-'.time().'.xlsx');
     }
     
     public function exportMarriedResident(){
@@ -418,7 +445,8 @@ class UserDataController extends Controller
     }
 
     public function exportMovedOutResident(){
-        return (new ResidentMovedOutExport)->download('data-penduduk-pindah-keluar-'.time().'.xlsx');
+        $timeRange = request()->query('time') ?? null;
+        return (new ResidentMovedOutExport($timeRange))->download('data-penduduk-pindah-keluar-'.time().'.xlsx');
     }
 
 }

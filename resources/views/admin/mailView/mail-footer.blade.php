@@ -4,7 +4,7 @@
         <table>
             <tr>
                 <td>Reg No.</td>
-                <td>:................................</td>
+                <td>: {{ $data->registration_number ?? '................................' }}</td>
             </tr>
             <tr>
                 <td>Tanggal</td>

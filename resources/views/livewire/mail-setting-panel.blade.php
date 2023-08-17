@@ -6,6 +6,11 @@
                 <label>Nomor Surat</label>
                 <input type="text" class="form-control" wire:model.lazy="mail_num" placeholder="Masukan Nomor Surat"/>
             </div>
+
+            <div class="form-group">
+                <label>Nomor Registrasi</label>
+                <input type="text" class="form-control" wire:model.lazy="registration_number" placeholder="Masukan Nomor Registrasi"/>
+            </div>
             <div class="form-group">
                 <label for="saksi1" >Saksi 1</label>
                 <select class="form-control" wire:model.lazy="saksi1" id="saksi1">

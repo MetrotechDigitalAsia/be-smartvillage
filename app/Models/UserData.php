@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +12,6 @@ class UserData extends Model
     protected $guarded = ['id'];
 
     protected $connection = 'resident_mysql';
-    protected $table = 'resident_data';
+    protected $table = 'residents_data';
 
 }
