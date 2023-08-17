@@ -11,7 +11,7 @@ class AllMailTable extends Component
     protected $userDb;
 
     public function mount(){
-        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
+        $this->userDb = env('DB_RESIDENT_DATABASE'). '.residents_data as userDB';
     }
 
     public function render()

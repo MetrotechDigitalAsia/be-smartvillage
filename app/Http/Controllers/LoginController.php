@@ -18,7 +18,7 @@ class LoginController extends Controller
     protected $userDb;
 
     public function __construct(){
-        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
+        $this->userDb = env('DB_RESIDENT_DATABASE'). '.residents_data as userDB';
     }
     
     public function index(){
@@ -110,34 +110,34 @@ class LoginController extends Controller
                 ->get();
 
                 $anak = DB::connection('resident_mysql')->table(DB::raw('(SELECT 1 AS month UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12) AS months'))
-                ->leftJoin('resident_data', function ($join) {
-                    $join->on(DB::raw('MONTH(resident_data.created_at)'), '=', 'months.month')
-                        ->whereYear('resident_data.created_at', '=', date('Y'))
+                ->leftJoin('residents_data', function ($join) {
+                    $join->on(DB::raw('MONTH(residents_data.created_at)'), '=', 'months.month')
+                        ->whereYear('residents_data.created_at', '=', date('Y'))
                         ->where(DB::raw('YEAR(NOW()) - YEAR(TANGGAL_LAHIR)'), '<', 18);
                 })
-                ->select(DB::raw('months.month, COALESCE(COUNT(resident_data.id), 0) as data_count'))
+                ->select(DB::raw('months.month, COALESCE(COUNT(residents_data.id), 0) as data_count'))
                 ->groupBy('months.month')
                 ->orderBy('months.month')
                 ->get();
 
             $remaja = DB::connection('resident_mysql')->table(DB::raw('(SELECT 1 AS month UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12) AS months'))
-                ->leftJoin('resident_data', function ($join) {
-                    $join->on(DB::raw('MONTH(resident_data.created_at)'), '=', 'months.month')
-                        ->whereYear('resident_data.created_at', '=', date('Y'))
+                ->leftJoin('residents_data', function ($join) {
+                    $join->on(DB::raw('MONTH(residents_data.created_at)'), '=', 'months.month')
+                        ->whereYear('residents_data.created_at', '=', date('Y'))
                         ->whereBetween(DB::raw('YEAR(NOW()) - YEAR(TANGGAL_LAHIR)'),[18, 45]);
                 })
-                ->select(DB::raw('months.month, COALESCE(COUNT(resident_data.id), 0) as data_count'))
+                ->select(DB::raw('months.month, COALESCE(COUNT(residents_data.id), 0) as data_count'))
                 ->groupBy('months.month')
                 ->orderBy('months.month')
                 ->get();
 
             $lansia = DB::connection('resident_mysql')->table(DB::raw('(SELECT 1 AS month UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12) AS months'))
-                ->leftJoin('resident_data', function ($join) {
-                    $join->on(DB::raw('MONTH(resident_data.created_at)'), '=', 'months.month')
-                        ->whereYear('resident_data.created_at', '=', date('Y'))
+                ->leftJoin('residents_data', function ($join) {
+                    $join->on(DB::raw('MONTH(residents_data.created_at)'), '=', 'months.month')
+                        ->whereYear('residents_data.created_at', '=', date('Y'))
                         ->where(DB::raw('YEAR(NOW()) - YEAR(TANGGAL_LAHIR)'), '>', 45);
                 })
-                ->select(DB::raw('months.month, COALESCE(COUNT(resident_data.id), 0) as data_count'))
+                ->select(DB::raw('months.month, COALESCE(COUNT(residents_data.id), 0) as data_count'))
                 ->groupBy('months.month')
                 ->orderBy('months.month')
                 ->get();

@@ -14,7 +14,7 @@ class UserLoginController extends Controller
 
     public function __construct(){
         $this->folderName = 'masterData.userLogin';
-        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
+        $this->userDb = env('DB_RESIDENT_DATABASE'). '.residents_data as userDB';
     }
 
     public function index(Request $request){

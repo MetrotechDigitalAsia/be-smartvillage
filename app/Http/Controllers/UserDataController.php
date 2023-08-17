@@ -26,7 +26,7 @@ class UserDataController extends Controller
         
         $gender = UserData::all()->groupBy('jenis_kelamin')->map(fn($entries) => $entries->count());
 
-        $age = DB::connection('resident_mysql')->table('resident_data')
+        $age = DB::connection('resident_mysql')->table('residents_data')
                 ->select(DB::raw('
                     CASE
                         WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) <= 10 THEN "Anak Anak"
@@ -45,7 +45,7 @@ class UserDataController extends Controller
         $ubud = UserData::where('BANJAR', 'ubud')->count();
 
         $rawResidentJobs = DB::connection('resident_mysql')
-                    ->table('resident_data')
+                    ->table('residents_data')
                     ->select('pekerjaan', DB::raw('COUNT(*) as jumlah'))
                     ->orderBy('jumlah', 'DESC')
                     ->groupBy('pekerjaan')
@@ -57,7 +57,7 @@ class UserDataController extends Controller
         $residentJobs = [$residentJob_1, $residentJob_2, $residentJob_3, $residentJob_4];
 
         $education = DB::connection('resident_mysql')
-                    ->table('resident_data')
+                    ->table('residents_data')
                     ->select('pendidikan', DB::raw('COUNT(*) as jumlah'))
                     ->orderBy('jumlah', 'DESC')
                     ->groupBy('pendidikan')
@@ -70,7 +70,7 @@ class UserDataController extends Controller
         $banjar = compact('kauh', 'buangga', 'tengah', 'ubud');
 
         $disabilityPeople = DB::connection('resident_mysql')
-                            ->table('resident_data')
+                            ->table('residents_data')
                             ->where('penyandang_disabilitas', '=', 1)
                             ->select('jenis_disabilitas', DB::raw('COUNT(*) as jumlah'))
                             ->orderBy('jumlah', 'DESC')
@@ -267,8 +267,8 @@ class UserDataController extends Controller
             $param = $request->get('query')['generalSearch'] ?? '';
 
             $data = UserData::select('NAMA')->distinct('no_kk')
-                    ->where('resident_data.NAMA', 'like', '%'.$param.'%')
-                    ->orWhere('resident_data.NIK', 'like', '%'.$param.'%')
+                    ->where('residents_data.NAMA', 'like', '%'.$param.'%')
+                    ->orWhere('residents_data.NIK', 'like', '%'.$param.'%')
                     ->get();
 
             return DataTables::of($data)

@@ -22,7 +22,7 @@ class UserMailController extends Controller
     private $userDb;
 
     public function __construct(){
-        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
+        $this->userDb = env('DB_RESIDENT_DATABASE'). '.residents_data as userDB';
     }
 
     public function getMailByUser($userId){

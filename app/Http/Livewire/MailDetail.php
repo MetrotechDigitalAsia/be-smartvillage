@@ -23,7 +23,7 @@ class MailDetail extends Component
     public function mount($mailId, $perbekel){
         $slug = request()->query('type');
         $this->mail = Mail::whereSlug($slug)->first();
-        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as applicant';
+        $this->userDb = env('DB_RESIDENT_DATABASE'). '.residents_data as applicant';
         $this->mailId = $mailId;
         $this->perbekel = $perbekel;
     }

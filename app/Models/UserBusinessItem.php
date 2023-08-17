@@ -19,10 +19,10 @@ class UserBusinessItem extends Model
 
     public function itemOwner(){
         return $this->belongsTo(UserLogin::class, 'user_id', 'id')
-                ->join(env('DB_RESIDENT_DATABASE').'.resident_data', 'resident_data.no_nik', '=', 'user_logins.no_nik')
+                ->join(env('DB_RESIDENT_DATABASE').'.residents_data', 'residents_data.no_nik', '=', 'user_logins.no_nik')
                 ->select([
                     'user_logins.id as id',
-                    'resident_data.nama as name'
+                    'residents_data.nama as name'
                 ]);
     }
 }

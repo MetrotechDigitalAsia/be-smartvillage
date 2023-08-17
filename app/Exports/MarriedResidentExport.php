@@ -22,7 +22,7 @@ class MarriedResidentExport implements FromCollection, WithHeadings, WithStyles,
     public function collection()
     {
         return UserData::where('status_perkawinan', 'Kawin Tercatat')->get([
-            DB::raw('ROW_NUMBER() OVER(ORDER BY resident_data.id) as row_index'),
+            DB::raw('ROW_NUMBER() OVER(ORDER BY residents_data.id) as row_index'),
             'nama',
             'no_nik',
             'no_kk',

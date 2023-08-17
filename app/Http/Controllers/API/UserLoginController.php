@@ -16,7 +16,7 @@ class UserLoginController extends Controller
     protected $userDb;
 
     public function __construct(){
-        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDb';
+        $this->userDb = env('DB_RESIDENT_DATABASE'). '.residents_data as userDb';
     }
 
     public function login(UserLoginRequest $request){
@@ -36,7 +36,7 @@ class UserLoginController extends Controller
                     ]);
 
             $family = UserData::where('no_kk', function($query) use ($data) {
-                $query->from('resident_data')
+                $query->from('residents_data')
                 ->select('no_nik')
                 ->where('no_nik', $data->nik)->first();
             })->get([

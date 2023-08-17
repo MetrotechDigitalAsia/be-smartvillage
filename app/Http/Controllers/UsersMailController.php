@@ -27,7 +27,7 @@ class UsersMailController extends Controller
 
     public function __construct(){
         $this->folderName = 'persuratan.surat';
-        $this->userDb = env('DB_RESIDENT_DATABASE'). '.resident_data as userDB';
+        $this->userDb = env('DB_RESIDENT_DATABASE'). '.residents_data as userDB';
         $this->DBQuery = DB::table('users_mail as userMail')
         ->join('mails', 'mails.id', '=', 'userMail.mail_id')
         ->join($this->userDb, 'userDB.id', '=', 'userMail.resident_id');
