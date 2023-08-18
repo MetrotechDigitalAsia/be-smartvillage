@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users_mail', function (Blueprint $table) {
-            $table->id();
+            $table->id()->index();
             $table->string('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('user_logins');
             $table->string('mail_id');
