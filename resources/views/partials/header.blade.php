@@ -51,7 +51,7 @@
                         </li>
                         @endif
 
-                        @if (auth()->user()->type == 'Super' || auth()->user()->type == 'Umum')
+                        @if (auth()->user()->type == 'Super' || auth()->user()->type == 'Layanan')
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'penduduk')) menu-item-here @endif" data-menu-toggle="click" aria-haspopup="true">
                             <a href="javascript:;" class="menu-link menu-toggle">
                                 <span class="menu-text">Data Kependudukan</span>
