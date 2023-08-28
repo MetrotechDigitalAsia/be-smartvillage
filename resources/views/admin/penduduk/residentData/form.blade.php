@@ -283,9 +283,9 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">No Akta Kelahiran <span style="color: red;" >*</span></label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">No Akta Kelahiran </label>
                                     <div class="col">
-                                        <input required class="form-control @error('no_nik') is-invalid @enderror form-control-lg " type="text" name="no_akta_kelahiran" value="{{$user['no_akta_kelahiran'] ?? '' }}" required {{!empty($user) ? $user['status_akta_kelahiran']=="0" ? 'disabled' : '' : ''}} />
+                                        <input class="form-control @error('no_nik') is-invalid @enderror form-control-lg " type="text" name="no_akta_kelahiran" value="{{$user['no_akta_kelahiran'] ?? '' }}" required {{!empty($user) ? $user['status_akta_kelahiran']=="0" ? 'disabled' : '' : ''}} />
                                         @error('no_nik')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
