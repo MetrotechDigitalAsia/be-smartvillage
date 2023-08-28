@@ -31,9 +31,9 @@ return new class extends Migration
             $table->string('ibu');
             $table->string('alamat');
             $table->boolean('status_akta_kelahiran')->nullable();
-            $table->string('no_akta_kelahiran');
+            $table->string('no_akta_kelahiran')->nullable();
             $table->boolean('status_akta_perkawinan')->nullable();
-            $table->string('no_akta_perkawinan');
+            $table->string('no_akta_perkawinan')->nullable();
             $table->string('telepon');
             $table->string('email');
             $table->string('RT');
