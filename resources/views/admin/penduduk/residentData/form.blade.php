@@ -512,7 +512,7 @@
                         <div class="form-group row">
                             <label class="col-xl-3 col-lg-3 col-form-label">Tanggal Perubahan Mutasi </label>
                             <div class="col col-xl-3 col-lg-3">
-                                <input class="form-control @error('waktu_perubahan_mutasi') is-invalid @enderror form-control-lg " type="date" name="waktu_perubahan_mutasi" value="{{ !empty($user['waktu_perubahan_mutasi']) ? Carbon\Carbon::createFromFormat('Y-m-d  H:i:s', $user['waktu_perubahan_mutasi'])->format('Y-m-d')  : '' }}" required />
+                                <input class="form-control @error('waktu_perubahan_mutasi') is-invalid @enderror form-control-lg " type="date" name="waktu_perubahan_mutasi" value="{{ !empty($user['waktu_perubahan_mutasi']) ? Carbon\Carbon::createFromFormat('Y-m-d  H:i:s', $user['waktu_perubahan_mutasi'])->format('Y-m-d')  : '' }}" />
                             </div>
                         </div>
 
