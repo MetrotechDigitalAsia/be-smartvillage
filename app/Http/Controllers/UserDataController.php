@@ -296,7 +296,12 @@ class UserDataController extends Controller
 
         $banjar = request()->get('_banjar');
 
-        return (new UserDataExport($banjar, $data))->download('data-penduduk-'.time().'.xlsx');
+        if(!empty($banjar)){
+            return (new UserDataExport($banjar, $data))->download('data-penduduk-br-'.$banjar.'-'.Carbon::now()->parse('d-M-Y').'.xlsx');
+        } else {
+            return (new UserDataExport($banjar, $data))->download('data-penduduk'.'-'.Carbon::now()->parse('d-M-Y').'.xlsx');
+        }
+
     }
 
     public function getDeathUserData(Request $request){

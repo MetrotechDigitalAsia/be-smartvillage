@@ -318,37 +318,37 @@
                 <div class="modal-body">
                     <div class="checkbox-list">
                         <label class="checkbox">
-                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-keterangan-perkawinan"/>
+                            <input type="checkbox" class="mail-checkbox" onchange="handleClickCheckbox(this)" name="surat-keterangan-perkawinan"/>
                             <span></span>
                             Surat Keterangan Perkawinan
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="f2-01"/>
+                            <input type="checkbox" class="mail-checkbox" onchange="handleClickCheckbox(this)" name="f2-01"/>
                             <span></span>
                             Surat F2-01
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="f1-01"/>
+                            <input type="checkbox" class="mail-checkbox" onchange="handleClickCheckbox(this)" name="f1-01"/>
                             <span></span>
                             Surat F1-01
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-pernyataan-suka-sama-suka"/>
+                            <input type="checkbox" class="mail-checkbox" onchange="handleClickCheckbox(this)" name="surat-pernyataan-suka-sama-suka"/>
                             <span></span>
                             Surat Pernyataan Suka Sama Suka
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-pernyataan-belum-pernah-kawin_suami"/>
+                            <input type="checkbox" class="mail-checkbox" onchange="handleClickCheckbox(this)" name="surat-pernyataan-belum-pernah-kawin_suami"/>
                             <span></span>
                             Surat Pernyataan Belum Pernah Kawin
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="pengumuman-perkawinan"/>
+                            <input type="checkbox" class="mail-checkbox" onchange="handleClickCheckbox(this)" name="pengumuman-perkawinan"/>
                             <span></span>
                             Pengumuman Perkawinan
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="tanda-tangan-suami-istri"/>
+                            <input type="checkbox" class="mail-checkbox" onchange="handleClickCheckbox(this)" name="tanda-tangan-suami-istri"/>
                             <span></span>
                             Tanda Tangan Suami Istri
                         </label>

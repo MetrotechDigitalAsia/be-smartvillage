@@ -445,7 +445,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row align-items-center">
+                        {{-- <div class="form-group row align-items-center">
                             <label class="col-xl-3 col-lg-3 col-form-label">Penerima Bantuan</label>
                             <div class="col-lg-9 col-xl-6">
                                 <div class="checkbox-inline">
@@ -456,7 +456,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row align-items-center">
                             <label class="col-xl-3 col-lg-3 col-form-label">Penyandang Disabilitas</label>
@@ -512,7 +512,7 @@
                         <div class="form-group row">
                             <label class="col-xl-3 col-lg-3 col-form-label">Tanggal Perubahan Mutasi </label>
                             <div class="col col-xl-3 col-lg-3">
-                                <input required class="form-control @error('waktu_perubahan_mutasi') is-invalid @enderror form-control-lg " type="date" name="waktu_perubahan_mutasi" value="{{ !empty($user['waktu_perubahan_mutasi']) ? Carbon\Carbon::createFromFormat('Y-m-d  H:i:s', $user['waktu_perubahan_mutasi'])->format('Y-m-d')  : '' }}" required />
+                                <input class="form-control @error('waktu_perubahan_mutasi') is-invalid @enderror form-control-lg " type="date" name="waktu_perubahan_mutasi" value="{{ !empty($user['waktu_perubahan_mutasi']) ? Carbon\Carbon::createFromFormat('Y-m-d  H:i:s', $user['waktu_perubahan_mutasi'])->format('Y-m-d')  : '' }}" required />
                             </div>
                         </div>
 
