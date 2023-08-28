@@ -124,6 +124,7 @@
             input.value = name
             input.type = 'hidden'
             input.classList.add(name)
+            input.classList.add('mail-download-type')
             form.appendChild(input)
         } else {
             const name = el.name
@@ -137,6 +138,9 @@
         document.querySelector('.download-form').submit()
         document.querySelectorAll('.mail-checkbox').forEach(e => {
             e.checked = false
+        })
+        document.querySelectorAll('.mail-download-type').forEach(e => {
+            e.remove()
         })
     }
 
