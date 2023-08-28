@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('signatures', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('position');
             $table->string('banjar')->nullable();
             $table->string('kk');

@@ -297,9 +297,9 @@ class UserDataController extends Controller
         $banjar = request()->get('_banjar');
 
         if(!empty($banjar)){
-            return (new UserDataExport($banjar, $data))->download('data-penduduk-br-'.$banjar.'-'.Carbon::now()->parse('d-M-Y').'.xlsx');
+            return (new UserDataExport($banjar, $data))->download('data-penduduk-br-'.$banjar.'-'.Carbon::now()->format('d-M-Y').'.xlsx');
         } else {
-            return (new UserDataExport($banjar, $data))->download('data-penduduk'.'-'.Carbon::now()->parse('d-M-Y').'.xlsx');
+            return (new UserDataExport($banjar, $data))->download('data-penduduk'.'-'.Carbon::now()->format('d-M-Y').'.xlsx');
         }
 
     }
