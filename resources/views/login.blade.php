@@ -58,7 +58,7 @@
 						<!--end: Aside content-->
 						<!--begin: Aside footer for desktop-->
 						<div class="d-none flex-column-auto d-lg-flex justify-content-between mt-10">
-							<div class="opacity-70 font-weight-bold text-white">©2023 All Right Reserved. Desa Getasan Bali</div>
+							<div class="opacity-70 font-weight-bold text-white">© 2023 Desa Getasan. All Right Reserved.</div>
 						</div>
 						<!--end: Aside footer for desktop-->
 					</div>
@@ -77,7 +77,7 @@
 					<!--end::Content body-->
 					<!--begin::Content footer for mobile-->
 					<div class="d-flex d-lg-none flex-column-auto flex-column flex-sm-row justify-content-between align-items-center mt-5 p-5">
-						<div class="text-dark-50 font-weight-bold order-2 order-sm-1 my-2">©2023 All Right Reserved. Desa Getasan Bali</div>
+						<div class="text-dark-50 font-weight-bold order-2 order-sm-1 my-2">© 2023 Desa Getasan. All Right Reserved.</div>
 					</div>
 					<!--end::Content footer for mobile-->
 				</div>

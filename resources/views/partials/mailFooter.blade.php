@@ -3,10 +3,15 @@
         <td span="2" >Mengetahui :</td>
     </tr>
     <tr>
-        <td>Reg No. : ........................</td>
+        <td>Reg No. : {{ $data->registration_number ?? '........................' }}</td>
     </tr>
     <tr>
+        @if (!empty($data->registration_date))
+            
+        <td >Tanggal : {{ \Carbon\Carbon::parse($data->registration_date)->translatedFormat('d F Y') }}</td>
+        @else
         <td >Tanggal : ........................</td>
+        @endif
         <td>Getasan, {{ Carbon\Carbon::now()->translatedFormat('d F Y') }}</td>
     </tr>
     <tr>

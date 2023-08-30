@@ -94,7 +94,7 @@
 								<td>Field</td>
 								<td style="width: 55px; position: relative;" >
 									<label class="checkbox" style="position: absolute; right: 17px;" >
-										<input type="checkbox" onchange="handleSelectAllFields(this)" />
+										<input type="checkbox" class="checkall" onchange="handleSelectAllFields(this)" />
 										<span></span>
 									</label>
 								</td>
@@ -146,6 +146,7 @@
 
 	function handleSubmitExportData(){
 		document.querySelector('.export-form').submit()
+		document.querySelector('.checkall').checked = false
 		document.querySelectorAll('.field-checkbox').forEach(e => {
 			e.checked = false
 		})

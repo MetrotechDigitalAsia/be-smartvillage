@@ -3,8 +3,8 @@
     <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center">
         <!--begin::Copyright-->
         <div class="text-dark order-2 order-md-1">
-            <span class="text-muted font-weight-bold mr-2">2023©</span>
-            <span class="text-dark-75" >Developed by <a href="https://metrotechdigital.asia/" target="_blank" class="text-dark-75 text-hover-primary">Metrotech Digital Asia</a> </span>
+            <span class="text-muted font-weight-bold mr-1">© 2023</span>
+            <span class="text-dark-75" >Desa Getasan. All Right Reserved.</span>
             
         </div>
         <!--end::Copyright-->

@@ -208,7 +208,7 @@ class DatabaseSeeder extends Seeder
             'description' => '-',
         ]);
 
-        $data = DB::connection('resident_mysql')->table('residents_data')->get();
+        $data = DB::connection('resident_mysql')->table('resident_data')->get();
 
         foreach($data as $i){
 

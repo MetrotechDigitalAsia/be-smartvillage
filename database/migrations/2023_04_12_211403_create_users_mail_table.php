@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('petugas')->references('id')->on('signature')->nullable();
             $table->string('signature')->nullable();
             $table->string('registration_number')->nullable();
+            $table->date('registration_date')->nullable();
             $table->timestamps();
         });
     }

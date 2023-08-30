@@ -253,7 +253,7 @@ class UsersMailController extends Controller
         if($data->title == 'Surat Keterangan Tempat Usaha'){
             $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data', 'perbekel', 'kelian', 'field'));
             $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$data->slug).'_mail.pdf';
-            return $pdf->download($fileName);
+            return $pdf->stream($fileName);
         }
 
         $queryParams = $request->query();
@@ -333,6 +333,8 @@ class UsersMailController extends Controller
                 'userMail.status',
                 'userMail.signature as image',
                 'userMail.field',
+                'userMail.registration_date',
+                'userMail.registration_number',
                 'userDB.banjar as banjar',
                 'userDB.nama as name',
                 'userDB.nama as applicant_name',
@@ -370,6 +372,8 @@ class UsersMailController extends Controller
                 'userMail.status',
                 'userMail.signature as image',
                 'userMail.field',
+                'userMail.registration_date',
+                'userMail.registration_number',
                 'userDB.banjar as banjar',
                 'userDB.nama as name',
                 'userDB.nama as applicant_name',
@@ -410,6 +414,8 @@ class UsersMailController extends Controller
                 'userMail.user_id',
                 'userMail.saksi_1',
                 'userMail.saksi_2',
+                'userMail.registration_date',
+                'userMail.registration_number',
                 'userDB.banjar as banjar',
                 'userDB.nama as name',
                 'userDB.nama as applicant_name',
@@ -461,6 +467,8 @@ class UsersMailController extends Controller
                 'userMail.user_id',
                 'userMail.saksi_1',
                 'userMail.saksi_2',
+                'userMail.registration_date',
+                'userMail.registration_number',
                 'userDB.banjar as banjar',
                 'userDB.nama as name',
                 'userDB.nama as applicant_name',

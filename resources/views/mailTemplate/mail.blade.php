@@ -65,7 +65,7 @@
             }
 
             .mail-header p {
-                font-size: 12px;
+                font-size: 13px;
             }
 
             .mail-body .mail-type {
@@ -92,7 +92,7 @@
     <body>
         <div style="width: 80%; margin: 0 auto;" >
             <div class="mail-header">
-                <img src="./assets/be/media/desa.png" alt="">
+                <img src="./assets/be/media/desa.png" width="100" alt="">
                 <p class="goverment" >PEMERINTAH KABUPATEN BADUNG <br>KECAMATAN PETANG</p>
                 <p class="village" >DESA GETASAN</p>
                 <p class="" >Jalan Tukad Penet No. 14 Getasan, Kec. Petang, Kab. Badung (80353)<br>Telp. 081 353 622 066 Website : info.desagetasan.id</p>

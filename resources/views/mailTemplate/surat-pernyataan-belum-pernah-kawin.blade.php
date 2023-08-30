@@ -136,8 +136,8 @@
                 <td>: {{ $subject->address ?? '' }}</td>
             </tr>
         </table>
-        <p style="text-align: justify;" >adalah salah satu warga desa kami yang bertempat tinggal pada alamat tersebut diatas dan berdasarkan pengetahuan kami hingga surat keterangan ini dikeluarkan, memang benar orang tersebut diatas belum pernah Kawin/Nikah.</p>
-        <p style="text-align: justify; margin-top: 30px;" >Demikian Surat Keterangan Belum Pernah Kawin/Nikah ini dibuat dengan sebenarnya sebagai persyaratan untuk melengkapi permohonan pembuatan Akta Perkawinan.</p>
+        <p style="text-align: justify; text-indent: 40px;" >adalah salah satu warga desa kami yang bertempat tinggal pada alamat tersebut diatas dan berdasarkan pengetahuan kami hingga surat keterangan ini dikeluarkan, memang benar orang tersebut diatas belum pernah Kawin/Nikah.</p>
+        <p style="text-align: justify; margin-top: 30px; text-indent: 40px;" >Demikian Surat Keterangan Belum Pernah Kawin/Nikah ini dibuat dengan sebenarnya sebagai persyaratan untuk melengkapi permohonan pembuatan Akta Perkawinan.</p>
         <p style="text-align: center; margin-top: 50px; margin-bottom: 20px;" >Saksi-Saksi:</p>
         <table style="width: 100%;" >
             <tr>

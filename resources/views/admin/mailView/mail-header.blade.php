@@ -1,5 +1,5 @@
 <div class="mail-header">
-    <img src="{{ asset('assets/be/media/desa.png') }}" alt="">
+    <img src="{{ asset('assets/be/media/desa.png') }}" width="100" alt="">
     <h3 class="text-center m-0 goverment" >PEMERINTAH KABUPATEN BADUNG <br>KECAMATAN PETANG</h3>
     <h2 class="m-0 my-1 village" >DESA GETASAN</h2>
     @if (request()->query('type') == 'surat-keterangan-meninggal' || request()->query('type') == 'surat-keterangan-perkawinan')

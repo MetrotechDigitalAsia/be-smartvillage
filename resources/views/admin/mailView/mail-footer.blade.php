@@ -8,7 +8,11 @@
             </tr>
             <tr>
                 <td>Tanggal</td>
-                <td>:................................</td>
+                @if (!empty($data->registration_date))
+                <td>: {{ \Carbon\Carbon::parse($data->registration_date)->translatedFormat('d F Y') ?? '................................' }}</td>
+                @else
+                <td>: ................................</td>
+                @endif
             </tr>
         </table>
         <p style="text-indent: 0; margin-bottom: 60px;" >Perbekel Getasan,</p>

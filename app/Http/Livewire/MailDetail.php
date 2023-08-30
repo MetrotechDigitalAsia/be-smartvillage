@@ -91,7 +91,8 @@ class MailDetail extends Component
             'applicant.shdk as applicant_family_status',
             DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
             'userMail.created_at',
-            'registration_number'
+            'registration_number',
+            'registration_date',
         ]);
 
         return $data;
@@ -129,7 +130,8 @@ class MailDetail extends Component
             'applicant.shdk as applicant_family_status',
             DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
             'userMail.created_at',
-            'registration_number'
+            'registration_number',
+            'registration_date',
         ]);
 
         return $data;
@@ -163,7 +165,8 @@ class MailDetail extends Component
             DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
             'userMail.created_at',
             'userMail.petugas',
-            'registration_number'
+            'registration_number',
+            'registration_date',
         ]);
 
         $json = json_decode($data->field);
@@ -212,7 +215,8 @@ class MailDetail extends Component
             'applicant.banjar as applicant_banjar',
             DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
             'userMail.created_at',
-            'registration_number'
+            'registration_number',
+            'registration_date'
         ]);
 
         return $data;
