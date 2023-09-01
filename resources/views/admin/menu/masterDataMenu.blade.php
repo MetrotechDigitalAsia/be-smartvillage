@@ -110,7 +110,7 @@
                     </div>
 
                     <!--begin:Item-->
-                    {{-- <div class="navi-item my-2">
+                    <div class="navi-item my-2">
                         <a href="/master-data/blt" class="navi-link @if(Str::contains(Route::current()->uri, 'blt')) active @endif  ">
                             <span class="navi-icon mr-4">
                                 <span class="svg-icon svg-icon-lg">
@@ -127,7 +127,7 @@
                             </span>
                             <span class="navi-text font-weight-bolder font-size-lg">BLT</span>
                         </a>
-                    </div> --}}
+                    </div>
                     <!--end:Item-->
 
                     <div class="navi-item my-2">

@@ -281,8 +281,8 @@
 				console.log('init')
 				var initialLat = $('.search_lat').val();
 				var initialLong = $('.search_long').val();
-				initialLat = initialLat?initialLat:36.169648;
-				initialLong = initialLong?initialLong:-115.141000;
+				initialLat = initialLat?initialLat:-8.433237499999999;
+				initialLong = initialLong?initialLong:115.2215781;
 				var latlng = new google.maps.LatLng(initialLat, initialLong);
 				var options = {
 					zoom: 16,

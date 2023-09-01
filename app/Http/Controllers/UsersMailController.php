@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Saksi;
 use App\Models\Signature;
 use App\Models\UserData;
 use App\Models\UserLogin;
@@ -253,7 +252,7 @@ class UsersMailController extends Controller
         if($data->title == 'Surat Keterangan Tempat Usaha'){
             $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data', 'perbekel', 'kelian', 'field'));
             $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$data->slug).'_mail.pdf';
-            return $pdf->stream($fileName);
+            return $pdf->download($fileName);
         }
 
         $queryParams = $request->query();

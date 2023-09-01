@@ -6,6 +6,7 @@ use App\Exports\DeathResidentExport;
 use App\Exports\MarriedResidentExport;
 use App\Exports\ResidentMovedOutExport;
 use App\Exports\UserDataExport;
+use App\Models\BLT;
 use App\Models\UserData;
 use App\Models\UserLogin;
 use Carbon\Carbon;
@@ -78,7 +79,16 @@ class UserDataController extends Controller
                             ->get()
                             ->toArray();
 
-        return view('admin.penduduk.index', compact('banjar', 'gender', 'age', 'residentJobs', 'educations', 'disabilityPeople'));
+        $blt = DB::connection('resident_mysql')
+                            ->table('residents_data')
+                            ->where('penerima_bantuan', '=', 1)
+                            ->select('jenis_bantuan', DB::raw('COUNT(*) as jumlah'))
+                            ->orderBy('jumlah', 'DESC')
+                            ->groupBy('jenis_bantuan')
+                            ->get()
+                            ->toArray();
+
+        return view('admin.penduduk.index', compact('banjar', 'gender', 'age', 'residentJobs', 'educations', 'disabilityPeople', 'blt'));
     }
 
 
@@ -112,10 +122,12 @@ class UserDataController extends Controller
     }
 
     public function create(){
-        return view('admin.'.$this->folderName.'.form');
+        $blt = BLT::all();
+        return view('admin.'.$this->folderName.'.form', compact('blt'));
     }
 
     public function show($id){
+        $blt = BLT::all();
         $user = UserData::selectRaw('*,YEAR(NOW()) - YEAR(TANGGAL_LAHIR) as UMUR')->find($id); 
         if($user->status_perkawinan == 'Kawin Tercatat' || $user->status_perkawinan == 'Kawin' || $user->status_perkawinan == 'Kawin Belum Tercatat'){
 
@@ -128,7 +140,7 @@ class UserDataController extends Controller
                         ->where('shdk', 'ANAK')
                         ->get();
         }
-        return view('admin.'.$this->folderName.'.form', ['user' => $user, 'couple' => $couple ?? null , 'children' => $children ?? null]);
+        return view('admin.'.$this->folderName.'.form', ['user' => $user, 'couple' => $couple ?? null , 'children' => $children ?? null, 'blt' => $blt]);
     }
 
     public function store(Request $request){

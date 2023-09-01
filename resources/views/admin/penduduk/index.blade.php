@@ -161,6 +161,23 @@
         <div class="card card-custom gutter-b" >
             <div class="card-header border-0 pb-0">
                 <div class="card-title">
+                    <h3 class="card-label fs-md">Penduduk Penerima Bantuan</h3>
+                </div>
+            </div>
+            <div class="card-body px-10 pb-10 pt-0">
+                <!--begin::Chart-->
+                <div id="blt_chart"></div>
+                <!--end::Chart-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card card-custom gutter-b" >
+            <div class="card-header border-0 pb-0">
+                <div class="card-title">
                     <h3 class="card-label fs-md">Penduduk Penyandang Disabilitas</h3>
                 </div>
             </div>
@@ -189,6 +206,7 @@
         const residentJobs = {!! json_encode($residentJobs) !!}
         const educations = {!! json_encode($educations) !!}
         const disabilities = {!! json_encode($disabilityPeople) !!}
+        const bltReciever = {!! json_encode($blt) !!}
 
         const jobGlide = new Glide('.job-glide')
 
@@ -439,11 +457,48 @@
 
             }
 
+            const bltChart = function(data){
+
+                const dataset = data.map(e => ({ x: e.jenis_bantuan, y: e.jumlah }))
+
+                const el = document.querySelector('#blt_chart')
+                const opt = {
+                    chart: {
+                        type: 'bar',
+                        height: 350,
+                        toolbar: {
+                            show: false
+                        }
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: true,
+                            columnWidth: '45%',
+                            distributed: true
+                            // endingShape: 'rounded'
+                        },
+                    },
+                    series: [{
+                        data: dataset
+                    }],
+                    legend: {
+                        show: false,
+                        position: 'bottom',
+                    },
+                    colors: [primary, success, warning]
+                }
+
+                const chart = new ApexCharts(el, opt)
+                chart.render()
+
+            }
+
             return {
                 init: function(){
                     genderChart(gender)
                     ageChart(age)
                     disabilityChart(disabilities)
+                    bltChart(bltReciever)
                     residentJobs.forEach( (data, i) => workChart(data, `#work_chart_${i+1}`))
                     educations.forEach( (data, i) => educationChart(data, `#education_chart_${i+1}`))
                 }

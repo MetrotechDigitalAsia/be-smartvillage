@@ -445,18 +445,32 @@
                             </div>
                         </div>
 
-                        {{-- <div class="form-group row align-items-center">
+                        <div class="form-group row align-items-center">
                             <label class="col-xl-3 col-lg-3 col-form-label">Penerima Bantuan</label>
                             <div class="col-lg-9 col-xl-6">
                                 <div class="checkbox-inline">
                                     <label class="checkbox checkbox-outline checkbox-success">
-                                        <input type="checkbox" {{ !empty($user) ? $user['penerima_bantuan'] == '1' ? 'checked' : '' : '' }} name="penerima_bantuan"/>
+                                        <input onchange="handleChangePenerimaBantuan(this)" type="checkbox" {{ !empty($user) ? $user['penerima_bantuan'] == '1' ? 'checked' : '' : '' }} name="penerima_bantuan"/>
                                         <span></span>
                                         Ya
                                     </label>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
+
+                        <div class="form-group row penerima-bantuan-input {{ !empty($user) ? $user['penerima_bantuan'] == '0' ? 'd-none' : '' : 'd-none' }} ">
+                            <label class="col-xl-3 col-lg-3 col-form-label">Jenis BLT</label>
+                            <div class="col-6">
+                                <select class="form-control form-control-lg" name="jenis_bantuan" >
+                                    <option value="">Pilih...</option>
+                                    @foreach ($blt as $item)
+                                    <option value="{{ $item->type }}" {{ !empty($user) ? $user['jenis_bantuan'] == $item->type ? 'selected' : '' : ''}}  >
+                                        {{ $item->type }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="form-group row align-items-center">
                             <label class="col-xl-3 col-lg-3 col-form-label">Penyandang Disabilitas</label>
@@ -597,6 +611,14 @@
                 document.querySelector('.penyandang-disabilitas-input').classList.remove('d-none')
             else
                 document.querySelector('.penyandang-disabilitas-input').classList.add('d-none')
+        }
+
+        function handleChangePenerimaBantuan(el){
+            console.log(el)
+            if(el.checked)
+                document.querySelector('.penerima-bantuan-input').classList.remove('d-none')
+            else
+                document.querySelector('.penerima-bantuan-input').classList.add('d-none')
         }
 
     </script>

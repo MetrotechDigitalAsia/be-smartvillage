@@ -31,9 +31,9 @@
         <!--end::Form-->
         <div class="card-footer">
             <div class="row">
-                <div class="col offset-3">
-                    <button type="submit" class="btn btn-success">Simpan</button>
-                    <a href="/master-data/blt" class="btn btn-secondary mx-2">Batal</a>
+                <div class="col text-lg-right">
+                    <a href="/master-data/blt" class="btn btn-secondary mr-2">Batal</a>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>
