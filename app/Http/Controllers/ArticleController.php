@@ -78,7 +78,6 @@ class ArticleController extends Controller
             'description' => 'required',
             'time' => 'required',
             'date' => 'required',
-            'updated_by' => 'required'
         ]);
 
         $validated['slug'] = str_replace(' ', '-', Str::lower($request->title));

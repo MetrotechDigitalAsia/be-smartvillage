@@ -68,7 +68,6 @@ class AgendaController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'nullable',
-            'author' => 'required',
             'date' => 'required'
         ]);
 
