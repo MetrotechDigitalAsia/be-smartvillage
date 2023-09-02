@@ -124,7 +124,7 @@
 					title: 'Author',
 				},{
 					field: 'date',
-					title: 'Tangal',
+					title: 'Tanggal'
 				},{   
 					field: 'Actions',
 					title: 'Actions',
