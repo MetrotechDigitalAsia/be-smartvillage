@@ -101,7 +101,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach (['Nama', 'No NIK', 'No KK', 'Jenis Kelamin', 'Tempat Lahir', 'Tanggal Lahir', 'Agama', 'Pendidikan', 'Pekerjaan', 'Golongan Darah', 'Status Perkawinan','Tanggal Perkawinan', 'SHDK', 'Kewarganegaraan', 'Ayah', 'Ibu', 'Alamat', 'Status Akta Kelahiran', 'No Akta Kelahiran', 'Status Akta Perkawinan', 'No Akta Perkawinan', 'Telepon', 'Email', 'RT', 'RW', 'Banjar'] as $i => $item)
+							@foreach (['Nama', 'No NIK', 'No KK', 'Jenis Kelamin', 'Tempat Lahir', 'Tanggal Lahir', 'Umur', 'Agama', 'Pendidikan', 'Pekerjaan', 'Golongan Darah', 'Status Perkawinan','Tanggal Perkawinan', 'SHDK', 'Kewarganegaraan', 'Ayah', 'Ibu', 'Alamat', 'Status Akta Kelahiran', 'No Akta Kelahiran', 'Status Akta Perkawinan', 'No Akta Perkawinan', 'Telepon', 'Email', 'RT', 'RW', 'Banjar'] as $i => $item)
 							<tr>
 								<td class="text-center" >{{ $i+1 }}</td>
 								<td>{{ $item }}</td>

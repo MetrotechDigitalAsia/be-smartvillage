@@ -42,13 +42,6 @@
                     </div>
     
                     <div class="form-group row">
-                        <label class="col-xl-3 col-lg-3 col-form-label">Author</label>
-                        <div class="col-lg-9 col-xl-9">
-                            <input class="form-control form-control-lg " type="text" name="updated_by" value="{{$article['updated_by'] ?? '' }}" />
-                        </div>
-                    </div>
-    
-                    <div class="form-group row">
                         <label class="col-form-label col-xl-3 col-lg-3">Kategori</label>
                         <div class="col-xl-9 col-lg-9">
                             <select class="form-control form-control-lg " name="article_category">

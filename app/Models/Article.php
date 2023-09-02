@@ -19,4 +19,9 @@ class Article extends Model
     public function articleCategory(){
         return $this->belongsTo(ArticleCategory::class, 'article_category', 'id')->select('id', 'article_category as category');
     }
+
+    public function author(){
+        return $this->belongsTo(Admin::class, 'admin_id', 'id')->select('id', 'fullname');
+    }
+    
 }

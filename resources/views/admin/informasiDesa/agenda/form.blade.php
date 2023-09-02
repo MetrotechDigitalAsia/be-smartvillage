@@ -30,16 +30,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-xl-3 col-lg-3 col-form-label">Author</label>
-                            <div class="col-lg-9 col-xl-9">
-                                <input class="form-control @error('author') is-invalid @enderror form-control-lg " type="text" name="author" value="{{$agenda['author'] ?? '' }}" />
-                                @error('author')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label class="col-xl-3 col-lg-3 col-form-label">Tanggal</label>
                             <div class="col-lg-9 col-xl-9">
                                 <input class="form-control @error('date') is-invalid @enderror form-control-lg " type="date" name="date" value="{{$agenda['date'] ?? '' }}" />

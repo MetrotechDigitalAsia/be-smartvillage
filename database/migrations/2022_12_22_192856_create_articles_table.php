@@ -23,7 +23,8 @@ return new class extends Migration
             $table->text('description');
             $table->string('time');
             $table->date('date');
-            $table->string('updated_by');
+            $table->uuid('admin_id');
+            $table->foreign('admin_id')->on('admin')->references('id');
             $table->timestamps();
         });
     }

@@ -115,7 +115,7 @@
 					field: 'title',
 					title: 'Title',
 				}, {
-					field: 'updated_by',
+					field: 'author.fullname',
 					title: 'Author',
 				},{
 					field: 'date',

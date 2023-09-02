@@ -15,4 +15,8 @@ class Agenda extends Model
     {
         return 'slug';
     }
+
+    public function author(){
+        return $this->belongsTo(Admin::class, 'admin_id', 'id')->select('id', 'fullname');
+    }
 }

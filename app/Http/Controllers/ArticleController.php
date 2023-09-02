@@ -23,8 +23,7 @@ class ArticleController extends Controller
 
             $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = Article::where('title', 'like', '%'.$param.'%')
-                    ->orWhere('updated_by', 'like', '%'.$param.'%')
+            $data = Article::with('author')->where('title', 'like', '%'.$param.'%')
                     ->get();
 
             return DataTables::of($data)
@@ -55,14 +54,13 @@ class ArticleController extends Controller
             'description' => 'required',
             'time' => 'required',
             'date' => 'required',
-            'updated_by' => 'required'
         ]);
 
         $validated['slug'] = str_replace(' ', '-', Str::lower($request->title));
         $validated['image'] = $request->file('image')->store('article');
 
         try {
-            Article::create($validated);
+            Article::create([...$validated, 'admin_id' => auth()->user()->id]);
         } catch (\Exception $e){
             return redirect('/informasi-desa/artikel/create')->with('error', $e->getMessage());
             die;

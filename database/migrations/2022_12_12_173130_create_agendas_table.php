@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('description');
-            $table->string('author');
+            $table->uuid('admin_id');
+            $table->foreign('admin_id')->references('id')->on('admin');
             $table->date('date');
             $table->timestamps();
         });

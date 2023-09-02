@@ -22,8 +22,9 @@ class AgendaController extends Controller
             
             $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = Agenda::where('title', 'like', '%'.$param.'%')
-                            ->orWhere('author', 'like', '%'.$param.'%')->get();
+            $data = Agenda::with('author')->where('title', 'like', '%'.$param.'%')->get();
+
+            Log::info($data);
             return DataTables::of($data)
             ->addIndexColumn()
             ->make(true); 
@@ -46,20 +47,19 @@ class AgendaController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'nullable',
-            'author' => 'required',
             'date' => 'required'
         ]);
 
         $validated['slug'] = str_replace(' ', '-', Str::lower($request->title));
 
         try {
-            Agenda::create($validated);
+            Agenda::create([...$validated, 'admin_id' => auth()->user()->id ]);
         } catch (\Exception $e){
             return redirect('/informasi-desa/agenda/create')->with('error', $e->getMessage());
             die;
         }
 
-        return redirect('informasi-desa/agenda')->with('success', 'create agenda point successfully');
+        return redirect('informasi-desa/agenda')->with('success', 'create agenda successfully');
 
     }
 

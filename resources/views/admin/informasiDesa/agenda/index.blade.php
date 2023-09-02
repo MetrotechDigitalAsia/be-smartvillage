@@ -120,7 +120,7 @@
 					field: 'title',
 					title: 'Judul',
 				},{
-					field: 'author',
+					field: 'author.fullname',
 					title: 'Author',
 				},{
 					field: 'date',
