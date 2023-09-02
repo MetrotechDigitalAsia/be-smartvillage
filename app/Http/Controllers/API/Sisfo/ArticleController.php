@@ -13,10 +13,12 @@ class ArticleController extends Controller
 
         $param = request()->query('search');
 
-        $data = Article::with('articleCategory')->when(!empty($param), function($q) use ($param){
+        $data = Article::with('articleCategory')
+                ->join('admin', 'admin.id', '=', 'articles.admin_id')
+                ->when(!empty($param), function($q) use ($param){
                    $q->where('slug', 'LIKE', '%'.$param.'%')->orWhere('title', 'LIKE', '%'.$param.'%'); 
                 })
-                ->select(['id', 'title', 'slug', 'article_category', 'image', 'time', 'date', 'updated_by', 'created_at', 'updated_at'])
+                ->select(['articles.id', 'title', 'slug', 'article_category', 'image', 'time', 'date', 'articles.created_at', 'articles.updated_at', 'admin.fullname as updated_by'])
                 ->paginate(6);
 
         foreach ($data as $item) {
@@ -27,9 +29,10 @@ class ArticleController extends Controller
 
     public function search($param){
 
-        $data = Article::where('slug', 'LIKE', "%$param%")
+        $data = Article::join('admin', 'admin.id', '=', 'articles.admin_id')
+                        ->where('slug', 'LIKE', "%$param%")
                         ->orWhere('title', 'LIKE', "%$param%")
-                        ->select(['id', 'title', 'slug', 'article_category', 'image', 'time', 'date', 'updated_by', 'created_at', 'updated_at'])
+                        ->select(['articles.id', 'title', 'slug', 'article_category', 'image', 'time', 'date', 'articles.created_at', 'articles.updated_at', 'admin.fullname as updated_by'])
                         ->paginate(6);
 
         foreach ($data as $item) {
@@ -44,7 +47,7 @@ class ArticleController extends Controller
     }
 
     public function latest(){
-        $data = Article::latest()->limit(3)->get();
+        $data = Article::join('admin', 'admin.id', '=', 'articles.admin_id')->latest()->limit(3)->get(['articles.id', 'title', 'slug', 'article_category', 'image', 'time', 'date', 'articles.created_at', 'articles.updated_at', 'admin.fullname as updated_by']);
         foreach ($data as $item) {
             $item->image = env('APP_URL').'/storage/'. $item->image;
         }
