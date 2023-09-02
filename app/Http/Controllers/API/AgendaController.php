@@ -14,6 +14,7 @@ class AgendaController extends Controller
             'agendas.id',
             'title',
             'slug',
+            'description',
             'admin.fullname as author',
             'date'
         ]);
