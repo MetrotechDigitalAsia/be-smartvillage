@@ -10,7 +10,13 @@ class AgendaController extends Controller
 {
     public function index(){
 
-        $data = Agenda::latest()->limit(4)->get();
+        $data = Agenda::join('admin', 'admin.id', '=', 'agendas.admin_id')->latest('agendas.created_at')->limit(4)->get([
+            'agendas.id',
+            'title',
+            'slug',
+            'admin.fullname as author',
+            'date'
+        ]);
 
         foreach($data as $item){
             $item->mobile_date = $item->date;
