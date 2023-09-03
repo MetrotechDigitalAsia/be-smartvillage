@@ -277,6 +277,27 @@
 			var map;
 			var marker;
 
+			function getCurrentLocation(){
+				navigator.geolocation.getCurrentPosition(function(position) {
+					let latitude = position.coords.latitude;
+					let longitude = position.coords.longitude;
+					console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+					document.querySelector('.search_lat').value = latitude
+					document.querySelector('.search_long').value = longitude
+					var latlng = new google.maps.LatLng(latitude, longitude);
+					geocoder.geocode({
+						location: latlng
+					})
+					.then( ({ results }) => {
+						$('#search_location').val(results[0].formatted_address);
+						$('.search_addr').val(results[0].formatted_address);
+						console.log(results[0].formatted_address)
+					})
+					marker.setPosition(latlng);
+					initialize()
+				});
+			}
+
 			function initialize() {
 				console.log('init')
 				var initialLat = $('.search_lat').val();
@@ -349,21 +370,21 @@
 			});
 			
 			/** Point location on google map*/
-			$('.get_map').click(function (e) {
-				var address = $(PostCodeid).val();
-				geocoder.geocode({'address': address}, function (results, status) {
-					if (status == google.maps.GeocoderStatus.OK) {
-						map.setCenter(results[0].geometry.location);
-						marker.setPosition(results[0].geometry.location);
-						$('.search_addr').val(results[0].formatted_address);
-						$('.search_lat').val(marker.getPosition().lat());
-						$('.search_long').val(marker.getPosition().lng());
-					} else {
-						alert("Geocode was not successful for the following reason: " + status);
-					}
-				});
-				e.preventDefault();
-			});
+			// $('.get_map').click(function (e) {
+			// 	var address = $(PostCodeid).val();
+			// 	geocoder.geocode({'address': address}, function (results, status) {
+			// 		if (status == google.maps.GeocoderStatus.OK) {
+			// 			map.setCenter(results[0].geometry.location);
+			// 			marker.setPosition(results[0].geometry.location);
+			// 			$('.search_addr').val(results[0].formatted_address);
+			// 			$('.search_lat').val(marker.getPosition().lat());
+			// 			$('.search_long').val(marker.getPosition().lng());
+			// 		} else {
+			// 			alert("Geocode was not successful for the following reason: " + status);
+			// 		}
+			// 	});
+			// 	e.preventDefault();
+			// });
 			//Add listener to marker for reverse geocoding
 			google.maps.event.addListener(marker, 'drag', function () {
 				geocoder.geocode({'latLng': marker.getPosition()}, function (results, status) {

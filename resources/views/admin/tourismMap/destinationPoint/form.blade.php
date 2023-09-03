@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="form-group row">
-                    <label class="col-xl-3 col-lg-3 col-form-label">Multiple File Upload</label>
+                    <label class="col-xl-3 col-lg-3 col-form-label">Gambar Destinasi</label>
                     <div class="col-lg-9 col-xl-6">
                         <div class="images-preview-div row my-2"></div>
                         @if (!empty($destinationPoint) && !is_null($destinationPoint->image))
@@ -73,6 +73,9 @@
                             <div class="btn btn-icon btn-sm btn-success get_map">
                                 <i class="fab fa-sistrix "></i>
                             </div>
+                            <div onclick="getCurrentLocation()" class="btn btn-icon btn-sm btn-success get_map ml-3">
+                                <i class="fas fa-map-marker-alt "></i>
+                            </div>
                         </div>
                         <div id="geomap" class="mt-5" style="width: 100%; height: 300px;" ></div>
                         <input class="form-control form-control-lg  mt-5 search_addr" type="text" name="address" value="{{$destinationPoint['address'] ?? '' }}" />
@@ -87,7 +90,7 @@
                 </div>
     
                 <div class="form-group row">
-                    <label class="col-xl-3 col-lg-3 col-form-label">Longtitude</label>
+                    <label class="col-xl-3 col-lg-3 col-form-label">Longitude</label>
                     <div class="col-lg-9 col-xl-9">
                         <input class="form-control form-control-lg  search_long" type="text" name="long" value="{{$destinationPoint['long'] ?? '' }}" readonly/>
                     </div>

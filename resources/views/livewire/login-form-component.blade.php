@@ -1,7 +1,7 @@
 <div class="login-form login-signin">
     <div class="text-center mb-10 mb-lg-20">
-        <h3 class="font-size-h1">Sign In</h3>
-        <p class="text-muted font-weight-bold">Enter your Email and password</p>
+        <h3 class="font-size-h1">SIGETASAN - CMS</h3>
+        <p class="text-muted font-weight-bold">Content Management System - Desa Getasan</p>
     </div>
     <!--begin::Form-->
     <form class="form" wire:submit.prevent="handleSubmit" id="kt_login_signin_form"  >
@@ -15,14 +15,17 @@
             @enderror
         </div>
         <div class="form-group">
-            <input wire:model.lazy="password" class="form-control  @error('password') is-invalid @enderror h-auto py-5 px-6" type="password" placeholder="Password" name="password" autocomplete="off" />
+            <div class="input-icon input-icon-right">
+                <input wire:model.lazy="password" type="{{ $type }}" class="form-control  @error('password') is-invalid @enderror h-auto py-5 px-6" type="password" placeholder="Password" name="password" autocomplete="off" />
+                <span style="cursor: pointer;" wire:click="changePasswordVisibilty" ><i class="far fa-eye{{ $type != 'password' ? '' : '-slash' }} mr-5"></i></span>
+            </div>
             @error('password')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <!--begin::Action-->
         <div class="form-group d-flex flex-wrap justify-content-between align-items-center">
-            <button type="submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3">Sign In</button>
+            <button type="submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3">Masuk</button>
         </div>
         <!--end::Action-->
     </form>

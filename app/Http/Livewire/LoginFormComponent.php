@@ -10,6 +10,7 @@ class LoginFormComponent extends Component
 
     public $email;
     public $password;
+    public $type = 'password';
 
     protected $messages = [
         'email.required' => 'Email harus diisi',
@@ -49,5 +50,11 @@ class LoginFormComponent extends Component
         $this->emit('loginFailed');
         return;
 
+    }
+
+    public function changePasswordVisibilty(){
+        $this->type = $this->type == 'password' ? 'text' : 'password';
+        // if($this->type == 'password') $this->type = 'text';
+        // else $this->type = 'password';
     }
 }
