@@ -32,7 +32,7 @@ class ArticleController extends Controller
 
     public function latest(){
 
-        $data = Article::join('admin', 'admin.id', '=', 'articles.admin_id')->latest()->limit(3)->get([
+        $data = Article::join('admin', 'admin.id', '=', 'articles.admin_id')->latest('articles.created_at')->limit(3)->get([
             'articles.id',
             'title',
             'slug',

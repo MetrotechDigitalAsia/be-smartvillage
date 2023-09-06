@@ -16,7 +16,8 @@ class AgendaController extends Controller
             'slug',
             'description',
             'admin.fullname as author',
-            'date'
+            'date',
+            'agendas.created_at'
         ]);
 
         foreach($data as $item){
