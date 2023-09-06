@@ -80,13 +80,13 @@ class UserDataController extends Controller
                             ->toArray();
 
         $blt = DB::connection('resident_mysql')
-                            ->table('residents_data')
-                            ->where('penerima_bantuan', '=', 1)
-                            ->select('jenis_bantuan', DB::raw('COUNT(*) as jumlah'))
-                            ->orderBy('jumlah', 'DESC')
-                            ->groupBy('jenis_bantuan')
-                            ->get()
-                            ->toArray();
+                ->table('residents_data')
+                ->whereNotNull('jenis_bantuan')
+                ->select('jenis_bantuan', DB::raw('COUNT(*) as total'))
+                ->groupBy('jenis_bantuan')
+                ->get();
+
+        // dd($age);
 
         return view('admin.penduduk.index', compact('banjar', 'gender', 'age', 'residentJobs', 'educations', 'disabilityPeople', 'blt'));
     }

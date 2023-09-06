@@ -175,7 +175,13 @@
                         <span class="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
                         <span class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">{{ auth()->user()->fullname }}</span>
                         <span class="symbol symbol-35">
-                            <span class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">S</span>
+                            @php
+                                $words = explode(" ", auth()->user()->fullname);
+                                $firstCharacters = array_reduce($words,function($prev, $curr) {
+                                    return $prev.$curr[0];
+                                }, '');
+                            @endphp
+                            <span class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">{{ $firstCharacters }}</span>
                         </span>
                     </div>
                 </div>

@@ -457,9 +457,10 @@
 
             }
 
-            const bltChart = function(data){
+            const bltChart = function(age){
 
-                const dataset = data.map(e => ({ x: e.jenis_bantuan, y: e.jumlah }))
+                // const categories = age.map( item => item['jenis_bantuan'] )
+                const data = age.map( item => ({y: item['total'], x: item['jenis_bantuan']}) )
 
                 const el = document.querySelector('#blt_chart')
                 const opt = {
@@ -470,27 +471,45 @@
                             show: false
                         }
                     },
+                    series: [{
+                        data
+                    }],
+                    yaxis:{
+                        title: {
+                            text: 'Jumlah'
+                        },
+                    },
                     plotOptions: {
                         bar: {
-                            horizontal: true,
+                            horizontal: false,
                             columnWidth: '45%',
                             distributed: true
                             // endingShape: 'rounded'
                         },
                     },
-                    series: [{
-                        data: dataset
-                    }],
-                    legend: {
-                        show: false,
-                        position: 'bottom',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        show: true,
+                        width: 2,
+                        colors: ['transparent']
+                    },
+                    fill: {
+                        opacity: 1
+                    },
+                    tooltip: {
+                        y: {
+                            formatter: function (val, e) {
+                                return val + " orang"
+                            }
+                        }
                     },
                     colors: [primary, success, warning]
                 }
 
                 const chart = new ApexCharts(el, opt)
                 chart.render()
-
             }
 
             return {

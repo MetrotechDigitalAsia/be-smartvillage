@@ -5,7 +5,6 @@ namespace App\Exports;
 use App\Models\UserData;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\RegistersEventListeners;
@@ -46,11 +45,14 @@ class UserDataExport implements FromQuery, WithHeadings, WithEvents, WithMapping
     public function map($userData): array
     {
 
+        
         foreach ($this->headers as $header) {
             if ($header == 'status_akta_kelahiran' || $header == 'status_akta_perkawinan') {
                 $headers[] = $userData->{$header} == 1 ? 'ADA' : 'TIDAK';
             } else if($header == 'umur') {
                 $headers[] = Carbon::now()->format('Y') - Carbon::parse($userData->tanggal_lahir)->format('Y');
+            } else if(($header == 'tanggal_lahir' || $header == 'tanggal_perkawinan') && !is_null($userData->{$header})) {
+                $headers[] = Carbon::parse($userData->{$header})->format('d-m-Y');
             } else {
                 $headers[] = $userData->{$header};
             }
