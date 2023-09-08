@@ -95,7 +95,7 @@
                 <img src="./assets/be/media/desa.png" width="100" alt="">
                 <p class="goverment" >PEMERINTAH KABUPATEN BADUNG <br>KECAMATAN PETANG</p>
                 <p class="village" >DESA GETASAN</p>
-                <p class="" >Jalan Tukad Penet No. 14 Getasan, Kec. Petang, Kab. Badung (80353)<br>Telp. 081 353 622 066 Website : info.desagetasan.id</p>
+                <p class="" >Jalan Tukad Penet No. 14 Getasan, Kec. Petang, Kab. Badung (80353)<br>Telp. 081 353 622 066 Website : desagetasan.id</p>
             </div>
             @yield('mail-body')
         </div>
