@@ -2946,7 +2946,7 @@
                         </td>
                         <td style="height: 50px; position: relative;"  >
                             @if (!is_null($data->user_id))
-                            <img style="position: absolute; width: 100px; height: 60px; left: 120px; top: 0px; object-fit: fill;" src="{{ public_path(). '/storage/'. $data->signature }}" alt="">
+                            <img style="position: absolute; width: 100px; height: 60px; left: 120px; top: 0px; object-fit: fill;" src="{{ public_path(). '/storage/'. $data->image }}" alt="">
                             @endif
                         </td>
                     </tr>
