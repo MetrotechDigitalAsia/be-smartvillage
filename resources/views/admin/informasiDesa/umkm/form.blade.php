@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form action="{{ empty($userBusinessItem) ? route('storeUmkm') : '/informasi-desa/umkm/update/'.$userBusinessItem->id }}" enctype="multipart/form-data" method="POST"  >
+<form action="{{ empty($userBusinessItem) ? route('storeUmkm') : '/informasi-desa/umkm/update/'.$userBusinessItem->slug }}" enctype="multipart/form-data" method="POST"  >
 
     @include('partials.success-alert')
     @include('partials.validation-alert')
