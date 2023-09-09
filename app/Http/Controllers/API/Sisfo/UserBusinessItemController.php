@@ -53,6 +53,7 @@ class UserBusinessItemController extends Controller
             'user_id',
             'user_phone_number',
             'item_name',
+            'slug',
             'item_image',
             'item_price',
             'item_description',
