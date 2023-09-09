@@ -44,6 +44,7 @@ class UserBusinessItemController extends Controller
         $data['item_image'] = request()->file('item_image')->store('userBusinessItem');
         $data['status'] = 'pending';
         $data['user_id'] = $userId;
+        $data['slug'] = str_replace(' ', '-', strtolower($data['item_name']));
 
         $admin = Admin::where('type', '=', 'Umum')->first();
 

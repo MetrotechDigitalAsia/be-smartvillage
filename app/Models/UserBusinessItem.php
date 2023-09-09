@@ -25,4 +25,9 @@ class UserBusinessItem extends Model
                     'residents_data.nama as name'
                 ]);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug;'
+    }
 }
