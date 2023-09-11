@@ -100,6 +100,7 @@ class LoginController extends Controller
                         'user_business_items.created_at',
                         'user_business_items.status',
                         'user_business_items.item_image as image',
+                        'user_business_items.slug'
                     ]);
         
         $latestComplaint = Complaint::latest()->limit(3)->get();

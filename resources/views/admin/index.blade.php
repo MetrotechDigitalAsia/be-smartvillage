@@ -161,7 +161,7 @@
                         </div>
                         <!--begin::Text-->
                         <div class="d-flex flex-column flex-grow-1">
-                            <a href="/informasi-desa/umkm/show/{{ $item->id }}" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg mb-1 text-capitalize">
+                            <a href="/informasi-desa/umkm/show/{{ $item->slug }}" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg mb-1 text-capitalize">
                                 {{ $item->item_name }}  
                                 <span class="ml-3 text-capitalize font-weight-bold text-{{ ($item->status != 'approve') ? ($item->status == 'pending') ? 'warning' : 'warning' : 'success'  }}" >
                                     <span class="label label-dot label-{{ ($item->status != 'approve') ? ($item->status == 'pending') ? 'warning' : 'warning' : 'success'  }} mr-1"></span>
