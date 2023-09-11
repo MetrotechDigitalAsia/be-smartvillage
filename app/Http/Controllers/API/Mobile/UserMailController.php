@@ -54,7 +54,7 @@ class UserMailController extends Controller
                 ->exists();
 
         if($exist){
-            return ResponseController::create(null, 'error', 'pengajuan surat melebihi batas', 200);
+            return ResponseController::create(null, 'error', 'Pengajuan Surat Melebihi Batas', 200);
         }
         
 

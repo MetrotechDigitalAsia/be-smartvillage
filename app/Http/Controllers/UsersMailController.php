@@ -120,7 +120,7 @@ class UsersMailController extends Controller
             switch ($status) {
                 case 'Done':
                     $msg = 'Surat disetujui';
-                    $notifMsg = 'Surat telah disetujui oleh pemerintah desa';
+                    $notifMsg = 'Silahkan melakukan pengambilan berkas ke kantor desa!';
                     break;
                 case 'Process':
                     $msg = 'Surat diproses';
