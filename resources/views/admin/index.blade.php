@@ -192,7 +192,7 @@
                     <div class="d-flex align-items-center">
                         <!--begin::Text-->
                         <div class="d-flex flex-column flex-grow-1">
-                            <a href="/informasi-desa/complaint/show/{{ $item->id }}" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg mb-1">{{ Str::limit($item->description, 40, '...') }}</a>
+                            <a href="/informasi-desa/complaint/show/{{ $item->uuid }}" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg mb-1">{{ Str::limit($item->description, 40, '...') }}</a>
                             <span class="text-muted font-weight-normal">Pengaju : {{ $item->name }}</span>
                         </div>
                         <!--end::Text-->
