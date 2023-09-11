@@ -6,7 +6,7 @@
     <!--begin::Header-->
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
-            <h3 class="card-label">Data BLT</h3>
+            <h3 class="card-label">Data Bantuan</h3>
         </div>
         <div class="card-toolbar">
 
@@ -117,7 +117,7 @@
 					textAlign: 'center',
 				},{
 					field: 'type',
-					title: 'Jeni Blt',
+					title: 'Jenis Bantuan',
 				},{   
 					field: 'Actions',
 					title: 'Aksi',
