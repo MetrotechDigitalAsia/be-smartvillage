@@ -83,7 +83,8 @@ class LoginController extends Controller
                         'userMail.id as id',
                         'userMail.created_at',
                         'userDB.nama as name',
-                        'mails.title'
+                        'mails.title',
+                        'mails.slug as mail_slug'
                     ]);
         
         $latestUmkm = UserBusinessItem::join('user_logins as user', function($join){

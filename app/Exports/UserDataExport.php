@@ -9,13 +9,18 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\RegistersEventListeners;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Cell\Cell;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class UserDataExport implements FromQuery, WithHeadings, WithEvents, WithMapping, WithStyles, ShouldAutoSize
+class UserDataExport extends DefaultValueBinder implements FromQuery, WithHeadings, WithEvents, WithMapping, WithStyles, ShouldAutoSize, WithCustomValueBinder
 {
 
     use Exportable, RegistersEventListeners;
@@ -40,6 +45,18 @@ class UserDataExport implements FromQuery, WithHeadings, WithEvents, WithMapping
         })
         ->addSelect(DB::raw('ROW_NUMBER() OVER(ORDER BY id) as No'), 'residents_data.*');
         
+    }
+    
+    public function bindValue(Cell $cell, $value)
+    {
+        if (is_numeric($value)) {
+            $cell->setValueExplicit($value, DataType::TYPE_NUMERIC);
+
+            return true;
+        }
+
+        // else return default behavior
+        return parent::bindValue($cell, $value);
     }
 
     public function map($userData): array
@@ -85,6 +102,7 @@ class UserDataExport implements FromQuery, WithHeadings, WithEvents, WithMapping
 
     public function styles(Worksheet $sheet)
     {
+
         return [
             // Style the first row as bold text.
             1    => ['font' => ['bold' => true]],

@@ -125,7 +125,7 @@
                                     <!--end::Svg Icon-->
                                 </span>
                             </span>
-                            <span class="navi-text font-weight-bolder font-size-lg">BLT</span>
+                            <span class="navi-text font-weight-bolder font-size-lg">Bantuan</span>
                         </a>
                     </div>
                     <!--end:Item-->

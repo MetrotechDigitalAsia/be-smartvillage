@@ -47,6 +47,17 @@ class UserMailController extends Controller
         $user = UserLogin::find($request->user_id);
         $mail = Mail::find($request->mail_id);
 
+        $exist = DB::table('users_mail')
+                ->where('user_id', $user->id)
+                ->where('mail_id', $mail->id)
+                ->whereDate('created_at', Carbon::now())
+                ->exists();
+
+        if($exist){
+            return ResponseController::create(null, 'error', 'pengajuan surat melebihi batas', 200);
+        }
+        
+
         if(empty($user) || empty($mail)){
             return ResponseController::create(null, 'error', (empty($user) ? 'user tidak ditemukan' : 'jenis surat tidak tersedia'), 200);
         }

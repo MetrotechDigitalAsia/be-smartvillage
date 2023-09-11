@@ -134,7 +134,7 @@
                         <div class="d-flex align-items-center">
                             <!--begin::Text-->
                             <div class="d-flex flex-column flex-grow-1">
-                                <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg mb-1">{{ $item->title }}</a>
+                                <a href="/persuratan/surat/show/{{ $item->id }}?type={{ $item->mail_slug }}" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg mb-1">{{ $item->title }}</a>
                                 <span class="text-muted font-weight-normal">Pengaju : {{ $item->name }}</span>
                             </div>
                             <!--end::Text-->
@@ -161,7 +161,7 @@
                         </div>
                         <!--begin::Text-->
                         <div class="d-flex flex-column flex-grow-1">
-                            <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg mb-1 text-capitalize">
+                            <a href="/informasi-desa/umkm/show/{{ $item->id }}" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg mb-1 text-capitalize">
                                 {{ $item->item_name }}  
                                 <span class="ml-3 text-capitalize font-weight-bold text-{{ ($item->status != 'approve') ? ($item->status == 'pending') ? 'warning' : 'warning' : 'success'  }}" >
                                     <span class="label label-dot label-{{ ($item->status != 'approve') ? ($item->status == 'pending') ? 'warning' : 'warning' : 'success'  }} mr-1"></span>

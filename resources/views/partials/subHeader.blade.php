@@ -37,10 +37,21 @@
                         </a>
                     @endif
 
-                    @foreach (Request::segments() as $segment)
+                    @php
+                        $segments = Request::segments();
+                        $a = count($segments) - 1;
+                    @endphp
+                    @foreach ($segments as $i => $segment)
+                    @php
+                        $segmentItems = $segments;
+                        array_splice($segmentItems, $a,1);
+                        $url = join('/', $segmentItems);
+                        $a--;
+                    @endphp
+                    {{-- {{ dump(count($segmentItems)) }} --}}
                     <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                     <a 
-                        href="" 
+                        href="/{{ $url }}" 
                         style="text-transform: capitalize;" 
                         class="text-white text-hover-white opacity-75 hover-opacity-100"
                     >
@@ -56,11 +67,11 @@
             <!--end::Heading-->
         </div>
         <!--end::Info-->
-        @if (Str::contains(Route::current()->uri, 'persuratan/surat'))
+        @if (Str::contains(Route::current()->uri, 'persuratan/surat') || Str::contains(Route::current()->uri, '/penduduk/'))
         <!--begin::Toolbar-->
         <div class="d-flex align-items-center">
             <!--begin::Button-->
-            <a href="/persuratan/master-data" class="btn btn-transparent-white font-weight-bold py-3 px-6 mr-2">Kembali</a>
+            <a href="#" onclick="history.back()" class="btn btn-transparent-white font-weight-bold py-3 px-6 mr-2">Kembali</a>
             <!--end::Button-->
         </div>
         <!--end::Toolbar-->
