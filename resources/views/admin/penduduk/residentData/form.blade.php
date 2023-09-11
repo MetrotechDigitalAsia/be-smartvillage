@@ -459,7 +459,7 @@
                         </div>
 
                         <div class="form-group row penerima-bantuan-input {{ !empty($user) ? $user['penerima_bantuan'] == '0' ? 'd-none' : '' : 'd-none' }} ">
-                            <label class="col-xl-3 col-lg-3 col-form-label">Jenis BLT</label>
+                            <label class="col-xl-3 col-lg-3 col-form-label">Jenis Bantuan</label>
                             <div class="col-6">
                                 <select class="form-control form-control-lg" name="jenis_bantuan" >
                                     <option value="">Pilih...</option>
