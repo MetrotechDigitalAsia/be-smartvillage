@@ -20,6 +20,10 @@ use App\Models\UserData;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
+Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail): void {
+    $trail->push('', route('dashboard'));
+});
+
 Breadcrumbs::for('destinationPoint', function (BreadcrumbTrail $trail): void {
     $trail->push('Point Destinasi', route('destinationPoint'));
 });
