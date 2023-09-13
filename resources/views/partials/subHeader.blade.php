@@ -17,9 +17,9 @@
                         {{ str_replace('-', ' ',Request::segments()[0]) }}
                     @endif
                 </h2>
+                    {{-- {{ Breadcrumbs::render() }} --}}
                 <!--end::Title-->
                 <!--begin::Breadcrumb-->
-                {{ Breadcrumbs::render() }}
                 {{-- <div class="d-flex align-items-center font-weight-bold my-2">
                     <!--begin::Item-->
                     <a href="#" class="opacity-75 hover-opacity-100">
