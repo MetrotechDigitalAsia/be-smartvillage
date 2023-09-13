@@ -57,8 +57,8 @@ Route::group(['middleware' => 'auth'], function(){
     
         Route::group(['prefix' => 'point-destinasi'], function(){
             Route::get('/', [DestinationPointController::class, 'index'])->name('destinationPoint');
-            Route::get('/show/{destinationPoint}', [DestinationPointController::class, 'show']);
-            Route::get('/create', [DestinationPointController::class, 'create']);
+            Route::get('/show/{destinationPoint}', [DestinationPointController::class, 'show'])->name('destinationPoint.show');
+            Route::get('/create', [DestinationPointController::class, 'create'])->name('destinationPoint.create');
             Route::get('/change/{destinationPoint}', [DestinationPointController::class, 'changeStatus']);
             Route::post('/', [DestinationPointController::class, 'store'])->name('storeDestinationPoint');
             Route::post('/update/{destinationPoint}', [DestinationPointController::class, 'update']);
@@ -67,8 +67,8 @@ Route::group(['middleware' => 'auth'], function(){
     
         Route::group(['prefix' => 'important-number'], function(){
             Route::get('/', [ImportantNumberController::class, 'index'])->name('importantNumber');
-            Route::get('/show/{importantNumber}', [ImportantNumberController::class, 'show']);
-            Route::get('/create', [ImportantNumberController::class, 'create']);
+            Route::get('/show/{importantNumber}', [ImportantNumberController::class, 'show'])->name('importantNumber.show');
+            Route::get('/create', [ImportantNumberController::class, 'create'])->name('importantNumber.create');
             Route::get('/change/{importantNumber}', [ImportantNumberController::class, 'changeStatus']);
             Route::post('/', [ImportantNumberController::class, 'store'])->name('storeImportantNumber');
             Route::post('/update/{importantNumber}', [ImportantNumberController::class, 'update']);
@@ -79,7 +79,7 @@ Route::group(['middleware' => 'auth'], function(){
     
     Route::group(['prefix' => 'informasi-desa'], function(){
     
-        Route::get('/', [ArticleController::class, 'index']);
+        Route::get('/', [ArticleController::class, 'index'])->name('importantNumber');
         
         Route::group(['prefix' => 'prospek-desa'], function(){
             Route::get('/', function(){
@@ -95,8 +95,8 @@ Route::group(['middleware' => 'auth'], function(){
     
         Route::group(['prefix' => 'agenda'], function(){
             Route::get('/', [AgendaController::class, 'index'])->name('agendas');
-            Route::get('/create', [AgendaController::class, 'create']);
-            Route::get('/show/{agenda}', [AgendaController::class, 'show']);
+            Route::get('/create', [AgendaController::class, 'create'])->name('agendas.create');
+            Route::get('/show/{agenda}', [AgendaController::class, 'show'])->name('agendas.show');
             Route::post('/', [AgendaController::class, 'store'])->name('storeAgenda');
             Route::post('/update/{agenda}', [AgendaController::class, 'update']);
             Route::delete('/delete/{agenda}', [AgendaController::class, 'destroy']);
@@ -104,8 +104,8 @@ Route::group(['middleware' => 'auth'], function(){
     
         Route::group(['prefix' => 'artikel'], function(){
             Route::get('/', [ArticleController::class, 'index'])->name('article');
-            Route::get('/create', [ArticleController::class, 'create']);
-            Route::get('/show/{article}', [ArticleController::class, 'show']);
+            Route::get('/create', [ArticleController::class, 'create'])->name('article.create');
+            Route::get('/show/{article}', [ArticleController::class, 'show'])->name('article.show');
             Route::post('/', [ArticleController::class, 'store'])->name('storeArticle');
             Route::post('/update/{article}', [ArticleController::class, 'update']);
             Route::delete('/delete/{article}', [ArticleController::class, 'destroy']);
@@ -116,7 +116,7 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/pending', [UserBusinessItemController::class, 'pending'])->name('umkmPending');
             Route::get('/rejected', [UserBusinessItemController::class, 'rejected'])->name('umkmRejected');
             Route::get('/create', [UserBusinessItemController::class, 'create']);
-            Route::get('/show/{userBusinessItem}', [UserBusinessItemController::class, 'show']);
+            Route::get('/show/{userBusinessItem}', [UserBusinessItemController::class, 'show'])->name('umkm.show');
             Route::post('/', [UserBusinessItemController::class, 'store'])->name('storeUmkm');
             Route::post('/update/{userBusinessItem}', [UserBusinessItemController::class, 'update']);
             Route::delete('/delete/{userBusinessItem}', [UserBusinessItemController::class, 'destroy']);
@@ -124,8 +124,8 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::group(['prefix' => 'investasi'], function(){
             Route::get('/', [InvestationController::class, 'index'])->name('investation');
-            Route::get('/create', [InvestationController::class, 'create']);
-            Route::get('/show/{investation}', [InvestationController::class, 'show']);
+            Route::get('/create', [InvestationController::class, 'create'])->name('investation.create');
+            Route::get('/show/{investation}', [InvestationController::class, 'show'])->name('investation.show');
             Route::post('/', [InvestationController::class, 'store'])->name('storeInvestation');
             Route::post('/update/{investation}', [InvestationController::class, 'update']);
             Route::delete('/delete/{investation}', [InvestationController::class, 'destroy']);
@@ -154,8 +154,8 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::group(['prefix' => 'blt'], function(){
             Route::get('/', [BLTController::class, 'index'])->name('blt');
-            Route::get('/create', [BLTController::class, 'create']);
-            Route::get('/show/{bLT}', [BLTController::class, 'show']);
+            Route::get('/create', [BLTController::class, 'create'])->name('blt.create');
+            Route::get('/show/{bLT}', [BLTController::class, 'show'])->name('blt.show');
             Route::post('/update/{bLT}', [BLTController::class, 'update']);
             Route::post('/', [BLTController::class, 'store'])->name('storeBlt');
             Route::delete('/delete/{bLT}', [BLTController::class, 'destroy']);
@@ -163,8 +163,8 @@ Route::group(['middleware' => 'auth'], function(){
     
         Route::group(['prefix' => 'kategori-artikel'], function(){
             Route::get('/', [ArticleCategoryController::class, 'index'])->name('articleCategory');
-            Route::get('/create', [ArticleCategoryController::class, 'create']);
-            Route::get('/show/{articleCategory}', [ArticleCategoryController::class, 'show']);
+            Route::get('/create', [ArticleCategoryController::class, 'create'])->name('articleCategory.create');
+            Route::get('/show/{articleCategory}', [ArticleCategoryController::class, 'show'])->name('articleCategory.show');
             Route::post('/', [ArticleCategoryController::class, 'store'])->name('storeArticleCategory');
             Route::post('/update/{articleCategory}', [ArticleCategoryController::class, 'update']);
             Route::delete('/delete/{articleCategory}', [ArticleCategoryController::class, 'destroy']); 
@@ -172,8 +172,8 @@ Route::group(['middleware' => 'auth'], function(){
     
         Route::group(['prefix' => 'kategori-pengaduan'], function(){
             Route::get('/', [ComplaintCategoryController::class, 'index'])->name('complaintCategory');
-            Route::get('/create', [ComplaintCategoryController::class, 'create']);
-            Route::get('/show/{complaintCategory}', [ComplaintCategoryController::class, 'show']);
+            Route::get('/create', [ComplaintCategoryController::class, 'create'])->name('complaintCategory.create');
+            Route::get('/show/{complaintCategory}', [ComplaintCategoryController::class, 'show'])->name('complaintCategory.show');
             Route::post('/', [ComplaintCategoryController::class, 'store'])->name('storeComplaintCategory');
             Route::post('/update/{complaintCategory}', [ComplaintCategoryController::class, 'update']);
             Route::delete('/delete/{complaintCategory}', [ComplaintCategoryController::class, 'destroy']); 
@@ -182,8 +182,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['prefix' => 'admin'], function(){
             Route::get('/', [AdminController::class, 'index'])->name('admin');
             Route::post('/', [AdminController::class, 'store'])->name('storeAdmin');
-            Route::get('show/{admin}', [AdminController::class, 'show']);
-            Route::get('create', [AdminController::class, 'create']);
+            Route::get('show/{admin}', [AdminController::class, 'show'])->name('admin.show');
+            Route::get('create', [AdminController::class, 'create'])->name('admin.create');
             Route::post('update/{admin}', [AdminController::class, 'update']);
             Route::delete('delete/{admin}', [AdminController::class, 'destroy']);
         });
@@ -191,8 +191,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['prefix' => 'position'], function(){
             Route::get('/', [PositionController::class, 'index'])->name('position');
             Route::post('/', [PositionController::class, 'store'])->name('storePosition');
-            Route::get('show/{position}', [PositionController::class, 'show']);
-            Route::get('create', [PositionController::class, 'create']);
+            Route::get('show/{position}', [PositionController::class, 'show'])->name('position.show');
+            Route::get('create', [PositionController::class, 'create'])->name('position.create');
             Route::post('update/{position}', [PositionController::class, 'update']);
             Route::delete('delete/{position}', [PositionController::class, 'destroy']);
         });
@@ -200,8 +200,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['prefix' => 'staff'], function(){
             Route::get('/', [StaffController::class, 'index'])->name('staff');
             Route::post('/', [StaffController::class, 'store'])->name('storeStaff');
-            Route::get('show/{staff}', [StaffController::class, 'show']);
-            Route::get('create', [StaffController::class, 'create']);
+            Route::get('show/{staff}', [StaffController::class, 'show'])->name('staff.show');
+            Route::get('create', [StaffController::class, 'create'])->name('staff.create');
             Route::post('update/{staff}', [StaffController::class, 'update']);
             Route::delete('delete/{staff}', [StaffController::class, 'destroy']);
         });
@@ -209,8 +209,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['prefix' => 'kategori-umkm'], function(){
             Route::get('/', [ItemBusinessCategoryController::class, 'index'])->name('itemBusinessCategory');
             Route::post('/', [ItemBusinessCategoryController::class, 'store'])->name('storeItemBusinessCategory');
-            Route::get('show/{itemBusinessCategory}', [ItemBusinessCategoryController::class, 'show']);
-            Route::get('create', [ItemBusinessCategoryController::class, 'create']);
+            Route::get('show/{itemBusinessCategory}', [ItemBusinessCategoryController::class, 'show'])->name('itemBusinessCategory.show');
+            Route::get('create', [ItemBusinessCategoryController::class, 'create'])->name('itemBusinessCategory.create');
             Route::post('update/{itemBusinessCategory}', [ItemBusinessCategoryController::class, 'update']);
             Route::delete('delete/{itemBusinessCategory}', [ItemBusinessCategoryController::class, 'destroy']);
         });
@@ -218,15 +218,15 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['prefix' => 'user-login'], function(){
             Route::get('/', [UserLoginController::class, 'index'])->name('userLogin');
             Route::post('/', [UserLoginController::class, 'store'])->name('storeUserLogin');
-            Route::get('show/{userLogin}', [UserLoginController::class, 'show']);
-            Route::get('create', [UserLoginController::class, 'create']);
+            Route::get('show/{userLogin}', [UserLoginController::class, 'show'])->name('userLogin.show');
+            Route::get('create', [UserLoginController::class, 'create'])->name('userLogin.create');
             Route::post('update/{userLogin}', [UserLoginController::class, 'update']);
             Route::delete('delete/{userLogin}', [UserLoginController::class, 'destroy']);
         });
 
         Route::group(['prefix' => 'data-penduduk'], function(){
             Route::controller(UserDataController::class)->group(function(){
-                Route::get('/', 'index');
+                Route::get('/', 'index')->name('');
                 Route::get('/create', 'create');
                 Route::get('/userDataForSelectOption', 'userDataForSelectOption')->name('userDataForSelectOption');
                 Route::get('/show/{userData}', 'show');
@@ -244,8 +244,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['prefix' => 'signature'], function(){
             Route::controller(SignatureController::class)->group(function(){
                 Route::get('/', 'index')->name('signature');
-                Route::get('/create', 'create');
-                Route::get('/show/{signature}', 'show');
+                Route::get('/create', 'create')->name('signature.create');
+                Route::get('/show/{signature}', 'show')->name('signature.show');
                 Route::post('/', 'store')->name('storeSignature');
                 Route::post('/update/{signature}', 'update');
                 Route::delete('/delete/{signature}', 'destroy');
@@ -267,10 +267,10 @@ Route::group(['middleware' => 'auth'], function(){
             Route::controller(UsersMailController::class)->group(function(){
                 Route::get('/', 'index')->name('inbox');
                 Route::get('/create', 'create');
-                Route::get('/all', 'getAllMail');
+                Route::get('/all', 'getAllMail')->name('userMailAll');
                 Route::get('/{status}', 'getMailByStatus')->name('userMailByStatus');
-                Route::get('/create', 'create');
-                Route::get('/show/{id}', 'show');
+                Route::get('/create', 'create')->name('userMail.create');
+                Route::get('/show/{id}', 'show')->name('userMail.show');
                 Route::get('/print/{id}', 'printMail');
                 Route::get('/changeStatus/{id}/{status}', 'changeStatusFromDetail');
                 Route::get('/change/{id}/{status}', 'changeStatus');
@@ -281,6 +281,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::delete('/delete/{id}', 'destroy');
             });
         }); 
+
     });
 
     Route::group(['prefix' => 'data-penduduk'], function(){
@@ -292,8 +293,8 @@ Route::group(['middleware' => 'auth'], function(){
             
             Route::controller(UserDataController::class)->group(function(){
                 Route::get('/', 'index')->name('userData');
-                Route::get('/create', 'create');
-                Route::get('/show/{id}', 'show');
+                Route::get('/create', 'create')->name('userData.create');
+                Route::get('/show/{id}', 'show')->name('userData.show');
                 
                 Route::get('/create-mobile-account/{userData}', 'createMobileAccount');
                 Route::post('/', 'store')->name('storeUserData');

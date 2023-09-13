@@ -19,7 +19,8 @@
                 </h2>
                 <!--end::Title-->
                 <!--begin::Breadcrumb-->
-                <div class="d-flex align-items-center font-weight-bold my-2">
+                {{ Breadcrumbs::render() }}
+                {{-- <div class="d-flex align-items-center font-weight-bold my-2">
                     <!--begin::Item-->
                     <a href="#" class="opacity-75 hover-opacity-100">
                         <i class="flaticon2-shelter text-white icon-1x"></i>
@@ -48,7 +49,6 @@
                         $url = join('/', $segmentItems);
                         $a--;
                     @endphp
-                    {{-- {{ dump(count($segmentItems)) }} --}}
                     <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                     <a 
                         href="/{{ $url }}" 
@@ -61,7 +61,7 @@
                     <!--begin::Item-->
                     <!--end::Item-->
 
-                </div>
+                </div> --}}
                 <!--end::Breadcrumb-->
             </div>
             <!--end::Heading-->
