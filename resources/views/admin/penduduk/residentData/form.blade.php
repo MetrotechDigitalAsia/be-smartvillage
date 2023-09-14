@@ -507,12 +507,12 @@
                             <div class="col-lg-9 col-xl-6">
                                 <div class="radio-inline">
                                     <label class="radio radio-outline radio-success">
-                                        <input class="mutasi-radio" {{!empty($user) ? $user['status_mutasi']=="Pindah Keluar" ? 'checked' : '' : ''}} type="radio" name="status_mutasi" value="Pindah Keluar" />
+                                        <input onchange="handleChangeStatusMutasi(this)" class="mutasi-radio" {{!empty($user) ? $user['status_mutasi']=="Pindah Keluar" ? 'checked' : '' : ''}} type="radio" name="status_mutasi" value="Pindah Keluar" />
                                         <span></span>
                                         Pindah Keluar
                                     </label>
                                     <label class="radio radio-outline radio-success">
-                                        <input class="mutasi-radio" {{!empty($user) ? $user['status_mutasi']=="Meninggal" ? 'checked' : '' : ''}}  type="radio" name="status_mutasi" value="Meninggal" />
+                                        <input onchange="handleChangeStatusMutasi(this)" class="mutasi-radio" {{!empty($user) ? $user['status_mutasi']=="Meninggal" ? 'checked' : '' : ''}}  type="radio" name="status_mutasi" value="Meninggal" />
                                         <span></span>
                                         Meninggal
                                     </label>
@@ -520,6 +520,14 @@
                                         <button type="button" onclick="emptyMutasi()" class="btn btn-text-primary"><u>Atur Ulang</u></button>
                                     </label>
                                 </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row tanggal-kematian-input {{!empty($user) ? $user['status_mutasi'] != "Meninggal" ? 'd-none' : '' : 'd-none'}}">
+                            <label class="col-xl-3 col-lg-3 col-form-label">Tanggal Kematian </label>
+                            <div class="col col-xl-3 col-lg-3">
+                                <input class="form-control @error('waktu_perubahan_mutasi') is-invalid @enderror form-control-lg " type="date" name="tanggal_kematian" value="{{ !empty($user['tanggal_kematian']) ? Carbon\Carbon::createFromFormat('Y-m-d  H:i:s', $user['tanggal_kematian'])->format('Y-m-d')  : '' }}" />
                             </div>
                         </div>
                         
@@ -586,6 +594,13 @@
 @push('script')
 
     <script>
+
+        function handleChangeStatusMutasi(el){
+            if(el.value == 'Meninggal')
+                document.querySelector('.tanggal-kematian-input').classList.remove('d-none')
+            else
+                document.querySelector('.tanggal-kematian-input').classList.add('d-none')
+        }
         
         function handleChangeRadio(el){
             if(el.value == 1)
@@ -603,6 +618,7 @@
 
         function emptyMutasi(){
             document.querySelectorAll('.mutasi-radio').forEach( e => e.checked = false )
+            document.querySelector('.tanggal-kematian-input').classList.add('d-none')
             // console.log(el)
         }
 

@@ -49,7 +49,8 @@ class DeathResidentExport implements FromCollection, WithHeadings, WithStyles, S
                 'no_nik',
                 'no_kk',
                 'alamat',
-                'banjar'
+                'banjar',
+                'tanggal_kematian'
             ]);
     }
 
@@ -61,7 +62,8 @@ class DeathResidentExport implements FromCollection, WithHeadings, WithStyles, S
             'NIK',
             'NO KK',
             'Alamat',
-            'Banjar'
+            'Banjar',
+            'Tanggal Kematian'
         ];
     }
 
