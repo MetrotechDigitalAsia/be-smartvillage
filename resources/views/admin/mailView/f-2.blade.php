@@ -624,7 +624,7 @@
                 @endphp
                 @for ($i = 0; $i < 6; $i++)
                 <td style="border: 1px solid black; width: 50px !important; text-align: center; text-transform: uppercase" >
-                    {{ !(empty($child_birthday)) ? $child_birthday[$i] ?? '#' : ''}}
+                    {{ !(empty($child_birthday)) ? $child_birthday[$i] ?? '' : ''}}
                 </td>
                 @endfor
                 <td colspan="2" style="text-align: right;" >
@@ -3085,7 +3085,7 @@
     <div class="section__tanda-tangan" style="border: 1px solid black; margin-top: 15px; padding: 5px;" >
         <table style="width: 100%;" >
             <tr>
-                <td style="width: 50%;" >Reg. No :</td>
+                <td style="width: 50%;" >Reg. No : {{ $data->registration_number ?? '' }}</td>
                 <td style="text-align: right;" >Getasan, {{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('d F Y') }}</td>
             </tr>
             <table style="width: 100%; text-align: center; margin-top: 30px;" >

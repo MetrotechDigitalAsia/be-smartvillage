@@ -48,7 +48,7 @@ Breadcrumbs::for('importantNumber.create', function (BreadcrumbTrail $trail): vo
 });
 
 Breadcrumbs::for('importantNumber.show', function (BreadcrumbTrail $trail, ImportantNumber $importantNumber): void {
-    $trail->parent('destinationPoint');
+    $trail->parent('importantNumber');
     $trail->push($importantNumber->name, route('importantNumber.show', $importantNumber));
 });
 

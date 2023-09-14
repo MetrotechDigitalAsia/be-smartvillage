@@ -139,8 +139,8 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::group(['prefix' => 'kerja-sama-desa'], function(){
             Route::get('/',[KerjaSamaController::class, 'index'])->name('kerjaSama');
-            Route::get('/create',[KerjaSamaController::class, 'create']);
-            Route::get('/show/{kerjaSama}',[KerjaSamaController::class, 'show']);
+            Route::get('/create',[KerjaSamaController::class, 'create'])->name('kerjaSama.create');
+            Route::get('/show/{kerjaSama}',[KerjaSamaController::class, 'show'])->name('kerjaSama.show');
             Route::post('/',[KerjaSamaController::class, 'store'])->name('storeKerjaSama');
             Route::post('/update/{kerjaSama}',[KerjaSamaController::class, 'update']);
             Route::delete('/delete/{kerjaSama}',[KerjaSamaController::class, 'destroy']);
