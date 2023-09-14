@@ -50,6 +50,7 @@ class UserDataExport extends DefaultValueBinder implements FromQuery, WithHeadin
     public function bindValue(Cell $cell, $value)
     {
         if (is_numeric($value)) {
+
             $cell->setValueExplicit($value, DataType::TYPE_NUMERIC);
 
             return true;

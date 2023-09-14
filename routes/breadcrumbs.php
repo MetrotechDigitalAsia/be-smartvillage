@@ -17,6 +17,7 @@ use App\Models\Signature;
 use App\Models\Staff;
 use App\Models\UserBusinessItem;
 use App\Models\UserData;
+use App\Models\UserLogin;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
@@ -174,6 +175,20 @@ Breadcrumbs::for('complaintCategory.create', function (BreadcrumbTrail $trail): 
 Breadcrumbs::for('complaintCategory.show', function (BreadcrumbTrail $trail, ComplaintCategory $complaintCategory): void {
     $trail->parent('complaintCategory');
     $trail->push($complaintCategory->complaint_category, route('complaintCategory.show', $complaintCategory));
+});
+
+Breadcrumbs::for('userLogin', function (BreadcrumbTrail $trail): void {
+    $trail->push('User Login', route('userLogin'));
+});
+
+Breadcrumbs::for('userLogin.create', function (BreadcrumbTrail $trail): void {
+    $trail->parent('userLogin');
+    $trail->push('Tambah Data', route('userLogin.create'));
+});
+
+Breadcrumbs::for('userLogin.show', function (BreadcrumbTrail $trail, UserLogin $userLogin): void {
+    $trail->parent('userLogin');
+    $trail->push($userLogin->no_nik, route('userLogin.show', $userLogin));
 });
 
 Breadcrumbs::for('admin', function (BreadcrumbTrail $trail): void {

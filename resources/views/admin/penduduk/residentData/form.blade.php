@@ -347,7 +347,7 @@
                                     <label class="col-xl-3 col-lg-3 col-form-label">SHDK</label>
                                     <div class="col">
                                         @php
-                                            $banjar = ['KEPALA KELUARGA', 'SUAMI', 'ISTRI', 'ANAK', 'MENANTU', 'CUCU']
+                                            $banjar = ['KEPALA KELUARGA', 'SUAMI', 'ISTRI', 'ANAK', 'MENANTU', 'CUCU', 'FAMILI LAIN', 'LAINNYA']
                                         @endphp
                                         <select class="form-control form-control-lg " name="shdk" >
                                             <option value="">Pilih...</option>
