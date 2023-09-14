@@ -21,7 +21,7 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail): void {
-    // $trail->push('', route('dashboard'));
+    $trail->push('Dashboard', route('dashboard'));
 });
 
 Breadcrumbs::for('destinationPoint', function (BreadcrumbTrail $trail): void {
