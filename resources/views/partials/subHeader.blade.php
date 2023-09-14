@@ -17,7 +17,7 @@
                         {{ str_replace('-', ' ',Request::segments()[0]) }}
                     @endif
                 </h2>
-                {{ Breadcrumbs::render() }}
+                {{ Breadcrumbs::render('destinationPoint') }}
                 <!--end::Title-->
                 <!--begin::Breadcrumb-->
                 {{-- <div class="d-flex align-items-center font-weight-bold my-2">
