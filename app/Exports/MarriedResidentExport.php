@@ -26,7 +26,7 @@ class MarriedResidentExport implements FromCollection, WithHeadings, WithStyles,
 
     public function collection()
     {
-        return UserData::where('status_perkawinan', 'Kawin Tercatat')
+        return UserData::whereNotNull('tanggal_perkawinan')
         ->latest('tanggal_perkawinan')
         ->get([
             'nama',

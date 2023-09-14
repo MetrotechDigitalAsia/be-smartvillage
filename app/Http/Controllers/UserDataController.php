@@ -434,7 +434,7 @@ class UserDataController extends Controller
             $param = $request->get('query')['generalSearch'] ?? null;
 
             $data = UserData::latest()
-                    ->where('status_perkawinan', 'Kawin Tercatat')
+                    ->whereNotNull('tanggal_perkawinan')
                     ->when(!is_null($param) && !preg_match('/[0-9]/', $param), function($query) use ($param){
                         $query->where('nama', 'like', '%'.$param.'%');
                     })
