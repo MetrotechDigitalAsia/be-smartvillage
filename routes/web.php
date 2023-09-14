@@ -79,7 +79,7 @@ Route::group(['middleware' => 'auth'], function(){
     
     Route::group(['prefix' => 'informasi-desa'], function(){
     
-        Route::get('/', [ArticleController::class, 'index'])->name('importantNumber');
+        Route::get('/', [ArticleController::class, 'index'])->name('article');
         
         Route::group(['prefix' => 'prospek-desa'], function(){
             Route::get('/', function(){

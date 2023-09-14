@@ -60,8 +60,6 @@ class UserDataExport extends DefaultValueBinder implements FromQuery, WithHeadin
             return true;
         }
 
-        // else return default behavior
-        // return parent::bindValue($cell, $value);
     }
 
     public function map($userData): array
