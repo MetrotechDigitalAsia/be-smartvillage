@@ -5,6 +5,7 @@ namespace App\Exports;
 use App\Models\UserData;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\RegistersEventListeners;
@@ -49,15 +50,18 @@ class UserDataExport extends DefaultValueBinder implements FromQuery, WithHeadin
     
     public function bindValue(Cell $cell, $value)
     {
-        if (is_numeric($value)) {
 
+
+        if (is_numeric($value) && strlen($value) != 16) {
             $cell->setValueExplicit($value, DataType::TYPE_NUMERIC);
-
+            return true;
+        } else {
+            $cell->setValueExplicit($value, DataType::TYPE_STRING);
             return true;
         }
 
         // else return default behavior
-        return parent::bindValue($cell, $value);
+        // return parent::bindValue($cell, $value);
     }
 
     public function map($userData): array
