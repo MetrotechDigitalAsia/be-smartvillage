@@ -250,6 +250,22 @@ Breadcrumbs::for('userData', function (BreadcrumbTrail $trail): void {
     $trail->push('Data Penduduk', route('userData'));
 });
 
+Breadcrumbs::for('residentDashboard', function (BreadcrumbTrail $trail): void {
+    $trail->push('Data Penduduk', route('residentDashboard'));
+});
+
+Breadcrumbs::for('deathUserData', function (BreadcrumbTrail $trail): void {
+    $trail->push('Data Penduduk (Meninggal)', route('deathUserData'));
+});
+
+Breadcrumbs::for('movedOutUserData', function (BreadcrumbTrail $trail): void {
+    $trail->push('Data Penduduk (Pindah)', route('movedOutUserData'));
+});
+
+Breadcrumbs::for('getMarriedResident', function (BreadcrumbTrail $trail): void {
+    $trail->push('Data Penduduk (Kawin)', route('getMarriedResident'));
+});
+
 Breadcrumbs::for('userData.create', function (BreadcrumbTrail $trail): void {
     $trail->parent('userData');
     $trail->push('Tambah Data', route('userData.create'));
