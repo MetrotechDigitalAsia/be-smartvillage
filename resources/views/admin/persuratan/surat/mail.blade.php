@@ -99,6 +99,9 @@
                 },{
                     field: 'name',
                     title: 'Nama Pengaju',
+                },{
+                    field: 'address',
+                    title: 'Alamat',
                 },{   
                     field: 'Actions',
                     title: 'Aksi',

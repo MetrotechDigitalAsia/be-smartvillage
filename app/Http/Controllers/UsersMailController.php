@@ -84,7 +84,8 @@ class UsersMailController extends Controller
                 'userDB.nama as name',
                 'userDB.no_nik as nik',
                 'userMail.status as status',
-                'userMail.created_at'
+                'userMail.created_at',
+                'userDB.alamat as address'
             ]);
 
             return DataTables::of($data)->addIndexColumn()->make(true);

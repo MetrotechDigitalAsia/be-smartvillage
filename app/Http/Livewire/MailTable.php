@@ -30,6 +30,7 @@ class MailTable extends Component
             'userDB.no_nik as nik',
             'userMail.status as status',
             'userMail.created_at',
+            'userDB.alamat'
         ]);
     }
 

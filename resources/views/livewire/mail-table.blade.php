@@ -155,6 +155,9 @@
                     title: 'Nama Pengirim',
                     width: 120
                 },{
+                    field: 'alamat',
+                    title: 'Alamat',
+                },{
                     field: 'created_at',
                     title: 'Tanggal Masuk',
                     template: (e) => {
@@ -166,7 +169,7 @@
                             weekday: 'long'
                         }).format(date)
                     },
-                    width: 130
+                    width: 180
                 },{
                     field: 'time',
                     title: 'Waktu Masuk',
