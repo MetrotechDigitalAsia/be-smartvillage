@@ -97,7 +97,7 @@
 		<script>
 
 			// Enable pusher logging - don't include this in production
-			Pusher.logToConsole = true;
+			// Pusher.logToConsole = true;
 
 			var pusher = new Pusher('4bd4cfa546049d622247', {
 				cluster: 'ap1'
@@ -110,8 +110,14 @@
 			const spanPulse = document.querySelector('span.ring')
 			const notifIcon = document.querySelector('.notif-icon')
 
-			console.log(spanPulse)
-			console.log(notifIcon)
+			channel.bind('mail-process-event', () => {
+				const type = "{{ auth()->user()->type }}"
+				console.log(type)
+				if(type == 'Layanan'){
+					Livewire.emit('refresh-mail-process')
+					new Audio("{{ asset('assets/be/notif_sound/ip_wa.mp3') }}").play()
+				}
+			})
 
 			channel.bind('notification-event', function(data) {
 				Livewire.emit('notifAdded')

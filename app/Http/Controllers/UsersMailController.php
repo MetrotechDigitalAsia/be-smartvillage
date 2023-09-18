@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MailProcessEvent;
+use App\Models\Admin;
 use App\Models\Signature;
 use App\Models\UserData;
 use App\Models\UserLogin;
+use App\Notifications\MailProcessNotification;
 use App\Notifications\UserMailNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,6 +15,7 @@ use Yajra\DataTables\DataTables;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
@@ -55,6 +59,13 @@ class UsersMailController extends Controller
     public function getMailByStatus($status){
 
         if($status == 'finish') $status = 'done';
+
+        if($status == 'process'){
+            $mails = DatabaseNotification::whereNull('read_at')->whereType(MailProcessNotification::class)->get();
+            foreach ($mails as $mail) {
+                $mail->update(['read_at' => Carbon::now()]);
+            }
+        }
 
         if(request()->ajax()){
 
@@ -188,6 +199,10 @@ class UsersMailController extends Controller
             }
 
             $status = true;
+
+            $admin = Admin::where('type', 'Layanan')->first();
+            Notification::send($admin, new MailProcessNotification($id));
+            event(new MailProcessEvent());
 
         } catch (\Exception $e) {
             $status = false;
