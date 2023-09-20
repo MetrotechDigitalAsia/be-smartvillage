@@ -20,7 +20,7 @@ class PositionController extends Controller
 
             $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = Position::where('position_name', 'like', '%'. $param .'%')->get();
+            $data = Position::where('position_name', 'like', '%'. $param .'%')->latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true); 

@@ -21,7 +21,7 @@ class FamilyController extends Controller
 
         if($request->ajax()){
 
-            $data = Family::all();
+            $data = Family::latest()->get();
 
             return DataTables::of($data)
             ->addIndexColumn()

@@ -21,7 +21,7 @@ class ComplaintCategoryController extends Controller
 
             $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = ComplaintCategory::where('complaint_category', 'like', '%'.$param.'%')->get();
+            $data = ComplaintCategory::where('complaint_category', 'like', '%'.$param.'%')->latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true); 

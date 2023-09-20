@@ -18,7 +18,7 @@ class BLTController extends Controller
 
         if($request->ajax()){
 
-            $data = BLT::all();
+            $data = BLT::latest()->get();
 
             return DataTables::of($data)
                 ->addIndexColumn()

@@ -26,6 +26,7 @@ class DestinationPointController extends Controller
             $data = DestinationPoint::where('name', 'like', '%'.$param.'%')
                     ->orWhere('category', 'like', '%'.$param.'%')
                     ->orWhere('address', 'like', '%'.$param.'%')
+                    ->latest()
                     ->get();
             return DataTables::of($data)
                 ->addIndexColumn()

@@ -21,7 +21,9 @@ class ItemBusinessCategoryController extends Controller
 
             $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = ItemBusinessCategory::where('item_category', 'like', '%'. $param .'%')->get();
+            $data = ItemBusinessCategory::where('item_category', 'like', '%'. $param .'%')
+                    ->latest()
+                    ->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true); 

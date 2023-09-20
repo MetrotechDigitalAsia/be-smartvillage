@@ -22,6 +22,7 @@ class ImportantNumberController extends Controller
             $param = $request->get('query')['generalSearch'] ?? '';
 
             $data = ImportantNumber::where('name' ,'like', '%'.$param.'%')
+                    ->latest()
                     ->orWhere('regency', 'like', '%'.$param.'%')
                     ->orWhere('phone', 'like', '%'.$param.'%')
                     ->get();

@@ -24,6 +24,7 @@ class ArticleController extends Controller
             $param = $request->get('query')['generalSearch'] ?? '';
 
             $data = Article::with('author')->where('title', 'like', '%'.$param.'%')
+                    ->latest()
                     ->get();
 
             return DataTables::of($data)

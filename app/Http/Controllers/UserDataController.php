@@ -441,6 +441,7 @@ class UserDataController extends Controller
                     ->when(!is_null($param) && !preg_match('/[a-zA-Z]/', $param), function($query) use ($param){
                         $query->where('no_nik', 'like', '%'.$param.'%');
                     })
+                    ->latest()
                     ->get();
 
             return DataTables::of($data)

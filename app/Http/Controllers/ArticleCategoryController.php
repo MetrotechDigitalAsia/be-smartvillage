@@ -21,7 +21,7 @@ class ArticleCategoryController extends Controller
 
             $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = ArticleCategory::where('article_category', 'like', '%'.$param.'%')->get();
+            $data = ArticleCategory::where('article_category', 'like', '%'.$param.'%')->latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true); 

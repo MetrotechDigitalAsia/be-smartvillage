@@ -30,6 +30,7 @@ class UserBusinessItemController extends Controller
                     $query->where('item_name', 'like', '%'.$param.'%')
                     ->orWhere('user_phone_number', 'like', '%'.$param.'%');
                 })
+            ->latest()
             ->get();
 
             return DataTables::of($data)
@@ -52,6 +53,7 @@ class UserBusinessItemController extends Controller
                     $query->where('item_name', 'like', '%'.$param.'%')
                     ->orWhere('user_phone_number', 'like', '%'.$param.'%');
                 })
+            ->latest()
             ->get();
 
             return DataTables::of($data)
@@ -74,6 +76,7 @@ class UserBusinessItemController extends Controller
                     $query->where('item_name', 'like', '%'.$param.'%')
                     ->orWhere('user_phone_number', 'like', '%'.$param.'%');
                 })
+            ->latest()
             ->get();
 
             return DataTables::of($data)

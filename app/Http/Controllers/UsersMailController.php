@@ -46,7 +46,7 @@ class UsersMailController extends Controller
     }
 
     public function show($id){
-        $data = DB::table('users_mail')->where('id', $id)->first(['id', 'mail_number', 'status']);
+        $data = DB::table('users_mail')->where('id', $id)->latest()->first(['id', 'mail_number', 'status']);
         $perbekel = Signature::where('position', 'Perbekel')->first();
         return view('admin.'.$this->folderName.'.detail', compact('data', 'perbekel'));
     }

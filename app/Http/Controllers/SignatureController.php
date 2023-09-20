@@ -19,7 +19,7 @@ class SignatureController extends Controller
 
         if(request()->ajax()){
 
-            $data = Signature::all();
+            $data = Signature::latest()->get();
 
             return DataTables::of($data)
                 ->addIndexColumn()

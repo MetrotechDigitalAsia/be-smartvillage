@@ -22,7 +22,7 @@ class AgendaController extends Controller
             
             $param = $request->get('query')['generalSearch'] ?? '';
 
-            $data = Agenda::with('author')->where('title', 'like', '%'.$param.'%')->get();
+            $data = Agenda::with('author')->latest()->where('title', 'like', '%'.$param.'%')->get();
 
             Log::info($data);
             return DataTables::of($data)

@@ -23,6 +23,7 @@ class InvestationController extends Controller
             $param = $request->get('query')['generalSearch'] ?? '';
 
             $data = Investation::where('institute_name', 'like', '%'.$param.'%')
+                    ->latest()
                     ->get();
             return DataTables::of($data)
                 ->addIndexColumn()

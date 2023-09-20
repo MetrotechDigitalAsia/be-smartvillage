@@ -27,6 +27,7 @@ class StaffController extends Controller
 
             $data = Staff::where('fullname', 'like', '%'.$param.'%')
                     ->orWhere('email', 'like', '%'.$param.'%')
+                    ->latest()
                     ->get();
             return DataTables::of($data)
                 ->addIndexColumn()
