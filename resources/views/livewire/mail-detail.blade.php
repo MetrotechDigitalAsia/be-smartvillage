@@ -10,7 +10,12 @@
         <!--end::Left-->
         <!--begin::Right-->
         <div class="d-flex align-items-center justify-content-end text-right my-2">
+
             @if ($data->title == 'Surat Keterangan Kelahiran')
+            <a target="_blank" href='{{ url("storage/$data->file") }}' class="btn btn-default btn-sm mail-type-title text-dark mr-2" type="button" >
+                <i class="flaticon2-file text-primary"></i>
+                File Tambahan
+            </a>
             <div class="dropdown mr-2">
                 <button class="btn btn-default btn-sm mail-type-title dropdown-toggle text-dark" type="button" data-offset="0,5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Surat Keterangan Kelahiran

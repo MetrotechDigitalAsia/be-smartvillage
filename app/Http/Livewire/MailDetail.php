@@ -104,6 +104,7 @@ class MailDetail extends Component
         $data = DB::table('users_mail as userMail')
         ->join('mails', 'mails.id', '=', 'userMail.mail_id')
         ->join($this->userDb, 'applicant.id', '=', 'userMail.resident_id')
+        ->join('mail_files', 'mail_files.users_mail_id', '=', 'userMail.id')
         ->where('userMail.id', '=', $this->mailId)
         ->first([
             'userMail.id',
@@ -132,6 +133,7 @@ class MailDetail extends Component
             'userMail.created_at',
             'registration_number',
             'registration_date',
+            'mail_files.name as file'
         ]);
 
         return $data;

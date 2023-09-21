@@ -3,14 +3,19 @@
 namespace App\Http\Livewire\CreateMail;
 
 use App\Models\Mail;
+use App\Models\MailFile;
 use App\Models\UserData;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class SuratKeteranganKelahiranForm extends Component
 {
 
+    use WithFileUploads;
+
+    public $file;
     public $child_name;
     public $child_sex;
     public $child_birthplace;
@@ -67,6 +72,7 @@ class SuratKeteranganKelahiranForm extends Component
             'baby_length' => 'required',
             'hospital_mail_number_date' => 'required',
             'hospital_mail_number' => 'required',
+            'file' => 'required'
         ]);
 
         $father = UserData::where('shdk', 'KEPALA KELUARGA')
@@ -145,6 +151,15 @@ class SuratKeteranganKelahiranForm extends Component
                 'field' => json_encode($field),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ]);
+
+            $mail = DB::table('users_mail')->latest()->first();
+
+            $file = $this->file->store('mail-files');
+
+            MailFile::create([
+                'users_mail_id' => $mail->id,
+                'name' => $file
             ]);
 
             $msg = 'Surat Berhasil Dibuat';

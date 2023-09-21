@@ -135,6 +135,12 @@
     </div>
 
     <div class="form-group">
+        <label>Surat Keterangan Dokter/Bidan/Rumah Sakit</label>
+        <div></div>
+        <input type="file" wire:model.lazy="file" />
+    </div>
+
+    <div class="form-group">
         <label>Nomor Surat Keterangan Dokter/Bidan/Rumah Sakit</label>
         <input wire:model.lazy="hospital_mail_number" class="form-control @error('hospital_mail_number') is-invalid @enderror " type="text"  />
         @error('hospital_mail_number')
@@ -149,4 +155,5 @@
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
+
 </div>
