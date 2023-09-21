@@ -527,14 +527,14 @@
                         <div class="form-group row tanggal-kematian-input {{!empty($user) ? $user['status_mutasi'] != "Meninggal" ? 'd-none' : '' : 'd-none'}}">
                             <label class="col-xl-3 col-lg-3 col-form-label">Tanggal Kematian </label>
                             <div class="col col-xl-3 col-lg-3">
-                                <input class="form-control @error('waktu_perubahan_mutasi') is-invalid @enderror form-control-lg " type="date" name="tanggal_kematian" value="{{ !empty($user['tanggal_kematian']) ? Carbon\Carbon::createFromFormat('Y-m-d  H:i:s', $user['tanggal_kematian'])->format('Y-m-d')  : '' }}" />
+                                <input class="form-control @error('waktu_perubahan_mutasi') is-invalid @enderror form-control-lg " type="date" name="tanggal_kematian" value="{{ !empty($user['tanggal_kematian']) ? Carbon\Carbon::parse($user['tanggal_kematian'])->format('Y-m-d')  : '' }}" />
                             </div>
                         </div>
                         
                         <div class="form-group row">
                             <label class="col-xl-3 col-lg-3 col-form-label">Tanggal Perubahan Mutasi </label>
                             <div class="col col-xl-3 col-lg-3">
-                                <input class="form-control @error('waktu_perubahan_mutasi') is-invalid @enderror form-control-lg " type="date" name="waktu_perubahan_mutasi" value="{{ !empty($user['waktu_perubahan_mutasi']) ? Carbon\Carbon::createFromFormat('Y-m-d  H:i:s', $user['waktu_perubahan_mutasi'])->format('Y-m-d')  : '' }}" />
+                                <input class="form-control @error('waktu_perubahan_mutasi') is-invalid @enderror form-control-lg " type="date" name="waktu_perubahan_mutasi" value="{{ !empty($user['waktu_perubahan_mutasi']) ? Carbon\Carbon::parse($user['waktu_perubahan_mutasi'])->format('Y-m-d')  : '' }}" />
                             </div>
                         </div>
 
