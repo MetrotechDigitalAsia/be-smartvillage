@@ -7,6 +7,7 @@ use App\Http\Controllers\API\ResponseController;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Mail;
+use App\Models\MailFile;
 use App\Models\Outsider;
 use App\Models\UserData;
 use App\Models\UserLogin;
@@ -94,6 +95,17 @@ class UserMailController extends Controller
                 'signature' => $signature ?? null,
                 'field' => json_encode($field),
             ]);
+
+            if($mail->title == 'Surat Keterangan Kelahiran'){
+                if($request->file){
+                    $file = $request->file('file')->store('mail-files');
+                    $latestMail =DB::table('users_mail')->where('user_id', $user->id)->latest()->first(['id']);
+                    MailFile::create([
+                        'users_mail_id' => $latestMail->id,
+                        'name' => $file
+                    ]);
+                }
+            }
 
             $notif = [
                 'title' => $mail->title,
