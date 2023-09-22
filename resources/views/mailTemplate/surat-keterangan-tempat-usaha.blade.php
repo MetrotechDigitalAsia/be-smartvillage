@@ -8,7 +8,7 @@
         <b style="text-transform: uppercase;" ><u>{{ $data->title }}</u></b>
     </p>
     <p class="mail-num" >Nomor : {{ $data->mail_number }}</p>
-    <p class="long" >Yang bertanda tangan di bawah ini Kelian Banjar Dinas Ubud, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali, menerangkan dengan sebenarnya bahwa :</p>
+    <p class="long" >Yang bertanda tangan di bawah ini Kelian Banjar Dinas {{ $data->banjar }}, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali, menerangkan dengan sebenarnya bahwa :</p>
     <table style="width: 100%; margin: 15px 0; margin-left: 16px;" >
         <tr>
             <td style="width: 170px; min-width: unset; max-width: unset;" >Nama</td>
