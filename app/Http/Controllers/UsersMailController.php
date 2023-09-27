@@ -73,7 +73,7 @@ class UsersMailController extends Controller
 
             $data = $this->DBQuery
             ->where('userMail.status', $mailStatus)
-            ->orderBy('userMail.created_at', 'ASC')
+            ->orderBy('userMail.created_at', 'DESC')
             ->get([
                 DB::raw('ROW_NUMBER() OVER(ORDER BY userMail.id) as row_index'),
                 'userMail.id as id',

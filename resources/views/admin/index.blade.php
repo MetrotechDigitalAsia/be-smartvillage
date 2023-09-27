@@ -256,7 +256,7 @@
 
         const mail = {!! json_encode($mail) !!}
         const resident = {!! json_encode($resident) !!}
-        console.log(mail)
+        console.log(resident)
 
         const ChartWidget = function(){
 

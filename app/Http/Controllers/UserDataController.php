@@ -105,7 +105,7 @@ class UserDataController extends Controller
                         $query->where('nama', 'like', '%'.$param.'%');
                     })
                     ->when(!is_null($param) && !preg_match('/[a-zA-Z]/', $param), function($query) use ($param){
-                        $query->where('no_nik', 'like', '%'.$param.'%');
+                        $query->where('no_nik', 'like', '%'.$param.'%')->orWhere('no_kk', 'like', '%'.$param.'%');
                     })
                     ->when(!is_null($banjar), function($query) use ($banjar){
                         $query->where('banjar', $banjar);
