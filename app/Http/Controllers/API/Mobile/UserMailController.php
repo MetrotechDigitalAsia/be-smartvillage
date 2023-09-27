@@ -240,7 +240,7 @@ class UserMailController extends Controller
                         ]);
 
         foreach($notifications as $notif){
-            $notif->created_at = Carbon::parse($notif->created_at)->tz('Asia/Makassar');
+            $notif->created_at = 'asdfa';
         }
 
         return ResponseController::create($notifications,'success', 'get all notification', 200);
