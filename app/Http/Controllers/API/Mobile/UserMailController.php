@@ -239,10 +239,6 @@ class UserMailController extends Controller
                             'created_at'
                         ]);
 
-        foreach($notifications as $notif){
-            $notif->created_at = 'asdfa';
-        }
-
         return ResponseController::create($notifications,'success', 'get all notification', 200);
     }
 
