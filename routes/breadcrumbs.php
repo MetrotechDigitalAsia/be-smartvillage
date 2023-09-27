@@ -94,7 +94,7 @@ Breadcrumbs::for('umkmRejected', function (BreadcrumbTrail $trail): void {
 });
 
 Breadcrumbs::for('umkm.show', function (BreadcrumbTrail $trail, UserBusinessItem $userBusinessItem): void {
-    $trail->parent('UMKM');
+    $trail->parent('umkm');
     $trail->push($userBusinessItem->item_name, route('umkm.show',$userBusinessItem->slug));
 });
 
