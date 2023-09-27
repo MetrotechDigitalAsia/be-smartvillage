@@ -236,7 +236,7 @@ class UserMailController extends Controller
                             'id',
                             'data',
                             'read_at',
-                            'updated_at'
+                            'created_at'
                         ]);
 
         foreach($notifications as $notif){
