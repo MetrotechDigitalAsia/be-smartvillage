@@ -18,7 +18,7 @@
 
     <div class="row justify-content-end">
         <div class="col-4">
-            <a href="data-penduduk/penduduk/mutasi/meinggal" class="btn btn-secondary mr-2">Batal</a>
+            <a href="/data-penduduk/penduduk/mutasi/meninggal" class="btn btn-secondary mr-2">Batal</a>
             <button type="button" wire:click="handleSubmit" class="btn btn-primary">Simpan</button>
         </div>
     </div>
