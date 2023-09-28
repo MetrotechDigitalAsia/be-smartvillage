@@ -52,6 +52,13 @@ Route::group(['middleware' => 'api_key'],function(){
     Route::group(['prefix' => 'sisfo'],function(){
 
         Route::group([
+            'prefix' => 'banjar',
+            'controller' => UserDataController::class
+        ], function(){
+            Route::get('/{banjar}', 'getBanjarInfo');
+        });
+
+        Route::group([
             'prefix' => 'blog',
             'controller' => SisfoArticleController::class
         ], function(){

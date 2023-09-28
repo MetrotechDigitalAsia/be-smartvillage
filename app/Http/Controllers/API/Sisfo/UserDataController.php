@@ -121,4 +121,36 @@ class UserDataController extends Controller
         return ResponseController::create($resident, 'success', 'get resident by banjar', 200);
 
     }
+
+    public function getBanjarInfo($banjar){
+
+        $kk_count = UserData::select(DB::raw('COUNT(DISTINCT(no_kk)) as count'))
+                ->where('banjar', $banjar)
+                ->get();
+
+        $resident_count = UserData::where('banjar', $banjar)
+                    ->count();
+
+        $gender = UserData::select('jenis_kelamin as value', DB::raw('COUNT(jenis_kelamin) as total'))
+                ->groupBy('value')
+                ->get();
+
+        $education = UserData::select('pendidikan as value', DB::raw('COUNT(pendidikan) as total'))
+                ->groupBy('value')
+                ->get();
+
+        $work = UserData::select('pekerjaan as value', DB::raw('COUNT(pekerjaan) as total'))
+                ->groupBy('value')
+                ->get();
+
+        return ResponseController::create([
+            'kk_count' => $kk_count[0]->count,
+            'resident_count' => $resident_count,
+            'gender_count' => $gender,
+            'education' => $education,
+            'work' => $work
+        ], 'success', 'get resident by banjar', 200);
+
+    }
+
 }
