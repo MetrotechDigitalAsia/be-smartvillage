@@ -273,8 +273,28 @@ Breadcrumbs::for('deathUserData', function (BreadcrumbTrail $trail): void {
     $trail->push('Data Penduduk (Meninggal)', route('deathUserData'));
 });
 
+Breadcrumbs::for('deathUserData.create', function (BreadcrumbTrail $trail): void {
+    $trail->parent('deathUserData');
+    $trail->push('Tambah Data', route('deathUserData.create'));
+});
+
+Breadcrumbs::for('deathUserData.show', function (BreadcrumbTrail $trail, $residentDiedMutation): void {
+    $trail->parent('deathUserData');
+    $trail->push('Edit Data', route('deathUserData.show', $residentDiedMutation));
+});
+
 Breadcrumbs::for('movedOutUserData', function (BreadcrumbTrail $trail): void {
     $trail->push('Data Penduduk (Pindah)', route('movedOutUserData'));
+});
+
+Breadcrumbs::for('movedOutUserData.create', function (BreadcrumbTrail $trail): void {
+    $trail->parent('movedOutUserData');
+    $trail->push('Tambah Data', route('movedOutUserData.create'));
+});
+
+Breadcrumbs::for('movedOutUserData.show', function (BreadcrumbTrail $trail, $residentMoveMutation): void {
+    $trail->parent('movedOutUserData');
+    $trail->push('Edit Data', route('movedOutUserData.show', $residentMoveMutation));
 });
 
 Breadcrumbs::for('getMarriedResident', function (BreadcrumbTrail $trail): void {

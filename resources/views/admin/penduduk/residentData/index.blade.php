@@ -43,7 +43,7 @@
 			</span>Export</button>
 
             <!--begin::Button-->
-            <a href="/data-penduduk/penduduk/create" class="btn btn-primary font-weight-bolder mt-md-5 mt-xl-0">
+            <a href="/data-penduduk/penduduk/mutasi/pindah-keluar/create" class="btn btn-primary font-weight-bolder mt-md-5 mt-xl-0">
             <span class="svg-icon svg-icon-md">
                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">

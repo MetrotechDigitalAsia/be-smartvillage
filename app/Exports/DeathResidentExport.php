@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Models\ResidentDiedMutation;
 use App\Models\UserData;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -30,28 +31,30 @@ class DeathResidentExport implements FromCollection, WithHeadings, WithStyles, S
 
     public function collection()
     {
-        return UserData::where('status_mutasi', 'Meninggal')
-            ->when(!is_null($this->timeRange) && $this->timeRange == 1, function($query){
-                $query->whereMonth('waktu_perubahan_mutasi', Carbon::now()->month)
-                ->whereYear('waktu_perubahan_mutasi', Carbon::now()->year);
-            })
-            ->when(!is_null($this->timeRange) && $this->timeRange == 6, function($query){
-                $query->whereBetween('waktu_perubahan_mutasi', 
-                    [Carbon::parse("01-01-".Carbon::now()->year), Carbon::parse("01-01-".Carbon::now()->year)->addMonth(5)]
-                );
-            })
-            ->when(!is_null($this->timeRange) && $this->timeRange == 12, function($query){
-                $query->whereYear('waktu_perubahan_mutasi', Carbon::now()->year);
-            })
-            ->get([
-                DB::raw('ROW_NUMBER() OVER(ORDER BY residents_data.id) as row_index'),
-                'nama',
-                'no_nik',
-                'no_kk',
-                'alamat',
-                'banjar',
-                'tanggal_kematian'
-            ]);
+
+        return ResidentDiedMutation::join('residents_data', 'residents_data.id', '=', 'resident_died_mutations.resident_id')
+        ->when(!is_null($this->timeRange) && $this->timeRange == 1, function($query){
+            $query->whereMonth('resident_died_mutations.created_at', Carbon::now()->month)
+            ->whereYear('resident_died_mutations.created_at', Carbon::now()->year);
+        })
+        ->when(!is_null($this->timeRange) && $this->timeRange == 6, function($query){
+            $query->whereBetween('resident_died_mutations.created_at', 
+                [Carbon::parse("01-01-".Carbon::now()->year), Carbon::parse("01-01-".Carbon::now()->year)->addMonth(5)]
+            );
+        })
+        ->when(!is_null($this->timeRange) && $this->timeRange == 12, function($query){
+            $query->whereYear('resident_died_mutations.created_at', Carbon::now()->year);
+        })
+        ->get([
+            DB::raw('ROW_NUMBER() OVER(ORDER BY residents_data.id) as row_index'),
+            'nama',
+            'no_nik',
+            'no_kk',
+            'alamat',
+            'banjar',
+            'date_of_death',
+            'cause_of_death'
+        ]);
     }
 
     public function headings(): array
@@ -63,7 +66,8 @@ class DeathResidentExport implements FromCollection, WithHeadings, WithStyles, S
             'NO KK',
             'Alamat',
             'Banjar',
-            'Tanggal Kematian'
+            'Tanggal Kematian',
+            'Penyebab Kematian',
         ];
     }
 

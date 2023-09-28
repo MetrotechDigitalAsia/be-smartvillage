@@ -45,8 +45,6 @@ return new class extends Migration
             $table->boolean('penyandang_disabilitas')->default(0);
             $table->string('jenis_disabilitas')->nullable();
             $table->string('status_mutasi')->nullable();
-            $table->dateTime('waktu_perubahan_mutasi')->nullable();
-            $table->date('tanggal_kematian')->nullable();
             $table->boolean('penerima_bantuan')->default(0);
             $table->boolean('jenis_bantuan')->nullable();
             $table->boolean('akun_mobile_app')->default(0);

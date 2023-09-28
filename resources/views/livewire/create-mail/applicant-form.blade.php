@@ -1,5 +1,5 @@
 <div>  
-    
+
     @if (!empty($applicantData) || !is_null($applicantData))
 
         <div class="card card-custom">

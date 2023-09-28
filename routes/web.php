@@ -17,6 +17,8 @@ use App\Http\Controllers\{
     LoginController,
     MailController,
     PositionController,
+    ResidentDiedMutationController,
+    ResidentMoveMutationController,
     SignatureController,
     StaffController,
     UserBusinessItemController,
@@ -302,17 +304,36 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::delete('/delete/{userData}', 'destroy');
                 Route::post('/status/{userData}', 'changeStatusMobileAccount');
 
-                Route::group(['prefix' => 'mutasi'], function(){
-                    Route::get('/meninggal', 'getDeathUserData')->name('deathUserData');
-                    Route::get('/pindah-keluar', 'getMovedOutUserData')->name('movedOutUserData');
-                    Route::get('/perkawinan', 'getMarriedResident')->name('getMarriedResident');
+                Route::group(['prefix' => 'download'], function(){
+                    Route::get('/perkawinan', 'exportMarriedResident');
+                    Route::post('/', 'export');
                 });
 
-                Route::group(['prefix' => 'download'], function(){
-                    Route::get('/meninggal', 'exportDeathResident');
-                    Route::get('/perkawinan', 'exportMarriedResident');
-                    Route::get('/pindah-keluar', 'exportMovedOutResident');
-                    Route::post('/', 'exportExcel');
+                Route::group(['prefix' => 'mutasi'], function(){
+                    
+                    Route::group(
+                        [
+                            'prefix' => 'meninggal',
+                            'controller' => ResidentDiedMutationController::class
+                        ], function(){
+                        Route::get('/', 'index')->name('deathUserData');
+                        Route::get('/create', 'create')->name('deathUserData.create');
+                        Route::get('/show/{residentDiedMutation}', 'show')->name('deathUserData.show');
+                        Route::get('/download', 'export');
+                    });
+
+                    Route::group(
+                        [
+                            'prefix' => 'pindah-keluar',
+                            'controller' => ResidentMoveMutationController::class
+                        ], function(){
+                        Route::get('/', 'index')->name('movedOutUserData');
+                        Route::get('/create', 'create')->name('movedOutUserData.create');
+                        Route::get('/show/{residentMoveMutation}', 'show')->name('movedOutUserData.show');
+                        Route::get('/download', 'export');
+                    });
+
+                    Route::get('/perkawinan', 'getMarriedResident')->name('getMarriedResident');
                 });
 
             });

@@ -502,42 +502,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row align-items-center">    
-                            <label class="col-xl-3 col-lg-3 col-form-label">Status Mutasi Penduduk</label>
-                            <div class="col-lg-9 col-xl-6">
-                                <div class="radio-inline">
-                                    <label class="radio radio-outline radio-success">
-                                        <input onchange="handleChangeStatusMutasi(this)" class="mutasi-radio" {{!empty($user) ? $user['status_mutasi']=="Pindah Keluar" ? 'checked' : '' : ''}} type="radio" name="status_mutasi" value="Pindah Keluar" />
-                                        <span></span>
-                                        Pindah Keluar
-                                    </label>
-                                    <label class="radio radio-outline radio-success">
-                                        <input onchange="handleChangeStatusMutasi(this)" class="mutasi-radio" {{!empty($user) ? $user['status_mutasi']=="Meninggal" ? 'checked' : '' : ''}}  type="radio" name="status_mutasi" value="Meninggal" />
-                                        <span></span>
-                                        Meninggal
-                                    </label>
-                                    <label class="radio radio-outline radio-success">
-                                        <button type="button" onclick="emptyMutasi()" class="btn btn-text-primary"><u>Atur Ulang</u></button>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row tanggal-kematian-input {{!empty($user) ? $user['status_mutasi'] != "Meninggal" ? 'd-none' : '' : 'd-none'}}">
-                            <label class="col-xl-3 col-lg-3 col-form-label">Tanggal Kematian </label>
-                            <div class="col col-xl-3 col-lg-3">
-                                <input class="form-control @error('waktu_perubahan_mutasi') is-invalid @enderror form-control-lg " type="date" name="tanggal_kematian" value="{{ !empty($user['tanggal_kematian']) ? Carbon\Carbon::parse($user['tanggal_kematian'])->format('Y-m-d')  : '' }}" />
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                            <label class="col-xl-3 col-lg-3 col-form-label">Tanggal Perubahan Mutasi </label>
-                            <div class="col col-xl-3 col-lg-3">
-                                <input class="form-control @error('waktu_perubahan_mutasi') is-invalid @enderror form-control-lg " type="date" name="waktu_perubahan_mutasi" value="{{ !empty($user['waktu_perubahan_mutasi']) ? Carbon\Carbon::parse($user['waktu_perubahan_mutasi'])->format('Y-m-d')  : '' }}" />
-                            </div>
-                        </div>
-
 
                         @if (empty($user))
                             <div class="form-group row mt-5">
@@ -595,13 +559,6 @@
 
     <script>
 
-        function handleChangeStatusMutasi(el){
-            if(el.value == 'Meninggal')
-                document.querySelector('.tanggal-kematian-input').classList.remove('d-none')
-            else
-                document.querySelector('.tanggal-kematian-input').classList.add('d-none')
-        }
-        
         function handleChangeRadio(el){
             if(el.value == 1)
                 document.querySelector('input[name=no_akta_perkawinan]').removeAttribute('disabled')
@@ -614,12 +571,6 @@
                 document.querySelector('input[name=no_akta_kelahiran]').removeAttribute('disabled')
             else 
                 document.querySelector('input[name=no_akta_kelahiran]').setAttribute('disabled', 'disabled')
-        }
-
-        function emptyMutasi(){
-            document.querySelectorAll('.mutasi-radio').forEach( e => e.checked = false )
-            document.querySelector('.tanggal-kematian-input').classList.add('d-none')
-            // console.log(el)
         }
 
         function handleChangePenyandangDisabilitas(el){

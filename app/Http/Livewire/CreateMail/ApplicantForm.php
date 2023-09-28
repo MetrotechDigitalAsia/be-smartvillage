@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\CreateMail;
 
 use App\Models\UserData;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class ApplicantForm extends Component
@@ -21,6 +22,7 @@ class ApplicantForm extends Component
     }
 
     public function selectResident($id){
+        Log::alert($id);
         $user = UserData::find($id);
         $this->applicantData = $user;
     }

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\DeathResidentExport;
 use App\Exports\MarriedResidentExport;
-use App\Exports\ResidentMovedOutExport;
 use App\Exports\UserDataExport;
 use App\Models\BLT;
 use App\Models\UserData;
@@ -12,7 +10,6 @@ use App\Models\UserLogin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class UserDataController extends Controller
@@ -28,6 +25,7 @@ class UserDataController extends Controller
         $gender = UserData::all()->groupBy('jenis_kelamin')->map(fn($entries) => $entries->count());
 
         $age = DB::connection('resident_mysql')->table('residents_data')
+                ->whereNotIn('residents_data.status_mutasi', ['Meninggal', 'Pindah Keluar'])
                 ->select(DB::raw('
                     CASE
                         WHEN YEAR(NOW()) - YEAR(TANGGAL_LAHIR) <= 10 THEN "Anak Anak"
@@ -40,13 +38,25 @@ class UserDataController extends Controller
                 ->orderBy('KATEGORI')
                 ->get();
 
-        $kauh = UserData::where('BANJAR', 'Kauh')->count();
-        $buangga = UserData::where('BANJAR', 'buangga')->count();
-        $tengah = UserData::where('BANJAR', 'tengah')->count();
-        $ubud = UserData::where('BANJAR', 'ubud')->count();
+        $kauh = UserData::where('BANJAR', 'Kauh')
+        ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
+        ->count();
+
+        $buangga = UserData::where('BANJAR', 'buangga')
+        ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
+        ->count();
+
+        $tengah = UserData::where('BANJAR', 'tengah')
+        ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
+        ->count();
+
+        $ubud = UserData::where('BANJAR', 'ubud')
+        ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
+        ->count();
 
         $rawResidentJobs = DB::connection('resident_mysql')
                     ->table('residents_data')
+                    ->whereNotIn('residents_data.status_mutasi', ['Meninggal', 'Pindah Keluar'])
                     ->select('pekerjaan', DB::raw('COUNT(*) as jumlah'))
                     ->orderBy('jumlah', 'DESC')
                     ->groupBy('pekerjaan')
@@ -59,6 +69,7 @@ class UserDataController extends Controller
 
         $education = DB::connection('resident_mysql')
                     ->table('residents_data')
+                    ->whereNotIn('residents_data.status_mutasi', ['Meninggal', 'Pindah Keluar'])
                     ->select('pendidikan', DB::raw('COUNT(*) as jumlah'))
                     ->orderBy('jumlah', 'DESC')
                     ->groupBy('pendidikan')
@@ -72,6 +83,7 @@ class UserDataController extends Controller
 
         $disabilityPeople = DB::connection('resident_mysql')
                             ->table('residents_data')
+                            ->whereNotIn('residents_data.status_mutasi', ['Meninggal', 'Pindah Keluar'])
                             ->where('penyandang_disabilitas', '=', 1)
                             ->select('jenis_disabilitas', DB::raw('COUNT(*) as jumlah'))
                             ->orderBy('jumlah', 'DESC')
@@ -81,6 +93,7 @@ class UserDataController extends Controller
 
         $blt = DB::connection('resident_mysql')
                 ->table('residents_data')
+                ->whereNotIn('residents_data.status_mutasi', ['Meninggal', 'Pindah Keluar'])
                 ->whereNotNull('jenis_bantuan')
                 ->select('jenis_bantuan', DB::raw('COUNT(*) as total'))
                 ->groupBy('jenis_bantuan')
@@ -187,9 +200,6 @@ class UserDataController extends Controller
 
         $data = $request->all();
 
-        if(empty($data['status_mutasi'])){
-            $data['status_mutasi'] = null;
-        }
 
         $data['ketua_RT'] = isset($data['ketua_RT']) ? 1 : 0;
         $data['ketua_RW'] = isset($data['ketua_RW']) ? 1 : 0;
@@ -300,7 +310,7 @@ class UserDataController extends Controller
         return response()->json(['items'=>$userData]);
     }
 
-    public function exportExcel(){
+    public function export(){
 
         $data = array_keys(request()->all());
         array_shift($data);
@@ -318,114 +328,6 @@ class UserDataController extends Controller
 
     }
 
-    public function getDeathUserData(Request $request){
-
-        if($request->ajax()){
-
-            $param = $request->get('query')['generalSearch'] ?? null;
-            $time = $request->get('query')['time'] ?? null;
-
-            Log::info($time);
-
-            $data = UserData::latest()
-                    ->where('status_mutasi', 'Meninggal')
-                    ->when(!is_null($param) && !preg_match('/[0-9]/', $param), function($query) use ($param){
-                        $query->where('nama', 'like', '%'.$param.'%');
-                    })
-                    ->when(!is_null($param) && !preg_match('/[a-zA-Z]/', $param), function($query) use ($param){
-                        $query->where('no_nik', 'like', '%'.$param.'%');
-                    })
-                    ->when(!is_null($time) && $time == 1, function($query) use ($time){
-                        $query->whereMonth('waktu_perubahan_mutasi', Carbon::now()->month)
-                        ->whereYear('waktu_perubahan_mutasi', Carbon::now()->year);
-                    })
-                    ->when(!is_null($time) && $time == 6, function($query) use ($time){
-                        Log::info(Carbon::parse("01-01-".Carbon::now()->year));
-                        $query->whereBetween('waktu_perubahan_mutasi', 
-                            [Carbon::parse("01-01-".Carbon::now()->year), Carbon::parse("01-01-".Carbon::now()->year)->addMonth(5)]
-                        );
-                    })
-                    ->when(!is_null($time) && $time == 12, function($query) use ($time){
-                        $query->whereYear('waktu_perubahan_mutasi', Carbon::now()->year);
-                    })
-                    ->get();
-
-            return DataTables::of($data)
-            ->addIndexColumn()
-            ->make(true);
-        }
-
-        return view('admin.penduduk.mutasi.meninggal.index');
-
-    }
-
-    public function getMovedUserData(Request $request){
-
-        if($request->ajax()){
-
-            $param = $request->get('query')['generalSearch'] ?? null;
-            $banjar = $request->get('query')['banjar'] ?? null;
-
-            $data = UserData::latest()
-                    ->where('status_mutasi', 'Pindah Data')
-                    ->when(!is_null($param) && !preg_match('/[0-9]/', $param), function($query) use ($param){
-                        $query->where('nama', 'like', '%'.$param.'%');
-                    })
-                    ->when(!is_null($param) && !preg_match('/[a-zA-Z]/', $param), function($query) use ($param){
-                        $query->where('no_nik', 'like', '%'.$param.'%');
-                    })
-                    ->when(!is_null($banjar), function($query) use ($banjar){
-                        $query->where('banjar', $banjar);
-                    })
-                    ->get();
-
-            return DataTables::of($data)
-            ->addIndexColumn()
-            ->make(true);
-        }
-
-        return view('admin.penduduk.mutasi.pindahData.index');
-
-    }
-
-    public function getMovedOutUserData(Request $request){
-
-        if($request->ajax()){
-
-            $param = $request->get('query')['generalSearch'] ?? null;
-            $time = $request->get('query')['time'] ?? null;
-
-            $data = UserData::latest()
-                    ->where('status_mutasi', 'Pindah Keluar')
-                    ->when(!is_null($param) && !preg_match('/[0-9]/', $param), function($query) use ($param){
-                        $query->where('nama', 'like', '%'.$param.'%');
-                    })
-                    ->when(!is_null($param) && !preg_match('/[a-zA-Z]/', $param), function($query) use ($param){
-                        $query->where('no_nik', 'like', '%'.$param.'%');
-                    })
-                    ->when(!is_null($time) && $time == 1, function($query) use ($time){
-                        $query->whereMonth('waktu_perubahan_mutasi', Carbon::now()->month)
-                        ->whereYear('waktu_perubahan_mutasi', Carbon::now()->year);
-                    })
-                    ->when(!is_null($time) && $time == 6, function($query) use ($time){
-                        Log::info(Carbon::parse("01-01-".Carbon::now()->year));
-                        $query->whereBetween('waktu_perubahan_mutasi', 
-                            [Carbon::parse("01-01-".Carbon::now()->year), Carbon::parse("01-01-".Carbon::now()->year)->addMonth(5)]
-                        );
-                    })
-                    ->when(!is_null($time) && $time == 12, function($query) use ($time){
-                        $query->whereYear('waktu_perubahan_mutasi', Carbon::now()->year);
-                    })
-                    ->get();
-
-            return DataTables::of($data)
-            ->addIndexColumn()
-            ->make(true);
-        }
-
-        return view('admin.penduduk.mutasi.pindahKeluar.index');
-
-    }
 
     public function getMarriedResident(Request $request){
 
@@ -453,20 +355,10 @@ class UserDataController extends Controller
 
     }
 
-    public function exportDeathResident(){
-
-        $timeRange = request()->query('time') ?? null;
-
-        return (new DeathResidentExport($timeRange))->download('data-penduduk-meninggal-'.time().'.xlsx');
-    }
     
     public function exportMarriedResident(){
         return (new MarriedResidentExport)->download('data-penduduk-perkawinan-'.time().'.xlsx');
     }
 
-    public function exportMovedOutResident(){
-        $timeRange = request()->query('time') ?? null;
-        return (new ResidentMovedOutExport($timeRange))->download('data-penduduk-pindah-keluar-'.time().'.xlsx');
-    }
 
 }
