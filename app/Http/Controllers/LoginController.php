@@ -110,10 +110,10 @@ class LoginController extends Controller
                 ->get();
 
                 $anak = DB::connection('resident_mysql')->table(DB::raw('(SELECT 1 AS month UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12) AS months'))
-                ->whereNotIn('residents_data.status_mutasi', ['Meninggal', 'Pindah Keluar'])
                 ->leftJoin('residents_data', function ($join) {
                     $join->on(DB::raw('MONTH(residents_data.created_at)'), '=', 'months.month')
                         ->whereYear('residents_data.created_at', '=', date('Y'))
+                        ->whereNotIn('residents_data.status_mutasi', ['Meninggal', 'Pindah Keluar'])
                         ->where(DB::raw('YEAR(NOW()) - YEAR(TANGGAL_LAHIR)'), '<', 18);
                 })
                 ->select(DB::raw('months.month, COALESCE(COUNT(residents_data.id), 0) as data_count'))
@@ -122,11 +122,11 @@ class LoginController extends Controller
                 ->get();
 
             $remaja = DB::connection('resident_mysql')->table(DB::raw('(SELECT 1 AS month UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12) AS months'))
-                ->whereNotIn('residents_data.status_mutasi', ['Meninggal', 'Pindah Keluar'])
                 ->leftJoin('residents_data', function ($join) {
                     $join->on(DB::raw('MONTH(residents_data.created_at)'), '=', 'months.month')
-                        ->whereYear('residents_data.created_at', '=', date('Y'))
-                        ->whereBetween(DB::raw('YEAR(NOW()) - YEAR(TANGGAL_LAHIR)'),[18, 45]);
+                    ->whereYear('residents_data.created_at', '=', date('Y'))
+                    ->whereNotIn('residents_data.status_mutasi', ['Meninggal', 'Pindah Keluar'])
+                    ->whereBetween(DB::raw('YEAR(NOW()) - YEAR(TANGGAL_LAHIR)'),[18, 45]);
                 })
                 ->select(DB::raw('months.month, COALESCE(COUNT(residents_data.id), 0) as data_count'))
                 ->groupBy('months.month')
@@ -134,10 +134,10 @@ class LoginController extends Controller
                 ->get();
 
             $lansia = DB::connection('resident_mysql')->table(DB::raw('(SELECT 1 AS month UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12) AS months'))
-                ->whereNotIn('residents_data.status_mutasi', ['Meninggal', 'Pindah Keluar'])
                 ->leftJoin('residents_data', function ($join) {
                     $join->on(DB::raw('MONTH(residents_data.created_at)'), '=', 'months.month')
                         ->whereYear('residents_data.created_at', '=', date('Y'))
+                        ->whereNotIn('residents_data.status_mutasi', ['Meninggal', 'Pindah Keluar'])
                         ->where(DB::raw('YEAR(NOW()) - YEAR(TANGGAL_LAHIR)'), '>', 45);
                 })
                 ->select(DB::raw('months.month, COALESCE(COUNT(residents_data.id), 0) as data_count'))
