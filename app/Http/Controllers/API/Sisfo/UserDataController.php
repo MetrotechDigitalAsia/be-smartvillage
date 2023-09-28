@@ -132,14 +132,17 @@ class UserDataController extends Controller
                     ->count();
 
         $gender = UserData::select('jenis_kelamin as value', DB::raw('COUNT(jenis_kelamin) as total'))
+                ->where('banjar', $banjar)
                 ->groupBy('value')
                 ->get();
 
         $education = UserData::select('pendidikan as value', DB::raw('COUNT(pendidikan) as total'))
+                ->where('banjar', $banjar)
                 ->groupBy('value')
                 ->get();
 
         $work = UserData::select('pekerjaan as value', DB::raw('COUNT(pekerjaan) as total'))
+                ->where('banjar', $banjar)
                 ->groupBy('value')
                 ->get();
 
