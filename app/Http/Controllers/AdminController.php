@@ -24,7 +24,7 @@ class AdminController extends Controller
             $param = $request->get('query')['generalSearch'] ?? '';
 
             $data = Admin::where('fullname', 'like', '%'.$param.'%')
-                    ->lates()
+                    ->latest()
                     ->orWhere('email', 'like', '%'.$param.'%')
                     ->get();
             
