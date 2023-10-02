@@ -27,7 +27,7 @@ class UserLoginController extends Controller
             $param = $request->get('query')['generalSearch'] ?? '';
             
             $data = UserLogin::join($this->userDb, 'userDB.no_nik', '=', 'user_logins.no_nik')
-            ->latest()
+            ->latest('user_logins.created_at')
             ->get(['userDB.no_nik as nik', 'userDB.nama as name', 'user_logins.id']);
                     
             return DataTables::of($data)
