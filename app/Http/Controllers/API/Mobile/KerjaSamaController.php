@@ -13,13 +13,11 @@ class KerjaSamaController extends Controller
     public function index()
     {
 
-        $data = KerjaSama::latest()->get();
+        $data = KerjaSama::latest()->first();
 
-        foreach($data as $d){
-            $d->image = asset('storage'). '/'.$d->image;
-        }
+        $data->image = asset('storage'). '/'.$data->image;
 
-        return ResponseController::create($data, 'success', 'get number success', 200);   
+        return ResponseController::create($data, 'success', 'get kerja sama success', 200);   
     }
 
 }
