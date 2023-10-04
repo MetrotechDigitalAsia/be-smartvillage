@@ -14,11 +14,13 @@ class SuratKeteranganUsahaForm extends Component
     public $business_name;
     public $business_address;
     public $npwp;
+    public $field_of_business;
 
     protected $messages = [
         'business_name.required' => 'Nama Usaha harus diisi',
         'business_name.required' => 'Alamat Usaha harus diisi',
         'npwp.required' => 'NPWP harus diisi',
+        'field_of_business.required' => 'bidang usaha harus diisi',
     ];
 
     protected $listeners = [
@@ -36,12 +38,14 @@ class SuratKeteranganUsahaForm extends Component
             'business_name' => 'required',
             'business_address' => 'required',
             'npwp' => 'required',
+            'field_of_business' => 'required',
         ]);
 
         $field = json_encode([
             'business_name' => $this->business_name,
-            'business_address' => $this->business_address,
+            'business_address' => $this->business_address . ', Desa/Kel. Getasan, Kec. Petang, Kab. Badung, Provinsi Bali, Desa/Kel. Getasan, Kec. Petang, Kab. Badung, Provinsi Bali',
             'npwp' => $this->npwp,
+            'field_of_business' => $this->field_of_business,
         ]);
         
         try {

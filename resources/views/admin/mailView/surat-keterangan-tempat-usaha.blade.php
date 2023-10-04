@@ -47,5 +47,5 @@
         <td style="text-transform: capitalize;" >: {{ $field->business_address }}, Desa/Kel. Getasan, Kec. Petang, Kab. Badung, Provinsi Bali</td>
     </tr>
 </table>
-<p class="text-justify" >Adalah salah satu warga desa kami yang bertempat tinggal pada alamat tersebut di atas dan berdasarkan pengetahuan kami hingga surat keterangan ini dikeluarkan memang benar yang bersangkutan memiliki usaha dibidang : “<span style="text-transform: capitalize;" >{{ $field->business_name }}</span>”</p>
+<p class="text-justify" >Adalah salah satu warga desa kami yang bertempat tinggal pada alamat tersebut di atas dan berdasarkan pengetahuan kami hingga surat keterangan ini dikeluarkan memang benar yang bersangkutan memiliki usaha dibidang : “<span style="text-transform: capitalize;" >{{ $field->field_of_business ?? '' }}</span>”</p>
 <p class="text-justify" >Demikian surat keterangan usaha ini dibuat dengan sebenarnya untuk dapat dipergunakan sebagaimana mestinya.</p>

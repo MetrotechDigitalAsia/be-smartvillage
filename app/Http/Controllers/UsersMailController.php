@@ -72,7 +72,7 @@ class UsersMailController extends Controller
             $mailStatus = request()->get('status');
 
             $data = $this->DBQuery
-            ->where('userMail.status', $mailStatus)
+            ->where('userMail.status', $status)
             ->orderBy('userMail.created_at', 'DESC')
             ->get([
                 DB::raw('ROW_NUMBER() OVER(ORDER BY userMail.id) as row_index'),
@@ -85,6 +85,7 @@ class UsersMailController extends Controller
                 'userDB.no_nik as nik',
                 'userMail.status as status',
                 'userMail.created_at',
+                'userMail.updated_at',
                 'userDB.alamat as address'
             ]);
 
@@ -122,7 +123,7 @@ class UsersMailController extends Controller
 
         try {
 
-            DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
+            DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status, 'updated_at' => Carbon::now()]);
 
             $mail = DB::table('users_mail as userMail')
                     ->join('mails', 'mails.id', '=', 'userMail.mail_id')
@@ -168,7 +169,7 @@ class UsersMailController extends Controller
         
         try {
             
-            DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status]);
+            DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status, 'updated_at' => Carbon::now()]);
             
             $mail = DB::table('users_mail as userMail')
             ->join('mails', 'mails.id', '=', 'userMail.mail_id')

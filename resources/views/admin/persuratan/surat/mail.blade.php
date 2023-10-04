@@ -80,6 +80,10 @@
                     key: 'generalSearch'
                 },
 
+                rows: {
+                    autoHide: false
+                },
+
                 // columns definition
                 columns: [
                 {
@@ -102,6 +106,33 @@
                 },{
                     field: 'address',
                     title: 'Alamat',
+                },{
+                    field: 'updated_at',
+                    title: 'Tanggal',
+                    template: (e) => {
+                        console.log(e)
+                        const date = new Date(e.updated_at)
+                        return Intl.DateTimeFormat('id',{
+                            month: 'long',
+                            day: 'numeric',
+                            year: 'numeric',
+                            weekday: 'long'
+                        }).format(date)
+                    },
+                    width: 180
+                },{
+                    field: 'time',
+                    title: 'Waktu',
+                    template: (e) => {
+                        console.log(e)
+                        const date = new Date(e.updated_at)
+                        return Intl.DateTimeFormat('id',{
+                            hour: 'numeric',
+                            minute: '2-digit',
+                            second: '2-digit',
+                        }).format(date).replaceAll('.',':')
+                    },
+                    width: 130 
                 },{   
                     field: 'Actions',
                     title: 'Aksi',

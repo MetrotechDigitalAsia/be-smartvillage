@@ -224,6 +224,10 @@
 					title: 'NIK',
 					width: 140
 				},{
+					field: 'no_kk',
+					title: 'No KK',
+					width: 140
+				},{
 					field: 'banjar',
 					title: 'banjar',
 				},{

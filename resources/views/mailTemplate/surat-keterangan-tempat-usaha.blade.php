@@ -63,7 +63,7 @@
         <tr>
             <td>Alamat Usaha</td>
             <td>:</td>
-            <td style="text-transform: capitalize;" > {{ $field->business_address }}</td>
+            <td style="text-transform: capitalize;" > {{ $field->field_of_business ?? '' }}</td>
         </tr>
     </table>
     <p class="long" >Adalah salah satu warga desa kami yang bertempat tinggal pada alamat tersebut di atas dan berdasarkan pengetahuan kami hingga surat keterangan ini dikeluarkan memang benar yang bersangkutan memiliki usaha dibidang : “<span style="text-transform: capitalize;" >{{ $field->business_name }}</span>”</p>
