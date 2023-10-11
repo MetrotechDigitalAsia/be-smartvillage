@@ -212,7 +212,7 @@ class UserDataController extends Controller
         }
 
         try {
-            UserData::find($userData->id)->update($data);
+            $userData->update($data);
             $message = 'update user successfully';
         } catch (\Exception $e) {
             $message = $e->getMessage();

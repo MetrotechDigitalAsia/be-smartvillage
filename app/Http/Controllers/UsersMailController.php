@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MailFinishEvent;
 use App\Events\MailProcessEvent;
 use App\Models\Admin;
 use App\Models\Signature;
 use App\Models\UserData;
 use App\Models\UserLogin;
+use App\Notifications\MailFinishNotification;
 use App\Notifications\MailProcessNotification;
 use App\Notifications\UserMailNotification;
 use Illuminate\Http\Request;
@@ -62,6 +64,13 @@ class UsersMailController extends Controller
 
         if($status == 'process'){
             $mails = DatabaseNotification::whereNull('read_at')->whereType(MailProcessNotification::class)->get();
+            foreach ($mails as $mail) {
+                $mail->update(['read_at' => Carbon::now()]);
+            }
+        }
+
+        if($status == 'done'){
+            $mails = DatabaseNotification::whereNull('read_at')->whereType(MailFinishNotification::class)->get();
             foreach ($mails as $mail) {
                 $mail->update(['read_at' => Carbon::now()]);
             }
@@ -170,7 +179,8 @@ class UsersMailController extends Controller
         try {
             
             DB::table('users_mail as userMail')->where('id',$id)->update(['status' => $status, 'updated_at' => Carbon::now()]);
-            
+
+            $admin = Admin::first();
             $mail = DB::table('users_mail as userMail')
             ->join('mails', 'mails.id', '=', 'userMail.mail_id')
             ->where('userMail.id',$id)
@@ -180,10 +190,14 @@ class UsersMailController extends Controller
                 case 'Done':
                     $msg = 'Surat disetujui';
                     $notifMsg = 'Silahkan melakukan pengambilan berkas ke kantor desa!';
+                    Notification::send($admin, new MailFinishNotification($id));
+                    event(new MailFinishEvent());
                     break;
                 case 'Process':
                     $msg = 'Surat diproses';
                     $notifMsg = 'Surat sedang diproses oleh pemerintah desa';
+                    Notification::send($admin, new MailProcessNotification($id));
+                    event(new MailProcessEvent());
                     break;
                 case 'Rejected':
                     $msg = 'Surat ditolak';
@@ -202,10 +216,8 @@ class UsersMailController extends Controller
 
             $status = true;
 
-            $admin = Admin::where('type', 'Layanan')->first();
-            Notification::send($admin, new MailProcessNotification($id));
-            event(new MailProcessEvent());
-
+            
+            
         } catch (\Exception $e) {
             $status = false;
             $msg = $e->getMessage();

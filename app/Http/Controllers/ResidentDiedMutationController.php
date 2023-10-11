@@ -61,6 +61,19 @@ class ResidentDiedMutationController extends Controller
         return view("admin.$this->folderName.form");
     }
 
+    function destroy(ResidentDiedMutation $residentDiedMutation){
+
+        try {
+            $residentDiedMutation->delete();
+            $message = 'successfully';
+        } catch (\Exception $exception){
+            $message = $exception->getMessage();
+        }
+        return response()->json([
+            'message' => $message,
+        ]);
+    }
+
     public function show(ResidentDiedMutation $residentDiedMutation){
         return view("admin.$this->folderName.form", compact('residentDiedMutation'));
     }

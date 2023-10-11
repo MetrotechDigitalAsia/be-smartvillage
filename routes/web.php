@@ -320,6 +320,7 @@ Route::group(['middleware' => 'auth'], function(){
                         Route::get('/create', 'create')->name('deathUserData.create');
                         Route::get('/show/{residentDiedMutation}', 'show')->name('deathUserData.show');
                         Route::get('/download', 'export');
+                        Route::delete('/delete/{residentDiedMutation}', 'destroy');
                     });
 
                     Route::group(
@@ -331,6 +332,7 @@ Route::group(['middleware' => 'auth'], function(){
                         Route::get('/create', 'create')->name('movedOutUserData.create');
                         Route::get('/show/{residentMoveMutation}', 'show')->name('movedOutUserData.show');
                         Route::get('/download', 'export');
+                        Route::delete('/delete/{residentMoveMutation}', 'destroy');
                     });
 
                     Route::get('/perkawinan', 'getMarriedResident')->name('getMarriedResident');

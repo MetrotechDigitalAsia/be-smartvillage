@@ -111,12 +111,13 @@
 			const notifIcon = document.querySelector('.notif-icon')
 
 			channel.bind('mail-process-event', () => {
-				const type = "{{ auth()->user()->type }}"
-				console.log(type)
-				if(type == 'Layanan'){
-					Livewire.emit('refresh-mail-process')
-					new Audio("{{ asset('assets/be/notif_sound/ip_wa.mp3') }}").play()
-				}
+				Livewire.emit('refresh-mail-process')
+				new Audio("{{ asset('assets/be/notif_sound/ip_wa.mp3') }}").play()
+			})
+
+			channel.bind('mail-finish-event', () => {
+				Livewire.emit('refresh-mail-finish')
+				new Audio("{{ asset('assets/be/notif_sound/ip_wa.mp3') }}").play()
 			})
 
 			channel.bind('notification-event', function(data) {

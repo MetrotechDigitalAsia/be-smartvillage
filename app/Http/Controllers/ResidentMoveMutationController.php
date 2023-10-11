@@ -57,6 +57,19 @@ class ResidentMoveMutationController extends Controller
 
     }
 
+    function destroy(ResidentMoveMutation $residentMoveMutation){
+
+        try {
+            $residentMoveMutation->delete();
+            $message = 'successfully';
+        } catch (\Exception $exception){
+            $message = $exception->getMessage();
+        }
+        return response()->json([
+            'message' => $message,
+        ]);
+    }
+
     public function create(){
         return view("admin.$this->folderName.form");
     }

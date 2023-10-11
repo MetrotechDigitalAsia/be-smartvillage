@@ -91,7 +91,7 @@
     </head>
     <body>
         <div style="width: 80%; margin: 0 auto;" >
-            <div class="mail-header">
+            <div class="mail-header" style="margin-top: 60px;" >
                 <img src="./assets/be/media/desa.png" width="100" alt="">
                 <p class="goverment" >PEMERINTAH KABUPATEN BADUNG <br>KECAMATAN PETANG</p>
                 <p class="village" >DESA GETASAN</p>

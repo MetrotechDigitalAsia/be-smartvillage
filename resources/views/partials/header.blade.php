@@ -98,7 +98,7 @@
                         </li>
                         @endif
 
-                        @if (auth()->user()->type == 'Super' || auth()->user()->type == 'Layanan')
+                        @if (auth()->user()->type == 'Super' || auth()->user()->type == 'Layanan' || auth()->user()->type == 'Umum')
                         <li class="menu-item menu-item-submenu menu-item-rel @if(Str::contains(Route::current()->uri, 'persuratan')) menu-item-here @endif " >
                             <a href="/persuratan/master-data" class="menu-link ">
                                 <span class="menu-text">Persuratan</span>

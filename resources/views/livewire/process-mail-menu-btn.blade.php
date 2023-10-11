@@ -13,7 +13,7 @@
         </span>
     </span>
     <span class="navi-text font-weight-bolder font-size-lg">Diproses</span>
-    @if (($notification_count > 0) && auth()->user()->type == 'Layanan')
+    @if ($notification_count > 0)
     <span class="navi-label">
         <span class="label label-primary label-rounded">{{ $notification_count }}</span>
     </span>
