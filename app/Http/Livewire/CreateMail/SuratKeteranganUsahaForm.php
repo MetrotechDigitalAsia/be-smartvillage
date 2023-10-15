@@ -6,6 +6,8 @@ use App\Models\Mail;
 use App\Models\UserData;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class SuratKeteranganUsahaForm extends Component
@@ -15,6 +17,15 @@ class SuratKeteranganUsahaForm extends Component
     public $business_address;
     public $npwp;
     public $field_of_business;
+    public $province;
+    public $city;
+    public $district;
+    public $village;
+
+    public $list_of_province;
+    public $list_of_city = [];
+    public $list_of_district = [];
+    public $list_of_village = [];
 
     protected $messages = [
         'business_name.required' => 'Nama Usaha harus diisi',
@@ -27,9 +38,79 @@ class SuratKeteranganUsahaForm extends Component
         'submitMail' => 'create'
     ];
 
+    public function mount(){
+        $this->getProvince();
+    }
+
     public function render()
     {
         return view('livewire.create-mail.surat-keterangan-usaha-form');
+    }
+
+    public function getVillage($val){
+
+        $selected_district = array_filter($this->list_of_district, function($e) use ($val) {
+            return $e['name'] == $val;
+        });
+
+        $selected_district = array_values($selected_district);
+
+        $res = Http::get('https://api.goapi.id/v1/regional/kelurahan',[
+            'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr',
+            'kecamatan_id' => $selected_district[0]['id']
+        ]);
+
+        Log::debug($res);
+
+        $this->list_of_village = $res->json('data');
+
+    }
+
+    public function getDistrict($val){
+
+        $selected_city = array_filter($this->list_of_city, function($e) use ($val) {
+            return $e['name'] == $val;
+        });
+
+        $selected_city = array_values($selected_city);
+
+        $res = Http::get('https://api.goapi.id/v1/regional/kecamatan',[
+            'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr',
+            'kota_id' => $selected_city[0]['id']
+        ]);
+
+        Log::debug($res);
+
+        $this->list_of_district = $res->json('data');
+
+    }
+
+    public function getCity($val){
+
+        $selected_province = array_filter($this->list_of_province, function($e) use ($val) {
+            return $e['name'] == $val;
+        });
+
+        $selected_province = array_values($selected_province);
+
+        $res = Http::get('https://api.goapi.id/v1/regional/kota',[
+            'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr',
+            'provinsi_id' => $selected_province[0]['id']
+        ]);
+
+        Log::debug($res);
+
+        $this->list_of_city = $res->json('data');
+
+    }
+
+    public function getProvince(){
+        $res = Http::get('https://api.goapi.id/v1/regional/provinsi',[
+            'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr'
+        ]);
+
+        $this->list_of_province = $res->json('data');
+
     }
 
     public function create(UserData $userData, Mail $mail){
@@ -41,9 +122,12 @@ class SuratKeteranganUsahaForm extends Component
             'field_of_business' => 'required',
         ]);
 
+        $this->province = ucfirst(strtolower($this->province));
+        $this->city = ucfirst(strtolower($this->city));
+
         $field = json_encode([
             'business_name' => $this->business_name,
-            'business_address' => $this->business_address . ', Desa/Kel. Getasan, Kec. Petang, Kab. Badung, Provinsi Bali, Desa/Kel. Getasan, Kec. Petang, Kab. Badung, Provinsi Bali',
+            'business_address' => "$this->business_address, Provinsi $this->province, $this->city, Kecamatan $this->district, Desa $this->village.",
             'npwp' => $this->npwp,
             'field_of_business' => $this->field_of_business,
         ]);
