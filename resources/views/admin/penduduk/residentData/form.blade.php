@@ -247,7 +247,7 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">No KK <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input required class="form-control @error('no_kk') is-invalid @enderror form-control-lg " type="number" name="no_kk" value="{{$user['no_kk'] ?? '' }}" required />
+                                        <input class="form-control @error('no_kk') is-invalid @enderror form-control-lg" type="number" name="no_kk" value="{{ $user['no_kk'] ?? '' }}" required />
                                         @error('no_kk')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -332,17 +332,6 @@
                                 @endif
                             </div>
                             <div class="col">
-                                @if (!empty($user))
-                                <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">No KK <span style="color: red;" >*</span></label>
-                                    <div class="col">
-                                        <input required class="form-control @error('no_kk') is-invalid @enderror form-control-lg " type="text" name="no_kk" value="{{$user['no_kk'] ?? '' }}" required />
-                                        @error('no_kk')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                @endif
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">SHDK</label>
                                     <div class="col">

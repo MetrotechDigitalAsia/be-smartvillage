@@ -323,9 +323,7 @@ class UsersMailController extends Controller
                 }
             }
             
-            Log::info($mail);
             $filename = $mail.'-'.$data->id.'-'.$data->name.'.pdf';
-            Log::info($filename);
             $mails[] = $filename;
             $pdf->save($filename, 'public');
         }
