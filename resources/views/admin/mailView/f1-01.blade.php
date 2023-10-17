@@ -85,7 +85,7 @@
             <span style="width: 20px; border: 1px solid black; font-weight: bolder; border-right: 0;" class="text-center" ></span>
             <span style="width: 20px; border: 1px solid black; font-weight: bolder;" class="text-center" ></span>
             <span style="width: 20px;" class="text-center" ></span>
-            <span style="border: 1px solid black; font-weight: bolder; padding-left: 2px; text-transform: uppercase;" class="flex-grow-1" >BR. {{ $field->subject_1->banjar }}</span><span style="width: 20px;" class="text-center" ></span>
+            <span style="border: 1px solid black; font-weight: bolder; padding-left: 2px; text-transform: uppercase;" class="flex-grow-1" >BR. {{ $field->subject_1->banjar ?? '' }}</span><span style="width: 20px;" class="text-center" ></span>
         </div>
         <p style="font-size: 8px; margin-bottom: 0;" ><b>Alamat di Luar Negeri (diisi oleh WNI di Luar Negeri)</b></p>
         <div class="d-flex" style="font-size: 8.5px;" >
