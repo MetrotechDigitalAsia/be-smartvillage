@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <td>Nomor KTP</td>
-            <td>: {{ $subject->nik }}</td>
+            <td>: {{ $subject->nik ?? '' }}</td>
         </tr>
         <tr>
             <td>Pekerjaan</td>
