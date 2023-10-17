@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <td>Kewarganegaraan</td>
-                <td>: {{ $field->subject_1->citizenship == 'WNI' ? 'Warga Negara Indonesia (WNI)' : 'Warga Negara Asing (WNA)' }}</td>
+                <td>: {{ !empty($field->subject_1->citizenship) ? $field->subject_1->citizenship == 'WNI' ? 'Warga Negara Indonesia (WNI)' : 'Warga Negara Asing (WNA)' : '' }}</td>
             </tr>
             <tr>
                 <td>Pekerjaan</td>
