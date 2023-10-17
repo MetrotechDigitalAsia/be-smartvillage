@@ -323,7 +323,8 @@ class UsersMailController extends Controller
                 }
             }
 
-            $filename = $mail.'-'.$data->id.'-'.str_replace(' ', '-',strtolower($data->name)).'.pdf';
+            $filename = $mail.'-'.$data->id.'-'.str_replace(' ', '_',strtolower($data->name)).'.pdf';
+            Log::debug($filename);
             $mails[] = $filename;
             $pdf->save($filename, 'public');
         }
