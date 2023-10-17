@@ -63,7 +63,7 @@
             </tr>
             <tr>
                 <td>Pekerjaan</td>
-                <td>: {{ $field->subject_2->job }}</td>
+                <td>: {{ $field->subject_2->job ?? '' }}</td>
             </tr>
             <tr>
                 <td>Nomor KTP</td>
