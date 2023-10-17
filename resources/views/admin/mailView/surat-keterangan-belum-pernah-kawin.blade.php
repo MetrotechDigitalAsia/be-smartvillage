@@ -7,11 +7,11 @@
     <table class="align-self-start ml-10 mb-5 mt-1" style="width: 100%;" >
         <tr>
             <td class="w-150px" >Nama</td>
-            <td style="text-transform: capitalize;" >: {{ $subject->name }}</td>
+            <td style="text-transform: capitalize;" >: {{ $subject->name ?? '' }}</td>
         </tr>
         <tr>
             <td>Jenis Kelamin</td>
-            <td style="text-transform: capitalize;" >: {{ $subject->gender }}</td>
+            <td style="text-transform: capitalize;" >: {{ $subject->gender ?? '' }}</td>
         </tr>
         <tr>
             <td>Tempat/Tgl.lahir</td>
