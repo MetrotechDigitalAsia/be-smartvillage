@@ -19,7 +19,7 @@ class NotificationResource extends JsonResource
             'id' => $this->id,
             'data' => $this->data,
             'read_at' => $this->read_at,
-            'created_at' => Carbon::parse($this->created_at)->setTimezone('UTC')
+            'created_at' => Carbon::parse($this->created_at)->setTimezone('Asia/Makassar')
         ];
     }
 }
