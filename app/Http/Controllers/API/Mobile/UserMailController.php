@@ -239,9 +239,9 @@ class UserMailController extends Controller
                             'created_at'
                         ]);
 
-        // foreach($notifications as $notif){
-        //     $notif->created_at = Carbon::parse($notif->created_at,'UTC');
-        // }
+        foreach($notifications as $notif){
+            $notif->created_at = Carbon::parse($notif->created_at)->setTimezone('UTC')->toIso8601String();
+        }
 
         return ResponseController::create($notifications,'success', 'get all notification', 200);
     }
