@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td>Pekerjaan</td>
-                <td>: {{ $field->subject_1->job }}</td>
+                <td>: {{ $field->subject_1->job ?? '' }}</td>
             </tr>
             <tr>
                 <td>Nomor KTP</td>
@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td>Alamat</td>
-                <td>: {{ $field->subject_1->address }}</td>
+                <td>: {{ $field->subject_1->address ?? '' }}</td>
             </tr>
         </table>
     </li>
@@ -59,7 +59,7 @@
             </tr>
             <tr>
                 <td>Kewarganegaraan</td>
-                <td>: {{ $field->subject_2->citizenship == 'WNI' ? 'Warga Negara Indonesia (WNI)' : 'Warga Negara Asing (WNA)' }}</td>
+                <td>: {{ !empty($field->subject_2->citizenship) ? $field->subject_2->citizenship == 'WNI' ? 'Warga Negara Indonesia (WNI)' : 'Warga Negara Asing (WNA)' : '' }}</td>
             </tr>
             <tr>
                 <td>Pekerjaan</td>
@@ -67,11 +67,11 @@
             </tr>
             <tr>
                 <td>Nomor KTP</td>
-                <td>: {{ $field->subject_2->nik }}</td>
+                <td>: {{ $field->subject_2->nik ?? '' }}</td>
             </tr>
             <tr>
                 <td>Alamat</td>
-                <td>: {{ $field->subject_2->address }}</td>
+                <td>: {{ $field->subject_2->address ?? '' }}</td>
             </tr>
         </table>
     </li>
