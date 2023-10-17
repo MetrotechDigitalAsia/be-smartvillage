@@ -322,8 +322,8 @@ class UsersMailController extends Controller
                     $pdf = Pdf::loadView('mailTemplate.'.$mail, compact('data', 'perbekel', 'kelian', 'field'));
                 }
             }
-            
-            $filename = $mail.'-'.$data->id.'-'.$data->name.'.pdf';
+
+            $filename = $mail.'-'.$data->id.'-'.str_replace(' ', '-',strtolower($data->name)).'.pdf';
             $mails[] = $filename;
             $pdf->save($filename, 'public');
         }
