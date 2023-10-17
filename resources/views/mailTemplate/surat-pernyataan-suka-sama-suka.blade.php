@@ -97,7 +97,7 @@
             <td style="padding-bottom: 70px;" >Mempelai Laki - Laki,</td>
         </tr>
         <tr>
-            <td><u>{{ $field->subject_2->name }}</u></td>
+            <td><u>{{ $field->subject_2->name ?? '' }}</u></td>
             <td style="width: 10%; position: relative;" >
                 <div style="border: 1px solid #000; position: absolute; top: -50px; left: -30px; width: 100px; padding: 5px 0;" >
                     Materai
@@ -105,7 +105,7 @@
                     Rp. 10.000
                 </div>
             </td>
-            <td><u>{{ $field->subject_1->name }}</u></td>
+            <td><u>{{ $field->subject_1->name ?? '' }}</u></td>
         </tr>
     </table>
     <div style="height: 200px;" ></div>
