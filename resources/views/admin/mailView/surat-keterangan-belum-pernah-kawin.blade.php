@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <td>Kewarganegaraan</td>
-            <td>: {{ !emtpy($subject->citizenship) ? $subject->citizenship  == 'WNI' ? 'Warga Negara Indonesia (WNI)' : 'Warga Negara Asing (WNA)' : '' }}</td>
+            <td>: {{ !empty($subject->citizenship) ? $subject->citizenship  == 'WNI' ? 'Warga Negara Indonesia (WNI)' : 'Warga Negara Asing (WNA)' : '' }}</td>
         </tr>
         <tr>
             <td>Agama</td>
