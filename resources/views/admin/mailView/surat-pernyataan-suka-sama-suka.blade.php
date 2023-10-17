@@ -30,7 +30,7 @@
             </tr>
             <tr>
                 <td>Nomor KTP</td>
-                <td>: {{ $field->subject_1->nik }}</td>
+                <td>: {{ $field->subject_1->nik ?? '' }}</td>
             </tr>
             <tr>
                 <td>Alamat</td>

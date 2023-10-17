@@ -76,7 +76,7 @@
                 </tr>
                 <tr>
                     <td>Nomor KTP</td>
-                    <td>: {{ $field->subject_2->nik }}</td>
+                    <td>: {{ $field->subject_2->nik ?? '' }}</td>
                 </tr>
                 <tr>
                     <td>Alamat</td>
