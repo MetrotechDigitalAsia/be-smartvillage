@@ -23,7 +23,7 @@
                 </tr>
                 <tr>
                     <td>Tempat/Tgl. Lahir</td>
-                    <td>: {{ $field->subject_1->banjar ?? '' }},{{ $field->subject_1->birthplace ?? '' }},{{ Carbon\Carbon::parse($field->subject_1->birthdate)->translatedFormat('d F Y') }}</td>
+                    <td>: {{ $field->subject_1->banjar ?? '' }},{{ $field->subject_1->birthplace ?? '' }},{{ !empty($field->subject_1->birthdate) ? Carbon\Carbon::parse($field->subject_1->birthdate)->translatedFormat('d F Y') : '' }}</td>
                 </tr>
                 <tr>
                     <td>Agama</td>
@@ -31,19 +31,19 @@
                 </tr>
                 <tr>
                     <td>Kewarganegaraan</td>
-                    <td>: {{ $field->subject_1->citizenship == 'WNI' ? 'Warga Negara Indonesia (WNI)' : 'Warga Negara Asing (WNA)' }}</td>
+                    <td>: {{ !empty($field->subject_1->citizenship) ? $field->subject_1->citizenship == 'WNI' ? 'Warga Negara Indonesia (WNI)' : 'Warga Negara Asing (WNA)' : '' }}</td>
                 </tr>
                 <tr>
                     <td>Pekerjaan</td>
-                    <td>: {{ $field->subject_1->job }}</td>
+                    <td>: {{ $field->subject_1->job ?? '' }}</td>
                 </tr>
                 <tr>
                     <td>Nomor KTP</td>
-                    <td>: {{ $field->subject_1->nik }}</td>
+                    <td>: {{ $field->subject_1->nik ?? '' }}</td>
                 </tr>
                 <tr>
                     <td>Alamat</td>
-                    <td>: {{ $field->subject_1->address }}</td>
+                    <td>: {{ $field->subject_1->address ?? '' }}</td>
                 </tr>
             </table>
         </li>
@@ -60,7 +60,7 @@
                 </tr>
                 <tr>
                     <td>Tempat/Tgl. Lahir</td>
-                    <td>: {{ $field->subject_2->banjar ?? '' }},{{ $field->subject_2->birthplace ?? '' }},{{ Carbon\Carbon::parse($field->subject_2->birthdate)->translatedFormat('d F Y') }}</td>
+                    <td>: {{ $field->subject_2->banjar ?? '' }},{{ $field->subject_2->birthplace ?? '' }},{{ !empty($field->subject_2->birthdate) ? Carbon\Carbon::parse($field->subject_2->birthdate)->translatedFormat('d F Y') : '' }}</td>
                 </tr>
                 <tr>
                     <td>Agama</td>
@@ -68,11 +68,11 @@
                 </tr>
                 <tr>
                     <td>Kewarganegaraan</td>
-                    <td>: {{ $field->subject_2->citizenship == 'WNI' ? 'Warga Negara Indonesia (WNI)' : 'Warga Negara Asing (WNA)' }}</td>
+                    <td>: {{ !empty($field->subject_2->citizenship) ? $field->subject_2->citizenship == 'WNI' ? 'Warga Negara Indonesia (WNI)' : 'Warga Negara Asing (WNA)' : ''}}</td>
                 </tr>
                 <tr>
                     <td>Pekerjaan</td>
-                    <td>: {{ $field->subject_2->job }}</td>
+                    <td>: {{ $field->subject_2->job ?? '' }}</td>
                 </tr>
                 <tr>
                     <td>Nomor KTP</td>
@@ -80,7 +80,7 @@
                 </tr>
                 <tr>
                     <td>Alamat</td>
-                    <td>: {{ $field->subject_2->address }}</td>
+                    <td>: {{ $field->subject_2->address ?? '' }}</td>
                 </tr>
             </table>
         </li>
