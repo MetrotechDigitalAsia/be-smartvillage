@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Mobile;
 use App\Events\NotificationEvent;
 use App\Http\Controllers\API\ResponseController;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Mobile\NotificationResource;
 use App\Models\Admin;
 use App\Models\Mail;
 use App\Models\MailFile;
@@ -239,12 +240,7 @@ class UserMailController extends Controller
                             'created_at'
                         ]);
 
-        foreach($notifications as $notif){
-            $notif->created_at = Carbon::parse($notif->created_at)->setTimezone('Asia/Makassar')->translatedFormat('Y-m-d H:i:s');
-            $notif->created_at ='sdff';
-        }
-
-        return ResponseController::create($notifications,'success', 'get all notification', 200);
+        return ResponseController::create(NotificationResource::collection($notifications),'success', 'get all notification', 200);
     }
 
 
