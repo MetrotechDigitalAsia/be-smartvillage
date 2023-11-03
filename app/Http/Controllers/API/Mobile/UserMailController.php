@@ -121,7 +121,7 @@ class UserMailController extends Controller
             return ResponseController::create(null, 'error', $e->getMessage(), 200);
         }
 
-        return ResponseController::success($field, 'Surat Berhasil Dikirim', 200);
+        return ResponseController::success('success', 'Surat Berhasil Dikirim', 200);
 
     }
 
