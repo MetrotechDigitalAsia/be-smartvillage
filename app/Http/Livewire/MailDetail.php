@@ -6,6 +6,7 @@ use App\Models\Mail;
 use App\Models\Signature;
 use App\Models\UserData;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class MailDetail extends Component
@@ -47,8 +48,8 @@ class MailDetail extends Component
                 break;
         }
 
-        $data->saksi_1 = Signature::find($data->saksi_1);
-        $data->saksi_2 = Signature::find($data->saksi_2);
+        $data->saksi_1 = Signature::find($data->saksi_1) ?? null;
+        $data->saksi_2 = Signature::find($data->saksi_2) ?? null;
 
         $kelian = Signature::where('position', '=','Kelian Banjar')
                     ->where('banjar', $data->applicant_banjar)
@@ -104,7 +105,7 @@ class MailDetail extends Component
         $data = DB::table('users_mail as userMail')
         ->join('mails', 'mails.id', '=', 'userMail.mail_id')
         ->join($this->userDb, 'applicant.id', '=', 'userMail.resident_id')
-        ->join('mail_files', 'mail_files.users_mail_id', '=', 'userMail.id')
+        ->leftjoin('mail_files', 'mail_files.users_mail_id', '=', 'userMail.id')
         ->where('userMail.id', '=', $this->mailId)
         ->first([
             'userMail.id',
@@ -174,6 +175,8 @@ class MailDetail extends Component
         $json = json_decode($data->field);
 
         $data->petugas = Signature::find($data->petugas);
+
+        Log::debug((array)$data);
 
         $data->subject = UserData::whereId($json->subject)->first([
             'nama as name',

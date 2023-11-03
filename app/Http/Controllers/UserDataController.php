@@ -126,6 +126,7 @@ class UserDataController extends Controller
                     ->get();
 
             return DataTables::of($data)
+            ->editColumn('nama', fn($e) => ucfirst($e->nama))
             ->addIndexColumn()
             ->make(true);
         }

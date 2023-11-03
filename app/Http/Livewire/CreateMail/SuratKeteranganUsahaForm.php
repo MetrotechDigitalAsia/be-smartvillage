@@ -125,9 +125,11 @@ class SuratKeteranganUsahaForm extends Component
         $this->province = ucfirst(strtolower($this->province));
         $this->city = ucfirst(strtolower($this->city));
 
+        $kab = str_replace('Kab. ', '',$this->city);
+
         $field = json_encode([
             'business_name' => $this->business_name,
-            'business_address' => "$this->business_address, Provinsi $this->province, $this->city, Kecamatan $this->district, Desa $this->village.",
+            'business_address' => "$this->business_address, Desa $this->village, Kecamatan $this->district, Kabupaten $kab, Provinsi $this->province.",
             'npwp' => $this->npwp,
             'field_of_business' => $this->field_of_business,
         ]);

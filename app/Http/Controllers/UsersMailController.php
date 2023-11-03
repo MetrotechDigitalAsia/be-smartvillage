@@ -142,7 +142,7 @@ class UsersMailController extends Controller
             switch ($status) {
                 case 'Done':
                     $msg = 'Surat disetujui';
-                    $notifMsg = 'Silahkan melakukan pengambilan berkas ke kantor desa!';
+                    $notifMsg = 'Silahkan melakukan pengambilan berkas ke kantor desa dengan membawa persyaratan yang diperlukan!';
                     break;
                 case 'Process':
                     $msg = 'Surat diproses';
@@ -189,13 +189,13 @@ class UsersMailController extends Controller
             switch ($status) {
                 case 'Done':
                     $msg = 'Surat disetujui';
-                    $notifMsg = 'Silahkan melakukan pengambilan berkas ke kantor desa!';
+                    $notifMsg = 'Silahkan melakukan pengambilan berkas ke kantor desa dengan membawa persyaratan yang diperlukan!';
                     Notification::send($admin, new MailFinishNotification($id));
                     event(new MailFinishEvent());
                     break;
                 case 'Process':
                     $msg = 'Surat diproses';
-                    $notifMsg = 'Surat sedang diproses oleh pemerintah desa';
+                    $notifMsg = 'Silahkan melakukan pengambilan berkas ke kantor desa dengan membawa persyaratan yang diperlukan!';
                     Notification::send($admin, new MailProcessNotification($id));
                     event(new MailProcessEvent());
                     break;

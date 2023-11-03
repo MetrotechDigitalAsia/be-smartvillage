@@ -49,6 +49,7 @@ class UserMailController extends Controller
         $user = UserLogin::find($request->user_id);
         $mail = Mail::find($request->mail_id);
 
+
         $exist = DB::table('users_mail')
                 ->where('user_id', $user->id)
                 ->where('mail_id', $mail->id)
@@ -120,7 +121,7 @@ class UserMailController extends Controller
             return ResponseController::create(null, 'error', $e->getMessage(), 200);
         }
 
-        return ResponseController::success('success', 'Surat Berhasil Dikirim', 200);
+        return ResponseController::success($field, 'Surat Berhasil Dikirim', 200);
 
     }
 

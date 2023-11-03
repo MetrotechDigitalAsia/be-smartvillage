@@ -284,7 +284,7 @@
                 <td style="border: 1px solid black; height: 15px; text-align: center;" >1</td>
                 <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
                 <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
-                <td style="font-weight: bold; border: 1px solid black; height: 15px;" >{{ $field->subject_1->gender ?? '' }}</td>
+                <td style="font-weight: bold; border: 1px solid black; height: 15px; text-transform: uppercase;" >{{ $field->subject_1->gender ?? '' }}</td>
                 <td style="font-weight: bold; border: 1px solid black; height: 15px; text-transform: uppercase;" >{{ $field->subject_1->birthplace ?? '' }}</td>
                 <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ !empty($field->subject_1->birthdate) ? Carbon\Carbon::parse($field->subject_1->birthdate)->format('d/m/Y') : "" }}</td>
                 <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ $field->subject_1->citizenship ?? '' }}</td>

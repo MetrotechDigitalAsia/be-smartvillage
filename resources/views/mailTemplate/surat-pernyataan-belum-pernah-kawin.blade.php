@@ -91,7 +91,7 @@
 </head>
 <body style="width: 80%; margin: 0 auto;" >
     <div class="mail-header">
-        <img src="./assets/be/media/desa.png" alt="">
+        <img width="100" src="./assets/be/media/desa.png" alt="">
         <p class="goverment" >PEMERINTAH DESA GETASAN <br>KECAMATAN PETANG</p>
         <p class="village" >KABUPATEN BADUNG</p>
         <p class="" >Jalan Tukad Penet No. 14 Getasan Telp. 081 353 622 066 Kode Pos 80353</p>
