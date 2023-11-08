@@ -111,10 +111,18 @@ class UserDataController extends Controller
 
     public function groupByBanjar(){
 
-        $kauh = UserData::where('banjar', 'kauh')->count();
-        $ubud = UserData::where('banjar', 'ubud')->count();
-        $tengah = UserData::where('banjar', 'tengah')->count();
-        $buangga = UserData::where('banjar', 'buangga')->count();
+        $kauh = UserData::where('banjar', 'kauh')
+                ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
+                ->count();
+        $ubud = UserData::where('banjar', 'ubud')
+                ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
+                ->count();
+        $tengah = UserData::where('banjar', 'tengah')
+                ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
+                ->count();
+        $buangga = UserData::where('banjar', 'buangga')
+                ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
+                ->count();
         
         $resident = compact('kauh', 'ubud', 'tengah', 'buangga');
 
