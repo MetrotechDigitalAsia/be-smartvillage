@@ -76,7 +76,7 @@
                 <td style="width: 50%;" ></td>
                 <td style="width: 50%; position: relative; height: 60px;" >
                     @if (!is_null($data->user_id))
-                    <img style="position: absolute; width: 120px; height: 70px; left: 0px; top: 0px; object-fit: contain;" src="{{ public_path(). '/storage/' . $data->image }}" alt="">
+                    {{-- <img style="position: absolute; width: 120px; height: 70px; left: 0px; top: 0px; object-fit: contain;" src="{{ public_path(). '/storage/' . $data->image }}" alt=""> --}}
                     @endif
                 </td>
             </tr>
