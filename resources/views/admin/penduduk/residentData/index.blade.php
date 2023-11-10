@@ -218,6 +218,7 @@
 				},{
 					field: 'nama',
 					title: 'Nama',
+					template: e => `<span style="text-transform: capitalize;" >${e.nama}</span>`,
 					width: 180 
 				},{
 					field: 'no_nik',

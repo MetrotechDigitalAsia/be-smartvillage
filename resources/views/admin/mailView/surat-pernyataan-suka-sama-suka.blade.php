@@ -14,7 +14,7 @@
             </tr>
             <tr>
                 <td>Tempat/Tgl. Lahir</td>
-                <td>: {{ $field->subject_1->banjar ?? '' }},{{ $field->subject_1->birthplace ?? '' }},{{ !empty($field->subject_1->birthdate) ? Carbon\Carbon::parse($field->subject_1->birthdate)->translatedFormat('d F Y') : '' }}</td>
+                <td>: {{ $field->subject_1->birthplace ?? '' }},{{ !empty($field->subject_1->birthdate) ? Carbon\Carbon::parse($field->subject_1->birthdate)->translatedFormat('d F Y') : '' }}</td>
             </tr>
             <tr>
                 <td>Agama</td>
@@ -51,7 +51,7 @@
             </tr>
             <tr>
                 <td>Tempat/Tgl. Lahir</td>
-                <td>: {{ $field->subject_2->banjar ?? '' }},{{ $field->subject_2->birthplace ?? '' }},{{ !empty($field->subject_2->birthdate) ? Carbon\Carbon::parse($field->subject_2->birthdate)->translatedFormat('d F Y') : '' }}</td>
+                <td>: {{ $field->subject_2->birthplace ?? '' }}, {{ !empty($field->subject_2->birthdate) ? Carbon\Carbon::parse($field->subject_2->birthdate)->translatedFormat('d F Y') : '' }}</td>
             </tr>
             <tr>
                 <td>Agama</td>

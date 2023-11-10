@@ -32,14 +32,14 @@
             align-items: center;
             position: relative;
             padding-bottom: 2px;
-            border-bottom: 4px solid black;
+            border-bottom: 1.5px solid black;
             text-align: center;
         }
 
         .mail-header::after {
             display: block;
             content:  '';
-            height: 1px;
+            height: 4px;
             width: 100%;
             background-color: black;
             margin-top: 10px;
@@ -47,8 +47,7 @@
 
         .mail-header img {
             position: absolute;
-            top: -10px;
-            /* margin-top: 10px; */
+            margin-top: 10px;
             /* left: 20px;
             bottom: 20px; */
         }
@@ -66,7 +65,7 @@
         }
 
         .mail-header p {
-            font-size: 12px;
+            font-size: 13px;
         }
 
         .mail-body .mail-type {
@@ -90,15 +89,15 @@
     </style>
 </head>
 <body style="width: 80%; margin: 0 auto;" >
-    <div class="mail-header">
-        <img width="100" src="./assets/be/media/desa.png" alt="">
-        <p class="goverment" >PEMERINTAH DESA GETASAN <br>KECAMATAN PETANG</p>
-        <p class="village" >KABUPATEN BADUNG</p>
-        <p class="" >Jalan Tukad Penet No. 14 Getasan Telp. 081 353 622 066 Kode Pos 80353</p>
+    <div class="mail-header" style="margin-top: 60px;" >
+        <img src="./assets/be/media/desa.png" width="100" alt="">
+        <p class="goverment" >PEMERINTAH KABUPATEN BADUNG <br>KECAMATAN PETANG</p>
+        <p class="village" >DESA GETASAN</p>
+        <p class="" >Jalan Tukad Penet No. 14 Getasan, Kec. Petang, Kab. Badung (80353)<br>Telp. 081 353 622 066 Website : desagetasan.id</p>
     </div>
     <div class="mail-body" style="font-size: 14px;" >
-        <p class="mail-type" >
-            <b style="text-transform: uppercase; margin-top: 0;" ><u>Surat Keterangan Belum Pernah Kawin/Nikah</u></b>
+        <p class="mail-type" style="margin-top: 15px;" >
+            <b style="text-transform: uppercase;" ><u>Surat Keterangan Belum Pernah Kawin/Nikah</u></b>
         </p>
         <p class="mail-num" >Nomor : {{ $data->mail_number }}</p>
         <p class="long" >Yang bertanda tangan di bawah ini Kelian Banjar Dinas {{ $field->subject_1->banjar }}, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali, menerangkan dengan sebenarnya bahwa :</p>
@@ -208,11 +207,11 @@
         </tr>
         <tr>
             <td >Tanggal : ...............................</td>
-            <td style="text-align: center;" >Getasan, {{ Carbon\Carbon::now()->translatedFormat('d F Y') }}</td>
+            <td style="" >Getasan, {{ Carbon\Carbon::now()->translatedFormat('d F Y') }}</td>
         </tr>
         <tr>
             <td>Perbekel Getasan,</td>
-            <td style="text-align: center;" >Kelian Banjar Dinas Ubud</td>
+            <td style="" >Kelian Banjar Dinas Ubud</td>
         </tr>
         <tr>
             <td style="width: 100%;" >
@@ -237,7 +236,7 @@
                 </p>
             </td>
             <td>
-                <p style="text-indent: 0; text-align: center;" >
+                <p style="text-indent: 0;" >
                     <u>{{ !empty($kelian) ? $kelian->name : 'belum ada data kelian' }}</u>
                 </p>
             </td>

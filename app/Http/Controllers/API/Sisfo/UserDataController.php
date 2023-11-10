@@ -40,6 +40,7 @@ class UserDataController extends Controller
     public function getByEducation(){
 
         $data = UserData::select('pendidikan as value',DB::raw('COUNT(*) as total'))
+                        ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
                         ->groupBy('pendidikan')
                         ->get();
 
@@ -50,6 +51,7 @@ class UserDataController extends Controller
     public function getByGender(){
 
         $data = UserData::select('jenis_kelamin as value',DB::raw('COUNT(*) as total'))
+                        ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
                         ->groupBy('jenis_kelamin')
                         ->get();
 
@@ -60,6 +62,7 @@ class UserDataController extends Controller
     public function getByJob(){
 
         $data = UserData::select('pekerjaan as value',DB::raw('COUNT(*) as total'))
+                        ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
                         ->groupBy('pekerjaan')
                         ->get();
 
@@ -70,6 +73,7 @@ class UserDataController extends Controller
     public function getByBanjar(){
 
         $data = UserData::select('banjar as value',DB::raw('COUNT(*) as total'))
+                        ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
                         ->groupBy('banjar')
                         ->get();
 
@@ -92,6 +96,7 @@ class UserDataController extends Controller
         }
 
         $data = UserData::select("$type as value",DB::raw('COUNT(*) as total'))
+                ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
                 ->groupBy($type)
                 ->get();
 
@@ -111,16 +116,16 @@ class UserDataController extends Controller
 
     public function groupByBanjar(){
 
-        $kauh = UserData::where('banjar', 'kauh')
+        $kauh = UserData::where('BANJAR', 'kauh')
                 ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
                 ->count();
-        $ubud = UserData::where('banjar', 'ubud')
+        $ubud = UserData::where('BANJAR', 'ubud')
                 ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
                 ->count();
-        $tengah = UserData::where('banjar', 'tengah')
+        $tengah = UserData::where('BANJAR', 'tengah')
                 ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
                 ->count();
-        $buangga = UserData::where('banjar', 'buangga')
+        $buangga = UserData::where('BANJAR', 'buangga')
                 ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
                 ->count();
         
@@ -136,21 +141,25 @@ class UserDataController extends Controller
                 ->where('banjar', $banjar)
                 ->get();
 
-        $resident_count = UserData::where('banjar', $banjar)
+        $resident_count = UserData::where('Banjar', $banjar)
+                    ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
                     ->count();
 
         $gender = UserData::select('jenis_kelamin as value', DB::raw('COUNT(jenis_kelamin) as total'))
                 ->where('banjar', $banjar)
+                ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
                 ->groupBy('jenis_kelamin')
                 ->get();
 
         $education = UserData::select('pendidikan as value', DB::raw('COUNT(pendidikan) as total'))
                 ->where('banjar', $banjar)
+                ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
                 ->groupBy('pendidikan')
                 ->get();
 
         $work = UserData::select('pekerjaan as value', DB::raw('COUNT(pekerjaan) as total'))
                 ->where('banjar', $banjar)
+                ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
                 ->groupBy('pekerjaan')
                 ->get();
 
