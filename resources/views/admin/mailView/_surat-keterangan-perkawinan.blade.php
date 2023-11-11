@@ -3,18 +3,7 @@
     <h3 style="font-weight: bold; text-align: center; line-height: 28px;" >DESA ADAT GETASAN <br>DESA GETASAN KECAMATAN PETANG <br> KABUPATEN BADUNG</h3>
     <p class="m-0" style="font-size: 12px;" >Sekretariat : Kantor Perbekel Getasan Jln. Tukad Penet Nomor : 14 Telp. 081 353 622 066</p>
 </div>
-<div class="mail-body" style="padding: 0 42px;" >
-    <p style="font-size: 15px; font-weight: bolder; text-align: center; margin-bottom: 2px; margin-top: 20px;" ><u>SURAT KETERANGAN PERKAWINAN UMAT HINDU</u></p>
-    <p style="font-size: 14.5px; text-align: center;" >Nomor: .............................................................</p>
-    <p style="text-align: justify; font-size: 12px;" >Pada hari ini ....................................., tanggal : ...........................................................<br> hadir di hadapan saya : ...................................................Bendesa Adat .................................<br> Desa/Kelurahan ........................................... Kecamatan ....................................................... <br>Kabupaten Badung, provinsi Bali.</p>
-    <p style="text-align: justify; font-size: 12px;" >Nama Suami : .........................................................................................Agama Hindu,<br>Tempat/ tanggal lahir : .........................................................., Pekerjaan ..............................,<br>alamat tempat tinggal di : Banjar/Lingk : ..............................................................................., <br>Desa/Kelurahan.................................................Kecamatan...................................................,<br> Kabupaten/Kota ................................................ Provinsi Bali. <br>Anak laki-laki dari: nama (ayah).................................... dan nama (ibu)..................................<br>bertempat tinggal di Br./Lingk ....................................... Desa ................................................<br>Kecamatan ................................ Kabupaten/Kota. ...................................... Provinsi Bali.</p>
-    <p style="text-align: center; margin: 30px 0;" >Dengan</p>
-    <p style="text-align: justify; font-size: 12px;" >Nama Istri : .............................................................................................Agama Hindu,<br>Tempat/ tanggal lahir : .........................................................., Pekerjaan ..............................,<br>alamat tempat tinggal di : Banjar/Lingk : ..............................................................................., <br>Desa/Kelurahan.................................................Kecamatan...................................................,<br> Kabupaten/Kota ................................................ Provinsi Bali. <br>Anak laki-laki dari: nama (ayah).................................... dan nama (ibu)..................................<br>bertempat tinggal di Br./Lingk ....................................... Desa ................................................<br>Kecamatan ................................ Kabupaten/Kota. ...................................... Provinsi Bali.</p>
-    <p style="text-align: justify; font-size: 12px;margin: 0;" >Bahwa Atas dasar suka sama suka mereka telah melangsungkan tata cara perkawinan secara <br>agama Hindu di .........................., pada hari ........................tanggal : ..............................................,<br>dan berkedudukan sebagai PURUSA, adalah : .................................................................................. .</p>
-    <p style="text-align: justify; font-size: 12px;margin: 10px 0;" >Selanjutnya syarat-syarat dan upacara perkawinan secara Agama Hindu, telah dilaksanakan maka, saya nyatakan bahwa keduanya telah dalam ikatan perkawinan dan menjadi suami istri yang sah.</p>
-    <p style="text-align: justify; font-size: 12px;margin: 0;" >Dari hal tersebut diterbitkanlah Surat Keterangan ini yang sesudah dibacakan dan di jelaskan, ditandatangani kedua belah pihak suami dan istri, saksi-saksi dan saya Bendesa Adat.</p>
-</div>
-{{-- <div class="mail-body px-14" >
+<div class="mail-body px-14" >
     <p style="font-size: 15px; font-weight: bolder; text-align: center; margin-bottom: 2px;" ><u>SURAT KETERANGAN PERKAWINAN UMAT HINDU</u></p>
     <p style="font-size: 14.5px; text-align: center;" >Nomor: .............................................................</p>
     <p style="font-size: 12px;text-align: justify; text-indent: 0; margin-bottom: 45px;" >Pada hari ini Jumat, tanggal : {{ Carbon\Carbon::parse($field->marriage_date)->format('d/m/Y') }}, hadir di hadapan saya I Gede Darma, S.Pd, Bendesa Adat Getasan, Desa Getasan, Kecamatan Petang, Kabupaten Badung, Provinsi Bali.</p>
@@ -24,8 +13,8 @@
     <p style="font-size: 12px;text-align: justify; text-indent: 0;" >Atas dasar suka sama suka mereka telah melangsungkan tata cara perkawinan secara Agama Hindu untuk yang pertama kalinya, pada hari : Jumat, tanggal : {{ Carbon\Carbon::parse($field->marriage_date)->format('d/m/Y') }}, dan yang berkedudukan sebagai PURUSA adalah : {{ $field->subject_1->name ?? '' }}.</p>
     <p style="font-size: 12px;text-align: justify; text-indent: 0; margin-bottom: 25px;" >Selanjutnya karena syarat-syarat dan upacara perkawinan secara Agama Hindu, telah dilaksanakan maka, saya nyatakan bahwa keduanya telah dalam ikatan perkawinan dan menjadi suami istri yang sah.</p>
     <p style="font-size: 12px;text-align: justify; text-indent: 0;" >Dari hal tersebut diterbitkanlah Surat Keterangan ini yang sesudah dibacakan dan dijelaskan, ditandatangani kedua belah pihak suami dan istri, saksi-saksi dan saya Bendesa Adat Getasan.</p>
-</div> --}}
-{{-- <div class="mail-footer pb-20" >
+</div>
+<div class="mail-footer pb-20" >
     <table style="font-size: 12px;width: 80%; margin: 0 auto; margin-top: 40px; text-align: center;" >
         <tr>
             <td style="padding-bottom: 50px; text-align: center;" >Rohaniawan/Pemuput,</td>
@@ -77,4 +66,4 @@
             <td><u>...................................</u></td>
         </tr>
     </table>
-</div> --}}
+</div>
