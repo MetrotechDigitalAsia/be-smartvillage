@@ -13,8 +13,8 @@
 </head>
 <body>
 
-    <div class="mail_1" style="border: 1px solid black; padding: 0px 30px; padding-bottom: 10px;" >
-
+    <div class="mail_1" style="border: 1px solid black; padding: 0px 30px; padding-bottom: 10px; position: relative;" >
+        <span style="position: absolute; top: 0; right: 20px; border: 1px solid black; border-top: none; padding: 1px 4px; font-size: 12px;" >F-1. 01</span>
         <div class="f1-01-header" style="font-family: sans-serif; position: relative;" >
             <img style="position: absolute; width: 100px; left: 270px; top: 10px;" src="{{ public_path('assets/be/media/f1-01.png') }}" alt="">
             <h3 style="text-align: center; font-weight: bolder; margin-bottom: 2px; font-size: 14.5px;" >PEMERINTAH KABUPATEN BADUNG</h3>

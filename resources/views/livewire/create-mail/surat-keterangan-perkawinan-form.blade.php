@@ -1,21 +1,114 @@
 <div>
 
-    <div class="form-group">
+    {{-- <div class="form-group">
         <label>Alamat Lengkap Suami </label>
         <input wire:model.lazy="subject_1_address" class="form-control  @error('subject_1_address') is-invalid @enderror" type="text"  />
         @error('subject_1_address')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
         <span class="form-text text-muted">Contoh: Ubud, Desa/Kelurahan Getasan Kecamatan Petang, Kabupaten/Kota Badung Provinsi Bali</span>
+    </div> --}}
+
+    <p class="text-muted" >Alamat Lengkap Suami</p>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <div class="form-group">
+                    <label>Provinsi</label>
+                    <select wire:change="getCity($event.target.value, 1)" wire:model="subject_1_province" name="provinsi" id="" class="form-control" >
+                        <option value="">pilih provinsi</option>
+                        @foreach ($subject_1_list_of_province as $item)
+                        <option data-id="{{ $item['id'] }}" value="{{ $item['name'] }}">{{ $item['name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label>Kabupaten/Kota</label>
+                <select wire:change="getDistrict($event.target.value,1)" wire:model="subject_1_city" name="city" id="" class="form-control" >
+                    <option value="">pilih kabupaten</option>
+                    @foreach ($subject_1_list_of_city as $item)
+                    <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label>Kecamatan</label>
+                <select wire:change="getVillage($event.target.value, 1)" wire:model="subject_1_district" name="city" id="" class="form-control" >
+                    <option value="">pilih kota</option>
+                    @foreach ($subject_1_list_of_district as $item)
+                    <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label>Kelurahan/Desa</label>
+                <select wire:model="subject_1_village" name="city" id="" class="form-control" >
+                    <option value="">pilih kabupaten</option>
+                    @foreach ($subject_1_list_of_village as $item)
+                    <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label>Alamat Lengkap Istri </label>
-        <input wire:model.lazy="subject_2_address" class="form-control  @error('subject_2_address') is-invalid @enderror" type="text"  />
-        @error('subject_2_address')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-        <span class="form-text text-muted">Contoh: Ubud, Desa/Kelurahan Getasan Kecamatan Petang, Kabupaten/Kota Badung Provinsi Bali</span>
+    <p class="text-muted" >Alamat Lengkap Istri</p>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <div class="form-group">
+                    <label>Provinsi</label>
+                    <select wire:change="getCity($event.target.value, 2)" wire:model="subject_2_province" name="provinsi" id="" class="form-control" >
+                        <option value="">pilih provinsi</option>
+                        @foreach ($subject_2_list_of_province as $item)
+                        <option data-id="{{ $item['id'] }}" value="{{ $item['name'] }}">{{ $item['name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label>Kabupaten/Kota</label>
+                <select wire:change="getDistrict($event.target.value,2)" wire:model="subject_2_city" name="city" id="" class="form-control" >
+                    <option value="">pilih kabupaten</option>
+                    @foreach ($subject_2_list_of_city as $item)
+                    <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label>Kecamatan</label>
+                <select wire:change="getVillage($event.target.value, 2)" wire:model="subject_2_district" name="city" id="" class="form-control" >
+                    <option value="">pilih kota</option>
+                    @foreach ($subject_2_list_of_district as $item)
+                    <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label>Kelurahan/Desa</label>
+                <select wire:model="subject_2_village" name="city" id="" class="form-control" >
+                    <option value="">pilih kabupaten</option>
+                    @foreach ($subject_2_list_of_village as $item)
+                    <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
     </div>
 
     <div class="form-group validated">
@@ -165,15 +258,6 @@
     </div>
 
     <div class="form-group">
-        <label>Alamat Lengkap Ayah dari Suami </label>
-        <input wire:model.lazy="subject_1_father_address" class="form-control  @error('subject_1_father_address') is-invalid @enderror" type="text"  />
-        @error('subject_1_father_address')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-        <span class="form-text text-muted">Contoh: Ubud, Desa/Kelurahan Getasan Kecamatan Petang, Kabupaten/Kota Badung Provinsi Bali</span>
-    </div>
-
-    <div class="form-group">
         <label>Nama Ibu dari Suami </label>
         <input wire:model.lazy="subject_1_mother_name" class="form-control @error('subject_1_mother_name') is-invalid @enderror " type="text"  />
         @error('subject_1_mother_name')
@@ -220,15 +304,6 @@
     </div>
 
     <div class="form-group">
-        <label>Alamat Lengkap Ayah dari Istri </label>
-        <input wire:model.lazy="subject_2_father_address" class="form-control @error('subject_2_father_address') is-invalid @enderror" type="text"  />
-        @error('subject_2_father_address')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-        <span class="form-text text-muted">Contoh: Ubud, Desa/Kelurahan Getasan Kecamatan Petang, Kabupaten/Kota Badung Provinsi Bali</span>
-    </div>
-
-    <div class="form-group">
         <label>Nama Ibu dari Istri </label>
         <input wire:model.lazy="subject_2_mother_name" class="form-control @error('subject_2_mother_name') is-invalid @enderror " type="text"  />
         @error('subject_2_mother_name')
@@ -251,9 +326,7 @@
         <input wire:model.lazy="subject_2_mother_job" class="form-control" type="text"  />
     </div>
 
-    <p class="text-muted" >Alamat Orang Tua</p>
-
-    <div class="form-group">
+    {{-- <div class="form-group">
         <label>Provinsi</label>
         <select wire:change="getCity($event.target.value)" wire:model="province" name="provinsi" id="" class="form-control" >
             <option value="">pilih provinsi</option>
@@ -295,6 +368,6 @@
             @endforeach
         </select>
     </div>
-    @endif
+    @endif --}}
 
 </div>

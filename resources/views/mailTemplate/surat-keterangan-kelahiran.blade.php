@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <td></td>
-            <td >jenis kelamin</td>
+            <td >Jenis Kelamin</td>
             <td>: {{ $field->child_sex }}</td>
         </tr>
         <tr>

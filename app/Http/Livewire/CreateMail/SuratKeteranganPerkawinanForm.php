@@ -7,6 +7,7 @@ use App\Models\UserData;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class SuratKeteranganPerkawinanForm extends Component
@@ -46,15 +47,25 @@ class SuratKeteranganPerkawinanForm extends Component
     public $subject_2_mother_nik;
     public $subject_2_mother_job;
 
-    public $province;
-    public $city;
-    public $district;
-    public $village;
+    public $subject_1_province;
+    public $subject_1_city;
+    public $subject_1_district;
+    public $subject_1_village;
 
-    public $list_of_province = [];
-    public $list_of_city = [];
-    public $list_of_district = [];
-    public $list_of_village = [];
+    public $subject_2_province;
+    public $subject_2_city;
+    public $subject_2_district;
+    public $subject_2_village;
+
+    public $subject_1_list_of_province = [];
+    public $subject_1_list_of_city = [];
+    public $subject_1_list_of_district = [];
+    public $subject_1_list_of_village = [];
+
+    public $subject_2_list_of_province = [];
+    public $subject_2_list_of_city = [];
+    public $subject_2_list_of_district = [];
+    public $subject_2_list_of_village = [];
 
     protected $listeners = [
         'selectSubject1' => 'setSubject1Data',
@@ -62,63 +73,92 @@ class SuratKeteranganPerkawinanForm extends Component
         'submitMail' => 'create',
     ];
 
-    public function getVillage($val){
+    public function getVillage($val, $subject){
 
-        $selected_district = array_filter($this->list_of_district, function($e) use ($val) {
-            return $e['name'] == $val;
-        });
+        if($subject == 1){
+            $selected_district = array_filter($this->subject_1_list_of_district, function($e) use ($val) {
+                return $e['name'] == $val;
+            });
+        } else {
+            $selected_district = array_filter($this->subject_2_list_of_district, function($e) use ($val) {
+                return $e['name'] == $val;
+            });
+        }
 
         $selected_district = array_values($selected_district);
 
-        $res = Http::get('https://api.goapi.id/v1/regional/kelurahan',[
-            'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr',
+        $res = Http::get('https://api.goapi.io/regional/kelurahan',[
+            'api_key' => env('GO_API_KEY'),
             'kecamatan_id' => $selected_district[0]['id']
         ]);
 
-        $this->list_of_village = $res->json('data');
+        if($subject == 1)
+            $this->subject_1_list_of_village = $res->json('data');
+        else 
+            $this->subject_2_list_of_village = $res->json('data');
 
     }
 
-    public function getDistrict($val){
+    public function getDistrict($val, $subject){
 
-        $selected_city = array_filter($this->list_of_city, function($e) use ($val) {
-            return $e['name'] == $val;
-        });
+        if($subject == 1){
+            $selected_city = array_filter($this->subject_1_list_of_city, function($e) use ($val) {
+                return $e['name'] == $val;
+            });
+        } else {
+            $selected_city = array_filter($this->subject_2_list_of_city, function($e) use ($val) {
+                return $e['name'] == $val;
+            });
+        }
 
         $selected_city = array_values($selected_city);
 
-        $res = Http::get('https://api.goapi.id/v1/regional/kecamatan',[
-            'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr',
+        $res = Http::get('https://api.goapi.io/regional/kecamatan',[
+            'api_key' => env('GO_API_KEY'),
             'kota_id' => $selected_city[0]['id']
         ]);
 
-        $this->list_of_district = $res->json('data');
+        if($subject == 1)
+            $this->subject_1_list_of_district = $res->json('data');
+        else
+            $this->subject_2_list_of_district = $res->json('data');
 
     }
 
-    public function getCity($val){
+    public function getCity($val, $subject){
 
-        $selected_province = array_filter($this->list_of_province, function($e) use ($val) {
-            return $e['name'] == $val;
-        });
+        if($subject == 1){
+            $selected_province = array_filter($this->subject_1_list_of_province, function($e) use ($val) {
+                return $e['name'] == $val;
+            });
+        } else {
+            $selected_province = array_filter($this->subject_2_list_of_province, function($e) use ($val) {
+                return $e['name'] == $val;
+            });
+        }
 
         $selected_province = array_values($selected_province);
 
-        $res = Http::get('https://api.goapi.id/v1/regional/kota',[
-            'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr',
+        $res = Http::get('https://api.goapi.io/regional/kota',[
+            'api_key' => env('GO_API_KEY'),
             'provinsi_id' => $selected_province[0]['id']
         ]);
 
-        $this->list_of_city = $res->json('data');
+        if($subject == 1)
+            $this->subject_1_list_of_city = $res->json('data');
+        else 
+            $this->subject_2_list_of_city = $res->json('data');
 
     }
 
     public function getProvince(){
-        $res = Http::get('https://api.goapi.id/v1/regional/provinsi',[
-            'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr'
+
+        $res = Http::get('https://api.goapi.io/regional/provinsi',[
+            'api_key' => env('GO_API_KEY')
         ]);
 
-        $this->list_of_province = $res->json('data');
+        $this->subject_1_list_of_province = $res->json('data') ?? [];
+        $this->subject_2_list_of_province = $res->json('data') ?? [];
 
     }
 
@@ -202,11 +242,8 @@ class SuratKeteranganPerkawinanForm extends Component
             'head_of_family_email' => 'required',
             'head_of_family_phone' => 'required',
             'number_of_family_members' => 'required',
-            'subject_1_address' => 'required',
-            'subject_2_address' => 'required',
             'subject_1_father_name' => 'required',
             'subject_1_father_age' => 'nullable',
-            'subject_1_father_address' => 'required',
             'subject_1_father_nik' => 'nullable',
             'subject_1_father_job' => 'nullable',
             'subject_1_mother_name' => 'required',
@@ -214,7 +251,6 @@ class SuratKeteranganPerkawinanForm extends Component
             'subject_1_mother_age' => 'nullable',
             'subject_1_mother_job' => 'nullable',
             'subject_2_father_name' => 'required',
-            'subject_2_father_address' => 'required',
             'subject_2_father_nik' => 'nullable',
             'subject_2_father_age' => 'nullable',
             'subject_2_father_job' => 'nullable',
@@ -224,11 +260,13 @@ class SuratKeteranganPerkawinanForm extends Component
             'subject_2_mother_job' => 'nullable',
             'banjar' => 'required',
             'marriage_location' => 'required',
-            'district' => 'required',
-            'village' => 'required',
-            'city' => 'required',
-            'province' => 'required'
         ]);
+
+        $subject_1_province = strtolower($this->subject_1_province);
+        $subject_1_city = str_replace('Kab. ', '', ucfirst(strtolower($this->subject_1_city)));
+
+        $subject_2_province = strtolower($this->subject_2_province);
+        $subject_2_city = str_replace('Kab. ', '', ucfirst(strtolower($this->subject_2_city)));
 
         $field = json_encode([
             'marriage_status' => $this->marriage_status,
@@ -241,7 +279,6 @@ class SuratKeteranganPerkawinanForm extends Component
             'number_of_family_members' => $this->number_of_family_members,
             'banjar' => $this->banjar,
             'subject_1_father_name' => $this->subject_1_father_name,
-            'subject_1_father_address' => $this->subject_1_father_address,
             'subject_1_father_nik' => $this->subject_1_father_nik ?? '',
             'subject_1_father_job' => $this->subject_1_father_job ?? '',
             'subject_1_father_age' => $this->subject_1_father_age ?? '',
@@ -250,7 +287,6 @@ class SuratKeteranganPerkawinanForm extends Component
             'subject_1_mother_job' => $this->subject_1_mother_job ?? '',
             'subject_1_mother_age' => $this->subject_1_mother_age ?? '',
             'subject_2_father_name' => $this->subject_2_father_name,
-            'subject_2_father_address' => $this->subject_2_father_address,
             'subject_2_father_age' => $this->subject_2_father_age ?? '',
             'subject_2_father_nik' => $this->subject_2_father_nik ?? '',
             'subject_2_father_job' => $this->subject_2_father_job ?? '',
@@ -260,14 +296,15 @@ class SuratKeteranganPerkawinanForm extends Component
             'subject_2_mother_age' => $this->subject_2_mother_age ?? '',
             'subject_1' => $subject_1,
             'subject_2' => $subject_2,
-            'postal_code' => $this->postal_code,
-            'parent_province' => $this->province,
-            'parent_district' => $this->district,
-            'parent_city' => $this->city,
-            'parent_village' => $this->village,
             'marriage_location' => $this->marriage_location,
-            'subject_1_address' => $this->subject_1_address,
-            'subject_2_address' => $this->subject_2_address
+            'subject_1_province' => $subject_1_province,
+            'subject_1_city' => $subject_1_city,
+            'subject_1_district' => $this->subject_1_district,
+            'subject_1_village' => $this->subject_1_village,
+            'subject_2_province' => $subject_2_province,
+            'subject_2_city' => $subject_2_city,
+            'subject_2_district' => $this->subject_2_district,
+            'subject_2_village' => $this->subject_2_village,
         ]);
 
         try {

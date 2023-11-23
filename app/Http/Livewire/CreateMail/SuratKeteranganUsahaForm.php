@@ -39,7 +39,13 @@ class SuratKeteranganUsahaForm extends Component
     ];
 
     public function mount(){
-        $this->getProvince();
+
+        try {
+            $this->getProvince();
+        } catch (\Throwable $th) {
+            Log::debug($th->getMessage());
+        }
+
     }
 
     public function render()
@@ -109,7 +115,7 @@ class SuratKeteranganUsahaForm extends Component
             'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr'
         ]);
 
-        $this->list_of_province = $res->json('data');
+        $this->list_of_province = $res->json('data') ?? [];
 
     }
 

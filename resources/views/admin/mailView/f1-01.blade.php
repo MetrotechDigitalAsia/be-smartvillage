@@ -1,4 +1,5 @@
-<div class="mail_1" style="border: 1px solid black; padding: 7px 5px;" >
+<div class="mail_1" style="border: 1px solid black; padding: 7px 5px; position: relative;" >
+    <span style="position: absolute; top: 0; right: 20px; border: 1px solid black; border-top: none; padding: 1px 4px; font-size: 12px;" >F-1. 01</span>
     <div class="f1-01-header" style="font-family: sans-serif;" >
         <h3 style="text-align: center; font-weight: bolder; font-size: 12px; margin-bottom: 2px;" >PEMERINTAH KABUPATEN BADUNG</h3>
         <h4 style="text-align: center; font-size: 11px; font-weight: bold; margin-bottom: 2px;" >DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL</h4>
@@ -430,9 +431,9 @@
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ $field->subject_1_mother_nik ?? '' }}</td>
-            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ $field->subject_1_mother_name ?? '' }}</td>
+            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center; text-transform: uppercase;" >{{ $field->subject_1_mother_name ?? '' }}</td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ $field->subject_1_father_nik ?? '' }}</td>
-            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ $field->subject_1_father_name ?? '' }}</td>
+            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center; text-transform: uppercase;" >{{ $field->subject_1_father_name ?? '' }}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; height: 15px; text-align: center;" >2</td>
@@ -441,9 +442,9 @@
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ $field->subject_2_mother_nik ?? '' }}</td>
-            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ $field->subject_2_mother_name ?? '' }}</td>
+            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center; text-transform: uppercase;" >{{ $field->subject_2_mother_name ?? '' }}</td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ $field->subject_2_father_nik ?? '' }}</td>
-            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ $field->subject_2_father_name ?? '' }}</td>
+            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center; text-transform: uppercase;" >{{ $field->subject_2_father_name ?? '' }}</td>
         </tr>
         @for ($i = 2; $i < 10; $i++)
         <tr>
