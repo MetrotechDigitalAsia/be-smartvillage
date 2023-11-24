@@ -297,7 +297,7 @@
             <td style="border: 1px solid black; height: 15px; text-align: center;" >1</td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" >{{ $field->subject_1->birth_certificate_number ?? '' }}</td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" >{{ $field->subject_1->blood_type ?? '' }}</td>
-            <td style="font-weight: bold; border: 1px solid black; height: 15px;" >{{ $field->subject_1->religion ?? '' }}</td>
+            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-transform: uppercase;" >{{ $field->subject_1->religion ?? '' }}</td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px; text-transform: uppercase;" >{{ $field->marriage_status ?? '' }}</td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ $field->subject_1->birth_certificate ?? '' }}</td>
