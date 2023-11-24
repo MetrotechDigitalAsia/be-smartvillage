@@ -61,7 +61,7 @@ class SuratKeteranganUsahaForm extends Component
 
         $selected_district = array_values($selected_district);
 
-        $res = Http::get('https://api.goapi.id/v1/regional/kelurahan',[
+        $res = Http::get('https://api.goapi.io/regional/kelurahan',[
             'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr',
             'kecamatan_id' => $selected_district[0]['id']
         ]);
@@ -80,8 +80,8 @@ class SuratKeteranganUsahaForm extends Component
 
         $selected_city = array_values($selected_city);
 
-        $res = Http::get('https://api.goapi.id/v1/regional/kecamatan',[
-            'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr',
+        $res = Http::get('https://api.goapi.io/regional/kecamatan',[
+            'api_key' => env('GO_API_KEY'),
             'kota_id' => $selected_city[0]['id']
         ]);
 
@@ -99,8 +99,8 @@ class SuratKeteranganUsahaForm extends Component
 
         $selected_province = array_values($selected_province);
 
-        $res = Http::get('https://api.goapi.id/v1/regional/kota',[
-            'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr',
+        $res = Http::get('https://api.goapi.io/regional/kota',[
+            'api_key' => env('GO_API_KEY'),
             'provinsi_id' => $selected_province[0]['id']
         ]);
 
@@ -111,8 +111,8 @@ class SuratKeteranganUsahaForm extends Component
     }
 
     public function getProvince(){
-        $res = Http::get('https://api.goapi.id/v1/regional/provinsi',[
-            'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr'
+        $res = Http::get('https://api.goapi.io/regional/provinsi',[
+            'api_key' => env('GO_API_KEY'),
         ]);
 
         $this->list_of_province = $res->json('data') ?? [];
