@@ -115,6 +115,8 @@ class SuratKeteranganUsahaForm extends Component
             'api_key' => env('GO_API_KEY'),
         ]);
 
+        Log::debug($res->json());
+
         $this->list_of_province = $res->json('data') ?? [];
 
     }

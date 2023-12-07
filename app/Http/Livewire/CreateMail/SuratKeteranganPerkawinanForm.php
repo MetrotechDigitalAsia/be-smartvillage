@@ -26,6 +26,8 @@ class SuratKeteranganPerkawinanForm extends Component
     public $number_of_family_members;
     public $postal_code;
     public $banjar;
+    public $subject_1_banjar;
+    public $subject_2_banjar;
     public $subject_1_address;
     public $subject_2_address;
     public $subject_1_father_name;
@@ -242,6 +244,8 @@ class SuratKeteranganPerkawinanForm extends Component
             'head_of_family_email' => 'required',
             'head_of_family_phone' => 'required',
             'number_of_family_members' => 'required',
+            'subject_1_banjar' => 'required',
+            'subject_2_banjar' => 'required',
             'subject_1_father_name' => 'required',
             'subject_1_father_age' => 'nullable',
             'subject_1_father_nik' => 'nullable',
@@ -278,6 +282,8 @@ class SuratKeteranganPerkawinanForm extends Component
             'head_of_family_phone' => $this->head_of_family_phone,
             'number_of_family_members' => $this->number_of_family_members,
             'banjar' => $this->banjar,
+            'subject_1_banjar' => $this->subject_1_banjar,
+            'subject_2_banjar' => $this->subject_2_banjar,
             'subject_1_father_name' => $this->subject_1_father_name,
             'subject_1_father_nik' => $this->subject_1_father_nik ?? '',
             'subject_1_father_job' => $this->subject_1_father_job ?? '',

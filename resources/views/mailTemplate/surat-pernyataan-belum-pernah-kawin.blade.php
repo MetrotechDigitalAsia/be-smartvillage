@@ -211,7 +211,7 @@
         </tr>
         <tr>
             <td>Perbekel Getasan,</td>
-            <td style="" >Kelian Banjar Dinas Ubud</td>
+            <td style="" >Kelian Banjar Dinas {{ $data->banjar }},</td>
         </tr>
         <tr>
             <td style="width: 100%;" >

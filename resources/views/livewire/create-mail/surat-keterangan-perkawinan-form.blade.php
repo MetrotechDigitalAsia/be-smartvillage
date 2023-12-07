@@ -11,6 +11,15 @@
 
     <p class="text-muted" >Alamat Lengkap Suami</p>
 
+    <div class="form-group">
+        <label>Banjar/Lingk</label>
+        <input wire:model.lazy="subject_1_banjar"  class="form-control @error('subject_1_banjar') is-invalid @enderror " type="text"  />
+        @error('subject_1_banjar')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        {{-- <span class="form-text text-muted">Contoh: Jl. I Gst Ngr Rai. Dusun/Link, Br. Ubud</span> --}}
+    </div>
+
     <div class="row">
         <div class="col-6">
             <div class="form-group">
@@ -61,6 +70,15 @@
     </div>
 
     <p class="text-muted" >Alamat Lengkap Istri</p>
+
+    <div class="form-group">
+        <label>Banjar/Lingk</label>
+        <input wire:model.lazy="subject_2_banjar"  class="form-control @error('subject_2_banjar') is-invalid @enderror " type="text"  />
+        @error('subject_2_banjar')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        {{-- <span class="form-text text-muted">Contoh: Jl. I Gst Ngr Rai. Dusun/Link, Br. Ubud</span> --}}
+    </div>
 
     <div class="row">
         <div class="col-6">
