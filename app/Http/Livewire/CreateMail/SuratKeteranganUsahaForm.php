@@ -62,7 +62,7 @@ class SuratKeteranganUsahaForm extends Component
         $selected_district = array_values($selected_district);
 
         $res = Http::get('https://api.goapi.io/regional/kelurahan',[
-            'api_key' => 'anSAtWl0cS2X4SaNf1qFDqLNQZ8qwr',
+            'api_key' => env('GO_API_KEY'),
             'kecamatan_id' => $selected_district[0]['id']
         ]);
 
