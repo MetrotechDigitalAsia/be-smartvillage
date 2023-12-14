@@ -85,7 +85,6 @@ class SuratKeteranganKelahiranForm extends Component
                     'tanggal_lahir as birthdate',
                     'no_nik as nik',
                     'alamat as address',
-                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
                 ]);
 
         $mother = UserData::where('SHDK', 'ISTRI')
@@ -98,7 +97,6 @@ class SuratKeteranganKelahiranForm extends Component
                     'tanggal_lahir as birthdate',
                     'no_nik as nik',
                     'alamat as address',
-                    DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as age')
                 ]);
 
         $field = json_encode([
@@ -124,13 +122,13 @@ class SuratKeteranganKelahiranForm extends Component
             'subject_father_birthdate' => $father->birthdate,
             'subject_father_job' => $father->job,
             'subject_father_address' => $father->address,
-            'subject_father_age' => $father->age,
+            'subject_father_age' => Carbon::parse($father->birthdate)->diff(Carbon::now())->y,
             'subject_mother_name' => $mother->name,
             'subject_mother_nik' => $mother->nik,
             'subject_mother_citizenship' => $mother->citizenship,
             'subject_mother_birthplace' => $mother->birthplace,
             'subject_mother_birthdate' => $mother->birthdate,
-            'subject_mother_age' => $mother->age,
+            'subject_mother_age' => Carbon::parse($mother->birthdate)->diff(Carbon::now())->y,
             'subject_mother_job' => $mother->job,
             'subject_mother_address' => $mother->address,
         ]);
@@ -147,7 +145,7 @@ class SuratKeteranganKelahiranForm extends Component
 
             DB::table('users_mail')->insert([
                 'mail_id' => $mail->id,
-                'resident_id' => $userData->id ,
+                'resident_id' => $userData->id,
                 'field' => json_encode($field),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

@@ -7,7 +7,6 @@
     <title>Pengumuman Perkawinan</title>
 </head>
 <body style="padding: 0 30px;" >
-
     <h2 style="text-align: center; font-weight: normal; font-size: 21px; line-height: 28px;" >DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL <br>KABUPATEN BADUNG</h3>
     <div style="height: 2px; background-color: black; margin-bottom: 4px; margin-top: 10px;" ></div>
     <div style="height: 4px; background-color: black;" ></div>

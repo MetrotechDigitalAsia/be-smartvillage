@@ -176,7 +176,7 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Umur</label>
                                     <div class="col">
-                                        <input class="form-control form-control-lg " readonly name="UMUR" value="{{$user['UMUR'] ?? '' }}" />
+                                        <input class="form-control form-control-lg " readonly name="UMUR" value="{{ $age ?? '' }}" />
                                     </div>
                                 </div>
 

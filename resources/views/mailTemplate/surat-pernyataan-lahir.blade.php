@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <td>Umur</td>
-                <td>: {{ $data->applicant_age }} Tahun</td>
+                <td>: {{ \Carbon\Carbon::parse($data->applicant_birthdate)->diff(\Carbon\Carbon::now())->y }} Tahun</td>
             </tr>
             <tr>
                 <td>Pekerjaan</td>

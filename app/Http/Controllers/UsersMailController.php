@@ -417,7 +417,6 @@ class UsersMailController extends Controller
                 'userDB.alamat as applicant_address',
                 'userDB.banjar as applicant_banjar',
                 'userDB.shdk as applicant_family_status',
-                DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
                 'userMail.created_at',
                 'userMail.saksi_1',
                 'userMail.saksi_2'
@@ -454,7 +453,7 @@ class UsersMailController extends Controller
                 'userDB.alamat as applicant_address',
                 'userDB.pekerjaan as applicant_job',
                 'userDB.banjar as applicant_banjar',
-                DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
+                'userDB.tanggal_lahir as applicant_birthdate',
                 'userMail.created_at',
                 'userMail.petugas',
             ]);

@@ -85,8 +85,6 @@ class SuratKeteranganUsahaForm extends Component
             'kota_id' => $selected_city[0]['id']
         ]);
 
-        Log::debug($res);
-
         $this->list_of_district = $res->json('data');
 
     }

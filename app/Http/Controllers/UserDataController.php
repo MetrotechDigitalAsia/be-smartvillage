@@ -142,10 +142,13 @@ class UserDataController extends Controller
 
     public function show($id){
         $blt = BLT::all();
-        $user = UserData::selectRaw('*,YEAR(NOW()) - YEAR(TANGGAL_LAHIR) as UMUR')->find($id); 
+        $user = UserData::find($id); 
+
+        $age = Carbon::parse($user->tanggal_lahir)->diff(Carbon::now())->y;
+
         if($user->status_perkawinan == 'Kawin Tercatat' || $user->status_perkawinan == 'Kawin' || $user->status_perkawinan == 'Kawin Belum Tercatat'){
 
-            $couple  = UserData::where('no_kk', $user->no_kk)
+            $couple = UserData::where('no_kk', $user->no_kk)
                         ->where('shdk', '!=', $user->shdk)
                         ->where('shdk', '!=', 'ANAK')
                         ->first();
@@ -154,7 +157,7 @@ class UserDataController extends Controller
                         ->where('shdk', 'ANAK')
                         ->get();
         }
-        return view('admin.'.$this->folderName.'.form', ['user' => $user, 'couple' => $couple ?? null , 'children' => $children ?? null, 'blt' => $blt]);
+        return view('admin.'.$this->folderName.'.form', ['user' => $user, 'couple' => $couple ?? null , 'children' => $children ?? null, 'blt' => $blt, 'age' => $age]);
     }
 
     public function store(Request $request){

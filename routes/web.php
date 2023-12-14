@@ -135,7 +135,7 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::group(['prefix' => 'complaint'], function(){
             Route::get('/', [ComplaintController::class, 'index'])->name('complaint');
-            Route::get('/show/{complaint}', [ComplaintController::class, 'show']);
+            Route::get('/show/{complaint}', [ComplaintController::class, 'show'])->name('complaint.show');
             Route::delete('/delete/{complaint}', [ComplaintController::class, 'destroy']);
         });
 
