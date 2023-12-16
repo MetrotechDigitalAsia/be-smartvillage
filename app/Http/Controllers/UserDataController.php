@@ -21,29 +21,6 @@ class UserDataController extends Controller
         $this->folderName = 'penduduk.residentData';
     }
 
-    public function activate(){
-
-        try {
-            foreach(UserData::all() as $user){
-                UserLogin::updateOrCreate(
-                    ['no_nik' => $user->no_nik],
-                    [
-                        'no_nik' => $user->no_nik,
-                        'password' => bcrypt($user->no_nik),
-                        'status' => 'Active'
-                    ]
-                );
-            }
-            Log::info('success');
-        } catch (\Exception $e) {
-            Log::error($e->getMessage());
-        }
-
-        return redirect('/data-penduduk/penduduk');
-
-
-    }
-
     public function dashboard(Request $request){
         
         $gender = UserData::all()->groupBy('jenis_kelamin')->map(fn($entries) => $entries->count());

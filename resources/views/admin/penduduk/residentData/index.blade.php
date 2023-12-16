@@ -55,9 +55,6 @@
                 </svg>
                 <!--end::Svg Icon-->
             </span>Tambah Data</a>
-			<a href="/activate" class="btn btn-danger" >
-				activate
-			</a>
             <!--end::Button-->
         </div>
     </div>

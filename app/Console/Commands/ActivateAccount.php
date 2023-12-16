@@ -29,7 +29,11 @@ class ActivateAccount extends Command
     {
 
         try {
-            foreach(UserData::all() as $user){
+
+
+            $users = UserData::offset(0)->limit(400)->get();
+
+            foreach($users as $user){
                 UserLogin::updateOrCreate(
                     ['no_nik' => $user->no_nik],
                     [

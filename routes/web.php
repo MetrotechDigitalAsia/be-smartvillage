@@ -41,7 +41,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/activate', [UserDataController::class, 'activate']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'auth']);
