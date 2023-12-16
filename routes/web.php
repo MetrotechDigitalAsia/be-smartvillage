@@ -26,6 +26,7 @@ use App\Http\Controllers\{
     UserLoginController,
     UsersMailController,
 };
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,10 +40,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/foo', function () {
-//     Artisan::call('storage:link');
-// });
 
+Route::get('/activate', [UserDataController::class, 'activate']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'auth']);

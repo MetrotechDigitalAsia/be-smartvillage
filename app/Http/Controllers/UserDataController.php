@@ -10,6 +10,7 @@ use App\Models\UserLogin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class UserDataController extends Controller
@@ -18,6 +19,29 @@ class UserDataController extends Controller
 
     public function __construct(){
         $this->folderName = 'penduduk.residentData';
+    }
+
+    public function activate(){
+
+        try {
+            foreach(UserData::all() as $user){
+                UserLogin::updateOrCreate(
+                    ['no_nik' => $user->no_nik],
+                    [
+                        'no_nik' => $user->no_nik,
+                        'password' => bcrypt($user->no_nik),
+                        'status' => 'Active'
+                    ]
+                );
+            }
+            Log::info('success');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+        }
+
+        return redirect('/data-penduduk/penduduk');
+
+
     }
 
     public function dashboard(Request $request){

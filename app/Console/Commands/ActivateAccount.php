@@ -30,7 +30,6 @@ class ActivateAccount extends Command
 
         try {
             foreach(UserData::all() as $user){
-                $user->update(['akun_mobile_app' => 1]);
                 UserLogin::updateOrCreate(
                     ['no_nik' => $user->no_nik],
                     [
