@@ -41,6 +41,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/foo', function(){
+    Artisan::call('account:activate');
+});
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'auth']);

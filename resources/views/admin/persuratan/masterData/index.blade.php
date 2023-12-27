@@ -48,7 +48,7 @@
         <div class="card card-custom gutter-b card-stretch">
             <div class="card-header border-0">
                 <h3 class="card-title"></h3>
-                <div class="card-toolbar">
+                {{-- <div class="card-toolbar">
                     <div class="dropdown dropdown-inline" data-toggle="tooltip" title="Menu" data-placement="left">
                         <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="ki ki-bold-more-hor"></i>
@@ -64,14 +64,6 @@
                                         <span class="navi-text">Lihat</span>
                                     </a>
                                 </li>
-                                {{-- <li class="navi-item">
-                                    <a href="#" class="navi-link">
-                                        <span class="navi-icon">
-                                            <i class="flaticon2-list-3"></i>
-                                        </span>
-                                        <span class="navi-text">Preview</span>
-                                    </a>
-                                </li> --}}
                                 <li class="navi-separator my-3"></li>
                                 <li class="navi-item">
                                     <a href="javascript:;" data-href="/persuratan/master-data/delete/{{ $mail->id }}" onclick="deleteData(this)" class="navi-link">
@@ -85,7 +77,7 @@
                             <!--end::Navigation-->
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="card-body">
                 <div class="d-flex flex-column align-items-center">
