@@ -11,6 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+        Schema::connection('resident_mysql')->dropIfExists('resident_move_mutations');
+
         Schema::connection('resident_mysql')->create('resident_move_mutations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('resident_id');

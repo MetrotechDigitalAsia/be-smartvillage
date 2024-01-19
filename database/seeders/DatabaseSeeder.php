@@ -208,6 +208,14 @@ class DatabaseSeeder extends Seeder
             'description' => '-',
         ]);
 
+        Mail::create([
+            'id' => 'faf24483-917a-489c-a498-b2c3e828368f',
+            'title' => 'Surat Keterangan Pindah',
+            'slug' => 'surat-keterangan-pindah',
+            'image' => '-',
+            'description' => '-',
+        ]);
+
         $data = DB::connection('resident_old_mysql')->table('residents_data')->get();
 
         foreach($data as $i){

@@ -48,6 +48,14 @@
                                     <span class="navi-text">Surat Akta Pernikahan</span> 
                                 </a>
                             </li>
+                            <li class="navi-item">
+                                <a href="/persuratan/surat/create?type=surat-keterangan-pindah" class="navi-link">
+                                    <span class="navi-bullet">
+                                        <i class="bullet bullet-dot"></i>
+                                    </span>
+                                    <span class="navi-text">Surat Keterangan Pindah</span> 
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

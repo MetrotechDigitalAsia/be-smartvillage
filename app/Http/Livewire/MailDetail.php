@@ -46,11 +46,17 @@ class MailDetail extends Component
             case 'Surat Keterangan Perkawinan':
                 $data = $this->getSuratPerkawinan();
                 break;
+            case 'Surat Keterangan Pindah':
+                $data = $this->getSuratPindah();
+                break;
         }
 
-        $data->saksi_1 = Signature::find($data->saksi_1) ?? null;
-        $data->saksi_2 = Signature::find($data->saksi_2) ?? null;
+        if($this->mail->title != 'Surat Keterangan Pindah'){
+            $data->saksi_1 = Signature::find($data->saksi_1) ?? null;
+            $data->saksi_2 = Signature::find($data->saksi_2) ?? null;
 
+        }
+        
         $kelian = Signature::where('position', '=','Kelian Banjar')
                     ->where('banjar', $data->applicant_banjar)
                     ->first();
@@ -94,6 +100,35 @@ class MailDetail extends Component
             'userMail.created_at',
             'registration_number',
             'registration_date',
+        ]);
+
+        return $data;
+
+    }
+
+    public function getSuratPindah(){
+
+        $data = DB::table('users_mail as userMail')
+        ->join('mails', 'mails.id', '=', 'userMail.mail_id')
+        ->join($this->userDb, 'applicant.id', '=', 'userMail.resident_id')
+        ->where('userMail.id', '=', $this->mailId)
+        ->first([
+            'userMail.id',
+            'mails.title',
+            'mails.slug',
+            'userMail.field',
+            'userMail.signature',
+            'userMail.user_id',
+            'userMail.status',
+            'applicant.nama as applicant_name',
+            'applicant.no_nik as applicant_nik',
+            'applicant.no_kk as applicant_no_kk',
+            'applicant.kewarganegaraan as applicant_citizenship',
+            'applicant.jenis_kelamin as applicant_sex',
+            'applicant.tempat_lahir as applicant_birthplace',
+            'applicant.tanggal_lahir as applicant_birthdate',
+            'applicant.alamat as applicant_address',
+            'applicant.banjar as applicant_banjar',
         ]);
 
         return $data;

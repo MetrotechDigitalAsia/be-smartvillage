@@ -68,7 +68,7 @@ class UserDataExport extends DefaultValueBinder implements FromQuery, WithHeadin
             if ($header == 'status_akta_kelahiran' || $header == 'status_akta_perkawinan') {
                 $headers[] = $userData->{$header} == 1 ? 'ADA' : 'TIDAK';
             } else if($header == 'umur') {
-                $headers[] = Carbon::now()->format('Y') - Carbon::parse($userData->tanggal_lahir)->format('Y');
+                $headers[] = Carbon::parse($userData->tanggal_lahir)->diff(Carbon::now())->y;;
             } else if(($header == 'tanggal_lahir' || $header == 'tanggal_perkawinan') && !is_null($userData->{$header})) {
                 $headers[] = Carbon::parse($userData->{$header})->format('d-m-Y');
             } else {

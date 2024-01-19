@@ -47,6 +47,9 @@ class MailForm extends Component
             case 'Surat Keterangan Perkawinan':
                 $this->emitTo('create-mail.surat-keterangan-perkawinan-form', 'submitMail', $this->applicant_data->id, $this->mail->id);
                 break;
+            case 'Surat Keterangan Pindah':
+                $this->emitTo('create-mail.surat-pindah-form', 'submitMail', $this->applicant_data->id, $this->mail->id);
+                break;
             default:
                 # code...
                 break;

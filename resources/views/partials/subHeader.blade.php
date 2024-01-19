@@ -67,6 +67,7 @@
             <!--end::Heading-->
         </div>
         <!--end::Info-->
+
         @if (Str::contains(Route::current()->uri, 'persuratan/surat') || Str::contains(Route::current()->uri, '/penduduk/'))
         <!--begin::Toolbar-->
         <div class="d-flex align-items-center">

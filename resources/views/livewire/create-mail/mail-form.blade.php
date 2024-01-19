@@ -12,6 +12,9 @@
         @case('Surat Keterangan Perkawinan')
             @livewire('create-mail.surat-keterangan-perkawinan-form')
             @break
+        @case('Surat Keterangan Pindah')
+            @livewire('create-mail.surat-pindah-form')
+            @break
         @default
     @endswitch
 

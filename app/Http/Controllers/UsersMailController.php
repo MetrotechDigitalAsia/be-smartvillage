@@ -264,17 +264,20 @@ class UsersMailController extends Controller
             case 'surat-keterangan-perkawinan':
                 $data = $this->getSuratPerkawinan($id);
                 break;
+            case 'surat-keterangan-pindah':
+                $data = $this->getSuratPindah($id);
+                break;
         }
-
-        // dd($data);
 
         $perbekel = Signature::where('position', 'Perbekel')->first();
         $kelian = Signature::where('position', '=','Kelian Banjar')
                     ->where('banjar', $data->banjar)
                     ->first();
 
-        $data->saksi_1 = Signature::find($data->saksi_1);
-        $data->saksi_2 = Signature::find($data->saksi_2);
+        if($request->type != 'surat-keterangan-pindah'){
+            $data->saksi_1 = Signature::find($data->saksi_1);
+            $data->saksi_2 = Signature::find($data->saksi_2);
+        }
 
         $field = json_decode($data->field);
 
@@ -282,6 +285,12 @@ class UsersMailController extends Controller
             $pdf = Pdf::loadView('mailTemplate.'.$data->slug, compact('data', 'perbekel', 'kelian', 'field'));
             $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$data->slug).'_mail.pdf';
             return $pdf->download($fileName);
+        }
+
+        if($data->title == 'Surat Keterangan Pindah'){
+            $pdf = Pdf::setOption(['defaultFont' => 'sans-serif'])->setPaper('legal', 'landscape')->loadView('mailTemplate.f1-03', compact('data', 'perbekel', 'kelian', 'field'));
+            $fileName = Carbon::now()->format('d_m_Y').'_'.str_replace(' ', '_',strtolower($data->name)).'_'.str_replace('-','_',$data->slug).'_mail.pdf';
+            return $pdf->stream($fileName);
         }
 
         $queryParams = $request->query();
@@ -513,6 +522,34 @@ class UsersMailController extends Controller
 
         return $data;
 
+    }
+
+    public function getSuratPindah($id){
+        $data = DB::table('users_mail as userMail')
+            ->join('mails', 'mails.id', '=', 'userMail.mail_id')
+            ->join($this->userDb, 'userDB.id', '=', 'userMail.resident_id')
+            ->where('userMail.id', '=', $id)
+            ->first([
+                'userMail.id',
+                'mails.title',
+                'mails.slug',
+                'userMail.mail_number',
+                'userMail.status',
+                'userMail.field',
+                'userMail.signature',
+                'userMail.user_id',
+                'userDB.banjar as banjar',
+                'userDB.nama as name',
+                'userDB.nama as applicant_name',
+                'userDB.no_nik as applicant_nik',
+                'userDB.no_kk as applicant_no_kk',
+                'userDB.kewarganegaraan as applicant_citizenship',
+                'userDB.alamat as applicant_address',
+                'userDB.banjar as applicant_banjar',
+                'userMail.created_at',
+            ]);
+
+        return $data;
     }
 
     public function sendMailPushNotification($title, $body, $fcm){

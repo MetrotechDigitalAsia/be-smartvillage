@@ -31,7 +31,7 @@
     <div class="form-group">
         <label>Provinsi</label>
         <select wire:change="getCity($event.target.value)" wire:model="province" name="provinsi" id="" class="form-control" >
-            <option value="">pilih provinsi</option>
+            <option value="">-- Pilih Provinsi --</option>
             @foreach ($list_of_province as $item)
             <option data-id="{{ $item['id'] }}" value="{{ $item['name'] }}">{{ $item['name'] }}</option>
             @endforeach
@@ -41,7 +41,7 @@
     <div class="form-group">
         <label>Kabupaten/Kota</label>
         <select wire:change="getDistrict($event.target.value)" wire:model="city" name="city" id="" class="form-control" >
-            <option value="">pilih kabupaten</option>
+            <option value="">-- Pilih Kabupaten --</option>
             @foreach ($list_of_city as $item)
             <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
             @endforeach
@@ -52,7 +52,7 @@
     <div class="form-group">
         <label>Kecamatan</label>
         <select wire:change="getVillage($event.target.value)" wire:model="district" name="city" id="" class="form-control" >
-            <option value="">pilih kota</option>
+            <option value="">-- Pilih Kecamatan --</option>
             @foreach ($list_of_district as $item)
             <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
             @endforeach
@@ -63,7 +63,7 @@
     <div class="form-group">
         <label>Kelurahan/Desa</label>
         <select wire:model="village" name="city" id="" class="form-control" >
-            <option value="">pilih kabupaten</option>
+            <option value="">-- Pilih Kelurahan --</option>
             @foreach ($list_of_village as $item)
             <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
             @endforeach

@@ -58,7 +58,7 @@
                 </div>
             </div>
             @endif
-            @if ($data->status == 'Done')
+            @if (($data->status) == 'Done')
             <a 
                 class="btn btn-default btn-sm btn-icon mr-2"
                 data-toggle="modal"
@@ -218,6 +218,8 @@
                             @include('admin.mailView.tanda-tangan-suami-istri')
                         </div>
                     </div>
+                    @elseif($data->title == 'Surat Keterangan Pindah')
+                        @include('admin.mailView.f1-03')
                     @endif
                 </div>
             </div>
@@ -226,6 +228,7 @@
 
     </div>
     <!--end::Body-->
+    @if ($data->title != 'Surat Keterangan Pindah')
     <div class="card-footer d-flex">
         <a href="/persuratan/surat" class="btn btn-outline-secondary font-weight-bold mr-auto">Kembali</a>
         <a href="#" class="btn btn-outline-danger font-weight-bold" data-mail-id="{{ $data->id }}" data-mail-num="{{ $data->mail_number }}" onclick="onActionClick(this, 'Rejected')" data-toggle="modal" data-target="#confirmModal" >
@@ -243,6 +246,7 @@
         </a>
         @endif
     </div>
+    @endif
 
     
     <div class="modal fade" id="downloadModal_surat_keterangan_kelahiran" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
@@ -381,6 +385,29 @@
                             <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-keterangan-tempat-usaha"/>
                             <span></span>
                             Surat Keterangan Tempat Usaha
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex py-2 px-2">
+                    <button type="button" style="flex: 1;" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <a href="javascript:;" data-dismiss="modal" onclick="handleDownloadMail()" type="button" style="flex: 1;" class="btn btn-primary">Unduh</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="downloadModal_surat_keterangan_pindah" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="font-size: 16px;" >Unduh Surat Keterangan Pindah</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="checkbox-list">
+                        <label class="checkbox">
+                            <input type="checkbox" class="mail-checkbox" onclick="handleClickCheckbox(this)" name="surat-keterangan-pindah"/>
+                            <span></span>
+                            Surat Keterangan Pindah
                         </label>
                     </div>
                 </div>

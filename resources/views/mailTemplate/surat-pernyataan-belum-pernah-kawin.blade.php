@@ -203,7 +203,7 @@
             <td span="2" >Mengetahui :</td>
         </tr>
         <tr>
-            <td>Reg No. : ...............................</td>
+            <td>Reg No. : {{ $data->registration_number ?? '...............................' }}</td>
         </tr>
         <tr>
             <td >Tanggal : ...............................</td>

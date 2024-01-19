@@ -299,8 +299,8 @@
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" >{{ $field->subject_1->blood_type ?? '' }}</td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px; text-transform: uppercase;" >{{ $field->subject_1->religion ?? '' }}</td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
-            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-transform: uppercase;" >{{ $field->marriage_status ?? '' }}</td>
-            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ $field->subject_1->birth_certificate ?? '' }}</td>
+            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-transform: uppercase;" >KAWIN</td>
+            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" ></td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ !(empty($field->marriage_date)) ? Carbon\Carbon::parse($field->marriage_date)->format('d/m/Y') : '' }}</td>
         </tr>
@@ -310,8 +310,8 @@
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" >{{ $field->subject_2->blood_type ?? '' }}</td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px; text-transform: uppercase;" >{{ $field->subject_2->religion ?? '' }}</td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
-            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-transform: uppercase;" >{{ $field->marriage_status ?? '' }}</td>
-            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ $field->subject_2->birth_certificate ?? '' }}</td>
+            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-transform: uppercase;" >KAWIN</td>
+            <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" ></td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px;" ></td>
             <td style="font-weight: bold; border: 1px solid black; height: 15px; text-align: center;" >{{ !(empty($field->marriage_date)) ? Carbon\Carbon::parse($field->marriage_date)->format('d/m/Y') : '' }}</td>
         </tr>
