@@ -206,7 +206,7 @@
             <td>Reg No. : {{ $data->registration_number ?? '...............................' }}</td>
         </tr>
         <tr>
-            <td >Tanggal : ...............................</td>
+            <td >Tanggal : @if (!empty($data->registration_date)) {{ \Carbon\Carbon::parse($data->registration_date)->translatedFormat('d F Y') }} @else ............................... @endif</td>
             <td style="" >Getasan, {{ Carbon\Carbon::now()->translatedFormat('d F Y') }}</td>
         </tr>
         <tr>
