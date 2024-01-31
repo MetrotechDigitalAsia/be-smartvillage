@@ -212,10 +212,6 @@ class UserDataController extends Controller
         $data['penyandang_disabilitas']  = isset($data['penyandang_disabilitas']) ? 1: 0;
         $data['penerima_bantuan']  = isset($data['penerima_bantuan']) ? 1: 0;
 
-        if($data['no_kk'] != $userData->no_kk){
-            UserData::where('no_kk', $userData->no_kk)->update(['no_kk' => $data['no_kk']]);
-        }
-
         try {
             $userData->update($data);
             $message = 'update user successfully';
