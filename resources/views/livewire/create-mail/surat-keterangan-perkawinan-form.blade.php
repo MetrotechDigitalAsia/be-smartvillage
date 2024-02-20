@@ -49,7 +49,7 @@
             <div class="form-group">
                 <label>Kecamatan</label>
                 <select wire:change="getVillage($event.target.value, 1)" wire:model="subject_1_district" name="city" id="" class="form-control" >
-                    <option value="">pilih kota</option>
+                    <option value="">pilih kecamatan</option>
                     @foreach ($subject_1_list_of_district as $item)
                     <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
                     @endforeach
@@ -60,7 +60,7 @@
             <div class="form-group">
                 <label>Kelurahan/Desa</label>
                 <select wire:model="subject_1_village" name="city" id="" class="form-control" >
-                    <option value="">pilih kabupaten</option>
+                    <option value="">pilih kelurahan</option>
                     @foreach ($subject_1_list_of_village as $item)
                     <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
                     @endforeach
@@ -109,7 +109,7 @@
             <div class="form-group">
                 <label>Kecamatan</label>
                 <select wire:change="getVillage($event.target.value, 2)" wire:model="subject_2_district" name="city" id="" class="form-control" >
-                    <option value="">pilih kota</option>
+                    <option value="">pilih kecamatan</option>
                     @foreach ($subject_2_list_of_district as $item)
                     <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
                     @endforeach
@@ -120,7 +120,7 @@
             <div class="form-group">
                 <label>Kelurahan/Desa</label>
                 <select wire:model="subject_2_village" name="city" id="" class="form-control" >
-                    <option value="">pilih kabupaten</option>
+                    <option value="">pilih kelurahan</option>
                     @foreach ($subject_2_list_of_village as $item)
                     <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
                     @endforeach

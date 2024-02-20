@@ -336,7 +336,7 @@
                                     <label class="col-xl-3 col-lg-3 col-form-label">SHDK</label>
                                     <div class="col">
                                         @php
-                                            $banjar = ['KEPALA KELUARGA', 'SUAMI', 'ISTRI', 'ANAK', 'MENANTU', 'CUCU', 'FAMILI LAIN', 'LAINNYA']
+                                            $banjar = ['KEPALA KELUARGA', 'ORANG TUA','SUAMI', 'ISTRI', 'ANAK', 'MENANTU', 'CUCU', 'FAMILI LAIN', 'LAINNYA']
                                         @endphp
                                         <select class="form-control form-control-lg " name="shdk" >
                                             <option value="">Pilih...</option>
@@ -453,7 +453,7 @@
                                 <select class="form-control form-control-lg" name="jenis_bantuan" >
                                     <option value="">Pilih...</option>
                                     @foreach ($blt as $item)
-                                    <option value="{{ $item->type }}" {{ !empty($user) ? $user['jenis_bantuan'] == $item->type ? 'selected' : '' : ''}}  >
+                                    <option value="{{ $item->id }}" {{ !empty($user) ? $user['jenis_bantuan'] == $item->id ? 'selected' : '' : ''}}  >
                                         {{ $item->type }}
                                     </option>
                                     @endforeach
