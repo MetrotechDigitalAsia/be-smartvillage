@@ -114,7 +114,8 @@ class UserDataController extends Controller
             $param = $request->get('query')['generalSearch'] ?? null;
             $banjar = $request->get('query')['banjar'] ?? null;
 
-            $data = UserData::latest()
+            $data = UserData::latest('residents_data.created_at')
+                    ->leftJoin('resident_move_mutations as rm', 'rm.resident_id', '=', 'residents_data.id')
                     ->when(!is_null($param) && !preg_match('/[0-9]/', $param), function($query) use ($param){
                         $query->where('nama', 'like', '%'.$param.'%');
                     })
@@ -124,6 +125,7 @@ class UserDataController extends Controller
                     ->when(!is_null($banjar), function($query) use ($banjar){
                         $query->where('banjar', $banjar);
                     })
+                    ->whereNull('rm.id')
                     ->get();
 
             return DataTables::of($data)
