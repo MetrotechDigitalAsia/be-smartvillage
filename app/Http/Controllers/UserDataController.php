@@ -126,6 +126,7 @@ class UserDataController extends Controller
                         $query->where('banjar', $banjar);
                     })
                     ->whereNull('rm.id')
+                    ->select('residents_data.*')
                     ->get();
 
             return DataTables::of($data)
