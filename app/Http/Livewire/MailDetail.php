@@ -200,6 +200,7 @@ class MailDetail extends Component
             'applicant.alamat as applicant_address',
             'applicant.pekerjaan as applicant_job',
             'applicant.banjar as applicant_banjar',
+            'applicant.tanggal_lahir as applicant_birthdate',
             DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
             'userMail.created_at',
             'userMail.petugas',
