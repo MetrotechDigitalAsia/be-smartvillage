@@ -44,12 +44,10 @@
 				<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
 					<!--Header-->
 					@include('partials.header')
-
 					<!--Content-->
 					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 						<!--Subheader-->
 						@include('partials.subHeader')
-
 						<!--Entry-->
 						<div class="d-flex flex-column-fluid">
 							<!--Container-->

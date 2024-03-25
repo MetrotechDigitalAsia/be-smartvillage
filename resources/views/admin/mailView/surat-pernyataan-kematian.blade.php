@@ -10,7 +10,7 @@
         </tr>
         <tr>
             <td>Umur</td>
-            <td>: {{ \Carbon\Carbon::parse($user->applicant_birthdate)->diff(\Carbon\Carbon::now())->y }} Tahun</td>
+            <td>: {{ \Carbon\Carbon::parse($data->applicant_birthdate)->diff(\Carbon\Carbon::now())->y }} Tahun</td>
 
         </tr>
         <tr>
