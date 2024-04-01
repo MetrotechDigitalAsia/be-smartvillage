@@ -463,6 +463,7 @@ class UsersMailController extends Controller
                 'userDB.pekerjaan as applicant_job',
                 'userDB.banjar as applicant_banjar',
                 'userDB.tanggal_lahir as applicant_birthdate',
+                DB::raw('YEAR(NOW()) - YEAR(tanggal_lahir) as applicant_age'),
                 'userMail.created_at',
                 'userMail.petugas',
             ]);
