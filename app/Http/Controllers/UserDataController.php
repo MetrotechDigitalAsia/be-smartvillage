@@ -95,12 +95,13 @@ class UserDataController extends Controller
         $blt = DB::connection('resident_mysql')
                 ->table('residents_data')
                 ->whereNotIn('residents_data.status_mutasi', ['Meninggal', 'Pindah Keluar'])
+                ->join(env('DB_DATABASE').'.blt', 'blt.id', '=', 'residents_data.jenis_bantuan')
                 ->whereNotNull('jenis_bantuan')
-                ->select('jenis_bantuan', DB::raw('COUNT(*) as total'))
-                ->groupBy('jenis_bantuan')
+                ->select('blt.type as nama','jenis_bantuan', DB::raw('COUNT(*) as total'))
+                ->groupBy('jenis_bantuan', 'blt.type')
                 ->get();
 
-        // dd($age);
+        // dd($blt);
 
         return view('admin.penduduk.index', compact('banjar', 'gender', 'age', 'residentJobs', 'educations', 'disabilityPeople', 'blt'));
     }

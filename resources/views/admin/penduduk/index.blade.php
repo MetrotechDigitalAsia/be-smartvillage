@@ -208,6 +208,8 @@
         const disabilities = {!! json_encode($disabilityPeople) !!}
         const bltReciever = {!! json_encode($blt) !!}
 
+        console.log(bltReciever)
+
         const jobGlide = new Glide('.job-glide')
 
         jobGlide.mount()
@@ -460,7 +462,7 @@
             const bltChart = function(age){
 
                 // const categories = age.map( item => item['jenis_bantuan'] )
-                const data = age.map( item => ({y: item['total'], x: item['jenis_bantuan']}) )
+                const data = age.map( item => ({y: item['total'], x: item['nama']}) )
 
                 const el = document.querySelector('#blt_chart')
                 const opt = {
