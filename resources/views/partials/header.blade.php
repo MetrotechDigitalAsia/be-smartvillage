@@ -6,8 +6,8 @@
             <!--begin::Header Logo-->
             <div class="header-logo">
                 <a href="/">
-                    <img alt="Logo" src="{{ asset('assets/be/media/desa.png') }}" class="logo-default max-h-40px" />
-                    <img alt="Logo" src="{{ asset('assets/be/media/desa.png') }}" class="logo-sticky max-h-40px" />
+                    <img alt="Logo" src="{{ asset('assets/be/media/SatuDesaMark.svg') }}" class="logo-default max-h-40px" />
+                    <img alt="Logo" src="{{ asset('assets/be/media/SatuDesaMark.svg') }}" class="logo-sticky max-h-40px" />
                 </a>
             </div>
             <!--end::Header Logo-->

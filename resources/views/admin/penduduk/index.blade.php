@@ -3,50 +3,19 @@
 @section('table')
 
  <div class="row">
+    @foreach ($residentCount as $item)
     <div class="col-6 col-xl-3 ">
         <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets/be/media/svg/shapes/abstract-3.svg') }})">
             <!--begin::Body-->
             <div class="card-body pt-12">
-                <span class="font-size-h3 font-weight-bolder text-primary " >Ubud</span>
-                <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-7 d-block">{{ $banjar['ubud'] }}</span>
+                <span class="font-size-h3 font-weight-bolder text-primary " >{{ $item->banjar }}</span>
+                <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-7 d-block">{{ $item->jumlah }}</span>
                 <span class="font-weight-bold text-muted font-size-sm">Total Data Penduduk</span>
             </div>
             <!--end::Body-->
         </div>
     </div>
-    <div class="col-6 col-xl-3">
-        <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets/be/media/svg/shapes/abstract-3.svg') }})">
-            <!--begin::Body-->
-            <div class="card-body pt-12">
-                <span class="font-size-h3 font-weight-bolder text-primary " >Kauh</span>
-                <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-7 d-block">{{ $banjar['kauh'] }}</span>
-                <span class="font-weight-bold text-muted font-size-sm">Total Data Penduduk</span>
-            </div>
-            <!--end::Body-->
-        </div>
-    </div>
-    <div class="col-6 col-xl-3">
-        <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets/be/media/svg/shapes/abstract-3.svg') }})">
-            <!--begin::Body-->
-            <div class="card-body pt-12">
-                <span class="font-size-h3 font-weight-bolder text-primary " >Buangga</span>
-                <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-7 d-block">{{ $banjar['buangga'] }}</span>
-                <span class="font-weight-bold text-muted font-size-sm">Total Data Penduduk</span>
-            </div>
-            <!--end::Body-->
-        </div>
-    </div>
-    <div class="col-6 col-xl-3">
-        <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets/be/media/svg/shapes/abstract-3.svg') }})">
-            <!--begin::Body-->
-            <div class="card-body pt-12">
-                <span class="font-size-h3 font-weight-bolder text-primary " >Tengah</span>
-                <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-7 d-block">{{ $banjar['tengah'] }}</span>
-                <span class="font-weight-bold text-muted font-size-sm">Total Data Penduduk</span>
-            </div>
-            <!--end::Body-->
-        </div>
-    </div>
+    @endforeach
 </div>
 
 <div class="row">
@@ -195,7 +164,7 @@
 @push('script')
 
     <script>
-        const primary = '#C91022'
+        const primary = '#337660'
         const success = '#F9A11B'
         const info = '#9CCC65'
         const warning = '#9CCC65'

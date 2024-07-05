@@ -32,34 +32,10 @@ class DatabaseSeeder extends Seeder
 
         Admin::create([
             'fullname' => 'Super Admin',
-            'email' => 'superadmin@desagetasan.id',
+            'email' => 'superadmin@metrotech',
             'password' => bcrypt('qazwsx'),
             'status' => 'Active',
             'type' => 'Super'
-        ]);
-
-        Admin::create([
-            'fullname' => 'Admin',
-            'email' => 'admin@desagetasan.id',
-            'password' => bcrypt('qazwsx'),
-            'status' => 'Active',
-            'type' => 'Umum'
-        ]);
-
-        Admin::create([
-            'fullname' => 'Admin Pariwisata',
-            'email' => 'adminpariwisata@desagetasan.id',
-            'password' => bcrypt('qazwsx'),
-            'status' => 'Active',
-            'type' => 'Pariwisata'
-        ]);
-
-        Admin::create([
-            'fullname' => 'Admin Pariwisata',
-            'email' => 'adminlayanan@desagetasan.id',
-            'password' => bcrypt('qazwsx'),
-            'status' => 'Active',
-            'type' => 'Layanan'
         ]);
 
         ComplaintCategory::create(['complaint_category' => 'Pariwisata']);
@@ -76,7 +52,7 @@ class DatabaseSeeder extends Seeder
         ItemBusinessCategory::create(['item_category' => 'Kesehatan', 'slug' => 'kesehatan']);
         ItemBusinessCategory::create(['item_category' => 'Lainnya', 'slug' => 'lainnya']);
 
-        $users = UserData::limit(5)->get();
+        // $users = UserData::limit(5)->get();
 
         // foreach($users as $user){
 

@@ -39,21 +39,10 @@ class UserDataController extends Controller
                 ->orderBy('KATEGORI')
                 ->get();
 
-        $kauh = UserData::where('BANJAR', 'Kauh')
-        ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
-        ->count();
-
-        $buangga = UserData::where('BANJAR', 'buangga')
-        ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
-        ->count();
-
-        $tengah = UserData::where('BANJAR', 'tengah')
-        ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
-        ->count();
-
-        $ubud = UserData::where('BANJAR', 'ubud')
-        ->whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
-        ->count();
+        $residentCount = UserData::whereNotIn('status_mutasi', ['Meninggal', 'Pindah Keluar'])
+        ->select('banjar', DB::raw('COUNT(*) as jumlah'))
+        ->groupBy('banjar')
+        ->get();
 
         $rawResidentJobs = DB::connection('resident_mysql')
                     ->table('residents_data')
@@ -80,7 +69,7 @@ class UserDataController extends Controller
         list($education_1, $education_2) = array_chunk($education, count($education) / 2);
         $educations = [$education_1, $education_2];
 
-        $banjar = compact('kauh', 'buangga', 'tengah', 'ubud');
+        // $banjar = compact('kauh', 'buangga', 'tengah', 'ubud');
 
         $disabilityPeople = DB::connection('resident_mysql')
                             ->table('residents_data')
@@ -103,7 +92,7 @@ class UserDataController extends Controller
 
         // dd($blt);
 
-        return view('admin.penduduk.index', compact('banjar', 'gender', 'age', 'residentJobs', 'educations', 'disabilityPeople', 'blt'));
+        return view('admin.penduduk.index', compact('residentCount', 'gender', 'age', 'residentJobs', 'educations', 'disabilityPeople', 'blt'));
     }
 
 

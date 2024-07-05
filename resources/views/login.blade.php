@@ -4,8 +4,8 @@
 	<!--begin::Head-->
 	<head><base href="../../../../">
 		<meta charset="utf-8" />
-		<title>SIGETASAN: Content Management System Desa Getasan</title>
-		<meta name="description" content="Desa Getasan Bali" />
+		<title>SatuDesa: Content Management System</title>
+		<meta name="description" content="SatuDesa" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -25,7 +25,7 @@
 		<link href="{{ asset('assets/be/css/themes/layout/aside/dark.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
 		<!--end::Layout Themes-->
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="{{ asset('assets/be/media/desa.png') }}" />
+		<link rel="shortcut icon" href="{{ asset('assets/be/media/SatuDesaMark.svg') }}" />
 		<link rel="mask-icon" href="{{ asset('assets/images/favicons/safari-pinned-tab.svg') }}" color="#5bbad5" />
 		<meta name="msapplication-TileColor" content="#ffffff" />
 		<meta name="theme-color" content="#ffffff" />
@@ -47,18 +47,18 @@
 					<div class="d-flex flex-row-fluid flex-column justify-content-between">
 						<!--begin: Aside header-->
 						<a href="#" class="flex-column-auto mt-5">
-							<img src="{{ asset('assets/be/media/desa.png') }}" class="max-h-70px" alt="Desa Getasan" />
+							<img src="{{ asset('assets/be/media/SatuDesaMark.svg') }}" class="max-h-70px" alt="Desa Getasan" />
 						</a>
 						<!--end: Aside header-->
 						<!--begin: Aside content-->
 						<div class="flex-column-fluid d-flex flex-column justify-content-center">
-							<h3 class="font-size-h1 mb-5 text-white"><b>SIGETASAN - CMS</b></h3>
-							<p class="font-weight-lighter text-white opacity-80">Content Management System - Desa Getasan</p>
+							<h3 class="font-size-h1 mb-5 text-white"><b>SatuDesa - CMS</b></h3>
+							<p class="font-weight-lighter text-white opacity-80">Content Management System</p>
 						</div>
 						<!--end: Aside content-->
 						<!--begin: Aside footer for desktop-->
 						<div class="d-none flex-column-auto d-lg-flex justify-content-between mt-10">
-							<div class="opacity-70 font-weight-bold text-white">© 2023 Getasan, Kec. Petang, Kab. Badung, Prov. Bali.</div>
+							<div class="opacity-70 font-weight-bold text-white">©2024 - SatuDesa - Metrotech Digital Asia.</div>
 						</div>
 						<!--end: Aside footer for desktop-->
 					</div>

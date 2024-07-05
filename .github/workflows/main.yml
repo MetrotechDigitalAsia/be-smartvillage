@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - rahmat
+      - demo
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
@@ -13,10 +13,10 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: www.desagetasan.id
-        username: ${{ secrets.ftp_username }}
-        password: ${{ secrets.ftp_password }}
-        server-dir: /public_html/cms/
+        server: www.metrotechdigital.asia
+        username: ${{ secrets.FTP_DEMO_USERNAME }}
+        password: ${{ secrets.FTP_DEMO_PASSWORD }}
+        server-dir: /public_html/satudesa/
         exclude: |
           **/.git*
           **/.git*/**

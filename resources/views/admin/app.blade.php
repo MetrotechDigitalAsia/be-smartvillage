@@ -5,7 +5,7 @@
 	<head><base href="">
 		<meta charset="utf-8" />
 		<meta name="csrf-token" content="{{ csrf_token() }}" />
-		<title>SIGETASAN: Content Management System Desa Getasan</title>
+		<title>SatuDesa: Content Management System</title>
 		<meta name="description" content="Updates and statistics" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<!--Fonts-->
@@ -24,7 +24,7 @@
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 		<link rel="stylesheet" href="https://unpkg.com/@glidejs/glide/dist/css/glide.core.min.css">
 
-		<link rel="shortcut icon" href="{{ asset('assets/be/media/desa.png') }}" />
+		<link rel="shortcut icon" href="{{ asset('assets/be/media/SatuDesaMark.svg') }}" />
 
 		@livewireStyles
 		{{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
@@ -92,51 +92,7 @@
 
 		<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 		
-		<script>
-
-			// Enable pusher logging - don't include this in production
-			// Pusher.logToConsole = true;
-
-			var pusher = new Pusher('4bd4cfa546049d622247', {
-				cluster: 'ap1'
-			});
-
-			var channel = pusher.subscribe('public-channel');
-
-			var audio = new Audio("{{ asset('assets/be/notif_sound/ip_wa.mp3') }}")
-
-			const spanPulse = document.querySelector('span.ring')
-			const notifIcon = document.querySelector('.notif-icon')
-
-			channel.bind('mail-process-event', () => {
-				Livewire.emit('refresh-mail-process')
-				new Audio("{{ asset('assets/be/notif_sound/ip_wa.mp3') }}").play()
-			})
-
-			channel.bind('mail-finish-event', () => {
-				Livewire.emit('refresh-mail-finish')
-				new Audio("{{ asset('assets/be/notif_sound/ip_wa.mp3') }}").play()
-			})
-
-			channel.bind('notification-event', function(data) {
-				Livewire.emit('notifAdded')
-				audio.currentTime = 0
-				if(data.data === 'mail'){
-					Livewire.emit('refreshMailTable')
-					audio.play()
-				}
-				notifIcon.classList.add('svg-icon-warning')
-				spanPulse.classList.add('pulse-ring')
-			});
-
-			const notifBtn = document.querySelector('.notif-btn')
-
-			notifBtn.addEventListener('click', () => {
-				notifIcon.classList.remove('svg-icon-warning')
-				spanPulse.classList.remove('pulse-ring')
-			})
-
-		</script>
+		
 
 		<script>
 
