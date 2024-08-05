@@ -129,7 +129,7 @@
             <td style="padding-bottom: 50px;" >Camat Petang,</td>
         </tr>
         <tr>
-            <td ><u>I Wayan Suandi, S.Pt</u></td>
+            <td ><u>I Wayan Suandi, S.Pt., NL.P</u></td>
             <td></td>
             <td><u>...................................</u></td>
         </tr>
