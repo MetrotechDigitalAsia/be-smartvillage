@@ -2952,7 +2952,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <u style="font-size: 14px;" ><b>I Wayan Suandi, S.Pt</b></u>
+                            <u style="font-size: 14px;" ><b>I Wayan Suandi, S.Pt., NL.P</b></u>
                         </td>
                         <td>
                             <u style="font-size: 14px;" ><b>{{ $data->applicant_name }}</b></u>
