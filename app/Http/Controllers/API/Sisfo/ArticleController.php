@@ -19,6 +19,7 @@ class ArticleController extends Controller
                    $q->where('slug', 'LIKE', '%'.$param.'%')->orWhere('title', 'LIKE', '%'.$param.'%'); 
                 })
                 ->select(['articles.id', 'title', 'slug', 'article_category', 'image', 'time', 'date', 'articles.created_at', 'articles.updated_at', 'admin.fullname as updated_by'])
+                ->latest('articles.created_at')
                 ->paginate(6);
 
         foreach ($data as $item) {
