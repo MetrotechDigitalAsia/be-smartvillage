@@ -39,7 +39,7 @@
                 <td style="text-transform: capitalize;" >: {{ $data->subject->name }}</td>
             </tr>
             <tr>
-                <td>Tempat/Tgl. Lahir: </td>
+                <td>Tempat/Tgl. Meninggal: </td>
                 <td style="text-transform: capitalize;" >: {{ $field->place_of_death }}, {{ Carbon\Carbon::parse($field->date_of_death)->translatedFormat('d F Y') }}</td>
             </tr>
             <tr>
