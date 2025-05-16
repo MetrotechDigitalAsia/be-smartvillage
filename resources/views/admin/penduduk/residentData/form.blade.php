@@ -247,7 +247,7 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">No KK <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input class="form-control @error('no_kk') is-invalid @enderror form-control-lg" type="number" name="no_kk" value="{{ $user['no_kk'] ?? '' }}" required />
+                                        <input class="form-control @error('no_kk') is-invalid @enderror form-control-lg" name="no_kk" value="{{ $user['no_kk'] ?? '' }}" required />
                                         @error('no_kk')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -257,7 +257,7 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">No NIK <span style="color: red;" >*</span></label>
                                     <div class="col">
-                                        <input required class="form-control @error('no_nik') is-invalid @enderror form-control-lg " type="number" name="no_nik" value="{{$user['no_nik'] ?? '' }}" required />
+                                        <input required class="form-control @error('no_nik') is-invalid @enderror form-control-lg " name="no_nik" value="{{$user['no_nik'] ?? '' }}" required />
                                         @error('no_nik')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
